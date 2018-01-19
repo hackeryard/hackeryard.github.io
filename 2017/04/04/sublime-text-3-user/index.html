@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>sublime Text 3使用指南 | Spark Era Coming...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下： [c]wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c] [c]sudo dpkg -i sublime-text_build-3047_amd64">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sublime Text 3使用指南">
+<meta property="og:url" content="http://sparkera.net/2017/04/04/sublime-text-3-user/index.html">
+<meta property="og:site_name" content="Spark Era Coming...">
+<meta property="og:description" content="今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下： [c]wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c] [c]sudo dpkg -i sublime-text_build-3047_amd64">
+<meta property="og:updated_time" content="2018-01-19T01:31:05.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sublime Text 3使用指南">
+<meta name="twitter:description" content="今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下： [c]wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c] [c]sudo dpkg -i sublime-text_build-3047_amd64">
+  
+    <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Spark Era Coming...</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">This is a little site for coding and recording</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sparkera.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-sublime-text-3-user" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/04/sublime-text-3-user/" class="article-date">
+  <time datetime="2017-04-04T01:48:15.000Z" itemprop="datePublished">2017-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sublime Text 3使用指南
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下：</p>
+<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c</a>]</p>
+<p>[c]sudo dpkg -i sublime-text_build-3047_amd64.deb[/c]</p>
+<p>然后shell下使用subl命令打开编辑器，热键“Ctrl+`”，在下部的窗口中输入：</p>
+<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
+<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
+<p>[c]install[/c]</p>
+<p>或者</p>
+<p>[c]pci[/c]</p>
+<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>之后View-&gt;syntax-&gt;C Improved 即可。</p>
+<p>Tips：<br>一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
+<p>[c]&quot;update_check&quot;: false[/c]</p>
+<p>重启编辑器即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2017/04/04/sublime-text-3-user/" data-id="cjcl9fwaj002sn0lxfoxa37wu" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/07/mpich-3-x-ealy-install-guide/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nuevo</strong>
+      <div class="article-nav-title">
+        
+          MPICH 3.X安装简明指南【ubuntu】
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/01/network-tools/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Viejo</strong>
+      <div class="article-nav-title">网络工具集</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorías</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Industry/">Computer Industry</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MPICH-TUTOR/">MPICH TUTOR</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node/">Node</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Phpbb3/">Phpbb3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu学习/">Ubuntu学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows应用/">Windows应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wordpress/">Wordpress</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《读者》笔记/">《读者》笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大学生活/">大学生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统整理/">操作系统整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络分析/">网络分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成/">计算机组成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随想集/">随想集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nube de Tags</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archivos</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Posts recientes</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/19/Vincent之死/">Vincent之死</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/03/how-to-send-a-null-udp-packet/">如何发送空UDP报文</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/16/node-000/">node实践 0x00</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/14/install-scientific-lib-modules-in-windows/">安装python科学计算库 [windows下]</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/16/some-tough-thoughts-in-2015/">15年某日手记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Runking Hanna<br>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

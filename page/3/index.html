@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Spark Era Coming...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Spark Era Coming...">
+<meta property="og:url" content="http://sparkera.net/page/3/index.html">
+<meta property="og:site_name" content="Spark Era Coming...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark Era Coming...">
+  
+    <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Spark Era Coming...</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">This is a little site for coding and recording</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sparkera.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-debug-tools" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/03/debug-tools/" class="article-date">
+  <time datetime="2016-12-03T14:26:17.000Z" itemprop="datePublished">2016-12-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/03/debug-tools/">调试小技巧</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能：</p>
+<p>1, system(“pause”) –system里面可以嵌入任意的dos命令，如dir、cmd等等</p>
+<p>2,  getch() –等待从键盘输入一个字符，不回显，不需要回车</p>
+<p>3, getche() –等待从键盘输入一个字符，回显，不需要回车</p>
+<p>4, getchar() –等待从键盘输入一个字符，回显，需要回车</p>
+<p>另外我们有时候可能需要从别人编译好的exe文件运行，并查看运行结果，这时候怎么暂停一下呢？最直接的方式就是在dos下输入执行文件运行，这样可以看到结果，但是有时输入路径很麻烦，带有中文还需要不停切换，所以分享一个简单方法，如下：</p>
+<p>新建一个批处理文件.bat，如exe.bat，在里面添加如下内容：</p>
+<p>@echo off –echo off表示后面的命令都不回显，而且提示符也不回显；加@表示本身也不回显</p>
+<p>call %1 –调用拖入的可执行文件，%1应该表示拖入的文件其指针</p>
+<p>echo. –输入空行，即回车一下</p>
+<p>pause –这是重要功能，调用完成通过暂停来查看运行结果</p>
+<p>END</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/12/03/debug-tools/" data-id="cjcl9fw86000jn0lx6wzov6mp" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-in-my-secret-life" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/20/in-my-secret-life/" class="article-date">
+  <time datetime="2016-11-20T14:18:52.000Z" itemprop="datePublished">2016-11-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/20/in-my-secret-life/">In My Secret Life</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前几天，意外在简书上看到有作者写的纪念科恩（Leonard Cohen）的文章，一来感叹自己对音乐了解太少，而且很久没关注了，二来让我坚定了要听一听他的歌曲的决心。那晚想早点睡，明早还有课，就没听。第二天下午室友们外出聚会，在出租车上，因为我头晕，就问旁边的室友要耳机，都没有后，其中一个提醒我外放就好，我就打开酷狗，第一首歌就是昨晚搜的科恩的这首歌，RT。当时真的没有心情（晕乎乎的），去听这种奇怪的歌，而且是跟室友们分享，我也怕落一个“freak”的名头，哈哈。</p>
+<p>第一次亲密接触是在周六，一大早起来听，心很静。慢慢的，我发现他的歌喉，很有魅力，那种低沉的就跟游吟诗人诉说苦痛一般的沙哑的烟嗓子，听久了真的很上瘾，而有些歌，是没有这些魅力的，听一百遍也没有。</p>
+<p>之后找到了包含此曲的专辑CD镜像，到处找他的信息，浏览了<a href="http://www.leonardcohen.com/" target="_blank" rel="noopener">他的主页</a>，发现他以前还是个小说家和画家，之后因着偶然的机会进入音乐创作。看到他的艺术作品，那些画像，想必是个有着丰富情感经历并且乐于观察的人。他的作品没有看过，据说年轻的他也着迷于东方玄学，来作为一种解脱。到底是个谜一般的男人，歌词简单却不容易懂，只好叹息阅历太浅。</p>
+<p>但这并不妨碍我一遍又一遍的听他的歌，尤其是《In My Secret Life》（英文歌词<a href="http://www.azlyrics.com/lyrics/leonardcohen/inmysecretlife.html" target="_blank" rel="noopener">附上</a>），不断重复的In My Secret Life的旋律很美。我承认只听旋律和感情基调，歌词内容一般忽略，但这首歌的歌词实在是既简单又复杂，很迷惑我，所以在自主理解无望后，好不容易找到一篇<a href="https://www.douban.com/note/138471096/" target="_blank" rel="noopener">好翻译</a>。这篇日志就是为了记下这篇翻译的（实在感谢<a href="https://www.douban.com/people/2558869/" target="_blank" rel="noopener">豆瓣用户</a>）：</p>
+<p>我的秘密生活 《In My Secret Life》</p>
+<p>今早看到你<br>你一闪即逝<br>看来对于过往我还是无法释怀<br>我是如此地想念你<br>眼中再无他人<br>在我的秘密生活里<br>我们依然有着肌肤之亲</p>
+<p>愤怒时我却微笑<br>我欺骗 我撒谎<br>为了生存<br>我不择手段</p>
+<p>其实我知孰为非<br>我知孰为是<br>在我的秘密生活里<br>为了真理 死不足惜</p>
+<p>坚持住 我的兄弟<br>坚持住 我的姐妹<br>行动指令我已拿到<br>我将一直走到破晓<br>还将一直走入黑夜<br>去一次次穿越我的秘密生活的边界</p>
+<p>通篇报章<br>令人唏嘘<br>命如草芥 无人关心<br>庄家想让你相信<br>一切非黑即白<br>好在在我的秘密生活里<br>世界并非如此简单</p>
+<p>我三缄其口<br>我照单全收<br>无论是最新的流行语<br>还是古老的智慧</p>
+<p>但我总是形单影只<br>心似坚冰<br>我的秘密生活<br>拥挤又寒冷</p>
+<p>引用科恩的一句话，“万物皆有裂痕，那是光进来的地方”。</p>
+<p>愿安息！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/11/20/in-my-secret-life/" data-id="cjcl9fw92001ln0lx4fw4z55y" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-use-cmake-and-mingw-re-compile-opencv-lib-and-config-properly-in-qt-creator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/16/use-cmake-and-mingw-re-compile-opencv-lib-and-config-properly-in-qt-creator/" class="article-date">
+  <time datetime="2016-11-15T16:08:09.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/16/use-cmake-and-mingw-re-compile-opencv-lib-and-config-properly-in-qt-creator/">使用Cmake和MinGW重编译OpenCV库并在QT Creator上正确配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>环境很复杂，两周前花了大概两三个小时配置VS2013下的Opencv，由于MFC对Opencv支持不好并且上手慢，而我又不想重新学习C#，最最重要的是，Express版竟然没有MFC模块！所以我开始转手QT Creator。以前不知道VS可以直接使用QT的插件，那么就不用后来这么折腾了，记住，最重要的是学习Opencv的使用，而不是配置复杂的环境。</p>
+<p>以下就是帮助大家解决环境问题的：（还是得解决：)）</p>
+<p>1，用Cmake生成Makefile（其中我遇到Qt-Dir-Not-Found的问题，按照<a href="https://dotuyau.wordpress.com/2014/04/25/opencv_qt_windows/" target="_blank" rel="noopener">这个教程</a>顺利通过），之后命令行下make，make install;</p>
+<p>2，添加环境变量（在Path下添加编译好的opencv/bin），并按照自己的opencv版本，比如我的是2.4.13，那么就修改为这个版本2413，把需要的include、链接文件写入.pro即可。如果是打开了Qt Creator测试程序发现可编译但是运行错误，这很可能就是链接库无法装载的问题，前面的环境变量一定要设置好，之后最好重启Qt Creator，载入新的Path，方可运行正常）</p>
+<p>接下来就可以不用理会环境的问题了，Head in OpenCV~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/11/16/use-cmake-and-mingw-re-compile-opencv-lib-and-config-properly-in-qt-creator/" data-id="cjcl9fwaj0032n0lxa8v9d59u" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-phpbb-forums-installing-and-using-guide" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/08/phpbb-forums-installing-and-using-guide/" class="article-date">
+  <time datetime="2016-11-08T13:34:47.000Z" itemprop="datePublished">2016-11-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Phpbb3/">Phpbb3</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/08/phpbb-forums-installing-and-using-guide/">phpbb论坛安装与使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件）</p>
+<p>&nbsp;</p>
+<h3 id="首先，进入phpbb中文网下载最新的中文安装包："><a href="#首先，进入phpbb中文网下载最新的中文安装包：" class="headerlink" title="首先，进入phpbb中文网下载最新的中文安装包："></a>首先，进入<a href="https://www.phpbbchinese.com/#" target="_blank" rel="noopener">phpbb中文网</a>下载最新的中文安装包：</h3><p>&nbsp;</p>
+<p>点击中文包，右键复制链接，使用<strong>wget + 复制的链接</strong>，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我们重命名如下：</p>
+<p><strong>mv xxx  phpbb3.zip</strong></p>
+<p>解压：</p>
+<p><strong>unzip phpbb3.zip  </strong></p>
+<p>重命名：</p>
+<p><strong>mv phpBB3 bbs</strong>（bbs目录就是你喜欢的网站路径了，可以自选）</p>
+<p>然后用<strong>ifconfig命令</strong>自己的ip，后续访问论坛需要使用，即<strong>你的ip/bbs，</strong>复制到浏览器地址栏。</p>
+<p>&nbsp;</p>
+<h3 id="开始进入数据库配置："><a href="#开始进入数据库配置：" class="headerlink" title="开始进入数据库配置："></a>开始进入数据库配置：</h3><p><strong>mysql -u root -p</strong>（回车后输入你的数据库root密码，没有密码就直接进去了）</p>
+<p><strong>create database phpbb3;</strong> （为phpbb创建一个数据库，专门用来存放论坛数据）</p>
+<p><strong>grant all privileges on phpbb3.* to phpbbuser@localhost identified by ‘your.password’ ;</strong> （新建phpbbuser用户，指定your.password密码，并赋予用户对于phpbb3数据库全部权限，因为这个是要在后续论坛安装时使用的）</p>
+<p><strong>exit</strong>（退出mysql）</p>
+<p>&nbsp;</p>
+<h3 id="现在开始简单的网页向导安装吧"><a href="#现在开始简单的网页向导安装吧" class="headerlink" title="现在开始简单的网页向导安装吧"></a>现在开始简单的网页向导安装吧</h3><p>这跟windows下安装程序一样，一步一步提示。如下：</p>
+<p><strong>你的ip/bbs，</strong>复制到浏览器地址栏打开；</p>
+<p>在这期间phpbb会检测你的mysql、php、apache安装好没有，并且需要一些文件夹和配置文件有没有可写权限，还需要你提供刚才创建的数据库用户名phpbbuser和密码，用于它操控，如下：</p>
+<p>进入网站家目录：<strong>cd /var/www/html</strong></p>
+<p>修改bbs目录所有者为apache用户和apache组：<strong>chown -R apache:apache bbs</strong></p>
+<p>之后发现都可写了，这一步通过！</p>
+<p>安装完成之后，bbs目录下的install目录就没用了，如果保留，可能被别人利用，造成意外损失。可使用删除命令<strong>rm -rf install</strong></p>
+<p>这样跟着走就可以完成论坛安装，新站长可以多尝试，并参考文档解决用户组权限、管理权限等问题。</p>
+<p>参考<a href="http://linux.vbird.org/apache_packages/www_04phpBB.php" target="_blank" rel="noopener">鸟哥的网站</a>：phpBB 最大的优点是可以进行外挂模组的开发，以建立个人的网页风格，我也在尝试个性化~</p>
+<p>Enjoy！</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/11/08/phpbb-forums-installing-and-using-guide/" data-id="cjcl9fwa3002cn0lxdp3bt8gy" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-foundation-of-conpilation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/08/foundation-of-conpilation/" class="article-date">
+  <time datetime="2016-11-08T06:16:06.000Z" itemprop="datePublished">2016-11-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机组成/">计算机组成</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/08/foundation-of-conpilation/">编译基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为下学期没有编译原理的课程（真的很坑爹），但是这部分内容真的很重要的，懂了这些遇到相关知识也比较容易理解。</p>
+<p>我们在Windows下安装一个程序，一般需要一个后缀为exe或msi的可执行文件，双击之后，如果是第一次安装，会出现安装向导，一步一步指示你选择安装目录，选择安装哪些套件（在VS等IDE中），是否创建桌面快捷方式等等，这么下来，程序就在操作系统的注册表里注册了自己的信息（包括自己的元数据，即程序位置；配置信息等），这样当我们使用快捷键Win+S时，就可以搜索程序的名字来快速打开它，而且程序还可以关联文件后缀，比如我们安装了Dev C++ IDE时，我们希望只要是.c , .cpp文件都用它打开，就可以关联后缀。关联后缀其实是让操作系统知道如何找到打开这种文件的默认程序（操作系统是知道默认程序的路径的）。</p>
+<p>在linux命令行下，安装了一个程序，比如安装了vim，这时就可以直接用vim XX.txt打开某个文件，因为bash知道vim对应的二进制代码（机器代码）放在什么位置，可以直接调用它们来处理文本等。</p>
+<p>下面我再从开发者的角度解释编译过程：</p>
+<p>首先我们需要配置文件（configure脚本可以检测到不同的系统环境，执行这个脚本可以生成适合各个环境的Makefile），好让编译器知道标准库文件的位置、应该安装的位置、要安装哪些功能（模块）。你可以直接执行configure脚本，也可以传递给它一些参数以指定自定义安装目录、是否安装gdb调试模块（安装bochs模拟器时）等其他配置信息。（详见<a href="http://www.ruanyifeng.com/blog/2014/11/compiler.html" target="_blank" rel="noopener">阮叔博客</a>）</p>
+<p><img src="http://182.254.242.193/runkingblog/wp-content/uploads/2016/11/compiler.html-300x41.jpg" alt="compiler"></p>
+<p>这样就生成了Makefile，存放了各种依赖关系，告诉make命令如何编译和链接这些.c和.h文件。make命令会自动智能地根据当前的文件修改的情况来确定哪些文件需要重编译，从而自己编译所需要的文件和链接目标程序。这就是解决依赖。</p>
+<p>预编译</p>
+<p>工程中源文件需要使用某个或某些头文件，在第一次的时候编译这些头文件，后续在需要的时候直接用就行，这样节省了时间，提高编译效率。另外，调试时可以声明宏来指明是否编译这个头文件。</p>
+<p>预处理：</p>
+<p>去除头文件，执行宏替换，去掉注释。</p>
+<p><a href="http://www.cnblogs.com/IamEasy_Man/archive/2011/08/10/2134212.html" target="_blank" rel="noopener">编译</a>：</p>
+<p>编译器首先要检查代码的规范性、是否有语法错误等，以确定代码的实际要做的工作，在检查无误后，编译器把代码翻译成汇编语言。汇编语言是非常有用的，它为不同高级语言不同编译器提供了通用的语言。如：C编译器和Fortran编译器产生的输出文件用的都是一样的汇编语言。</p>
+<p>汇编：</p>
+<p>将编译生成的汇编代码转为目标文件，很多时候这个文件并不能直接执行，因为还需要一些额外的库函数，比如标准库，如果你opencv程序，还需要第三方的opencv的库函数，把这些库函数包括进可执行文件，就是下述的链接过程。</p>
+<p>链接：</p>
+<p>分为两种，静态链接是把需要的外部函数全部加载进可执行文件，动态链接是在程序运行时如果需要每个外部库，就加载进来，这么做的好处就是打包的程序文件较小，但是分发给其他用户使用时，他们必须安装对应的外部库。前者的程序文件较大，但是通用性强，后者文件较小，而且可以在内存中与其他进程分享这些外部库，但是需要其他用户额外安装这些库，比较麻烦。</p>
+<p>安装：</p>
+<p>经过链接，编译器在内存中生成了可执行文件，我们需要后续使用它，就需要保存到非易失的硬盘中，也就是相应安装目录了。</p>
+<p>通知操作系统：</p>
+<p>安装完成后，我们希望操作系统把它加入到一个索引表，便于我们搜索时快捷的打开程序，这就是开头提到的。在linux下，新安装的程序一般在/usr/bin下，输入新安装的程序，就会在这个路径下搜索并执行。</p>
+<p>在我新安装的FreeBSD上执行 echo $PATH ，输出：</p>
+<blockquote>
+<p>/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/freebsd/bin<br>这就是系统搜索命令的路径，而且一般是按照顺序搜索，如果系统命令与用户命令重名，可以指定完整路径解决。</p>
+</blockquote>
+<p>至此编译和安装完成！</p>
+<p>画外音：听说编译器是世界上第二复杂的东西，第一是操作系统，可我们数据库老师说database才是第二复杂的~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/11/08/foundation-of-conpilation/" data-id="cjcl9fw8m0012n0lxa8z5y3dz" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-migrant-the-blog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/06/migrant-the-blog/" class="article-date">
+  <time datetime="2016-11-06T15:41:01.000Z" itemprop="datePublished">2016-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/06/migrant-the-blog/">博客迁移之路</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7）</p>
+<p>—————————————跟着我左手右手一个慢动作—————————–</p>
+<p>首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因为wp-content目录下有我们的主题、sitemaps、插件，最最重要的是uploads文件夹，这存放着上传的图片，没有这玩意，以后打开新站点的博客，可能出现找不到图片的尴尬情况。</p>
+<p>接着，按照同样的步骤把wp-config.php传到wordpress家目录下，大家都清楚这是wp的配置文件，里面存放着wp程序操作数据库的用户名密码，在这里有一个好方法，大家可以按照这个文件的内容在新主机上<a href="https://cloud.digitalocean.com/support/suggestions?article=how-to-install-wordpress-on-centos-7&amp;page=0&amp;query=wordpress" target="_blank" rel="noopener">新建一个数据库+用户+密码</a>，这样配置文件就可以直接用了。</p>
+<p>之后wget一个跟老博客同样版本的wordpress.tar.gz，解压后删除wp-content和wp-config.php，之后放到wordpress家目录下，这样文件部分就解决了。</p>
+<p>下面是数据库迁移：用phpmyadmin用默认方式导出wordpress的数据库，格式大概为wordpress.sql。在新主机上安装phpmyadmin，打开新站点ip/phpMyAdmin，导入原数据库，并在wp-options表的siteurl和home这两项修改原网址为新网址，这很重要，关系到能不能打开新站点的wordpress。（<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-with-apache-on-a-centos-7-server" target="_blank" rel="noopener">DO phpmyadmin 教程</a>）</p>
+<p>这样直接通过 <a href="http://新站点ip/wordpress" target="_blank" rel="noopener">http://新站点ip/wordpress</a> 就可以进去了，可以看到主页，但是点击任何一片博文，提示“the requested url /index.php was not found on this server. ”，这是因为我原来的博客修改了永久链接，需要在/etc/httpd/conf/httpd.conf修改允许重写（override），并且在wordpress家目录下的.htaccess文件修改为类似如下：</p>
+<blockquote>
+<h1 id="BEGIN-WordPress"><a href="#BEGIN-WordPress" class="headerlink" title="BEGIN WordPress"></a>BEGIN WordPress</h1><p>&lt;IfModule mod_rewrite.c&gt;</p>
+<p>RewriteEngine On</p>
+<p>RewriteBase /wordpress/                                        //这是wordpress家目录，链接重写起始位置，如果你是xx，改为/xx/</p>
+<p>RewriteRule ^index.php$ - [L]</p>
+<p>RewriteCond %{REQUEST_FILENAME} !-f</p>
+<p>RewriteCond %{REQUEST_FILENAME} !-d</p>
+<p>RewriteRule . /wordpress/index.php [L]                //这是家目录对应下的index.php,如果你是xx,改为/xx/index.php</p>
+<p>&lt;/IfModule&gt;</p>
+<h1 id="END-WordPress"><a href="#END-WordPress" class="headerlink" title="END WordPress"></a>END WordPress</h1><p>搞定！</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/11/06/migrant-the-blog/" data-id="cjcl9fw9j001tn0lx2qfxxngf" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-a-lovely-melanogaster" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/24/a-lovely-melanogaster/" class="article-date">
+  <time datetime="2016-10-24T12:10:24.000Z" itemprop="datePublished">2016-10-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/24/a-lovely-melanogaster/">可爱的果蝇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天去张裕城堡顺利带回来的香蕉，早上就发现有密密麻麻的飞虫了。本来我是很不喜欢这些小东西的，经常让我这个爱吃水果但容易买多的学生党无可奈何，它们就是喜欢水果啊尤其是成熟的破皮的比如前面说的香蕉还有橘子，搞得好像比我还在意自己的水果！</p>
+<p>室友也很讨厌，我也奇怪这些东西是怎么来的，这么高的楼层而且现在天气都这么低了，它们是现在这里过冬吗？</p>
+<p>下午上课的空当，突发奇想，想到那些东西会不会就是高中生物学到的果蝇。百度了一下，挺震惊的，同时我也很惊喜。作为高三的生物课代表，我还记得摩尔根的果蝇实验，隐约记得他有一只极其珍贵的变异果蝇，而正是这只果蝇（经查证，是白眼），让摩尔根验证了孟德尔遗传与变异的学说，后来他也因为这些研究获得了诺贝尔奖，有趣的是，他的学生米勒，被称为“果蝇突变大师”，后来也获得了此奖。你看看果蝇的贡献多大。</p>
+<p>沉浸在高中生物的回忆中，对宿舍香蕉上的那些小东西的罪行也不怎么追究了，以后我还可能用一个培养皿养点果蝇研究研究。刚才我就看到停留在衣柜外面的果蝇是红眼的，也就3-4mm身长，比起苍蝇卫生多了，但还是提醒一下，注意卫生，因为它在提示你有开始腐烂的水果了。</p>
+<p>果蝇还是空气污染的指示器，初中我们学过，苔藓由于单层细胞，极易被SO2等污染物破坏，所以是很好的空气指示植物，现在又多了果蝇，看来宿舍的空气还是挺好的，哈哈，虽然西安每到严寒到来，暖气开通的时候那天气真是…</p>
+<p>兴趣扩展：</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%BB%91%E8%85%B9%E6%9E%9C%E8%9D%87" target="_blank" rel="noopener">果蝇wiki</a></p>
+<p><a href="http://songshuhui.net/archives/58323" target="_blank" rel="noopener">基因命名趣谈——从“蓝精灵”说起</a></p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/10/24/a-lovely-melanogaster/" data-id="cjcl9fw6v0003n0lxiiyxwv8k" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-internet-as-the-infrastructure" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/18/internet-as-the-infrastructure/" class="article-date">
+  <time datetime="2016-10-17T16:09:54.000Z" itemprop="datePublished">2016-10-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/18/internet-as-the-infrastructure/">互联网成为基础支撑</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前几天的<a href="https://yq.aliyun.com/articles/61583" target="_blank" rel="noopener">杭州云栖大会</a>直播，今晚补看了一些，其中马云的演讲，听后很震撼，也觉得比较赞同。</p>
+<p>首先，作为中国电商的鼻祖，马云从这二十年来的摸滚打爬中，他对互联网的精神的理解肯定要超过绝大部分人，他提到他的十多年前的构想，那就是04年跟很多小企业探讨未来的商业模式，但他描述的电商他们却没有在意，结果就是，那些小企业现在还得靠阿里巴巴这艘大船，而十二年前，谁是这艘大船还不知道呢！</p>
+<p>我认为演讲的主题就是拥抱未来，拥抱未来的新技术，乐于接受和运用互联网精神，摒弃昨天的陈旧观念，因为这会让你在新旧更迭的时候感到迷茫而且很可能故步自封，但其实很少人能有马云这种预测的精准度并且有他的魄力坚持自己的想法的。所以，马云这次神预言还是应该好好听一听的，哈哈，他一路成长过来，我是相信他的水平的。</p>
+<p><em>演讲中最引人深思的是关于教育问题的思考，他说我们的教育应该培养鼓励年轻人的创造力想象力，而不仅仅是知识，还要有智慧。</em></p>
+<p>于我而言，于考试而言，书本上的知识可能更加重要，这会让我摆脱不了应试教育的桎梏，从而定一些短期的目标，比如期末突击等等。而一个人，尤其是大学生，需要阅读大量的人文的专业的书籍，人文的书籍让你有所坚守有所思索，专业的东西让你对未来的认识变得清晰，帮助自己用专业来实现自己的想法和价值。马云说的创造力想象力，正是我们缺失的，尤其是现在的大学氛围，娱乐人生游戏人生，浮躁肤浅，粗制滥造到处可见。</p>
+<p>想象力，在忧虑的时候不会出现。只有在轻松的环境下，通过适当的引导，比如老师，例如书籍，比如朋友的聊天，才能茁壮，乃至飞翔。对于马云来说，他通过企业的运营，通过对互联网的理解，最后提出了对市场方向的预测，他也坚持着自己的梦，最后有的就实现了。而这梦，不就是想象出来的吗？支付宝，至少他敢想，不然现在的消费转账怎么会这么方便？虽然宝宝收益很低了，但比活期不还是高了好几倍？</p>
+<p>我很期待未来的世界，马云口中的公平的社会，人类共同解决核心问题的第三次技术革命。这是个技术驱动的世界，是个数据驱动的世界，以互联网为支撑，以年轻人的技术创新为基础。</p>
+<p>面对无法预测的未来，就跟我站在奇点上无法看到大爆炸后的宇宙一样。</p>
+<p>So，Boom！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/10/18/internet-as-the-infrastructure/" data-id="cjcl9fw92001on0lxkvfle7g9" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-e6-b0-b8-e8-bf-9c-e7-9a-84-e8-80-81-e5-8f-8b-e8-ae-b0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/08/e6-b0-b8-e8-bf-9c-e7-9a-84-e8-80-81-e5-8f-8b-e8-ae-b0/" class="article-date">
+  <time datetime="2016-10-08T13:33:55.000Z" itemprop="datePublished">2016-10-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/08/e6-b0-b8-e8-bf-9c-e7-9a-84-e8-80-81-e5-8f-8b-e8-ae-b0/">永远的老友记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>老友记停于第十季第一集。我舍不得看了。据说在老友记在时代广场大屏幕上播放大结局时，很多很多人就地而坐，留下了热泪。有些美国人常说老友记陪伴了他们整整十年，相比于我们这些用半年甚至几个月就看完的人来说，也许根本体会不到它的意义。可是我多是体会到了些什么。不然我就不会笑着笑着就常常陷入了深思。他们是厨师，按摩师，演员，时尚界人士，热爱并研究恐龙的博士，数据处理和统计分析员。你看，他们多么的不同，却一直存在于彼此的生活中。他们很平凡，就像生活在我们身边的人。不像生活大爆炸里面的男主们智商超群，总让我觉得遥远。</p>
+<p>他们初入职场到每个人都小有成就，他们分分合合的爱情到最终找到归宿…相聚十年到最后分别的友情。每个人都在成长。<em>里面每一个人我都很喜欢。现在着重说chandler.最初的印象是楼上的性格怪异的独居老头去世，他开始陷入恐慌之中，一直在想以后他将怎么办（hhh又一个我喜欢的不确定型）。他对每个人都很好，一直在照料着那个总是像孩子一样的朋友joey。对总是喜欢争强好胜充满控制欲的monica总是充满着宽容和理解。“I may not understand why you have to win badly.but it’s important to you,it’s important to me,because I love you.”话说他可不是只会说冷笑话（尽管他的冷笑话已经完全打动了我）还是个情话高手……ˊ</em>&gt;ˋ_<br>反正千言万语很难说尽…微博上我特别关注了五六个关于老友记的账号，时常翻一翻。为了不忘却吧。也了解到了在北上广各有老友记的主题咖啡馆，如有机会，可以一去。</p>
+<p>接下来来再看个老剧吧，《广告狂人》<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/10/08/e6-b0-b8-e8-bf-9c-e7-9a-84-e8-80-81-e5-8f-8b-e8-ae-b0/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/10/08/e6-b0-b8-e8-bf-9c-e7-9a-84-e8-80-81-e5-8f-8b-e8-ae-b0/" data-id="cjcl9fw86000un0lx4ht5a0zf" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-power-to-pc-using-ssd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/08/power-to-pc-using-ssd/" class="article-date">
+  <time datetime="2016-10-08T13:01:15.000Z" itemprop="datePublished">2016-10-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机组成/">计算机组成</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/08/power-to-pc-using-ssd/">PC速度瓶颈--为何入手SSD？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。<br>所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态硬盘无疑会缩小速度差异，从而获得可以看得见的性能提升。但对于小内存机器，升级的首选还是加装内存或更换内存条，这样打开网页或者玩游戏的时候就不会因为内存小而使内存频繁地与硬盘交换数据，执行IO操作，从而导致速度变慢了。<br>现在的PC的CPU的利用率很低，也就是说有很多的性能没有用上，除非用于科学计算领域、数据挖掘等，当然大型游戏也是很占用CPU的。<br>鉴于此，近期准备入手一块三星SSD 256G。<br>PS：本人长期关注如何提升PC的速度，写一些评测之类。</p>
+<p>下图是<a href="http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait/" target="_blank" rel="noopener">CPU cache - Memory - HDD速度差异</a>的形象化表达，点击原图放大即可（在ns的世界里，ms就是个庞然大物！）</p>
+<p><a href="https://generalid.ml/wp-content/uploads/2016/10/posingcache.jpg" target="_blank" rel="noopener"><img src="https://generalid.ml/wp-content/uploads/2016/10/posingcache-24x300.jpg" alt="compare-cache-Memory-disk"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/10/08/power-to-pc-using-ssd/" data-id="cjcl9fwa3002fn0lx25x1d5ra" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Previo</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Siguiente &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorías</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Industry/">Computer Industry</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MPICH-TUTOR/">MPICH TUTOR</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node/">Node</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Phpbb3/">Phpbb3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu学习/">Ubuntu学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows应用/">Windows应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wordpress/">Wordpress</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《读者》笔记/">《读者》笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大学生活/">大学生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统整理/">操作系统整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络分析/">网络分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成/">计算机组成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随想集/">随想集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nube de Tags</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archivos</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Posts recientes</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/19/Vincent之死/">Vincent之死</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/03/how-to-send-a-null-udp-packet/">如何发送空UDP报文</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/16/node-000/">node实践 0x00</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/14/install-scientific-lib-modules-in-windows/">安装python科学计算库 [windows下]</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/16/some-tough-thoughts-in-2015/">15年某日手记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Runking Hanna<br>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>博客迁移之路 | Spark Era Coming...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） —————————————跟着我左手右手一个慢动作—————————– 首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客迁移之路">
+<meta property="og:url" content="http://sparkera.net/2016/11/06/migrant-the-blog/index.html">
+<meta property="og:site_name" content="Spark Era Coming...">
+<meta property="og:description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） —————————————跟着我左手右手一个慢动作—————————– 首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因">
+<meta property="og:updated_time" content="2018-01-19T01:30:41.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博客迁移之路">
+<meta name="twitter:description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） —————————————跟着我左手右手一个慢动作—————————– 首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因">
+  
+    <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Spark Era Coming...</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">This is a little site for coding and recording</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://sparkera.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-migrant-the-blog" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/06/migrant-the-blog/" class="article-date">
+  <time datetime="2016-11-06T15:41:01.000Z" itemprop="datePublished">2016-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      博客迁移之路
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7）</p>
+<p>—————————————跟着我左手右手一个慢动作—————————–</p>
+<p>首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因为wp-content目录下有我们的主题、sitemaps、插件，最最重要的是uploads文件夹，这存放着上传的图片，没有这玩意，以后打开新站点的博客，可能出现找不到图片的尴尬情况。</p>
+<p>接着，按照同样的步骤把wp-config.php传到wordpress家目录下，大家都清楚这是wp的配置文件，里面存放着wp程序操作数据库的用户名密码，在这里有一个好方法，大家可以按照这个文件的内容在新主机上<a href="https://cloud.digitalocean.com/support/suggestions?article=how-to-install-wordpress-on-centos-7&amp;page=0&amp;query=wordpress" target="_blank" rel="noopener">新建一个数据库+用户+密码</a>，这样配置文件就可以直接用了。</p>
+<p>之后wget一个跟老博客同样版本的wordpress.tar.gz，解压后删除wp-content和wp-config.php，之后放到wordpress家目录下，这样文件部分就解决了。</p>
+<p>下面是数据库迁移：用phpmyadmin用默认方式导出wordpress的数据库，格式大概为wordpress.sql。在新主机上安装phpmyadmin，打开新站点ip/phpMyAdmin，导入原数据库，并在wp-options表的siteurl和home这两项修改原网址为新网址，这很重要，关系到能不能打开新站点的wordpress。（<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-with-apache-on-a-centos-7-server" target="_blank" rel="noopener">DO phpmyadmin 教程</a>）</p>
+<p>这样直接通过 <a href="http://新站点ip/wordpress" target="_blank" rel="noopener">http://新站点ip/wordpress</a> 就可以进去了，可以看到主页，但是点击任何一片博文，提示“the requested url /index.php was not found on this server. ”，这是因为我原来的博客修改了永久链接，需要在/etc/httpd/conf/httpd.conf修改允许重写（override），并且在wordpress家目录下的.htaccess文件修改为类似如下：</p>
+<blockquote>
+<h1 id="BEGIN-WordPress"><a href="#BEGIN-WordPress" class="headerlink" title="BEGIN WordPress"></a>BEGIN WordPress</h1><p>&lt;IfModule mod_rewrite.c&gt;</p>
+<p>RewriteEngine On</p>
+<p>RewriteBase /wordpress/                                        //这是wordpress家目录，链接重写起始位置，如果你是xx，改为/xx/</p>
+<p>RewriteRule ^index.php$ - [L]</p>
+<p>RewriteCond %{REQUEST_FILENAME} !-f</p>
+<p>RewriteCond %{REQUEST_FILENAME} !-d</p>
+<p>RewriteRule . /wordpress/index.php [L]                //这是家目录对应下的index.php,如果你是xx,改为/xx/index.php</p>
+<p>&lt;/IfModule&gt;</p>
+<h1 id="END-WordPress"><a href="#END-WordPress" class="headerlink" title="END WordPress"></a>END WordPress</h1><p>搞定！</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://sparkera.net/2016/11/06/migrant-the-blog/" data-id="cjcl9fw9j001tn0lx2qfxxngf" class="article-share-link">Compartir</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/08/foundation-of-conpilation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nuevo</strong>
+      <div class="article-nav-title">
+        
+          编译基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/24/a-lovely-melanogaster/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Viejo</strong>
+      <div class="article-nav-title">可爱的果蝇</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categorías</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Industry/">Computer Industry</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MPICH-TUTOR/">MPICH TUTOR</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node/">Node</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Phpbb3/">Phpbb3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu学习/">Ubuntu学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows应用/">Windows应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wordpress/">Wordpress</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《读者》笔记/">《读者》笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大学生活/">大学生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统整理/">操作系统整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络分析/">网络分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成/">计算机组成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随想集/">随想集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nube de Tags</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archivos</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Posts recientes</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/19/Vincent之死/">Vincent之死</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/03/how-to-send-a-null-udp-packet/">如何发送空UDP报文</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/16/node-000/">node实践 0x00</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/14/install-scientific-lib-modules-in-windows/">安装python科学计算库 [windows下]</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/16/some-tough-thoughts-in-2015/">15年某日手记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Runking Hanna<br>
+      Construido por <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
