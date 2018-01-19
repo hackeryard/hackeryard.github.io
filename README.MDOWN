@@ -1,0 +1,76 @@
+# 欢迎大家访问我的博客站点
+
+## 分类:
+
+- [Computer Industry](https://hackeryard.github.io/categories/Computer-Industry/)
+
+- [MPICH TUTOR](https://hackeryard.github.io/categories/MPICH-TUTOR/)
+
+- [Node](https://hackeryard.github.io/categories/Node/)
+
+- [OpenCV-Learning](https://hackeryard.github.io/categories/OpenCV-Learning/)
+
+- [Phpbb3](https://hackeryard.github.io/categories/Phpbb3/)
+
+- [Ubuntu学习](https://hackeryard.github.io/categories/Ubuntu学习/)
+
+- [Windows应用](https://hackeryard.github.io/categories/Windows应用/)
+
+- [Wordpress](https://hackeryard.github.io/categories/Wordpress/)
+
+- [《读者》笔记](https://hackeryard.github.io/categories/《读者》笔记/)
+
+- [大学生活](https://hackeryard.github.io/categories/大学生活/)
+
+- [操作系统整理](https://hackeryard.github.io/categories/操作系统整理/)
+
+- [网络分析](https://hackeryard.github.io/categories/网络分析/)
+
+- [计算机组成](https://hackeryard.github.io/categories/计算机组成/)
+
+- [随想集](https://hackeryard.github.io/categories/随想集/)
+
+## Tags:
+
+- [Vincent](https://hackeryard.github.io/tags/Vincent/)
+
+- [大学实践](https://hackeryard.github.io/tags/大学实践/)
+
+- [大学的过法](https://hackeryard.github.io/tags/大学的过法/)
+
+- [字体应用](https://hackeryard.github.io/tags/字体应用/)
+
+- [实践](https://hackeryard.github.io/tags/实践/)
+
+- [探索](https://hackeryard.github.io/tags/探索/)
+
+- [梵高](https://hackeryard.github.io/tags/梵高/)
+
+- [模式](https://hackeryard.github.io/tags/模式/)
+
+- [电影](https://hackeryard.github.io/tags/电影/)
+
+## 归档:
+
+- [January 2018](https://hackeryard.github.io/archives/2018/01/)
+
+- [July 2017](https://hackeryard.github.io/archives/2017/07/)
+
+- [May 2017](https://hackeryard.github.io/archives/2017/05/)
+
+- [April 2017](https://hackeryard.github.io/archives/2017/04/)
+
+- [March 2017](https://hackeryard.github.io/archives/2017/03/)
+
+- [January 2017](https://hackeryard.github.io/archives/2017/01/)
+
+- [December 2016](https://hackeryard.github.io/archives/2016/12/)
+
+- [November 2016](https://hackeryard.github.io/archives/2016/11/)
+
+- [October 2016](https://hackeryard.github.io/archives/2016/10/)
+
+- [September 2016](https://hackeryard.github.io/archives/2016/09/)
+
+- [August 2016](https://hackeryard.github.io/archives/2016/08/)
+
