@@ -11,7 +11,7 @@
   <meta name="description" content="我们知道UDP是无连接的，接收和发送一个报文是独立的，而TCP则实现了一整套的诸如流量控制和拥塞控制机制，保证连接的可靠性。  在本文中，你将了解在Socket API中如何发送一个空的UDP报文，并且通过tcpdump抓取后用wireshark查看报文内容。 本文缘起对recvfrom的返回值的困惑，因为在TCP中，用recv或者read函数，我们可以通过其返回值是否为0，来判断对端的连接状态，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何发送空UDP报文">
-<meta property="og:url" content="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/index.html">
+<meta property="og:url" content="https://sparkera.net/2017/07/03/how-to-send-a-null-udp-packet/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
 <meta property="og:description" content="我们知道UDP是无连接的，接收和发送一个报文是独立的，而TCP则实现了一整套的诸如流量控制和拥塞控制机制，保证连接的可靠性。  在本文中，你将了解在Socket API中如何发送一个空的UDP报文，并且通过tcpdump抓取后用wireshark查看报文内容。 本文缘起对recvfrom的返回值的困惑，因为在TCP中，用recv或者read函数，我们可以通过其返回值是否为0，来判断对端的连接状态，">
 <meta property="og:locale" content="zh-CN">
@@ -72,7 +72,7 @@
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hackeryard.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://sparkera.net"></form>
       </div>
     </div>
   </div>
@@ -123,7 +123,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="cjcszhph0001zkklxh0zjqx4v" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/07/03/how-to-send-a-null-udp-packet/" data-id="cjcu31abn001clolx5yf8x2x6" class="article-share-link">Share</a>
       
       
     </footer>
