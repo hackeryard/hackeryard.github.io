@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sparkera.net/"/>
-  <updated>2018-01-19T06:25:02.441Z</updated>
+  <updated>2018-01-29T07:31:00.382Z</updated>
   <id>https://sparkera.net/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo博客之旅 [1]: 初探hexo</title>
+    <link href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/"/>
+    <id>https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/</id>
+    <published>2018-01-29T04:42:44.000Z</published>
+    <updated>2018-01-29T07:31:00.382Z</updated>
+    
+    <content type="html"><![CDATA[<p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。<br>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。<br>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。<br>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="https://sparkera.net/">hexo博客之旅 [2]: 利用webhook自动部署hexo博客</a>。</p><p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></p><p>生成如下目录：</p><ul><li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul><li>_draft(保存的草稿)</li><li>_post(你将要写的一篇篇的以md结尾的博客)</li></ul></li><li>themes<ul><li>landscape(默认的主题)</li></ul></li><li>_config.yml(全局的配置文件)</li><li>package.json(保存项目的依赖关系)</li></ul><p>之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure></p><p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p><p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p><p>如果想更换端口，使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p><p>到这里本地部署已经完成了，接下来就是部署到github，<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：<br><img src="" alt=""><br>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p><p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。&lt;br&gt;github pages可以用来存放静态博客，
+      
+    
+    </summary>
+    
+      <category term="博客" scheme="https://sparkera.net/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="https://sparkera.net/tags/hexo/"/>
+    
+      <category term="blog" scheme="https://sparkera.net/tags/blog/"/>
+    
+      <category term="js" scheme="https://sparkera.net/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>Vincent之死</title>
@@ -496,31 +525,6 @@
     </summary>
     
       <category term="随想集" scheme="https://sparkera.net/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>操作系统概述</title>
-    <link href="https://sparkera.net/2016/12/14/about-operating-system/"/>
-    <id>https://sparkera.net/2016/12/14/about-operating-system/</id>
-    <published>2016-12-14T08:11:35.000Z</published>
-    <updated>2018-01-19T01:30:52.298Z</updated>
-    
-    <content type="html"><![CDATA[<p>谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。</p><p>所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。</p><p>—————————————————–下面正式开始吧~—————————————————————</p><p>谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的xp等等），开源的Linux和众多的发行版（Ubuntu，Fedora，Redhat等），还有个极客之作Mac，我们在上面写文档，图片处理，用浏览器体验丰富的来自世界各地的网页，用qq聊天，在网上做生意，组建技术社区，包括我正在浏览器里面写博客等，这些东西，构成了我们的现代生活。另外在移动端爆发的这几年，我们又成了低头族。很多公司都在制作自己的App，很可能还是全系列的，像这样，既有安卓，还有ios，也少不了h5网页应用，但毫无例外，它们都运行在操作系统上。</p><p>那我们如何了解这一几乎每天都在使用的重要软件呢？CPU、内存、硬盘、显卡、USB外设、网卡这些资源，我们作为用户应该怎么使用它们，程序员如何编写可以利用这些资源完成自己功能的程序？</p><p>这都需要操作系统的管理，它给用户提供了一个易于使用这些重要资源的界面，我们在上面运行cmd或者bash的命令，我们安装各种软件，需要的时候或者兴趣来了，我们还会写一些软件，完成客户指定的功能或自己的设想。</p><p>它接管的资源有处理机、主存、I/O设备（又称外设，包括使用最多的硬盘、网卡设备、声卡、显卡、键盘鼠标等等），在它之上，我们得以运行有用的程序、进行体验丰富的交互，而每一次更新，我们都会很欣喜，很好奇补充哪些高级的功能。</p><p>它由多模块构成，每个模块都有特定的功能：进程的调度机制保证了每个进程可以适当的在每一段时间占用各种资源，内存管理提供了进程要在主存中运行时的内存管理，文件系统可以提供文件的存取和权限控制，设备管理可以管理众多的外设。</p><p>下一节我们将介绍操作系统的种类和各自的优缺点。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。&lt;/p&gt;
-&lt;p&gt;所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。&lt;/p&gt;
-&lt;p&gt;—————————————————–下面正式开
-      
-    
-    </summary>
-    
-      <category term="操作系统整理" scheme="https://sparkera.net/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/"/>
     
     
   </entry>

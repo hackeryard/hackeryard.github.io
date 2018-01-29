@@ -77,6 +77,59 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-network-tools" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/01/network-tools/" class="article-date">
+  <time datetime="2017-04-01T03:47:26.000Z" itemprop="datePublished">2017-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/网络分析/">网络分析</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/01/network-tools/">网络工具集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们知道，校园网支持ipv6网络，平时我们都是在使用双栈进行网络通信，只是大多时候我们没有发现，也就没有充分利用罢了。（当然我也没有充分利用起来，最近开始学习网络编程，准备写一个ipv6或者双栈下的局域网聊天软件）</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E6%95%99%E8%82%B2%E5%92%8C%E7%A7%91%E7%A0%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91" target="_blank" rel="noopener">Cernet2</a>是新一代的教育科研网，基本各大高校都有接入，ipv6本来就是实验性的技术，可以从国内主要主机（云）提供商看出ipv6的现阶段情况，需求还不大，但是基于ipv4地址池的枯竭，以及网络业务对协议的更高的要求（服务质量和安全等等），ipv6最终会淘汰ipv4，继续为人类的信息交流提供支撑。相关方面著名的网站有<a href="http://he.com" target="_blank" rel="noopener">飙风电子</a>，附带一个测试ipv6知识的<a href="http://ipv6.he.net/certification" target="_blank" rel="noopener">链接</a>，前提是你有放在公网上的ipv6的主机可以配置，美国的<a href="https://www.digitalocean.com/" target="_blank" rel="noopener">digitalocean</a>和日本的<a href="https://www.vultr.com/" target="_blank" rel="noopener"> vultr</a>都不错，还有10-50美元的优惠。</p>
+<p>现在ipv6的防火墙基本处于放任的状态，所以可以通过ipv6直接连接到香港和美国的谷歌服务器，但前提是DNS没有被污染，这里有一份<a href="https://zh.wikipedia.org/zh-cn/%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%93%E5%AD%98%E6%B1%A1%E6%9F%93" target="_blank" rel="noopener">dns缓存污染列表</a>，如果不幸用wireshark发现里面存在这里面的ip地址，那就是污染了，那些ip是不存在的或者在出关的时候直接被过滤掉了。</p>
+<p>所以你需要一个好的支持ipv6的DNS，配置到自己的网络上，有google的<a href="https://developers.google.com/speed/public-dns/docs/using" target="_blank" rel="noopener">公共DNS</a>，我们用的是北邮的dns，基本可以满足搜索和百科的要求。</p>
+<p>另一个更直接的办法，是直接在hosts文件里面添加你需要访问的ip地址+（TAB）+对应的域名，如果你不知道hosts文件的作用，可以先看下<a href="https://zh.wikipedia.org/wiki/Hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">这篇文章</a>。hosts无奈不支持泛解析，所以改好后文件会比较大，通过<a href="https://serve.netsh.org/pub/ipv6-hosts/" target="_blank" rel="noopener">奶齿博客下载</a>最新的hosts，在替换或者修改hosts文件之前，请确保你对此文件拥有编辑权，可以通过右键属性-&gt;编辑权限完成。这样打开浏览器，键入<a href="https://google.com应该就可以访问了，不放心的还可以通过cmd-&gt;ipconfig/flushdns来刷新一下系统的dns。" target="_blank" rel="noopener">https://google.com应该就可以访问了，不放心的还可以通过cmd-&gt;ipconfig/flushdns来刷新一下系统的dns。</a></p>
+<p>对于学习技术的人来说，谷歌是必要的，当然有些东西通过百度才可以获得好的查询结果，所以结合起来挺好的。</p>
+<p>另外Wikipedia的条理性很强，它把几乎所有相关的知识都链接到一个词条里面，这样有利于新知识的学习和知识的整理。</p>
+<p>说道fq，不得不说<a href="http://shadowsocks.org" target="_blank" rel="noopener">shadowsocks</a>（下称ss），通过sock5代理的方式，可用性很强，至少在大部分vpn被屏蔽后仍然坚挺，官网上有具体的教程，而且github上还有用各种语言开发的版本，比较活跃。</p>
+<p>ss基于c/s模式，通过全局代理/PAC智能代理，能够分流本地网站和外网，从而只对外网代理，既然基于c/s模式，那么肯定需要一台服务器架设在外面，如果你有兴趣，可以通过docker非常简单的安装一个，docker是一个容器，通过一个虚拟的环境方便可以实现应用在各个server上迁移，大大减轻了开发人员配置环境的工作，这里有一篇关于<a href="http://liujin.me/blog/2015/05/27/Docker-DigitalOcean-Shadowsocks-5-%E5%88%86%E9%92%9F%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" target="_blank" rel="noopener">DO主机配置docker</a>的教程，两行代码就可以搭建成功，但我没找到如何实现docker支持ss的ipv6代理，所以只能通过ipv4的方式。</p>
+<p>记得林工说过，我们的网络具有天然的学习网络知识的优势233，最近在看他的第二本书<a href="https://book.douban.com/subject/26710788/" target="_blank" rel="noopener">《wireshark网络分析艺术》</a>，挺有意思的，另外异步社区的专访<a href="http://www.epubit.com.cn/article/389" target="_blank" rel="noopener">在这里</a>，期待他的下一本园艺书。</p>
+<p>以上。</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://sparkera.net/2017/04/01/network-tools/" data-id="cjczwbqno002lj8lx4ywjkbws" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-what-is-important-in-college" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/12/what-is-important-in-college/" class="article-date">
@@ -122,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/03/12/what-is-important-in-college/" data-id="cjcuajset003lhglxgovjostk" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/03/12/what-is-important-in-college/" data-id="cjczwbqp6003vj8lxsi0t6z5p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学实践/">大学实践</a></li></ul>
@@ -183,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="cjcuajset003ohglxuvk7e1it" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="cjczwbqp6003tj8lxefzzvzgl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实践/">实践</a></li></ul>
@@ -232,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/03/12/searching-the-beautiful-patterns/" data-id="cjcuajse5002whglxhp6e7pvi" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/03/12/searching-the-beautiful-patterns/" data-id="cjczwbqo9002yj8lxbukn3qki" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/探索/">探索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
@@ -281,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/01/16/solve-win8-limited-wireless-network/" data-id="cjcuajseq0034hglxj9awjyr8" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/01/16/solve-win8-limited-wireless-network/" data-id="cjczwbqob0034j8lxrcwcg02g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -330,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/01/16/a-bowl-of-soup-noodles/" data-id="cjcuajsc1000mhglxdbjsy5wz" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/01/16/a-bowl-of-soup-noodles/" data-id="cjczwbqkw000pj8lxeis9yquv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -380,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/01/13/e5-ae-8c-e7-be-8e-e8-a7-a3-e5-86-b3-e8-81-94-e6-83-b3g510-e5-85-89-e9-a9-b1-e4-bd-8d-e6-8b-86-e5-8d-b8-e9-97-ae-e9-a2-98/" data-id="cjcuajscp0016hglxm0jqmuls" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/01/13/e5-ae-8c-e7-be-8e-e8-a7-a3-e5-86-b3-e8-81-94-e6-83-b3g510-e5-85-89-e9-a9-b1-e4-bd-8d-e6-8b-86-e5-8d-b8-e9-97-ae-e9-a2-98/" data-id="cjczwbqlf000xj8lxlxrpkpb0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -436,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/01/11/to-the-third-semester/" data-id="cjcuajset003ghglx2t7zq9da" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/01/11/to-the-third-semester/" data-id="cjczwbqp6003pj8lxrgdxge8s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -485,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2016/12/29/2016-overview/" data-id="cjcuajsbf000ihglxv7cy7bd4" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2016/12/29/2016-overview/" data-id="cjczwbqkw000kj8lxw8asul53" class="article-share-link">Share</a>
       
       
     </footer>
@@ -533,57 +586,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2016/12/21/the-coming-of-winter/" data-id="cjcuajset003bhglxu3bekdy1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-about-operating-system" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/14/about-operating-system/" class="article-date">
-  <time datetime="2016-12-14T08:11:35.000Z" itemprop="datePublished">2016-12-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/操作系统整理/">操作系统整理</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/14/about-operating-system/">操作系统概述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。</p>
-<p>所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。</p>
-<p>—————————————————–下面正式开始吧~—————————————————————</p>
-<p>谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的xp等等），开源的Linux和众多的发行版（Ubuntu，Fedora，Redhat等），还有个极客之作Mac，我们在上面写文档，图片处理，用浏览器体验丰富的来自世界各地的网页，用qq聊天，在网上做生意，组建技术社区，包括我正在浏览器里面写博客等，这些东西，构成了我们的现代生活。另外在移动端爆发的这几年，我们又成了低头族。很多公司都在制作自己的App，很可能还是全系列的，像这样，既有安卓，还有ios，也少不了h5网页应用，但毫无例外，它们都运行在操作系统上。</p>
-<p>那我们如何了解这一几乎每天都在使用的重要软件呢？CPU、内存、硬盘、显卡、USB外设、网卡这些资源，我们作为用户应该怎么使用它们，程序员如何编写可以利用这些资源完成自己功能的程序？</p>
-<p>这都需要操作系统的管理，它给用户提供了一个易于使用这些重要资源的界面，我们在上面运行cmd或者bash的命令，我们安装各种软件，需要的时候或者兴趣来了，我们还会写一些软件，完成客户指定的功能或自己的设想。</p>
-<p>它接管的资源有处理机、主存、I/O设备（又称外设，包括使用最多的硬盘、网卡设备、声卡、显卡、键盘鼠标等等），在它之上，我们得以运行有用的程序、进行体验丰富的交互，而每一次更新，我们都会很欣喜，很好奇补充哪些高级的功能。</p>
-<p>它由多模块构成，每个模块都有特定的功能：进程的调度机制保证了每个进程可以适当的在每一段时间占用各种资源，内存管理提供了进程要在主存中运行时的内存管理，文件系统可以提供文件的存取和权限控制，设备管理可以管理众多的外设。</p>
-<p>下一节我们将介绍操作系统的种类和各自的优缺点。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://sparkera.net/2016/12/14/about-operating-system/" data-id="cjcuajsc1000uhglxuq0prfaj" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2016/12/21/the-coming-of-winter/" data-id="cjczwbqob003bj8lx12u9eehg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -608,7 +611,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Industry/">Computer Industry</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MPICH-TUTOR/">MPICH TUTOR</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node/">Node</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Phpbb3/">Phpbb3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu学习/">Ubuntu学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows应用/">Windows应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wordpress/">Wordpress</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《读者》笔记/">《读者》笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大学生活/">大学生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统整理/">操作系统整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络分析/">网络分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成/">计算机组成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随想集/">随想集</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Industry/">Computer Industry</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MPICH-TUTOR/">MPICH TUTOR</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node/">Node</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Phpbb3/">Phpbb3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu学习/">Ubuntu学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows应用/">Windows应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wordpress/">Wordpress</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《读者》笔记/">《读者》笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客/">博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大学生活/">大学生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统整理/">操作系统整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络分析/">网络分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成/">计算机组成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随想集/">随想集</a></li></ul>
     </div>
   </div>
 
@@ -618,7 +621,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li></ul>
     </div>
   </div>
 
@@ -628,7 +631,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a>
+      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a>
     </div>
   </div>
 
@@ -650,6 +653,10 @@
       <ul>
         
           <li>
+            <a href="/2018/01/29/the-journal-of-hexo-blog-1/">hexo博客之旅 [1]: 初探hexo</a>
+          </li>
+        
+          <li>
             <a href="/2018/01/19/Vincent之死/">Vincent之死</a>
           </li>
         
@@ -663,10 +670,6 @@
         
           <li>
             <a href="/2017/05/14/install-scientific-lib-modules-in-windows/">安装python科学计算库 [windows下]</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/16/some-tough-thoughts-in-2015/">15年某日手记</a>
           </li>
         
       </ul>
