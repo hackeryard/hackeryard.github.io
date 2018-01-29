@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sparkera.net/"/>
-  <updated>2018-01-29T09:21:19.796Z</updated>
+  <updated>2018-01-29T09:23:09.887Z</updated>
   <id>https://sparkera.net/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo博客之旅 [1]: 初探hexo</title>
+    <link href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/"/>
+    <id>https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/</id>
+    <published>2018-01-29T04:42:44.000Z</published>
+    <updated>2018-01-29T09:23:09.887Z</updated>
+    
+    <content type="html"><![CDATA[<p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。</p><p>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。</p><p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p><p>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p><p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></p><p>生成如下目录：</p><ul><li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul><li>_draft(保存的草稿)</li><li>_post(你将要写的一篇篇的以md结尾的博客)</li></ul></li><li>themes<ul><li>landscape(默认的主题)</li></ul></li><li>_config.yml(全局的配置文件)</li><li>package.json(保存项目的依赖关系)</li></ul><p>之后，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure><p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p><p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p><p>如果想更换端口，使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p><p>到这里本地部署已经完成了，接下来就是部署到github：<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p><p><img src="http://ojnrgmtu3.bkt.clouddn.com/pages.png" alt="开启github pages"></p><p>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p><p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p><p>另外，你可能需要补一下markdown的语法，这里推荐一篇<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/" target="_blank" rel="noopener">Hexo-Markdown-简明语法手册</a></p><p>当你慢慢的，写的博客越来越多时，你可能还需要一个README，让别人在访问的repo的时候，就可以对你的博客有一个清晰地了解，我起初在网上没找到代码，就可以写了个<a href="https://github.com/hackeryard/hexo-plugins" target="_blank" rel="noopener">generate_readme</a>，可以复用</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。&lt;/p&gt;
+&lt;p&gt;github pages可以用来存放静
+      
+    
+    </summary>
+    
+      <category term="博客" scheme="https://sparkera.net/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="hexo" scheme="https://sparkera.net/tags/hexo/"/>
+    
+      <category term="blog" scheme="https://sparkera.net/tags/blog/"/>
+    
+      <category term="js" scheme="https://sparkera.net/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</title>
@@ -45,36 +75,6 @@
       <category term="webhooks" scheme="https://sparkera.net/tags/webhooks/"/>
     
       <category term="部署" scheme="https://sparkera.net/tags/%E9%83%A8%E7%BD%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo博客之旅 [1]: 初探hexo</title>
-    <link href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/"/>
-    <id>https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/</id>
-    <published>2018-01-29T04:42:44.000Z</published>
-    <updated>2018-01-29T09:23:09.887Z</updated>
-    
-    <content type="html"><![CDATA[<p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。</p><p>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。</p><p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p><p>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p><p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></p><p>生成如下目录：</p><ul><li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul><li>_draft(保存的草稿)</li><li>_post(你将要写的一篇篇的以md结尾的博客)</li></ul></li><li>themes<ul><li>landscape(默认的主题)</li></ul></li><li>_config.yml(全局的配置文件)</li><li>package.json(保存项目的依赖关系)</li></ul><p>之后，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure><p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p><p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p><p>如果想更换端口，使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p><p>到这里本地部署已经完成了，接下来就是部署到github：<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p><p><img src="http://ojnrgmtu3.bkt.clouddn.com/pages.png" alt="开启github pages"></p><p>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p><p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p><p>另外，你可能需要补一下markdown的语法，这里推荐一篇<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/" target="_blank" rel="noopener">Hexo-Markdown-简明语法手册</a></p><p>当你慢慢的，写的博客越来越多时，你可能还需要一个README，让别人在访问的repo的时候，就可以对你的博客有一个清晰地了解，我起初在网上没找到代码，就可以写了个<a href="https://github.com/hackeryard/hexo-plugins" target="_blank" rel="noopener">generate_readme</a>，可以复用</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。&lt;/p&gt;
-&lt;p&gt;github pages可以用来存放静
-      
-    
-    </summary>
-    
-      <category term="博客" scheme="https://sparkera.net/categories/%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="hexo" scheme="https://sparkera.net/tags/hexo/"/>
-    
-      <category term="blog" scheme="https://sparkera.net/tags/blog/"/>
-    
-      <category term="js" scheme="https://sparkera.net/tags/js/"/>
     
   </entry>
   
