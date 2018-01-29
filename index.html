@@ -77,6 +77,58 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-the-journal-of-hexo-blog-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/29/the-journal-of-hexo-blog-2/" class="article-date">
+  <time datetime="2018-01-29T04:42:44.000Z" itemprop="datePublished">2018-01-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/博客/">博客</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/29/the-journal-of-hexo-blog-2/">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前觉得hook是个深奥的技术，的确，到现在我还没写过一个hook，网上有很多文章讲hook都是用的win32 API，不知何时我竟然看不下去这种代码了，不知是喜是忧。</p>
+<p>从<a href="https://developer.github.com/webhooks/" target="_blank" rel="noopener">Github给出的解释</a>搬运一段如下：</p>
+<blockquote>
+<p>Webhooks allow you to build or set up GitHub Apps which subscribe to certain events on GitHub.com. When one of those events is triggered, we’ll send a HTTP POST payload to the webhook’s configured URL. Webhooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server. You’re only limited by your imagination.</p>
+</blockquote>
+<p>webhooks就是这样一种机制，当你的repo有某个特定的事件发生时，比如push/PR/issue/fork等，github在后台会向你填写的URL发送一个POST请求，里面包含了很多信息，比如issue会有sender和相应的repo，还有issue的地址等。</p>
+<p>另外这段话里面也说明了<code>update a backup mirror</code>这个用法，vps上面的镜像博客给百度索引，github.io给谷歌索引。</p>
+<p>根据webhooks的用法，我们在github pages的repo里面订阅对push事件的钩子，vps后台开启一个简单的web server监听此请求，然后使用git pull更新github pages里面的静态博客文件到本地。<br><img src="http://ojnrgmtu3.bkt.clouddn.com/webhooks.png" alt="设置Webhooks"></p>
+<p>之前参考的一篇博客已经记不起来了，只记得使用node写的，我用python重写了一下，见<a href="https://github.com/hackeryard/hexo-plugins/blob/master/webhook.py" target="_blank" rel="noopener">github</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2/" data-id="cjczzm6cd003hnwlxm3s0fldu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-the-journal-of-hexo-blog-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/29/the-journal-of-hexo-blog-1/" class="article-date">
@@ -103,7 +155,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。<br>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。<br>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。<br>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="https://sparkera.net/">hexo博客之旅 [2]: 利用webhook自动部署hexo博客</a>。</p>
+        <p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。<br>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。<br>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。<br>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p>
 <p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></p>
 <p>生成如下目录：</p>
 <ul>
@@ -123,13 +175,14 @@
 <p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p>
 <p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p>
 <p>如果想更换端口，使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p>
-<p>到这里本地部署已经完成了，接下来就是部署到github，<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：<br><img src="" alt=""><br>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p>
+<p>到这里本地部署已经完成了，接下来就是部署到github，<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：<br><img src="http://ojnrgmtu3.bkt.clouddn.com/pages.png" alt="开启github pages"><br>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p>
 <p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p>
+<p>当你慢慢的，写的博客越来越多时，你可能需要一个README，让别人在访问的repo的时候，就可以对你的博客有一个清晰地了解，我起初在网上没找到代码，就可以写了个<a href="https://github.com/hackeryard/hexo-plugins" target="_blank" rel="noopener">generate_readme</a>，可以复用</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/" data-id="cjczwbqoq003dj8lxrlhyj03o" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/" data-id="cjczzm6cd003fnwlxq5c7ojq9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -199,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2018/01/19/Vincent之死/" data-id="cjczwbqkg000ij8lxlbdmqchg" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2018/01/19/Vincent之死/" data-id="cjczzm68g000knwlxqbgyebyb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li></ul>
@@ -255,7 +308,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/07/03/how-to-send-a-null-udp-packet/" data-id="cjczwbqmt001yj8lxab6zbgqh" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/07/03/how-to-send-a-null-udp-packet/" data-id="cjczzm6a90020nwlxnz08r9x7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,7 +351,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/05/16/node-000/" data-id="cjczwbqno002oj8lxp94drqb4" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/05/16/node-000/" data-id="cjczzm6bo002qnwlxzjh151ks" class="article-share-link">Share</a>
       
       
     </footer>
@@ -350,7 +403,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="cjczwbqmt0021j8lx5iqa97kn" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="cjczzm6ap0024nwlxvqzzb7e2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -423,7 +476,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/04/16/some-tough-thoughts-in-2015/" data-id="cjczwbqob0036j8lx6gog1259" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/04/16/some-tough-thoughts-in-2015/" data-id="cjczzm6ca0036nwlxqvpr9mmm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -467,7 +520,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/04/07/apt-get-bookmark/" data-id="cjczwbqkw000vj8lxtiztryrx" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/04/07/apt-get-bookmark/" data-id="cjczzm697000xnwlxnqqr0trw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -523,7 +576,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="cjczwbqn9002dj8lxv00mse4l" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="cjczzm6b8002inwlxn13w1z5l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -635,61 +688,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="cjczwbqn9002bj8lx3ezz8zky" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-sublime-text-3-user" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/04/sublime-text-3-user/" class="article-date">
-  <time datetime="2017-04-04T01:48:15.000Z" itemprop="datePublished">2017-04-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/04/sublime-text-3-user/">sublime Text 3使用指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下：</p>
-<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c</a>]</p>
-<p>[c]sudo dpkg -i sublime-text_build-3047_amd64.deb[/c]</p>
-<p>然后shell下使用subl命令打开编辑器，热键“Ctrl+`”，在下部的窗口中输入：</p>
-<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
-<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
-<p>[c]install[/c]</p>
-<p>或者</p>
-<p>[c]pci[/c]</p>
-<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>之后View-&gt;syntax-&gt;C Improved 即可。</p>
-<p>Tips：<br>一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
-<p>[c]&quot;update_check&quot;: false[/c]</p>
-<p>重启编辑器即可。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/04/04/sublime-text-3-user/" data-id="cjczwbqoq003fj8lx8kq1t4u5" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="cjczzm6b8002gnwlx6kmxqt3p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -724,7 +723,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/部署/">部署</a></li></ul>
     </div>
   </div>
 
@@ -734,7 +733,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a>
+      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
     </div>
   </div>
 
@@ -756,6 +755,10 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       <ul>
         
           <li>
+            <a href="/2018/01/29/the-journal-of-hexo-blog-2/">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>
+          </li>
+        
+          <li>
             <a href="/2018/01/29/the-journal-of-hexo-blog-1/">hexo博客之旅 [1]: 初探hexo</a>
           </li>
         
@@ -769,10 +772,6 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
         
           <li>
             <a href="/2017/05/16/node-000/">node实践 0x00</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/14/install-scientific-lib-modules-in-windows/">安装python科学计算库 [windows下]</a>
           </li>
         
       </ul>

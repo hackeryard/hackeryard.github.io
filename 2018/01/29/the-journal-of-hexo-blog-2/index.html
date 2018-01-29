@@ -6,15 +6,22 @@
   
 
   
-  <title>Tag: 大学实践 | Spark Era Coming...</title>
+  <title>hexo博客之旅 [2]: 利用webhooks自动部署hexo博客 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Spark Era Coming...">
-<meta property="og:url" content="https://sparkera.net/tags/大学实践/index.html">
+  <meta name="description" content="以前觉得hook是个深奥的技术，的确，到现在我还没写过一个hook，网上有很多文章讲hook都是用的win32 API，不知何时我竟然看不下去这种代码了，不知是喜是忧。 从Github给出的解释搬运一段如下：  Webhooks allow you to build or set up GitHub Apps which subscribe to certain events on GitHub.">
+<meta name="keywords" content="hexo,blog,webhooks,部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo博客之旅 [2]: 利用webhooks自动部署hexo博客">
+<meta property="og:url" content="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
+<meta property="og:description" content="以前觉得hook是个深奥的技术，的确，到现在我还没写过一个hook，网上有很多文章讲hook都是用的win32 API，不知何时我竟然看不下去这种代码了，不知是喜是忧。 从Github给出的解释搬运一段如下：  Webhooks allow you to build or set up GitHub Apps which subscribe to certain events on GitHub.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ojnrgmtu3.bkt.clouddn.com/webhooks.png">
+<meta property="og:updated_time" content="2018-01-29T09:03:21.178Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark Era Coming...">
+<meta name="twitter:title" content="hexo博客之旅 [2]: 利用webhooks自动部署hexo博客">
+<meta name="twitter:description" content="以前觉得hook是个深奥的技术，的确，到现在我还没写过一个hook，网上有很多文章讲hook都是用的win32 API，不知何时我竟然看不下去这种代码了，不知是喜是忧。 从Github给出的解释搬运一段如下：  Webhooks allow you to build or set up GitHub Apps which subscribe to certain events on GitHub.">
+<meta name="twitter:image" content="http://ojnrgmtu3.bkt.clouddn.com/webhooks.png">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -72,43 +79,68 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><!-- tag.ejs -->
-<!-- post archive.ejs -->
-
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/03/12/what-is-important-in-college/" class="archive-article-date">
-  <time datetime="2017-03-12T02:28:49.000Z" itemprop="datePublished">3月 12</time>
+        <section id="main"><!-- post.ejs -->
+<!-- post/article.ejs -->
+<article id="post-the-journal-of-hexo-blog-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/29/the-journal-of-hexo-blog-2/" class="article-date">
+  <time datetime="2018-01-29T04:42:44.000Z" itemprop="datePublished">2018-01-29</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/博客/">博客</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/12/what-is-important-in-college/">上大学，学习重要，还是实践重要？</a>
+    <h1 class="article-title" itemprop="name">
+      hexo博客之旅 [2]: 利用webhooks自动部署hexo博客
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前觉得hook是个深奥的技术，的确，到现在我还没写过一个hook，网上有很多文章讲hook都是用的win32 API，不知何时我竟然看不下去这种代码了，不知是喜是忧。</p>
+<p>从<a href="https://developer.github.com/webhooks/" target="_blank" rel="noopener">Github给出的解释</a>搬运一段如下：</p>
+<blockquote>
+<p>Webhooks allow you to build or set up GitHub Apps which subscribe to certain events on GitHub.com. When one of those events is triggered, we’ll send a HTTP POST payload to the webhook’s configured URL. Webhooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server. You’re only limited by your imagination.</p>
+</blockquote>
+<p>webhooks就是这样一种机制，当你的repo有某个特定的事件发生时，比如push/PR/issue/fork等，github在后台会向你填写的URL发送一个POST请求，里面包含了很多信息，比如issue会有sender和相应的repo，还有issue的地址等。</p>
+<p>另外这段话里面也说明了<code>update a backup mirror</code>这个用法，vps上面的镜像博客给百度索引，github.io给谷歌索引。</p>
+<p>根据webhooks的用法，我们在github pages的repo里面订阅对push事件的钩子，vps后台开启一个简单的web server监听此请求，然后使用git pull更新github pages里面的静态博客文件到本地。<br><img src="http://ojnrgmtu3.bkt.clouddn.com/webhooks.png" alt="设置Webhooks"></p>
+<p>之前参考的一篇博客已经记不起来了，只记得使用node写的，我用python重写了一下，见<a href="https://github.com/hackeryard/hexo-plugins/blob/master/webhook.py" target="_blank" rel="noopener">github</a></p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2/" data-id="cjczzm6cd003hnwlxm3s0fldu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/29/the-journal-of-hexo-blog-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexo博客之旅 [1]: 初探hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         

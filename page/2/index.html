@@ -77,6 +77,60 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-sublime-text-3-user" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/04/sublime-text-3-user/" class="article-date">
+  <time datetime="2017-04-04T01:48:15.000Z" itemprop="datePublished">2017-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/04/sublime-text-3-user/">sublime Text 3使用指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下：</p>
+<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c</a>]</p>
+<p>[c]sudo dpkg -i sublime-text_build-3047_amd64.deb[/c]</p>
+<p>然后shell下使用subl命令打开编辑器，热键“Ctrl+`”，在下部的窗口中输入：</p>
+<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
+<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
+<p>[c]install[/c]</p>
+<p>或者</p>
+<p>[c]pci[/c]</p>
+<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>之后View-&gt;syntax-&gt;C Improved 即可。</p>
+<p>Tips：<br>一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
+<p>[c]&quot;update_check&quot;: false[/c]</p>
+<p>重启编辑器即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://sparkera.net/2017/04/04/sublime-text-3-user/" data-id="cjczzm6cd0038nwlx6eyc7f7i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-network-tools" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/01/network-tools/" class="article-date">
@@ -119,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/04/01/network-tools/" data-id="cjczwbqno002lj8lx4ywjkbws" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/04/01/network-tools/" data-id="cjczzm6b8002lnwlxoy3wky5l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/03/12/what-is-important-in-college/" data-id="cjczwbqp6003vj8lxsi0t6z5p" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/03/12/what-is-important-in-college/" data-id="cjczzm6ct003xnwlx44terap3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学实践/">大学实践</a></li></ul>
@@ -236,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="cjczwbqp6003tj8lxefzzvzgl" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="cjczzm6ct003vnwlx42jrgafc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实践/">实践</a></li></ul>
@@ -285,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/03/12/searching-the-beautiful-patterns/" data-id="cjczwbqo9002yj8lxbukn3qki" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/03/12/searching-the-beautiful-patterns/" data-id="cjczzm6c50030nwlxfagltqsb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/探索/">探索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
@@ -334,7 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/01/16/solve-win8-limited-wireless-network/" data-id="cjczwbqob0034j8lxrcwcg02g" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/01/16/solve-win8-limited-wireless-network/" data-id="cjczzm6c80033nwlx1ln62u72" class="article-share-link">Share</a>
       
       
     </footer>
@@ -383,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/01/16/a-bowl-of-soup-noodles/" data-id="cjczwbqkw000pj8lxeis9yquv" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/01/16/a-bowl-of-soup-noodles/" data-id="cjczzm68g000mnwlx3dwkfz2z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -433,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/01/13/e5-ae-8c-e7-be-8e-e8-a7-a3-e5-86-b3-e8-81-94-e6-83-b3g510-e5-85-89-e9-a9-b1-e4-bd-8d-e6-8b-86-e5-8d-b8-e9-97-ae-e9-a2-98/" data-id="cjczwbqlf000xj8lxlxrpkpb0" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/01/13/e5-ae-8c-e7-be-8e-e8-a7-a3-e5-86-b3-e8-81-94-e6-83-b3g510-e5-85-89-e9-a9-b1-e4-bd-8d-e6-8b-86-e5-8d-b8-e9-97-ae-e9-a2-98/" data-id="cjczzm69e001cnwlxso7iydhz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -489,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2017/01/11/to-the-third-semester/" data-id="cjczwbqp6003pj8lxrgdxge8s" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2017/01/11/to-the-third-semester/" data-id="cjczzm6ct003pnwlx2x95nw7k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -538,55 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2016/12/29/2016-overview/" data-id="cjczwbqkw000kj8lxw8asul53" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-the-coming-of-winter" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/21/the-coming-of-winter/" class="article-date">
-  <time datetime="2016-12-21T03:53:45.000Z" itemprop="datePublished">2016-12-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/21/the-coming-of-winter/">冬至</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>每次看到这个词，总不免心生温暖。</p>
-<p>大学以前，家乡那边没有冬至吃饺子的习惯，对于本地的饺子“嗜好”，这种热衷，不是很能理解，可这到底是四季的轮回，是春节前的一个大的节气，最最重要的，这是冬天的召唤。</p>
-<p>总有那么几个冬天，伴随着漫天的雪花，窝在被窝里，平房上面的积雪和雪人，烟囱里冒出来的袅袅炊烟，机灵又快活的麻雀，堰塘表面的冰层和热烟，都让我痴迷，当然还少不了鞭炮，少不了小伙伴，少不了妈妈的麻将声，那是最快活的，手冻住了也不用学习，当然作业还是要做的。</p>
-<p>冬至，是一个初中地理里太阳直射南纬23.5°的日子，是昼短夜长最厉害的一天，对我而言，今天，也是心血来潮想写博客的一天。</p>
-<p>人，就这样在时间里走着，慢慢就发现，能坚持的东西越来越少，自己的困惑越来越多，到最后，也落得一个安然。</p>
-<p>闲的时候，希望可以读诗，既可以练普通话，也可以寄托一些情感，让心境辽远，好暂时逃离拥挤的岁月。</p>
-<p>这个冬至，中午去吃回饺子，虽然没有家里的好吃，但入乡随俗一回吧。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://sparkera.net/2016/12/21/the-coming-of-winter/" data-id="cjczwbqob003bj8lx12u9eehg" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2016/12/29/2016-overview/" data-id="cjczzm68g000inwlx8wa6wkn0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -621,7 +627,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/部署/">部署</a></li></ul>
     </div>
   </div>
 
@@ -631,7 +637,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a>
+      <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
     </div>
   </div>
 
@@ -653,6 +659,10 @@
       <ul>
         
           <li>
+            <a href="/2018/01/29/the-journal-of-hexo-blog-2/">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>
+          </li>
+        
+          <li>
             <a href="/2018/01/29/the-journal-of-hexo-blog-1/">hexo博客之旅 [1]: 初探hexo</a>
           </li>
         
@@ -666,10 +676,6 @@
         
           <li>
             <a href="/2017/05/16/node-000/">node实践 0x00</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/14/install-scientific-lib-modules-in-windows/">安装python科学计算库 [windows下]</a>
           </li>
         
       </ul>
