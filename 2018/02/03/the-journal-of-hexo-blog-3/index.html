@@ -17,7 +17,7 @@
 <meta property="og:description" content="gitment是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的静态博客添加动态代码来存取评论。 一篇博客对应一个issue，只有博主经过授权后，才可以初始化issue，这样后续的读者就可以用自己的g">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ojnrgmtu3.bkt.clouddn.com/label-limit.png">
-<meta property="og:updated_time" content="2018-02-03T14:36:01.344Z">
+<meta property="og:updated_time" content="2018-02-03T14:37:23.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客之旅 [3]: 添加gitment评论和链接分享功能">
 <meta name="twitter:description" content="gitment是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的静态博客添加动态代码来存取评论。 一篇博客对应一个issue，只有博主经过授权后，才可以初始化issue，这样后续的读者就可以用自己的g">
@@ -131,7 +131,7 @@ mod_id = mod_id[mod_id.length - 2];
 Object.assign(this, {
   id: mod_id,
   title: window.document.title,
-  link: window.location.href,
+  link: window.location.href
 </code></pre><p>```</p>
 <p>gitment评论系统很优雅，虽然有时候github的国内访问速度超慢，但github的数据很稳定，不会像多说一样为数据丢失担忧。</p>
 <p>在使用过程中，发现gitment对于新文章的初始化需要博主自己点击，这对像我这样从其他博客迁移过来的用户而言，重复几十次的点击就不是那么有意思了。</p>
