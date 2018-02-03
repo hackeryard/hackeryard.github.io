@@ -6,19 +6,19 @@
   
 
   
-  <title>Win8.1与Deepin双系统安装误将MBR丢失的处理方法 | Spark Era Coming...</title>
+  <title>使用Cmake和MinGW重编译OpenCV库并在QT Creator上正确配置 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为了尝鲜，安装了桌面Ubuntu之称的Deepin，但是由于这个系统进入很慢，而且除了命令行很快速以外，就连鼠标就没有Win下使用得顺手，而且再次启动进入Win时，速度特别慢，所以想要删除Deepin。 我在EasyBCD按照百度经验提示，把Win7/Vista的Boot Loader写入了MBR，当时以为win8.1的BT也可以用win7的，这太天真了！之后由于没有联网的条件，就关机睡觉了。之后">
+  <meta name="description" content="环境很复杂，两周前花了大概两三个小时配置VS2013下的Opencv，由于MFC对Opencv支持不好并且上手慢，而我又不想重新学习C#，最最重要的是，Express版竟然没有MFC模块！所以我开始转手QT Creator。以前不知道VS可以直接使用QT的插件，那么就不用后来这么折腾了，记住，最重要的是学习Opencv的使用，而不是配置复杂的环境。 以下就是帮助大家解决环境问题的：（还是得解决：)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Win8.1与Deepin双系统安装误将MBR丢失的处理方法">
-<meta property="og:url" content="https://sparkera.net/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-win8-1-and-deepin/index.html">
+<meta property="og:title" content="使用Cmake和MinGW重编译OpenCV库并在QT Creator上正确配置">
+<meta property="og:url" content="https://sparkera.net/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="为了尝鲜，安装了桌面Ubuntu之称的Deepin，但是由于这个系统进入很慢，而且除了命令行很快速以外，就连鼠标就没有Win下使用得顺手，而且再次启动进入Win时，速度特别慢，所以想要删除Deepin。 我在EasyBCD按照百度经验提示，把Win7/Vista的Boot Loader写入了MBR，当时以为win8.1的BT也可以用win7的，这太天真了！之后由于没有联网的条件，就关机睡觉了。之后">
+<meta property="og:description" content="环境很复杂，两周前花了大概两三个小时配置VS2013下的Opencv，由于MFC对Opencv支持不好并且上手慢，而我又不想重新学习C#，最最重要的是，Express版竟然没有MFC模块！所以我开始转手QT Creator。以前不知道VS可以直接使用QT的插件，那么就不用后来这么折腾了，记住，最重要的是学习Opencv的使用，而不是配置复杂的环境。 以下就是帮助大家解决环境问题的：（还是得解决：)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-19T01:31:07.758Z">
+<meta property="og:updated_time" content="2018-01-19T01:30:57.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Win8.1与Deepin双系统安装误将MBR丢失的处理方法">
-<meta name="twitter:description" content="为了尝鲜，安装了桌面Ubuntu之称的Deepin，但是由于这个系统进入很慢，而且除了命令行很快速以外，就连鼠标就没有Win下使用得顺手，而且再次启动进入Win时，速度特别慢，所以想要删除Deepin。 我在EasyBCD按照百度经验提示，把Win7/Vista的Boot Loader写入了MBR，当时以为win8.1的BT也可以用win7的，这太天真了！之后由于没有联网的条件，就关机睡觉了。之后">
+<meta name="twitter:title" content="使用Cmake和MinGW重编译OpenCV库并在QT Creator上正确配置">
+<meta name="twitter:description" content="环境很复杂，两周前花了大概两三个小时配置VS2013下的Opencv，由于MFC对Opencv支持不好并且上手慢，而我又不想重新学习C#，最最重要的是，Express版竟然没有MFC模块！所以我开始转手QT Creator。以前不知道VS可以直接使用QT的插件，那么就不用后来这么折腾了，记住，最重要的是学习Opencv的使用，而不是配置复杂的环境。 以下就是帮助大家解决环境问题的：（还是得解决：)">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -90,14 +90,14 @@
       <div class="outer">
         <section id="main"><!-- post.ejs -->
 <!-- post/article.ejs -->
-<article id="post-how-to-handle-the-miss-of-mbr-when-using-win8-1-and-deepin" class="article article-type-post" itemscope itemprop="blogPost">
+<article id="post-re-compile-opencv-lib-and-config-in-qt-creator" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-win8-1-and-deepin/" class="article-date">
-  <time datetime="2016-08-22T15:11:05.000Z" itemprop="datePublished">2016-08-22</time>
+    <a href="/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/" class="article-date">
+  <time datetime="2016-11-15T16:08:09.000Z" itemprop="datePublished">2016-11-16</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
+    <a class="article-category-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a>
   </div>
 
   </div>
@@ -108,7 +108,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Win8.1与Deepin双系统安装误将MBR丢失的处理方法
+      使用Cmake和MinGW重编译OpenCV库并在QT Creator上正确配置
     </h1>
   
 
@@ -116,22 +116,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>为了尝鲜，安装了桌面Ubuntu之称的Deepin，但是由于这个系统进入很慢，而且除了命令行很快速以外，就连鼠标就没有Win下使用得顺手，而且再次启动进入Win时，速度特别慢，所以想要删除Deepin。</p>
-<p>我在EasyBCD按照百度经验提示，把Win7/Vista的Boot Loader写入了MBR，当时以为win8.1的BT也可以用win7的，这太天真了！之后由于没有联网的条件，就关机睡觉了。之后开机发现，根本没有机会加载任何一个操作系统。因为手边只有一个Deepin启动盘，所以就重新安装了Deepin，来到学校后，以前的PE优盘由于存在病毒，我就没有使用网友推荐的做法：用Diskgenius来重建MBR（这时由于Win8.1启动项覆盖了以前的linux的，而windows的boot loader没有转接给linux启动的功能，所以deepin就启动不了）。</p>
-<p>而这时就想用Deepin盘做一个PE盘，但在Deepin环境下没找到可用的工具。</p>
-<p>最后，通过编辑/boot/grub/grub.cfg(事先修改权限，root下用chmod +w grub.cfg)，在可以自定义的区域添加如下代码：</p>
-<p>menuentry “Windows 8.1” {</p>
-<p>insmod part_msdos</p>
-<p>insmod ntfs</p>
-<p>set root=’(hd0,msdos1)’</p>
-<p>chainloader +1</p>
-<p>}</p>
-<p>保存后发现Deepin的图形化“设置”里面，出现了Deepin和Windows 8.1两个启动选择，明天重启测试，应该正常。</p>
+        <p>环境很复杂，两周前花了大概两三个小时配置VS2013下的Opencv，由于MFC对Opencv支持不好并且上手慢，而我又不想重新学习C#，最最重要的是，Express版竟然没有MFC模块！所以我开始转手QT Creator。以前不知道VS可以直接使用QT的插件，那么就不用后来这么折腾了，记住，最重要的是学习Opencv的使用，而不是配置复杂的环境。</p>
+<p>以下就是帮助大家解决环境问题的：（还是得解决：)）</p>
+<p>1，用Cmake生成Makefile（其中我遇到Qt-Dir-Not-Found的问题，按照<a href="https://dotuyau.wordpress.com/2014/04/25/opencv_qt_windows/" target="_blank" rel="noopener">这个教程</a>顺利通过），之后命令行下make，make install;</p>
+<p>2，添加环境变量（在Path下添加编译好的opencv/bin），并按照自己的opencv版本，比如我的是2.4.13，那么就修改为这个版本2413，把需要的include、链接文件写入.pro即可。如果是打开了Qt Creator测试程序发现可编译但是运行错误，这很可能就是链接库无法装载的问题，前面的环境变量一定要设置好，之后最好重启Qt Creator，载入新的Path，方可运行正常）</p>
+<p>接下来就可以不用理会环境的问题了，Head in OpenCV~</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sparkera.net/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-win8-1-and-deepin/" data-id="cjd71za9s001wr8lxuu0j3u7z" class="article-share-link">Share</a>
+      <a data-url="https://sparkera.net/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/" data-id="cjd74vhll002ogklxqotikcre" class="article-share-link">Share</a>
       
       
     </footer>
@@ -140,19 +134,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/08/23/the-day-of-chushu/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/11/20/in-my-secret-life/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          处暑的一天
+          In My Secret Life
         
       </div>
     </a>
   
   
-    <a href="/2016/08/15/about-intel-processor-conflict-free-concept/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/11/08/phpbb-forums-installing-and-using-guide/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">关于Intel处理器“Conflict Free”的一篇翻译</div>
+      <div class="article-nav-title">phpbb论坛安装与使用</div>
     </a>
   
 </nav>
@@ -182,7 +176,7 @@ function getRandomInt(max) {
 
 //using some wisdom words
 wis_words = ["人的一切痛苦，本质上都是对自己无能的愤怒", "任风雨来袭，我自岿然不动", "一切景语皆情语", "爱...多少人假你之名..", 
-    "可是我 还是离不开 传说中的 梦幻", "最近有点烦 有点烦 有点烦", "什么？你又去虾米评论了？"
+    "可是我 还是离不开 传说中的 梦幻", "最近有点烦 有点烦 有点烦", "什么？你又去虾米评论了？", "你喜欢那部电影？ 答：喜剧之王。"
 ];
 document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(wis_words.length)] + '」';
 </script>
@@ -247,7 +241,7 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
           </li>
         
           <li>
-            <a href="/2018/01/19/Vincent之死/">Vincent之死</a>
+            <a href="/2018/01/19/the-death-of-Vincent/">Vincent之死</a>
           </li>
         
           <li>
