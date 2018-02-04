@@ -17,7 +17,7 @@
 <meta property="og:description" content="一个博客如果没有评论和分享功能，势必是单点的，你只是单向的发布信息，读者无法评论和快速分享，这对博主和读者都是巨大的损失。 添加评论系统gitment是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ojnrgmtu3.bkt.clouddn.com/banner5.jpg">
-<meta property="og:updated_time" content="2018-02-04T03:01:35.241Z">
+<meta property="og:updated_time" content="2018-02-04T03:30:01.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客之旅 [3]: 添加gitment评论和链接分享功能">
 <meta name="twitter:description" content="一个博客如果没有评论和分享功能，势必是单点的，你只是单向的发布信息，读者无法评论和快速分享，这对博主和读者都是巨大的损失。 添加评论系统gitment是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的">
@@ -151,6 +151,7 @@
 <h1 id="替换分享链接到国内社交站点"><a href="#替换分享链接到国内社交站点" class="headerlink" title="替换分享链接到国内社交站点"></a>替换分享链接到国内社交站点</h1><p>话说hexo是一个台湾开发者写的，文章的默认分享都是分享到国外的社交平台，如Twitter/Facebook/G+等，能上这些网站的用户固然是少数，所以把分享功能本地化是很有必要的。</p>
 <p>首先,我参考了<a href="https://blanboom.org/2015/hack-hexo-theme-landscape/" target="_blank" rel="noopener">这篇文章</a>，由于我是用的hexo，其landscape主题里面的fonts是4.0.3版本的fontawesome，导致qq和腾讯微博的图标无法显示，按照文中的方法折腾了最新版的5.0.6版本，找到webfont子目录，替换了hexo中的fonts下的文件，发现这次原有图标失效，新添加了四个分享按钮却是正常的，我以为是缓存的问题，又去看了Edge浏览器，还有手机Brave/Chrome浏览器，仍然不行，正打算撤回老版本的时候，发现fontawesome的4和5版本差别很大(的确，想想python2/3，主版本间的差别可能很大)，这可能就是不兼容的原因。</p>
 <p>没在fontawesome官网上找到老版本的存档，搜了半天，找到一个<a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener">4.7版本的站点</a>，下载后解压，然后更新版本号即可。</p>
+<h2 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h2><p><a href="http://www.codertian.com/2016/03/14/change-landscape-theme-by-yourself/" target="_blank" rel="noopener">【实用技能】教你定制Hexo的landscape打造自己的主题</a></p>
 
       
     </div>
@@ -279,6 +280,14 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
     </div>
   </div>
 
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+        <li><a href="http://www.ruanyifeng.com/blog/">阮一峰的博客</a></li>
+        <li><a href="https://vvl.me/" title="vvl's blog">光阴的故事</a></li>
+    </div>
+</div>
   
 </aside>
         
