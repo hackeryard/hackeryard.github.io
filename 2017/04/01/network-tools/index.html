@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Spark Era Coming...">
 <meta property="og:description" content="我们知道，校园网支持ipv6网络，平时我们都是在使用双栈进行网络通信，只是大多时候我们没有发现，也就没有充分利用罢了。（当然我也没有充分利用起来，最近开始学习网络编程，准备写一个ipv6或者双栈下的局域网聊天软件） Cernet2是新一代的教育科研网，基本各大高校都有接入，ipv6本来就是实验性的技术，可以从国内主要主机（云）提供商看出ipv6的现阶段情况，需求还不大，但是基于ipv4地址池的枯竭">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-19T01:31:19.327Z">
+<meta property="og:updated_time" content="2018-03-17T02:41:51.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络工具集">
 <meta name="twitter:description" content="我们知道，校园网支持ipv6网络，平时我们都是在使用双栈进行网络通信，只是大多时候我们没有发现，也就没有充分利用罢了。（当然我也没有充分利用起来，最近开始学习网络编程，准备写一个ipv6或者双栈下的局域网聊天软件） Cernet2是新一代的教育科研网，基本各大高校都有接入，ipv6本来就是实验性的技术，可以从国内主要主机（云）提供商看出ipv6的现阶段情况，需求还不大，但是基于ipv4地址池的枯竭">
@@ -120,7 +120,7 @@
 <p><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E6%95%99%E8%82%B2%E5%92%8C%E7%A7%91%E7%A0%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91" target="_blank" rel="noopener">Cernet2</a>是新一代的教育科研网，基本各大高校都有接入，ipv6本来就是实验性的技术，可以从国内主要主机（云）提供商看出ipv6的现阶段情况，需求还不大，但是基于ipv4地址池的枯竭，以及网络业务对协议的更高的要求（服务质量和安全等等），ipv6最终会淘汰ipv4，继续为人类的信息交流提供支撑。相关方面著名的网站有<a href="http://he.com" target="_blank" rel="noopener">飙风电子</a>，附带一个测试ipv6知识的<a href="http://ipv6.he.net/certification" target="_blank" rel="noopener">链接</a>，前提是你有放在公网上的ipv6的主机可以配置，美国的<a href="https://www.digitalocean.com/" target="_blank" rel="noopener">digitalocean</a>和日本的<a href="https://www.vultr.com/" target="_blank" rel="noopener"> vultr</a>都不错，还有10-50美元的优惠。</p>
 <p>现在ipv6的防火墙基本处于放任的状态，所以可以通过ipv6直接连接到香港和美国的谷歌服务器，但前提是DNS没有被污染，这里有一份<a href="https://zh.wikipedia.org/zh-cn/%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%93%E5%AD%98%E6%B1%A1%E6%9F%93" target="_blank" rel="noopener">dns缓存污染列表</a>，如果不幸用wireshark发现里面存在这里面的ip地址，那就是污染了，那些ip是不存在的或者在出关的时候直接被过滤掉了。</p>
 <p>所以你需要一个好的支持ipv6的DNS，配置到自己的网络上，有google的<a href="https://developers.google.com/speed/public-dns/docs/using" target="_blank" rel="noopener">公共DNS</a>，我们用的是北邮的dns，基本可以满足搜索和百科的要求。</p>
-<p>另一个更直接的办法，是直接在hosts文件里面添加你需要访问的ip地址+（TAB）+对应的域名，如果你不知道hosts文件的作用，可以先看下<a href="https://zh.wikipedia.org/wiki/Hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">这篇文章</a>。hosts无奈不支持泛解析，所以改好后文件会比较大，通过<a href="https://serve.netsh.org/pub/ipv6-hosts/" target="_blank" rel="noopener">奶齿博客下载</a>最新的hosts，在替换或者修改hosts文件之前，请确保你对此文件拥有编辑权，可以通过右键属性-&gt;编辑权限完成。这样打开浏览器，键入<a href="https://google.com应该就可以访问了，不放心的还可以通过cmd-&gt;ipconfig/flushdns来刷新一下系统的dns。" target="_blank" rel="noopener">https://google.com应该就可以访问了，不放心的还可以通过cmd-&gt;ipconfig/flushdns来刷新一下系统的dns。</a></p>
+<p>另一个更直接的办法，是直接在hosts文件里面添加你需要访问的ip地址+（TAB）+对应的域名，如果你不知道hosts文件的作用，可以先看下<a href="https://zh.wikipedia.org/wiki/Hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">这篇文章</a>。hosts无奈不支持泛解析，所以改好后文件会比较大，通过<a href="https://serve.netsh.org/pub/ipv6-hosts/" target="_blank" rel="noopener">奶齿博客下载</a>最新的hosts，在替换或者修改hosts文件之前，请确保你对此文件拥有编辑权，可以通过右键属性-&gt;编辑权限完成。这样打开浏览器，键入<a href="https://google.com.hk" target="_blank" rel="noopener">https://google.com.hk</a>应该就可以访问了，不放心的还可以通过cmd-&gt;ipconfig/flushdns来刷新一下系统的dns。</p>
 <p>对于学习技术的人来说，谷歌是必要的，当然有些东西通过百度才可以获得好的查询结果，所以结合起来挺好的。</p>
 <p>另外Wikipedia的条理性很强，它把几乎所有相关的知识都链接到一个词条里面，这样有利于新知识的学习和知识的整理。</p>
 <p>说道fq，不得不说<a href="http://shadowsocks.org" target="_blank" rel="noopener">shadowsocks</a>（下称ss），通过sock5代理的方式，可用性很强，至少在大部分vpn被屏蔽后仍然坚挺，官网上有具体的教程，而且github上还有用各种语言开发的版本，比较活跃。</p>
