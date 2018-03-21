@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sparkera.net/"/>
-  <updated>2018-03-21T13:57:31.642Z</updated>
+  <updated>2018-03-21T14:03:02.488Z</updated>
   <id>https://sparkera.net/</id>
   
   <author>
@@ -21,16 +21,17 @@
     <link href="https://sparkera.net/2018/03/21/tool-set/"/>
     <id>https://sparkera.net/2018/03/21/tool-set/</id>
     <published>2018-03-21T13:31:30.000Z</published>
-    <updated>2018-03-21T13:57:31.642Z</updated>
+    <updated>2018-03-21T14:03:02.488Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Vim快捷键："><a href="#Vim快捷键：" class="headerlink" title="Vim快捷键："></a>Vim快捷键：</h2><ul><li>跳到第一行 &emsp; <strong>:1</strong> &emsp; <strong>gg</strong></li><li>跳到最后一行 &emsp; <strong>:$</strong> &emsp; <strong>Shift+g</strong></li><li>复制 &emsp; <strong>yy</strong></li><li>删除 &emsp; <strong>dd</strong> </li><li>撤销 &emsp; <strong>U</strong> </li><li>粘贴 &emsp; <strong>P</strong> </li></ul><h2 id="加载Python自带Web-Server："><a href="#加载Python自带Web-Server：" class="headerlink" title="加载Python自带Web Server："></a>加载Python自带Web Server：</h2><ul><li>python -m SimpleHTTPServer 80</li><li>python3 -m http.server 80</li></ul><h2 id="Webstorm快捷键"><a href="#Webstorm快捷键" class="headerlink" title="Webstorm快捷键"></a>Webstorm快捷键</h2><ul><li>Ctrl + Alt + L 格式化代码</li><li>双击shift 全局查找</li><li>快速代码补全 emmet </li><li>快速生成框架 !html</li></ul><h2 id="Onenote使用笔记"><a href="#Onenote使用笔记" class="headerlink" title="Onenote使用笔记"></a>Onenote使用笔记</h2><ul><li>截图：Win+shift+S</li></ul><h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul><li>重新加载配置：nginx -s reload</li><li>快速关闭：nginx -s stop</li><li>安全关闭：nginx -s quit</li></ul><h2 id="FFmpeg"><a href="#FFmpeg" class="headerlink" title="FFmpeg"></a>FFmpeg</h2><h2 id="celery-4-in-Windows"><a href="#celery-4-in-Windows" class="headerlink" title="celery 4 in Windows"></a>celery 4 in Windows</h2><ul><li>不支持pool：celery -A your_app_name worker –pool=solo -l info</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="Vim快捷键："><a href="#Vim快捷键：" class="headerlink" title="Vim快捷键："></a>Vim快捷键：</h2><ul><li>跳到第一行  :1 或 gg</li><li>跳到最后一行  :$ 或 Shift+g</li><li>复制  yy</li><li>删除  dd </li><li>撤销  U </li><li>粘贴  P </li></ul><h2 id="加载Python自带Web-Server："><a href="#加载Python自带Web-Server：" class="headerlink" title="加载Python自带Web Server："></a>加载Python自带Web Server：</h2><ul><li>python -m SimpleHTTPServer 80</li><li>python3 -m http.server 80</li></ul><h2 id="Webstorm快捷键"><a href="#Webstorm快捷键" class="headerlink" title="Webstorm快捷键"></a>Webstorm快捷键</h2><ul><li>Ctrl + Alt + L 格式化代码</li><li>双击shift 全局查找</li><li>快速代码补全 emmet </li><li>快速生成框架 !html</li></ul><h2 id="Onenote使用笔记"><a href="#Onenote使用笔记" class="headerlink" title="Onenote使用笔记"></a>Onenote使用笔记</h2><ul><li>截图：Win+shift+S</li></ul><h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul><li>重新加载配置：nginx -s reload</li><li>快速关闭：nginx -s stop</li><li>安全关闭：nginx -s quit</li></ul><h2 id="FFmpeg"><a href="#FFmpeg" class="headerlink" title="FFmpeg"></a>FFmpeg</h2><h2 id="celery-4-in-Windows"><a href="#celery-4-in-Windows" class="headerlink" title="celery 4 in Windows"></a>celery 4 in Windows</h2><ul><li>不支持pool：celery -A your_app_name worker –pool=solo -l info</li></ul>]]></content>
     
     <summary type="html">
     
       
       
         &lt;h2 id=&quot;Vim快捷键：&quot;&gt;&lt;a href=&quot;#Vim快捷键：&quot; class=&quot;headerlink&quot; title=&quot;Vim快捷键：&quot;&gt;&lt;/a&gt;Vim快捷键：&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;跳到第一行 &amp;emsp; &lt;strong&gt;:1&lt;/strong&gt; &amp;emsp; &lt;str
+&lt;li&gt;跳到第一行  :1 或 gg&lt;/li&gt;
+&lt;li&gt;跳到最后一行  :$ 或 Shift+g
       
     
     </summary>
