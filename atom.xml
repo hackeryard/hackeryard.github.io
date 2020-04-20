@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hackeryard.github.io/"/>
-  <updated>2018-03-23T03:51:26.707Z</updated>
+  <updated>2020-04-20T07:27:05.233Z</updated>
   <id>https://hackeryard.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>reverse-list</title>
+    <link href="https://hackeryard.github.io/2020/04/20/reverse-list/"/>
+    <id>https://hackeryard.github.io/2020/04/20/reverse-list/</id>
+    <published>2020-04-20T07:25:48.000Z</published>
+    <updated>2020-04-20T07:27:05.233Z</updated>
+    
+    <content type="html"><![CDATA[<p>反转链表</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;反转链表&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://hackeryard.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>常用工具集</title>
@@ -521,29 +545,6 @@
     </summary>
     
       <category term="《读者》笔记" scheme="https://hackeryard.github.io/categories/%E3%80%8A%E8%AF%BB%E8%80%85%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>完美解决联想G510光驱位拆卸问题</title>
-    <link href="https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/"/>
-    <id>https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/</id>
-    <published>2017-01-13T01:48:25.000Z</published>
-    <updated>2020-04-20T04:00:21.003Z</updated>
-    
-    <content type="html"><![CDATA[<p>为了让电脑运行的更快，我决定加装一块SSD，本来SSD加装在原硬盘位置是最好的，这样重装下系统一是垃圾没有了，二是SATA3的接口也会让SSD发挥最佳的性能，自己满心欢喜准备拆卸，却卡在了光驱位的外侧挡板不好拿掉的的难题，接下来有一个良好的方法，可以让你不用损坏任何卡槽卡扣：</p><p>首先，我们在开机的时候把光驱拉出来，然后关机（这个时候光驱是不会缩回去的），解掉光驱靠主板内测的一颗螺丝，具体可以参见<a href="http://tieba.baidu.com/p/3660687332" target="_blank" rel="noopener">贴吧文章</a>，拉出来整个光驱位，然后是这个样子，这个时候你会发现有三颗能够看见的卡扣，而且最左边的卡扣卡的太紧了，我觉得组装工人或机器人组装的时候，肯定有套路，研究后发现是要先拆光驱电路外的薄铝板，如图：</p><p>[caption id=”” align=”alignnone” width=”2080”]<img src="/images/ssd.jpg" alt=""> 拆掉光驱外层后，你会看到一共有四个卡扣，只不过之后三个只有效果的，另一个非常松，以至于不用管它。对照买12.7mm的光驱托盘卖家给的外侧水平挡板，发现也是四个卡扣，我们只用解决左边的两个很紧的大卡扣就好了。[/caption]</p><p>用一字起插入挡板和与之贴近的光驱中间（注意，不是直接挤压卡扣，而是要撬开挡板~），这样不用太大力，就可以把左边三个卡扣都弄下来了，接下来是最右边的卡扣，这个扣子看起来特别紧实，但只要跟撕面包一样撕开就可以了，而且都没有任何损坏。</p><p>以上就是拆卸联想G510光驱位的全部内容，之后就可以把原装挡板安装在新买的光驱托盘上了。</p><p>最后给大家看看sata2口接SSD的速度（跟希捷机械盘的对比）：</p><p>[caption id=”” align=”alignnone” width=”416”]<img src="/images/%E4%B8%9C%E8%8A%9DSSD.png" alt=""> 在光驱位屈尊的东芝SSD[/caption]</p><p>[caption id=”” align=”alignnone” width=”401”]<img src="/images/C-HDD.png" alt=""> 雷打不动的老机械盘[/caption]</p><p>&nbsp;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;为了让电脑运行的更快，我决定加装一块SSD，本来SSD加装在原硬盘位置是最好的，这样重装下系统一是垃圾没有了，二是SATA3的接口也会让SSD发挥最佳的性能，自己满心欢喜准备拆卸，却卡在了光驱位的外侧挡板不好拿掉的的难题，接下来有一个良好的方法，可以让你不用损坏任何卡槽卡扣
-      
-    
-    </summary>
-    
-      <category term="计算机组成" scheme="https://hackeryard.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/"/>
     
     
   </entry>
