@@ -264,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck97z5qti003t34lxbxks3r0l" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck98331q0003ta0lx6kkqlmt7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具-备忘/">工具 备忘</a></li></ul>
@@ -316,7 +316,7 @@
 <p>一番搜索后，发现是github issue中的label长度有限制，不能超过50字节。</p>
 <p><img src="/images/label-limit.png" alt="label长度 &lt;= 50字节"></p>
 <p>查看js代码后，发现id是<em>window.location.href</em>，这样长度会经常超出。由于我之前文章的url都是英文的，所以使用url中的英文标题作为id，后续需要整理一番英文title，以正常初始化issue:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var mod_id = window.location.href.split(&quot;/&quot;);</span><br><span class="line">mod_id = mod_id[mod_id.length - 2];</span><br><span class="line">Object.assign(this, &#123;</span><br><span class="line">  id: mod_id,</span><br><span class="line">  title: window.document.title,</span><br><span class="line">  link: window.location.href</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mod_id = <span class="built_in">window</span>.location.href.split(<span class="string">"/"</span>);</span><br><span class="line">mod_id = mod_id[mod_id.length - <span class="number">2</span>];</span><br><span class="line"><span class="built_in">Object</span>.assign(<span class="keyword">this</span>, &#123;</span><br><span class="line">  id: mod_id,</span><br><span class="line">  title: <span class="built_in">window</span>.document.title,</span><br><span class="line">  link: <span class="built_in">window</span>.location.href</span><br></pre></td></tr></table></figure>
 <p>gitment评论系统很优雅，虽然有时候github的国内访问速度超慢，但github的数据很稳定，不会像多说一样为数据丢失担忧。</p>
 <p>在使用过程中，发现gitment对于新文章的初始化需要博主自己点击，这对像我这样从其他博客迁移过来的用户而言，重复几十次的点击就不是那么有意思了。</p>
 <p>为此，我写了一个自动化脚本，工作流程如下：</p>
@@ -335,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck97z5qt0003i34lxa7jgqe2f" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck98331pp003ia0lx1g0uvnby" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitment/">gitment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -393,7 +393,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck97z5qsw003f34lx8kda4swr" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck98331pj003ba0lxpmnfxwv5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
@@ -441,7 +441,7 @@
 <p>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。</p>
 <p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p>
 <p>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p>
-<p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></p>
+<p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br></pre></td></tr></table></figure></p>
 <p>生成如下目录：</p>
 <ul>
 <li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul>
@@ -457,10 +457,10 @@
 <li>package.json(保存项目的依赖关系)</li>
 </ul>
 <p>之后，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure>
-<p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure>
+<p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p>
 <p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p>
-<p>如果想更换端口，使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p>
+<p>如果想更换端口，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p>
 <p>到这里本地部署已经完成了，接下来就是部署到github：<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p>
 <p><img src="/images/pages.png" alt="开启github pages"></p>
 <p>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p>
@@ -471,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck97z5qst003b34lx9bjrs17j" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck98331pm003fa0lxmqe3uae9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -546,7 +546,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck97z5qso003834lxyszqot8u" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck98331ph0038a0lxf5rfn4o6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li></ul>
@@ -607,7 +607,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck97z5qq8001n34lxzwouuqzj" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck98331nj001na0lxxv7ug3ba" class="article-share-link">Share</a>
       
       
     </footer>
@@ -655,7 +655,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck97z5qro002g34lxgfb77i1q" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck98331oq002ga0lxdlfldkqi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -712,7 +712,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck97z5qqe001s34lxnrg1gc4c" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck98331nq001sa0lx5s7ov0uc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -790,7 +790,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck97z5qsf002y34lxxt4na1x4" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck98331p8002ya0lxz54jpzyn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -839,7 +839,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck97z5qp9001034lxp4tdda4y" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck98331ms0012a0lx9vxddhxd" class="article-share-link">Share</a>
       
       
     </footer>
