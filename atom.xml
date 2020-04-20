@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Spark Era Coming...</title>
   
-  <subtitle>This is a little site for coding and recording</subtitle>
+  <subtitle>分享技术 记录生活</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sparkera.net/"/>
