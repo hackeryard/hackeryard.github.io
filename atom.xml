@@ -5,9 +5,9 @@
   <subtitle>分享技术 记录生活</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://sparkera.net/"/>
+  <link href="https://hackeryard.github.io/"/>
   <updated>2018-03-23T03:51:26.707Z</updated>
-  <id>https://sparkera.net/</id>
+  <id>https://hackeryard.github.io/</id>
   
   <author>
     <name>Runking Hanna</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>常用工具集</title>
-    <link href="https://sparkera.net/2018/03/21/tool-set/"/>
-    <id>https://sparkera.net/2018/03/21/tool-set/</id>
+    <link href="https://hackeryard.github.io/2018/03/21/tool-set/"/>
+    <id>https://hackeryard.github.io/2018/03/21/tool-set/</id>
     <published>2018-03-21T13:31:30.000Z</published>
     <updated>2018-03-23T03:51:26.707Z</updated>
     
@@ -36,21 +36,21 @@
     
     </summary>
     
-      <category term="工具" scheme="https://sparkera.net/categories/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="https://hackeryard.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="工具 备忘" scheme="https://sparkera.net/tags/%E5%B7%A5%E5%85%B7-%E5%A4%87%E5%BF%98/"/>
+      <category term="工具 备忘" scheme="https://hackeryard.github.io/tags/%E5%B7%A5%E5%85%B7-%E5%A4%87%E5%BF%98/"/>
     
   </entry>
   
   <entry>
     <title>hexo博客之旅 [3]: 添加gitment评论和链接分享功能</title>
-    <link href="https://sparkera.net/2018/02/03/the-journal-of-hexo-blog-3/"/>
-    <id>https://sparkera.net/2018/02/03/the-journal-of-hexo-blog-3/</id>
+    <link href="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/"/>
+    <id>https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/</id>
     <published>2018-02-03T05:42:44.000Z</published>
-    <updated>2018-02-04T06:00:00.632Z</updated>
+    <updated>2020-04-20T03:28:24.321Z</updated>
     
-    <content type="html"><![CDATA[<p>一个博客如果没有评论和分享功能，势必是单点的，你只是单向的发布信息，读者无法评论和快速分享，这对博主和读者都是巨大的损失。</p><h2 id="添加评论系统"><a href="#添加评论系统" class="headerlink" title="添加评论系统"></a>添加评论系统</h2><p><a href="https://github.com/imsun/gitment/" target="_blank" rel="noopener">gitment</a>是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的静态博客添加动态代码来存取评论。</p><p>一篇博客对应一个issue，只有博主经过授权后，才可以初始化issue，这样后续的读者就可以用自己的github账号登录博主的gitment应用，来向这篇博客添加评论，里面的对文章的点赞和对其他用户的点赞，其实跟issue主页的点击操作一样，都是通过api操作的。</p><p>这么说来，gitment只是一个基于issue的评论前台，用于存取issue里面的评论数据。</p><p>部署的时候，我参考了<a href="https://blog.fundebug.com/2017/06/16/how-to-use-gitment/" target="_blank" rel="noopener">这篇文章</a>，并且遇到了一个问题，登录自家博客之后，文章底部出现了gitment的框架，由于没有初始化issue，点击初始化按钮后，提示<a href="https://github.com/imsun/gitment/issues/114" target="_blank" rel="noopener">Validation Failed</a>，</p><p>一番搜索后，发现是github issue中的label长度有限制，不能超过50字节。</p><p><img src="http://ojnrgmtu3.bkt.clouddn.com/label-limit.png" alt="label长度 &lt;= 50字节"></p><p>查看js代码后，发现id是<em>window.location.href</em>，这样长度会经常超出。由于我之前文章的url都是英文的，所以使用url中的英文标题作为id，后续需要整理一番英文title，以正常初始化issue:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var mod_id = window.location.href.split(&quot;/&quot;);</span><br><span class="line">mod_id = mod_id[mod_id.length - 2];</span><br><span class="line">Object.assign(this, &#123;</span><br><span class="line">  id: mod_id,</span><br><span class="line">  title: window.document.title,</span><br><span class="line">  link: window.location.href</span><br></pre></td></tr></table></figure><p>gitment评论系统很优雅，虽然有时候github的国内访问速度超慢，但github的数据很稳定，不会像多说一样为数据丢失担忧。</p><p>在使用过程中，发现gitment对于新文章的初始化需要博主自己点击，这对像我这样从其他博客迁移过来的用户而言，重复几十次的点击就不是那么有意思了。</p><p>为此，我写了一个自动化脚本，工作流程如下：</p><ol><li>由于新开的chrome不包含github已登录session和cookie，所以需要模拟登录github账号</li><li>获取站点sitemap.xml，如<a href="https://sparkera.net/sitemap.xml，解析成文章的url">https://sparkera.net/sitemap.xml，解析成文章的url</a></li><li>依次模拟打开上述url，初次打开需要login，之后的文章则不再需要</li><li>对每篇文章模拟点击init button，如果点击出错，表示已被初始化；如果成功，表示正在初始化，sleep 5s后打开下一个url</li></ol><p>脚本在<a href="https://github.com/hackeryard/hexo-plugins/blob/master/init-gitment.py" target="_blank" rel="noopener">这里</a>，欢迎使用！</p><h2 id="替换分享链接到国内社交站点"><a href="#替换分享链接到国内社交站点" class="headerlink" title="替换分享链接到国内社交站点"></a>替换分享链接到国内社交站点</h2><p>话说hexo是一个台湾开发者写的，文章的默认分享都是分享到国外的社交平台，如Twitter/Facebook/G+等，能上这些网站的用户固然是少数，所以把分享功能本地化是很有必要的。</p><p>首先,我参考了<a href="https://blanboom.org/2015/hack-hexo-theme-landscape/" target="_blank" rel="noopener">这篇文章</a>，由于我是用的hexo，其landscape主题里面的fonts是4.0.3版本的fontawesome，导致qq和腾讯微博的图标无法显示，按照文中的方法折腾了最新版的5.0.6版本，找到webfont子目录，替换了hexo中的fonts下的文件，发现这次原有图标失效，新添加了四个分享按钮却是正常的，我以为是缓存的问题，又去看了Edge浏览器，还有手机Brave/Chrome浏览器，仍然不行，正打算撤回老版本的时候，发现fontawesome的4和5版本差别很大(的确，想想python2/3，主版本间的差别可能很大)，这可能就是不兼容的原因。</p><p>没在fontawesome官网上找到老版本的存档，搜了半天，找到一个<a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener">4.7版本的站点</a>，下载后解压，然后更新版本号即可。</p><h2 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h2><p><a href="http://www.codertian.com/2016/03/14/change-landscape-theme-by-yourself/" target="_blank" rel="noopener">【实用技能】教你定制Hexo的landscape打造自己的主题</a></p>]]></content>
+    <content type="html"><![CDATA[<p>一个博客如果没有评论和分享功能，势必是单点的，你只是单向的发布信息，读者无法评论和快速分享，这对博主和读者都是巨大的损失。</p><h2 id="添加评论系统"><a href="#添加评论系统" class="headerlink" title="添加评论系统"></a>添加评论系统</h2><p><a href="https://github.com/imsun/gitment/" target="_blank" rel="noopener">gitment</a>是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的静态博客添加动态代码来存取评论。</p><p>一篇博客对应一个issue，只有博主经过授权后，才可以初始化issue，这样后续的读者就可以用自己的github账号登录博主的gitment应用，来向这篇博客添加评论，里面的对文章的点赞和对其他用户的点赞，其实跟issue主页的点击操作一样，都是通过api操作的。</p><p>这么说来，gitment只是一个基于issue的评论前台，用于存取issue里面的评论数据。</p><p>部署的时候，我参考了<a href="https://blog.fundebug.com/2017/06/16/how-to-use-gitment/" target="_blank" rel="noopener">这篇文章</a>，并且遇到了一个问题，登录自家博客之后，文章底部出现了gitment的框架，由于没有初始化issue，点击初始化按钮后，提示<a href="https://github.com/imsun/gitment/issues/114" target="_blank" rel="noopener">Validation Failed</a>，</p><p>一番搜索后，发现是github issue中的label长度有限制，不能超过50字节。</p><p><img src="http://ojnrgmtu3.bkt.clouddn.com/label-limit.png" alt="label长度 &lt;= 50字节"></p><p>查看js代码后，发现id是<em>window.location.href</em>，这样长度会经常超出。由于我之前文章的url都是英文的，所以使用url中的英文标题作为id，后续需要整理一番英文title，以正常初始化issue:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var mod_id = window.location.href.split(&quot;/&quot;);</span><br><span class="line">mod_id = mod_id[mod_id.length - 2];</span><br><span class="line">Object.assign(this, &#123;</span><br><span class="line">  id: mod_id,</span><br><span class="line">  title: window.document.title,</span><br><span class="line">  link: window.location.href</span><br></pre></td></tr></table></figure><p>gitment评论系统很优雅，虽然有时候github的国内访问速度超慢，但github的数据很稳定，不会像多说一样为数据丢失担忧。</p><p>在使用过程中，发现gitment对于新文章的初始化需要博主自己点击，这对像我这样从其他博客迁移过来的用户而言，重复几十次的点击就不是那么有意思了。</p><p>为此，我写了一个自动化脚本，工作流程如下：</p><ol><li>由于新开的chrome不包含github已登录session和cookie，所以需要模拟登录github账号</li><li>获取站点sitemap.xml，如<a href="https://hackeryard.github.io/sitemap.xml，解析成文章的url">https://hackeryard.github.io/sitemap.xml，解析成文章的url</a></li><li>依次模拟打开上述url，初次打开需要login，之后的文章则不再需要</li><li>对每篇文章模拟点击init button，如果点击出错，表示已被初始化；如果成功，表示正在初始化，sleep 5s后打开下一个url</li></ol><p>脚本在<a href="https://github.com/hackeryard/hexo-plugins/blob/master/init-gitment.py" target="_blank" rel="noopener">这里</a>，欢迎使用！</p><h2 id="替换分享链接到国内社交站点"><a href="#替换分享链接到国内社交站点" class="headerlink" title="替换分享链接到国内社交站点"></a>替换分享链接到国内社交站点</h2><p>话说hexo是一个台湾开发者写的，文章的默认分享都是分享到国外的社交平台，如Twitter/Facebook/G+等，能上这些网站的用户固然是少数，所以把分享功能本地化是很有必要的。</p><p>首先,我参考了<a href="https://blanboom.org/2015/hack-hexo-theme-landscape/" target="_blank" rel="noopener">这篇文章</a>，由于我是用的hexo，其landscape主题里面的fonts是4.0.3版本的fontawesome，导致qq和腾讯微博的图标无法显示，按照文中的方法折腾了最新版的5.0.6版本，找到webfont子目录，替换了hexo中的fonts下的文件，发现这次原有图标失效，新添加了四个分享按钮却是正常的，我以为是缓存的问题，又去看了Edge浏览器，还有手机Brave/Chrome浏览器，仍然不行，正打算撤回老版本的时候，发现fontawesome的4和5版本差别很大(的确，想想python2/3，主版本间的差别可能很大)，这可能就是不兼容的原因。</p><p>没在fontawesome官网上找到老版本的存档，搜了半天，找到一个<a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener">4.7版本的站点</a>，下载后解压，然后更新版本号即可。</p><h2 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h2><p><a href="http://www.codertian.com/2016/03/14/change-landscape-theme-by-yourself/" target="_blank" rel="noopener">【实用技能】教你定制Hexo的landscape打造自己的主题</a></p>]]></content>
     
     <summary type="html">
     
@@ -62,23 +62,23 @@
     
     </summary>
     
-      <category term="博客" scheme="https://sparkera.net/categories/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="博客" scheme="https://hackeryard.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
-      <category term="hexo" scheme="https://sparkera.net/tags/hexo/"/>
+      <category term="hexo" scheme="https://hackeryard.github.io/tags/hexo/"/>
     
-      <category term="blog" scheme="https://sparkera.net/tags/blog/"/>
+      <category term="blog" scheme="https://hackeryard.github.io/tags/blog/"/>
     
-      <category term="gitment" scheme="https://sparkera.net/tags/gitment/"/>
+      <category term="gitment" scheme="https://hackeryard.github.io/tags/gitment/"/>
     
-      <category term="github" scheme="https://sparkera.net/tags/github/"/>
+      <category term="github" scheme="https://hackeryard.github.io/tags/github/"/>
     
   </entry>
   
   <entry>
     <title>hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</title>
-    <link href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2/"/>
-    <id>https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2/</id>
+    <link href="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/"/>
+    <id>https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/</id>
     <published>2018-01-29T05:42:44.000Z</published>
     <updated>2018-02-04T03:09:30.488Z</updated>
     
@@ -94,27 +94,27 @@
     
     </summary>
     
-      <category term="博客" scheme="https://sparkera.net/categories/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="博客" scheme="https://hackeryard.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
-      <category term="hexo" scheme="https://sparkera.net/tags/hexo/"/>
+      <category term="hexo" scheme="https://hackeryard.github.io/tags/hexo/"/>
     
-      <category term="blog" scheme="https://sparkera.net/tags/blog/"/>
+      <category term="blog" scheme="https://hackeryard.github.io/tags/blog/"/>
     
-      <category term="webhooks" scheme="https://sparkera.net/tags/webhooks/"/>
+      <category term="webhooks" scheme="https://hackeryard.github.io/tags/webhooks/"/>
     
-      <category term="部署" scheme="https://sparkera.net/tags/%E9%83%A8%E7%BD%B2/"/>
+      <category term="部署" scheme="https://hackeryard.github.io/tags/%E9%83%A8%E7%BD%B2/"/>
     
   </entry>
   
   <entry>
     <title>hexo博客之旅 [1]: 初探hexo</title>
-    <link href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/"/>
-    <id>https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-1/</id>
+    <link href="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/"/>
+    <id>https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/</id>
     <published>2018-01-29T04:42:44.000Z</published>
-    <updated>2018-01-29T09:23:09.887Z</updated>
+    <updated>2020-04-20T03:27:20.539Z</updated>
     
-    <content type="html"><![CDATA[<p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。</p><p>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。</p><p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p><p>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="https://sparkera.net/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p><p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></p><p>生成如下目录：</p><ul><li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul><li>_draft(保存的草稿)</li><li>_post(你将要写的一篇篇的以md结尾的博客)</li></ul></li><li>themes<ul><li>landscape(默认的主题)</li></ul></li><li>_config.yml(全局的配置文件)</li><li>package.json(保存项目的依赖关系)</li></ul><p>之后，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure><p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p><p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p><p>如果想更换端口，使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p><p>到这里本地部署已经完成了，接下来就是部署到github：<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p><p><img src="http://ojnrgmtu3.bkt.clouddn.com/pages.png" alt="开启github pages"></p><p>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p><p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p><p>另外，你可能需要补一下markdown的语法，这里推荐一篇<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/" target="_blank" rel="noopener">Hexo-Markdown-简明语法手册</a></p><p>当你慢慢的，写的博客越来越多时，你可能还需要一个README，让别人在访问的repo的时候，就可以对你的博客有一个清晰地了解，我起初在网上没找到代码，就可以写了个<a href="https://github.com/hackeryard/hexo-plugins" target="_blank" rel="noopener">generate_readme</a>，可以复用</p>]]></content>
+    <content type="html"><![CDATA[<p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。</p><p>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。</p><p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p><p>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p><p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line">cd blog</span><br></pre></td></tr></table></figure></p><p>生成如下目录：</p><ul><li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul><li>_draft(保存的草稿)</li><li>_post(你将要写的一篇篇的以md结尾的博客)</li></ul></li><li>themes<ul><li>landscape(默认的主题)</li></ul></li><li>_config.yml(全局的配置文件)</li><li>package.json(保存项目的依赖关系)</li></ul><p>之后，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure><p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p><p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p><p>如果想更换端口，使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p><p>到这里本地部署已经完成了，接下来就是部署到github：<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p><p><img src="http://ojnrgmtu3.bkt.clouddn.com/pages.png" alt="开启github pages"></p><p>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p><p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p><p>另外，你可能需要补一下markdown的语法，这里推荐一篇<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/" target="_blank" rel="noopener">Hexo-Markdown-简明语法手册</a></p><p>当你慢慢的，写的博客越来越多时，你可能还需要一个README，让别人在访问的repo的时候，就可以对你的博客有一个清晰地了解，我起初在网上没找到代码，就可以写了个<a href="https://github.com/hackeryard/hexo-plugins" target="_blank" rel="noopener">generate_readme</a>，可以复用</p>]]></content>
     
     <summary type="html">
     
@@ -126,21 +126,21 @@
     
     </summary>
     
-      <category term="博客" scheme="https://sparkera.net/categories/%E5%8D%9A%E5%AE%A2/"/>
+      <category term="博客" scheme="https://hackeryard.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
     
     
-      <category term="hexo" scheme="https://sparkera.net/tags/hexo/"/>
+      <category term="hexo" scheme="https://hackeryard.github.io/tags/hexo/"/>
     
-      <category term="blog" scheme="https://sparkera.net/tags/blog/"/>
+      <category term="blog" scheme="https://hackeryard.github.io/tags/blog/"/>
     
-      <category term="js" scheme="https://sparkera.net/tags/js/"/>
+      <category term="js" scheme="https://hackeryard.github.io/tags/js/"/>
     
   </entry>
   
   <entry>
     <title>Vincent之死</title>
-    <link href="https://sparkera.net/2018/01/19/the-death-of-Vincent/"/>
-    <id>https://sparkera.net/2018/01/19/the-death-of-Vincent/</id>
+    <link href="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/"/>
+    <id>https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/</id>
     <published>2018-01-18T23:35:44.000Z</published>
     <updated>2018-01-19T06:25:02.441Z</updated>
     
@@ -158,21 +158,21 @@
     
     </summary>
     
-      <category term="随想集" scheme="https://sparkera.net/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
+      <category term="随想集" scheme="https://hackeryard.github.io/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
     
     
-      <category term="电影" scheme="https://sparkera.net/tags/%E7%94%B5%E5%BD%B1/"/>
+      <category term="电影" scheme="https://hackeryard.github.io/tags/%E7%94%B5%E5%BD%B1/"/>
     
-      <category term="Vincent" scheme="https://sparkera.net/tags/Vincent/"/>
+      <category term="Vincent" scheme="https://hackeryard.github.io/tags/Vincent/"/>
     
-      <category term="梵高" scheme="https://sparkera.net/tags/%E6%A2%B5%E9%AB%98/"/>
+      <category term="梵高" scheme="https://hackeryard.github.io/tags/%E6%A2%B5%E9%AB%98/"/>
     
   </entry>
   
   <entry>
     <title>如何发送空UDP报文</title>
-    <link href="https://sparkera.net/2017/07/03/how-to-send-a-null-udp-packet/"/>
-    <id>https://sparkera.net/2017/07/03/how-to-send-a-null-udp-packet/</id>
+    <link href="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/"/>
+    <id>https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/</id>
     <published>2017-07-03T09:58:16.000Z</published>
     <updated>2018-01-19T01:31:23.997Z</updated>
     
@@ -189,15 +189,15 @@
     
     </summary>
     
-      <category term="网络分析" scheme="https://sparkera.net/categories/%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90/"/>
+      <category term="网络分析" scheme="https://hackeryard.github.io/categories/%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90/"/>
     
     
   </entry>
   
   <entry>
     <title>node实践 0x00</title>
-    <link href="https://sparkera.net/2017/05/16/node-000/"/>
-    <id>https://sparkera.net/2017/05/16/node-000/</id>
+    <link href="https://hackeryard.github.io/2017/05/16/node-000/"/>
+    <id>https://hackeryard.github.io/2017/05/16/node-000/</id>
     <published>2017-05-16T11:04:04.000Z</published>
     <updated>2018-01-19T01:31:21.196Z</updated>
     
@@ -212,15 +212,15 @@
     
     </summary>
     
-      <category term="Node" scheme="https://sparkera.net/categories/Node/"/>
+      <category term="Node" scheme="https://hackeryard.github.io/categories/Node/"/>
     
     
   </entry>
   
   <entry>
     <title>安装python科学计算库 [windows下]</title>
-    <link href="https://sparkera.net/2017/05/14/install-scientific-lib-modules-in-windows/"/>
-    <id>https://sparkera.net/2017/05/14/install-scientific-lib-modules-in-windows/</id>
+    <link href="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/"/>
+    <id>https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/</id>
     <published>2017-05-13T16:35:13.000Z</published>
     <updated>2018-01-19T01:30:53.834Z</updated>
     
@@ -236,15 +236,15 @@
     
     </summary>
     
-      <category term="随想集" scheme="https://sparkera.net/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
+      <category term="随想集" scheme="https://hackeryard.github.io/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
     
     
   </entry>
   
   <entry>
     <title>15年某日手记</title>
-    <link href="https://sparkera.net/2017/04/16/some-tough-thoughts-in-2015/"/>
-    <id>https://sparkera.net/2017/04/16/some-tough-thoughts-in-2015/</id>
+    <link href="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/"/>
+    <id>https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/</id>
     <published>2017-04-16T15:22:14.000Z</published>
     <updated>2018-01-19T01:30:46.696Z</updated>
     
@@ -265,15 +265,15 @@
     
     </summary>
     
-      <category term="随想集" scheme="https://sparkera.net/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
+      <category term="随想集" scheme="https://hackeryard.github.io/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
     
     
   </entry>
   
   <entry>
     <title>apt-get笔记</title>
-    <link href="https://sparkera.net/2017/04/07/apt-get-bookmark/"/>
-    <id>https://sparkera.net/2017/04/07/apt-get-bookmark/</id>
+    <link href="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/"/>
+    <id>https://hackeryard.github.io/2017/04/07/apt-get-bookmark/</id>
     <published>2017-04-07T01:39:33.000Z</published>
     <updated>2018-01-19T01:31:13.693Z</updated>
     
@@ -289,15 +289,15 @@
     
     </summary>
     
-      <category term="Ubuntu学习" scheme="https://sparkera.net/categories/Ubuntu%E5%AD%A6%E4%B9%A0/"/>
+      <category term="Ubuntu学习" scheme="https://hackeryard.github.io/categories/Ubuntu%E5%AD%A6%E4%B9%A0/"/>
     
     
   </entry>
   
   <entry>
     <title>MPICH 3.X安装简明指南（2）【ubuntu】</title>
-    <link href="https://sparkera.net/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/"/>
-    <id>https://sparkera.net/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/</id>
+    <link href="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/"/>
+    <id>https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/</id>
     <published>2017-04-07T01:22:50.000Z</published>
     <updated>2018-01-19T01:31:26.451Z</updated>
     
@@ -317,15 +317,15 @@
     
     </summary>
     
-      <category term="MPICH TUTOR" scheme="https://sparkera.net/categories/MPICH-TUTOR/"/>
+      <category term="MPICH TUTOR" scheme="https://hackeryard.github.io/categories/MPICH-TUTOR/"/>
     
     
   </entry>
   
   <entry>
     <title>MPICH 3.X安装简明指南【ubuntu】</title>
-    <link href="https://sparkera.net/2017/04/07/mpich-3-x-ealy-install-guide/"/>
-    <id>https://sparkera.net/2017/04/07/mpich-3-x-ealy-install-guide/</id>
+    <link href="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/"/>
+    <id>https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/</id>
     <published>2017-04-07T00:45:05.000Z</published>
     <updated>2018-01-19T01:31:12.293Z</updated>
     
@@ -340,15 +340,15 @@
     
     </summary>
     
-      <category term="MPICH TUTOR" scheme="https://sparkera.net/categories/MPICH-TUTOR/"/>
+      <category term="MPICH TUTOR" scheme="https://hackeryard.github.io/categories/MPICH-TUTOR/"/>
     
     
   </entry>
   
   <entry>
     <title>sublime Text 3使用指南</title>
-    <link href="https://sparkera.net/2017/04/04/sublime-text-3-user/"/>
-    <id>https://sparkera.net/2017/04/04/sublime-text-3-user/</id>
+    <link href="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/"/>
+    <id>https://hackeryard.github.io/2017/04/04/sublime-text-3-user/</id>
     <published>2017-04-04T01:48:15.000Z</published>
     <updated>2018-01-19T01:31:05.340Z</updated>
     
@@ -364,15 +364,15 @@
     
     </summary>
     
-      <category term="随想集" scheme="https://sparkera.net/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
+      <category term="随想集" scheme="https://hackeryard.github.io/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
     
     
   </entry>
   
   <entry>
     <title>网络工具集</title>
-    <link href="https://sparkera.net/2017/04/01/network-tools/"/>
-    <id>https://sparkera.net/2017/04/01/network-tools/</id>
+    <link href="https://hackeryard.github.io/2017/04/01/network-tools/"/>
+    <id>https://hackeryard.github.io/2017/04/01/network-tools/</id>
     <published>2017-04-01T03:47:26.000Z</published>
     <updated>2018-03-17T02:41:51.204Z</updated>
     
@@ -388,15 +388,15 @@
     
     </summary>
     
-      <category term="网络分析" scheme="https://sparkera.net/categories/%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90/"/>
+      <category term="网络分析" scheme="https://hackeryard.github.io/categories/%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90/"/>
     
     
   </entry>
   
   <entry>
     <title>上大学，学习重要，还是实践重要？</title>
-    <link href="https://sparkera.net/2017/03/12/what-is-important-in-college/"/>
-    <id>https://sparkera.net/2017/03/12/what-is-important-in-college/</id>
+    <link href="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/"/>
+    <id>https://hackeryard.github.io/2017/03/12/what-is-important-in-college/</id>
     <published>2017-03-12T02:28:49.000Z</published>
     <updated>2018-01-19T01:31:34.253Z</updated>
     
@@ -413,17 +413,17 @@
     
     </summary>
     
-      <category term="大学生活" scheme="https://sparkera.net/categories/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
+      <category term="大学生活" scheme="https://hackeryard.github.io/categories/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="大学实践" scheme="https://sparkera.net/tags/%E5%A4%A7%E5%AD%A6%E5%AE%9E%E8%B7%B5/"/>
+      <category term="大学实践" scheme="https://hackeryard.github.io/tags/%E5%A4%A7%E5%AD%A6%E5%AE%9E%E8%B7%B5/"/>
     
   </entry>
   
   <entry>
     <title>你凭什么要过你想要的生活？</title>
-    <link href="https://sparkera.net/2017/03/12/why-do-you-want-to-lead-your-life/"/>
-    <id>https://sparkera.net/2017/03/12/why-do-you-want-to-lead-your-life/</id>
+    <link href="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/"/>
+    <id>https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/</id>
     <published>2017-03-12T02:19:08.000Z</published>
     <updated>2018-01-19T01:31:09.374Z</updated>
     
@@ -440,19 +440,19 @@
     
     </summary>
     
-      <category term="大学生活" scheme="https://sparkera.net/categories/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
+      <category term="大学生活" scheme="https://hackeryard.github.io/categories/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="大学的过法" scheme="https://sparkera.net/tags/%E5%A4%A7%E5%AD%A6%E7%9A%84%E8%BF%87%E6%B3%95/"/>
+      <category term="大学的过法" scheme="https://hackeryard.github.io/tags/%E5%A4%A7%E5%AD%A6%E7%9A%84%E8%BF%87%E6%B3%95/"/>
     
-      <category term="实践" scheme="https://sparkera.net/tags/%E5%AE%9E%E8%B7%B5/"/>
+      <category term="实践" scheme="https://hackeryard.github.io/tags/%E5%AE%9E%E8%B7%B5/"/>
     
   </entry>
   
   <entry>
     <title>寻找有用的模式</title>
-    <link href="https://sparkera.net/2017/03/12/searching-the-beautiful-patterns/"/>
-    <id>https://sparkera.net/2017/03/12/searching-the-beautiful-patterns/</id>
+    <link href="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/"/>
+    <id>https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/</id>
     <published>2017-03-11T16:02:37.000Z</published>
     <updated>2018-03-17T02:36:49.259Z</updated>
     
@@ -468,19 +468,19 @@
     
     </summary>
     
-      <category term="随想集" scheme="https://sparkera.net/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
+      <category term="随想集" scheme="https://hackeryard.github.io/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
     
     
-      <category term="探索" scheme="https://sparkera.net/tags/%E6%8E%A2%E7%B4%A2/"/>
+      <category term="探索" scheme="https://hackeryard.github.io/tags/%E6%8E%A2%E7%B4%A2/"/>
     
-      <category term="模式" scheme="https://sparkera.net/tags/%E6%A8%A1%E5%BC%8F/"/>
+      <category term="模式" scheme="https://hackeryard.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>解决联想Win8无线网受限的问题</title>
-    <link href="https://sparkera.net/2017/01/16/solve-win8-limited-wireless-network/"/>
-    <id>https://sparkera.net/2017/01/16/solve-win8-limited-wireless-network/</id>
+    <link href="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/"/>
+    <id>https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/</id>
     <published>2017-01-16T03:08:07.000Z</published>
     <updated>2018-01-19T01:31:19.112Z</updated>
     
@@ -495,15 +495,15 @@
     
     </summary>
     
-      <category term="Windows应用" scheme="https://sparkera.net/categories/Windows%E5%BA%94%E7%94%A8/"/>
+      <category term="Windows应用" scheme="https://hackeryard.github.io/categories/Windows%E5%BA%94%E7%94%A8/"/>
     
     
   </entry>
   
   <entry>
     <title>一碗清汤荞麦面</title>
-    <link href="https://sparkera.net/2017/01/16/a-bowl-of-soup-noodles/"/>
-    <id>https://sparkera.net/2017/01/16/a-bowl-of-soup-noodles/</id>
+    <link href="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/"/>
+    <id>https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/</id>
     <published>2017-01-16T02:00:30.000Z</published>
     <updated>2018-01-19T01:30:55.114Z</updated>
     
@@ -520,15 +520,15 @@
     
     </summary>
     
-      <category term="《读者》笔记" scheme="https://sparkera.net/categories/%E3%80%8A%E8%AF%BB%E8%80%85%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
+      <category term="《读者》笔记" scheme="https://hackeryard.github.io/categories/%E3%80%8A%E8%AF%BB%E8%80%85%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
     
     
   </entry>
   
   <entry>
     <title>完美解决联想G510光驱位拆卸问题</title>
-    <link href="https://sparkera.net/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/"/>
-    <id>https://sparkera.net/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/</id>
+    <link href="https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/"/>
+    <id>https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/</id>
     <published>2017-01-13T01:48:25.000Z</published>
     <updated>2018-01-19T01:30:48.628Z</updated>
     
@@ -543,7 +543,7 @@
     
     </summary>
     
-      <category term="计算机组成" scheme="https://sparkera.net/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/"/>
+      <category term="计算机组成" scheme="https://hackeryard.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/"/>
     
     
   </entry>
