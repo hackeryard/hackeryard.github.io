@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hackeryard.github.io/"/>
-  <updated>2020-04-25T04:50:46.872Z</updated>
+  <updated>2020-04-25T05:38:01.103Z</updated>
   <id>https://hackeryard.github.io/</id>
   
   <author>
@@ -17,11 +17,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>symmetric-tree</title>
+    <link href="https://hackeryard.github.io/2020/04/25/symmetric-tree/"/>
+    <id>https://hackeryard.github.io/2020/04/25/symmetric-tree/</id>
+    <published>2020-04-25T05:38:01.000Z</published>
+    <updated>2020-04-25T05:38:01.103Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>反转链表</title>
     <link href="https://hackeryard.github.io/2020/04/20/reverse-list/"/>
     <id>https://hackeryard.github.io/2020/04/20/reverse-list/</id>
     <published>2020-04-20T07:25:48.000Z</published>
-    <updated>2020-04-25T04:50:46.872Z</updated>
+    <updated>2020-04-25T05:41:24.099Z</updated>
     
     <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr><p>反转一个单链表。</p><p>示例:<br>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL<br>进阶:<br>你可以迭代或递归地反转链表。你能否用两种方法解决这道题？</p><p>来源：<a href="https://leetcode-cn.com/problems/reverse-linked-list" target="_blank" rel="noopener">LeetCode</a></p><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><hr><p>从前往后，每次反转后一个节点，维持两个指针prev和last，分别指向第一个和第二个节点，依次后移，直到链表结束同时因为last反转后，下一个节点的连接丢失，所以必须维持一个临时指针，保存last的下一个节点。结束时，置head节点为NULL。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode * prev = head;</span><br><span class="line">        ListNode * last = head-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(last) &#123;</span><br><span class="line">            ListNode * temp = last-&gt;next;</span><br><span class="line">            last-&gt;next = prev;</span><br><span class="line">            prev = last;</span><br><span class="line">            last = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr><p>反转链表有点像栈，最简单的思路是节点指针存放在栈中，出栈时依次指向下一个在栈顶中的元素。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="built_in">stack</span>&lt;ListNode*&gt; s;</span><br><span class="line">        <span class="keyword">while</span>(head) &#123;</span><br><span class="line">            s.push(head);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode * cur; <span class="comment">// 工作指针</span></span><br><span class="line">        ListNode * newhead = s.top(); <span class="comment">// 最开始的位置</span></span><br><span class="line">        <span class="keyword">while</span>(!s.empty()) &#123;</span><br><span class="line">            cur = s.top();</span><br><span class="line">            s.pop();</span><br><span class="line">            cur-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">if</span>(!s.empty()) &#123;</span><br><span class="line">                cur-&gt;next = s.top();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><hr><p>与栈的解法类似，可以用递归的方式模拟栈。递归首先要找出能递归的子问题，子问题的结构在递归时需要保持一致，每次递归都完成一点工作，最后递归过程结束时，就得到了问题的解。<br>反转链表中，首先依次递归到底部，找到结尾节点作为返回值，之后因为从倒数第二个节点开始，用p-&gt;next-&gt;next=p的方式完成后一个节点到当前节点的反转，递归结束退回到head。注意每次递归下一个节点返回，都把它的next置位nullptr，这是为了最后不用单独置head-&gt;next=nullptr，保持递归的结构。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode * newhead = reverseList(head-&gt;next);</span><br><span class="line">        head-&gt;next-&gt;next = head;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -521,31 +535,6 @@
     </summary>
     
       <category term="Windows应用" scheme="https://hackeryard.github.io/categories/Windows%E5%BA%94%E7%94%A8/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>一碗清汤荞麦面</title>
-    <link href="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/"/>
-    <id>https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/</id>
-    <published>2017-01-16T02:00:30.000Z</published>
-    <updated>2018-01-19T01:30:55.114Z</updated>
-    
-    <content type="html"><![CDATA[<p>两天前意外看到一篇总结《读者》二十年来最具有影响力的文章， 看了之后深有感触，总结其中几篇，如下：</p><blockquote><p>小小的善意意味着什么？<br>这篇文章给我们上了一课，我记得以前带着哀悯眼神的胡哲也给我上过课，那就是，它们很可能让身处深渊的看不到生活希望的人，重拾面对困难的信心。世界的确存在很多恶，但每个人也要不忘记自己的良心，不然世界就太残酷了。</p></blockquote><p>全文的高潮应该在他们境况好一些了，两个儿子都长大了懂事了，而母亲也获得了公司的一份特别津贴（我觉得也有同情的一些成分），还清了所有的欠款，他们点了两份清汤面，在小儿子朗读他的作文时，后面的女掌柜和她的丈夫，拔河比赛似的扯着毛巾擦眼泪…</p><p>最后（十四年后），当掌柜习惯性的保留那个座位，但是已经快忘了那一个悲惨的家庭的时候，真正振作起来的母子三人来到了北海亭面馆，并向善良的掌柜夫妇道谢，“那时，承蒙贵店一碗清汤面的激励，母子三人携手努力生活过来了”，然后可以想象一直静听说话的女掌柜，一边掩盖着刷刷的眼泪，一边失声吆喝同样情形的丈夫做三碗面的情形…</p><p>被善意感动的他们，也向世界洒下了善的种子。这几天，每次看这篇文章都会忍不住掉眼泪，以前很小的时候也看过一次，但是怎么都没有这么大的触动，以至于我如今再看这篇文章，脑袋里还留着那种“套路”的不好影响，但不要紧，有的套路并不一定是坏的，套路只是工具，没有情感支撑的套路才是可怕的。</p><p>&nbsp;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;两天前意外看到一篇总结《读者》二十年来最具有影响力的文章， 看了之后深有感触，总结其中几篇，如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;小小的善意意味着什么？&lt;br&gt;这篇文章给我们上了一课，我记得以前带着哀悯眼神的胡哲也给我上过课，那就是，它们很可能让身处深渊的看不到生
-      
-    
-    </summary>
-    
-      <category term="《读者》笔记" scheme="https://hackeryard.github.io/categories/%E3%80%8A%E8%AF%BB%E8%80%85%E3%80%8B%E7%AC%94%E8%AE%B0/"/>
     
     
   </entry>
