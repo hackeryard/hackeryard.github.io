@@ -89,6 +89,65 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-how-to-send-a-null-udp-packet" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/03/how-to-send-a-null-udp-packet/" class="article-date">
+  <time datetime="2017-07-03T09:58:16.000Z" itemprop="datePublished">2017-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/网络分析/">网络分析</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/03/how-to-send-a-null-udp-packet/">如何发送空UDP报文</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>我们知道UDP是无连接的，接收和发送一个报文是独立的，而TCP则实现了一整套的诸如流量控制和拥塞控制机制，保证连接的可靠性。</em></p>
+<hr>
+<p>在本文中，你将了解在Socket API中如何发送一个空的UDP报文，并且通过tcpdump抓取后用wireshark查看报文内容。</p>
+<p>本文缘起对recvfrom的返回值的困惑，因为在TCP中，用recv或者read函数，我们可以通过其返回值是否为0，来判断对端的连接状态，是则表示对端关闭写通道，更可能的情况是close掉了连接。<br>但是在UDP中很少见到recvfrom的返回值是0，在man手册中，只说了TCP的recv保留0以指示对端关闭的情况，这个TCP包是空的，因为只需要TCP头部的FIN信息。</p>
+<p>所以，动手看看吧！<br>recvfrom返回0表示有数据包达到，但是数据部分为空，在wireshark中看到，UDP的长度字段为8，正好是UDP的头部长度，数据部分的确为空。</p>
+<p>下图是通过sendto函数广播的空UDP报文：<br><img src="/images/udp0.png" alt="udp空数据" title="udp空数据"></p>
+<p>发送使用sendto，只是设置发送的长度为0，发现返回值为0；同样，接收使用recvfrom，接收广播的消息，发现当空数据包达到时，返回值为0。如下：</p>
+<p><code>sendto(sockfd, buffer, 0, 0, (struct sockaddr *)&amp;amp;brctaddr, addrsize);
+recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
+<p>另外在广播过程中，使用<code>tcpdump udp port 5001 -w test.pcap</code>监听5001端口的流量，并保存在test.pcap中供wireshark查看。</p>
+<p>实验结束。</p>
+<hr>
+<p>TODO： socket API对应的内核相关操作（select和非阻塞IO等）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9fpi06f001qo4lxcifwc67b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-node-000" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/16/node-000/" class="article-date">
@@ -121,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9fjm8lp002mlglxegdj4vll" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9fpi07s002po4lxwaoj7rjw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -178,7 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9fjm8kc001rlglxtqs1fipp" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9fpi06l001vo4lx9vob5p6x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -256,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9fjm8mi0039lglx5klqq70q" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9fpi08d003ao4lx7rwd684e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -305,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9fjm8jd0011lglx0addngsq" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9fpi05l0015o4lx8yvljd0v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -366,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9fjm8l7002dlglxjgqxe3mm" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9fpi07f002fo4lxbqfh7lfe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -483,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9fjm8l10029lglxehaath39" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9fpi07k002ho4lxaybddjww" class="article-share-link">Share</a>
       
       
     </footer>
@@ -542,7 +601,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9fjm8mk003clglxcuohp2b8" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9fpi08f003co4lxri43mbtg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -600,7 +659,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9fjm8le002glglx3p840hcw" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9fpi07o002ko4lx0g3sufhp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -661,76 +720,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9fjm8n80041lglxl7p31jb5" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9fpi09d0048o4lxqyvteagb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学实践/">大学实践</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-why-do-you-want-to-lead-your-life" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/12/why-do-you-want-to-lead-your-life/" class="article-date">
-  <time datetime="2017-03-12T02:19:08.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/大学生活/">大学生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/12/why-do-you-want-to-lead-your-life/">你凭什么要过你想要的生活？</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>（本文转自黄老师，此乃吐槽帖，误伤请见谅）</p>
-<blockquote>
-<p>如果你的大学志愿是父母帮你选的，如果大学你只挑容易过的课程学习，如果你到毕业也是听从家长的安排，如果你从来就没自己做过决定，你凭什么要过你想要的生活？<br>最近，得知一位学生成功保送至浙大，因为了解其个中纠结，突然很想写这个题目。到底有多少人为自己奋争过？为自己想要走的路，想要过的生活争取过？我也在课堂上跟我的学生们分享过这个故事，这个新鲜出炉，还冒着热气儿，主人公甚至还未从外地回校的故事。都说，一千个人眼中，就有一千个莎士比亚，同样，每个人解读这个故事，都有自己的角度，那么，我就想说这句：“如果你从没为自己争取过，你凭什么过你想要的生活？”</p>
-</blockquote>
-<p>这个学生是西电某学院的全院第一名，逢大四保研之际，得知由于其学院的B专业在本校没有硕士点，故其学院每年的惯例就是把保外名额给B专业的学生。虽然他是全院排名第一，但是由于他身处A专业，即使他已经跟浙大的导师联系甚欢，Offer妥妥拿，却仍然没有这个保外资格。他非常沮丧。。（我见过同样这样遭遇、这么沮丧的孩子，得知这个消息后，也只是在网上发了个帖子胡乱发泄了一通了事。）</p>
-<p>他很沮丧，很不甘。。。因为大二时选修过我的课，于是他做了“奋争”的第一件事：给我发邮件打电话，询问这种情况，各个院的处理方式。（你是否从不敢因自己的困惑向有关的老师咨询过？别怕老师不回复或拒绝，传道授业解惑，本来就是老师该做的事。）我建议他找院长和主管学生工做的书记恳请要求一个名额（学院有分配名额的权利吧，至少），于是他走了第二步：找院长和书记。（有多少人从来不敢去领导那里争取本该属于自己的权益？包括我。）当然，未果。个中又有一周的许多曲折、泄气、放弃和挣扎，略过不表。此后，我在外校了解到，通常教务处有机动名额，于是我建议他走了第三步：找教务处处长，申请为他保留一个保外名额。。。最终成功。我想说的是，有多少人会倒在这一、二、三步中？换做当年的我，我没有找任何老师和领导的勇气，向来都是自己的事自己能处理就处理，处理不了就忍。他换作我，估计会继续在西电呆三年，呆“呆”三年。。。所以，如果你从未为自己抗争，争取，奋斗，你凭什么要过你想要的生活？知不知道很多人生轨迹在本可以逆转的时候，你放弃了？</p>
-<p>近来，可能自己处于工作六七年的“职业倦怠期”，跟同事闲聊，大家都纷纷吐槽自己在教学上很多的困惑。</p>
-<p>你看吧，大学生们都在叫喊着不要“填鸭式教育”，要”启发式“，要开发，要动脑，可是当你真的把课堂交给他们，希望他们做项目任务，主导某一堂课的时候，学生们纷纷表示麻烦，“老师，还是你讲吧？” ，要不就是胡乱拼凑一份PPT，永远只有那一两个学霸在做任务，多数都在打酱油。（当然有认真的学生，我指的是“值得”吐槽的那些）</p>
-<p>你看看，基础课也好，必修课也罢，目光呆滞的孩子遍布课堂（有多少次都让我深深觉得自己的冷笑话数据库储备不够了）。认真学的未必是真的爱学，学霸心理使然；不认真的，更不必说。你说，是中国教育顺序颠倒的原因么？本该轻松的高中，把孩子们坑害得够苦，于是，到了本该努力决定人生方向的大学却纷纷丢盔卸甲，从此“学习”是路人？来大学彻底“天高地阔任我游”了？</p>
-<p>你再看，先不说学校各种坑爹的选修课安排，但是选修课的本意不就是让自己在主修专业课之余，可以挑一些感兴趣的课程额外辅修么？那有多少人只是冲着好拿学分，好过的课去的呢？奔着可以选修自己感兴趣课程的，学一点专业之外知识的孩子的比例有多少呢？“必修课选逃，选修课必逃”的潜规则，我也懂。。。。</p>
-<p>好了，咱不说学习吧，你说说实践。让我帮忙改简历的学生多了，经历了08级到10级，有多少孩子到了毕业拿过来的一页纸上填不满半页的？社会实践木有，工作实习木有，校园活动总该有了吧？一看经历描述，没干啥，挂名个干事，写的就不是自己做过的事。有孩子吐槽说学生工作官僚化、社团活动没新意，那没看到周围那些忙得鬼影都不见的实践达人们么？他们为什么忙得不亦乐乎？没有奖学金加分，没有一个好成绩做依靠，大学四年，最后简历上，除了姓名、专业和联系方式，没啥可写的啦？！大牛？当然有，大牛的简历才好写呢，不用我改。我担心的，就是这些没什么可写的孩子，你们的求职之路将来得有多艰辛哪！这四年都干啥去了呢？都不为将来的自己该走什么路，该怎么走，用四年的时间好好规划规划？这时间多充裕啊，是不？咋一晃眼毕业了，啥也没干捏？？（为嘛这么严肃的话题，写到后来，东北味儿都冒出来了？╮(╯Д╰)╭）</p>
-<p>深以为惑。我才创建了“学生汇”给爱做运营和市场的孩子去实践，创建了“乐为”给那些有理想有梦想的孩子提供资金和志愿者，去做他们想做的事啊！</p>
-<p>你说说，每年一大波一大波新生来袭后 ，姐姐我站在我这”铁打的营盘“上看了一年又一年，孩子们就跟轮回似的，只是换了副皮囊换了个名字，这些甲乙丙丁ABCD他们入学不久之后就会再次经历跟他们的上一届，再上一届，再上上一届。。。。的学长学姐们同样的一圈困惑：大学社团要不要参加？大学这些课程学了有什么用？当学霸，还是不当？。大学干什么好？哇靠，怎么这么快就毕业了？。。。。年复一年，日复一日。。。。此处存二问。第一，中国的教育为什么这十几年对这个现象没有丝毫的改善？第二，大学生盆友们，为什么自己不给自己找到这些答案 ，会任由自己彷徨到大四？为什么？</p>
-<p>没有人会比你自己更关心自己的生活。</p>
-<p>如果从来随波逐流，不为自己做主，你将来凭什么过上你想要的生活？</p>
-<p>时不我待，青春易蹉跎，转眼韶华逝。</p>
-<p>与君共勉。</p>
-<p>&nbsp;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9fjm8o60059lglxe4cin6iq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实践/">实践</a></li></ul>
 
     </footer>
   </div>
@@ -801,6 +794,10 @@
       <ul>
         
           <li>
+            <a href="/2020/04/25/Longest-Common-Substring/">最长公共子串（Longest Common Substring）</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/invert-tree/">invert-tree</a>
           </li>
         
@@ -814,10 +811,6 @@
         
           <li>
             <a href="/2020/04/20/reverse-list/">反转链表</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/21/tool-set/">常用工具集</a>
           </li>
         
       </ul>

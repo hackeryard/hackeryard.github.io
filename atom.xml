@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hackeryard.github.io/"/>
-  <updated>2020-04-25T08:59:31.712Z</updated>
+  <updated>2020-04-25T14:15:34.795Z</updated>
   <id>https://hackeryard.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最长公共子串（Longest Common Substring）</title>
+    <link href="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/"/>
+    <id>https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/</id>
+    <published>2020-04-25T12:46:45.000Z</published>
+    <updated>2020-04-25T14:15:34.795Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr><p>给定两个序列X=(X1,X2,…,Xm)和Y=(Y1,Y2,…,Yn)，求X和Y的最长公共子串。<br>例如：输入两个字符串acbac和acaccbabb，则最大连续子串为cba, 则返回长度3。</p><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>参考之前关于<a href="/2020/04/25/lcs">最长公共子序列LCS</a>的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。此处动态规划表格存放的内容有所不同，LCS是比较子串，当前问题是为了使用连续子串这一条件，所以考虑设数组dp[i,j]表示以Xi和Yj结尾的最大公共连续子串的长度，如果Xi=Yj，则dp[i,j]=dp[i-1,j-1]+1，只需要再考虑dp[i-1,j-1]这个子问题，如果不相等，则dp[i,j]=0，如果i=0或j=0，说明有一个字符串已经结束了，则dp[i,j]=0。需要注意的是，dp的含义决定了最后的输出结果不是dp[m][n]，而必须在计算dp的过程中寻找最大值。</p><p>递归+memo：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> memo[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="built_in">memset</span>(memo, <span class="number">0</span>, <span class="number">1001</span>*<span class="number">1001</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end_index;</span><br><span class="line">        lcs(text1, text2, memo, size1<span class="number">-1</span>, size2<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;text1.substr(end_index-max_len+<span class="number">1</span>, max_len);</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp; a, <span class="built_in">string</span> &amp; b, <span class="keyword">int</span> memo[][<span class="number">1001</span>], <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> &amp; max_len, <span class="keyword">int</span> &amp; end_index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span> || j == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 有一个字符串已经结束</span></span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] != <span class="number">-1</span>) <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        <span class="keyword">if</span>(a[i] == b[j]) &#123;</span><br><span class="line">            memo[i][j] = lcs(a, b, memo, i<span class="number">-1</span>, j<span class="number">-1</span>, max_len, end_index) + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            memo[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 此处这么做为了使lcs继续推进 不然遇到零就停下来了</span></span><br><span class="line">            lcs(a, b, memo, i, j<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">            lcs(a, b, memo, i<span class="number">-1</span>, j, max_len, end_index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] &gt; max_len) &#123;</span><br><span class="line">            max_len = memo[i][j];</span><br><span class="line">            end_index = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> memo[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p><h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr><p>自底向上的解法</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="comment">// memset更高效 memset针对cpu指令集做了优化</span></span><br><span class="line">        <span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="number">1001</span>*<span class="number">1001</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end_index;</span><br><span class="line">        <span class="comment">// 从1开始 是为了把c[0,j]和c[i,0]留给空字符串用</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= size1; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= size2; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>]) &#123;</span><br><span class="line">                    dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 保存最大长度</span></span><br><span class="line">                <span class="keyword">if</span>(dp[i][j] &gt; max_len) &#123;</span><br><span class="line">                    max_len = dp[i][j];</span><br><span class="line">                    end_index = i<span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;text1.substr(end_index-max_len+<span class="number">1</span>, max_len);</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;hr&gt;
+&lt;p&gt;给定两个序列X=(X1,X2,…,Xm)和Y=(Y1,Y2,…,Yn)，求X和Y的最长公共子串。&lt;br&gt;例如：输入
+      
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://hackeryard.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>invert-tree</title>
@@ -516,35 +540,6 @@
     
     
       <category term="大学实践" scheme="https://hackeryard.github.io/tags/%E5%A4%A7%E5%AD%A6%E5%AE%9E%E8%B7%B5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你凭什么要过你想要的生活？</title>
-    <link href="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/"/>
-    <id>https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/</id>
-    <published>2017-03-12T02:19:08.000Z</published>
-    <updated>2018-01-19T01:31:09.374Z</updated>
-    
-    <content type="html"><![CDATA[<p>（本文转自黄老师，此乃吐槽帖，误伤请见谅）</p><blockquote><p>如果你的大学志愿是父母帮你选的，如果大学你只挑容易过的课程学习，如果你到毕业也是听从家长的安排，如果你从来就没自己做过决定，你凭什么要过你想要的生活？<br>最近，得知一位学生成功保送至浙大，因为了解其个中纠结，突然很想写这个题目。到底有多少人为自己奋争过？为自己想要走的路，想要过的生活争取过？我也在课堂上跟我的学生们分享过这个故事，这个新鲜出炉，还冒着热气儿，主人公甚至还未从外地回校的故事。都说，一千个人眼中，就有一千个莎士比亚，同样，每个人解读这个故事，都有自己的角度，那么，我就想说这句：“如果你从没为自己争取过，你凭什么过你想要的生活？”</p></blockquote><p>这个学生是西电某学院的全院第一名，逢大四保研之际，得知由于其学院的B专业在本校没有硕士点，故其学院每年的惯例就是把保外名额给B专业的学生。虽然他是全院排名第一，但是由于他身处A专业，即使他已经跟浙大的导师联系甚欢，Offer妥妥拿，却仍然没有这个保外资格。他非常沮丧。。（我见过同样这样遭遇、这么沮丧的孩子，得知这个消息后，也只是在网上发了个帖子胡乱发泄了一通了事。）</p><p>他很沮丧，很不甘。。。因为大二时选修过我的课，于是他做了“奋争”的第一件事：给我发邮件打电话，询问这种情况，各个院的处理方式。（你是否从不敢因自己的困惑向有关的老师咨询过？别怕老师不回复或拒绝，传道授业解惑，本来就是老师该做的事。）我建议他找院长和主管学生工做的书记恳请要求一个名额（学院有分配名额的权利吧，至少），于是他走了第二步：找院长和书记。（有多少人从来不敢去领导那里争取本该属于自己的权益？包括我。）当然，未果。个中又有一周的许多曲折、泄气、放弃和挣扎，略过不表。此后，我在外校了解到，通常教务处有机动名额，于是我建议他走了第三步：找教务处处长，申请为他保留一个保外名额。。。最终成功。我想说的是，有多少人会倒在这一、二、三步中？换做当年的我，我没有找任何老师和领导的勇气，向来都是自己的事自己能处理就处理，处理不了就忍。他换作我，估计会继续在西电呆三年，呆“呆”三年。。。所以，如果你从未为自己抗争，争取，奋斗，你凭什么要过你想要的生活？知不知道很多人生轨迹在本可以逆转的时候，你放弃了？</p><p>近来，可能自己处于工作六七年的“职业倦怠期”，跟同事闲聊，大家都纷纷吐槽自己在教学上很多的困惑。</p><p>你看吧，大学生们都在叫喊着不要“填鸭式教育”，要”启发式“，要开发，要动脑，可是当你真的把课堂交给他们，希望他们做项目任务，主导某一堂课的时候，学生们纷纷表示麻烦，“老师，还是你讲吧？” ，要不就是胡乱拼凑一份PPT，永远只有那一两个学霸在做任务，多数都在打酱油。（当然有认真的学生，我指的是“值得”吐槽的那些）</p><p>你看看，基础课也好，必修课也罢，目光呆滞的孩子遍布课堂（有多少次都让我深深觉得自己的冷笑话数据库储备不够了）。认真学的未必是真的爱学，学霸心理使然；不认真的，更不必说。你说，是中国教育顺序颠倒的原因么？本该轻松的高中，把孩子们坑害得够苦，于是，到了本该努力决定人生方向的大学却纷纷丢盔卸甲，从此“学习”是路人？来大学彻底“天高地阔任我游”了？</p><p>你再看，先不说学校各种坑爹的选修课安排，但是选修课的本意不就是让自己在主修专业课之余，可以挑一些感兴趣的课程额外辅修么？那有多少人只是冲着好拿学分，好过的课去的呢？奔着可以选修自己感兴趣课程的，学一点专业之外知识的孩子的比例有多少呢？“必修课选逃，选修课必逃”的潜规则，我也懂。。。。</p><p>好了，咱不说学习吧，你说说实践。让我帮忙改简历的学生多了，经历了08级到10级，有多少孩子到了毕业拿过来的一页纸上填不满半页的？社会实践木有，工作实习木有，校园活动总该有了吧？一看经历描述，没干啥，挂名个干事，写的就不是自己做过的事。有孩子吐槽说学生工作官僚化、社团活动没新意，那没看到周围那些忙得鬼影都不见的实践达人们么？他们为什么忙得不亦乐乎？没有奖学金加分，没有一个好成绩做依靠，大学四年，最后简历上，除了姓名、专业和联系方式，没啥可写的啦？！大牛？当然有，大牛的简历才好写呢，不用我改。我担心的，就是这些没什么可写的孩子，你们的求职之路将来得有多艰辛哪！这四年都干啥去了呢？都不为将来的自己该走什么路，该怎么走，用四年的时间好好规划规划？这时间多充裕啊，是不？咋一晃眼毕业了，啥也没干捏？？（为嘛这么严肃的话题，写到后来，东北味儿都冒出来了？╮(╯Д╰)╭）</p><p>深以为惑。我才创建了“学生汇”给爱做运营和市场的孩子去实践，创建了“乐为”给那些有理想有梦想的孩子提供资金和志愿者，去做他们想做的事啊！</p><p>你说说，每年一大波一大波新生来袭后 ，姐姐我站在我这”铁打的营盘“上看了一年又一年，孩子们就跟轮回似的，只是换了副皮囊换了个名字，这些甲乙丙丁ABCD他们入学不久之后就会再次经历跟他们的上一届，再上一届，再上上一届。。。。的学长学姐们同样的一圈困惑：大学社团要不要参加？大学这些课程学了有什么用？当学霸，还是不当？。大学干什么好？哇靠，怎么这么快就毕业了？。。。。年复一年，日复一日。。。。此处存二问。第一，中国的教育为什么这十几年对这个现象没有丝毫的改善？第二，大学生盆友们，为什么自己不给自己找到这些答案 ，会任由自己彷徨到大四？为什么？</p><p>没有人会比你自己更关心自己的生活。</p><p>如果从来随波逐流，不为自己做主，你将来凭什么过上你想要的生活？</p><p>时不我待，青春易蹉跎，转眼韶华逝。</p><p>与君共勉。</p><p>&nbsp;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;（本文转自黄老师，此乃吐槽帖，误伤请见谅）&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果你的大学志愿是父母帮你选的，如果大学你只挑容易过的课程学习，如果你到毕业也是听从家长的安排，如果你从来就没自己做过决定，你凭什么要过你想要的生活？&lt;br&gt;最近，得知一位学生成功保送至浙大
-      
-    
-    </summary>
-    
-      <category term="大学生活" scheme="https://hackeryard.github.io/categories/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="大学的过法" scheme="https://hackeryard.github.io/tags/%E5%A4%A7%E5%AD%A6%E7%9A%84%E8%BF%87%E6%B3%95/"/>
-    
-      <category term="实践" scheme="https://hackeryard.github.io/tags/%E5%AE%9E%E8%B7%B5/"/>
     
   </entry>
   

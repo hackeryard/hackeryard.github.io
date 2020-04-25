@@ -89,6 +89,59 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-mactype-startup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/23/mactype-startup/" class="article-date">
+  <time datetime="2016-08-23T14:50:37.000Z" itemprop="datePublished">2016-08-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/23/mactype-startup/">开机自启动MacType加载美观字体</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为安装MacType的时候，选择F盘，但是这个软件没有自动生成新文件夹的功能，导致直接就把F盘当做软件根目录了。所以我在F盘下面新建了一个Mactype文件夹，把它的文件都剪切到里面来。</p>
+<p>以前安装的时候，设置了开机自启动，但是用cmd下“msconfig”-&gt;“启动”-&gt;“任务管理器”（也可以直接用任务管理器查看）-&gt;“启动”查看时，发现自启动里面的MacType图标是默认的exe图标，不是软件本身的Icon图标，也就是调整程序目录后，系统找不到这些文件了。但又没有添加自启动的选项可以调整，网搜后找到一个方法，如下：</p>
+<p>找到安装软件的根目录，把软件主程序，比如“Mactype.exe”，设置一个快捷方式，然后把快捷方式添加到C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp（PS：可以直接把这段地址粘贴到文件管理器的地址栏），这可能需要管理员权限，确认即可。</p>
+<p>之后再打开任务管理器，发现MacType的图标已经恢复正常了，以后开机就可以立即使用MacType字体了，不用在等待Mactype加载的时间里，面对不舒服的Clear Type字体了，网友推荐的XHei模式还是很给力的，我觉得比Deepin下面的字体还要规范和美观，推荐大家使用。</p>
+<p><img src="http://107.170.248.115/wp-content/uploads/2016/08/mactypeuse-300x63.png" alt="mactypeuse"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/08/23/mactype-startup/" data-id="ck9fpi0770028o4lxebthvqo1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字体应用/">字体应用</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-the-day-of-chushu" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/23/the-day-of-chushu/" class="article-date">
@@ -126,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/23/the-day-of-chushu/" data-id="ck9fjm8mr003jlglxuhv5qma9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/08/23/the-day-of-chushu/" data-id="ck9fpi08m003ko4lxm98h7pia" class="article-share-link">Share</a>
       
       
     </footer>
@@ -183,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/" data-id="ck9fjm8k1001llglxko5yddtd" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/" data-id="ck9fpi069001lo4lx1rp3bm6v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -235,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/15/about-intel-processor-conflict-free-concept/" data-id="ck9fjm8j3000slglxsfswl5ox" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/08/15/about-intel-processor-conflict-free-concept/" data-id="ck9fpi05g0011o4lx7lif4m2h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/12/how-does-wordpress-work/" data-id="ck9fjm8jz001ilglxpbf6bdjh" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/08/12/how-does-wordpress-work/" data-id="ck9fpi06c001oo4lxpdqo0ny4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -358,6 +411,10 @@
       <ul>
         
           <li>
+            <a href="/2020/04/25/Longest-Common-Substring/">最长公共子串（Longest Common Substring）</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/invert-tree/">invert-tree</a>
           </li>
         
@@ -371,10 +428,6 @@
         
           <li>
             <a href="/2020/04/20/reverse-list/">反转链表</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/21/tool-set/">常用工具集</a>
           </li>
         
       </ul>
