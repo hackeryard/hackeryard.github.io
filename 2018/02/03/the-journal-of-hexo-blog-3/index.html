@@ -17,7 +17,7 @@
 <meta property="og:description" content="一个博客如果没有评论和分享功能，势必是单点的，你只是单向的发布信息，读者无法评论和快速分享，这对博主和读者都是巨大的损失。 添加评论系统gitment是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://hackeryard.github.io/images/label-limit.png">
-<meta property="og:updated_time" content="2020-04-20T06:11:39.745Z">
+<meta property="og:updated_time" content="2020-04-25T01:16:30.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客之旅 [3]: 添加gitment评论和链接分享功能">
 <meta name="twitter:description" content="一个博客如果没有评论和分享功能，势必是单点的，你只是单向的发布信息，读者无法评论和快速分享，这对博主和读者都是巨大的损失。 添加评论系统gitment是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的">
@@ -133,7 +133,7 @@
 <p>为此，我写了一个自动化脚本，工作流程如下：</p>
 <ol>
 <li>由于新开的chrome不包含github已登录session和cookie，所以需要模拟登录github账号</li>
-<li>获取站点sitemap.xml，如<a href="https://hackeryard.github.io/sitemap.xml，解析成文章的url">https://hackeryard.github.io/sitemap.xml，解析成文章的url</a></li>
+<li>获取站点sitemap.xml，如(<a href="https://hackeryard.github.io/sitemap.xml)，解析成文章的url">https://hackeryard.github.io/sitemap.xml)，解析成文章的url</a></li>
 <li>依次模拟打开上述url，初次打开需要login，之后的文章则不再需要</li>
 <li>对每篇文章模拟点击init button，如果点击出错，表示已被初始化；如果成功，表示正在初始化，sleep 5s后打开下一个url</li>
 </ol>
@@ -146,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck986ium3003mrclxa3708fn7" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9f4zy69003m7olxfzwfkr6f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitment/">gitment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -254,7 +254,7 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
       <ul>
         
           <li>
-            <a href="/2020/04/20/reverse-list/">reverse-list</a>
+            <a href="/2020/04/20/reverse-list/">反转链表</a>
           </li>
         
           <li>

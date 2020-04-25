@@ -103,7 +103,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/reverse-list/">reverse-list</a>
+      <a class="article-title" href="/2020/04/20/reverse-list/">反转链表</a>
     </h1>
   
 
@@ -111,12 +111,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>反转链表</p>
-
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>反转一个单链表。</p>
+<p>示例:<br>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL<br>进阶:<br>你可以迭代或递归地反转链表。你能否用两种方法解决这道题？</p>
+<p>来源：<a href="https://leetcode-cn.com/problems/reverse-linked-list" target="_blank" rel="noopener">LeetCode</a></p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>从前往后，每次反转后一个节点，维持两个指针prev和last，分别指向第一个和第二个节点，依次后移，直到链表结束同时因为last反转后，下一个节点的连接丢失，所以必须维持一个临时指针，保存last的下一个节点。结束时，置head节点为NULL。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode * prev = head;</span><br><span class="line">        ListNode * last = head-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(last) &#123;</span><br><span class="line">            ListNode * temp = last-&gt;next;</span><br><span class="line">            last-&gt;next = prev;</span><br><span class="line">            prev = last;</span><br><span class="line">            last = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p>反转链表有点像栈，最简单的思路是节点指针存放在栈中，出栈时依次指向下一个在栈顶中的元素。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="built_in">stack</span>&lt;ListNode*&gt; s;</span><br><span class="line">        <span class="keyword">while</span>(head) &#123;</span><br><span class="line">            s.push(head);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode * cur; <span class="comment">// 工作指针</span></span><br><span class="line">        ListNode * newhead = s.top(); <span class="comment">// 最开始的位置</span></span><br><span class="line">        <span class="keyword">while</span>(!s.empty()) &#123;</span><br><span class="line">            cur = s.top();</span><br><span class="line">            s.pop();</span><br><span class="line">            cur-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">if</span>(!s.empty()) &#123;</span><br><span class="line">                cur-&gt;next = s.top();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><p>与栈的解法类似，可以用递归的方式模拟栈。递归首先要找出能递归的子问题，子问题的结构在递归时需要保持一致，每次递归都完成一点工作，最后递归过程结束时，就得到了问题的解。<br>反转链表中，首先依次递归到底部，找到结尾节点作为返回值，之后因为从倒数第二个节点开始，用p-&gt;next-&gt;next=p的方式完成后一个节点到当前节点的反转，递归结束退回到head。注意每次递归下一个节点返回，都把它的next置位nullptr，这是为了最后不用单独置head-&gt;next=nullptr。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode * newhead = reverseList(head-&gt;next);</span><br><span class="line">        head-&gt;next-&gt;next = head;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck986iul8002qrclxvzpbhj18" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck9f4zy5c002q7olxostdrj67" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -309,7 +316,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck986iumf003xrclxseo0b9o9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9f4zy6l003x7olxyv3ajv29" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具-备忘/">工具 备忘</a></li></ul>
@@ -367,7 +374,7 @@
 <p>为此，我写了一个自动化脚本，工作流程如下：</p>
 <ol>
 <li>由于新开的chrome不包含github已登录session和cookie，所以需要模拟登录github账号</li>
-<li>获取站点sitemap.xml，如<a href="https://hackeryard.github.io/sitemap.xml，解析成文章的url">https://hackeryard.github.io/sitemap.xml，解析成文章的url</a></li>
+<li>获取站点sitemap.xml，如(<a href="https://hackeryard.github.io/sitemap.xml)，解析成文章的url">https://hackeryard.github.io/sitemap.xml)，解析成文章的url</a></li>
 <li>依次模拟打开上述url，初次打开需要login，之后的文章则不再需要</li>
 <li>对每篇文章模拟点击init button，如果点击出错，表示已被初始化；如果成功，表示正在初始化，sleep 5s后打开下一个url</li>
 </ol>
@@ -380,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck986ium3003mrclxa3708fn7" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9f4zy69003m7olxfzwfkr6f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitment/">gitment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -438,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck986iulz003irclxblowbc96" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9f4zy66003i7olxdmxy1ok0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
@@ -516,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck986iulv003erclxh7lad6k7" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9f4zy63003e7olx53thaais" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -591,7 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck986iult003crclxq2emq8kd" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9f4zy60003c7olxcu9f7bgc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li></ul>
@@ -652,7 +659,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck986iujm001nrclxznql0s39" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9f4zy3r001n7olxi4b2vtjy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -700,7 +707,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck986iukw002grclxalvhophs" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9f4zy50002g7olxdxy9cd7n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -757,7 +764,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck986iujs001srclxzjvmlo56" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9f4zy3x001s7olx45snk3ea" class="article-share-link">Share</a>
       
       
     </footer>
@@ -835,7 +842,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck986iulk0031rclxbdg3v4a0" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9f4zy5p00317olxoow29fnu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -907,7 +914,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       <ul>
         
           <li>
-            <a href="/2020/04/20/reverse-list/">reverse-list</a>
+            <a href="/2020/04/20/reverse-list/">反转链表</a>
           </li>
         
           <li>
