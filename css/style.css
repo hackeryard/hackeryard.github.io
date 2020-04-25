@@ -236,7 +236,7 @@ body {
 }
 .article-entry hr,
 .widget hr {
-  border: 1px solid #ddd;
+  border: 0.8px solid #ddd;
 }
 .article-entry strong,
 .widget strong {
