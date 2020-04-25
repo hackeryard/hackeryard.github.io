@@ -6,19 +6,20 @@
   
 
   
-  <title>MPICH 3.X安装简明指南（2）【ubuntu】 | Spark Era Coming...</title>
+  <title>invert-tree | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文基于Ubuntu 14.04安装mpich2，亲测有效：  安装：  [c]apt-get install mpich2 libmpich2-dev mpich2-doc[/c]  测试：  [c]which mpicc[/c] 一般返回： [c] /usr/bin/mpicc[/c] 另外的步骤按照第一篇文章操作即可。 通过此方法安装的mpich版本为3.0.5，并非最新，可以通过以下命令查">
+  <meta name="description" content="题目描述翻转一棵二叉树。 示例：123456789101112131415输入：     4   /   \  2     7 / \   / \1   3 6   9输出：     4   /   \  7     2 / \   / \9   6 3   1 来源：LeetCode 解法一从根节点的左右子树开始，互换两个节点的指针，完成根节点的翻转，再递归地翻转左右子树节点的左右节点。递归出口">
+<meta name="keywords" content="LeetCode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MPICH 3.X安装简明指南（2）【ubuntu】">
-<meta property="og:url" content="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/index.html">
+<meta property="og:title" content="invert-tree">
+<meta property="og:url" content="https://hackeryard.github.io/2020/04/25/invert-tree/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="本文基于Ubuntu 14.04安装mpich2，亲测有效：  安装：  [c]apt-get install mpich2 libmpich2-dev mpich2-doc[/c]  测试：  [c]which mpicc[/c] 一般返回： [c] /usr/bin/mpicc[/c] 另外的步骤按照第一篇文章操作即可。 通过此方法安装的mpich版本为3.0.5，并非最新，可以通过以下命令查">
+<meta property="og:description" content="题目描述翻转一棵二叉树。 示例：123456789101112131415输入：     4   /   \  2     7 / \   / \1   3 6   9输出：     4   /   \  7     2 / \   / \9   6 3   1 来源：LeetCode 解法一从根节点的左右子树开始，互换两个节点的指针，完成根节点的翻转，再递归地翻转左右子树节点的左右节点。递归出口">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-19T01:31:26.451Z">
+<meta property="og:updated_time" content="2020-04-25T08:59:31.712Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MPICH 3.X安装简明指南（2）【ubuntu】">
-<meta name="twitter:description" content="本文基于Ubuntu 14.04安装mpich2，亲测有效：  安装：  [c]apt-get install mpich2 libmpich2-dev mpich2-doc[/c]  测试：  [c]which mpicc[/c] 一般返回： [c] /usr/bin/mpicc[/c] 另外的步骤按照第一篇文章操作即可。 通过此方法安装的mpich版本为3.0.5，并非最新，可以通过以下命令查">
+<meta name="twitter:title" content="invert-tree">
+<meta name="twitter:description" content="题目描述翻转一棵二叉树。 示例：123456789101112131415输入：     4   /   \  2     7 / \   / \1   3 6   9输出：     4   /   \  7     2 / \   / \9   6 3   1 来源：LeetCode 解法一从根节点的左右子树开始，互换两个节点的指针，完成根节点的翻转，再递归地翻转左右子树节点的左右节点。递归出口">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -90,16 +91,12 @@
       <div class="outer">
         <section id="main"><!-- post.ejs -->
 <!-- post/article.ejs -->
-<article id="post-mpich-3-x-easy-install-in-ubuntu-2" class="article article-type-post" itemscope itemprop="blogPost">
+<article id="post-invert-tree" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" class="article-date">
-  <time datetime="2017-04-07T01:22:50.000Z" itemprop="datePublished">2017-04-07</time>
+    <a href="/2020/04/25/invert-tree/" class="article-date">
+  <time datetime="2020-04-25T08:19:57.000Z" itemprop="datePublished">2020-04-25</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MPICH-TUTOR/">MPICH TUTOR</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -108,7 +105,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MPICH 3.X安装简明指南（2）【ubuntu】
+      invert-tree
     </h1>
   
 
@@ -116,47 +113,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文基于Ubuntu 14.04安装mpich2，亲测有效：</p>
-<blockquote>
-<p>安装：</p>
-</blockquote>
-<p>[c]apt-get install mpich2 libmpich2-dev mpich2-doc[/c]</p>
-<blockquote>
-<p>测试：</p>
-</blockquote>
-<p>[c]which mpicc[/c]</p>
-<p>一般返回：</p>
-<p>[c] /usr/bin/mpicc[/c]</p>
-<p>另外的步骤按照<a href="https://myard.org/runkingblog/2017/04/mpich-3-x-ealy-install-guide/" target="_blank" rel="noopener">第一篇文章</a>操作即可。</p>
-<p>通过此方法安装的mpich版本为3.0.5，并非最新，可以通过以下命令查看：</p>
-<p>[c]mpicc -v [/c]</p>
-<p>&nbsp;</p>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>翻转一棵二叉树。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line"></span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"></span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure></p>
+<p>来源：<a href="https://leetcode-cn.com/problems/invert-binary-tree" target="_blank" rel="noopener">LeetCode</a></p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>从根节点的左右子树开始，互换两个节点的指针，完成根节点的翻转，再递归地翻转左右子树节点的左右节点。递归出口是到达树的底部。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">invertTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        TreeNode * temp = root-&gt;left;</span><br><span class="line">        root-&gt;left = root-&gt;right;</span><br><span class="line">        root-&gt;right = temp;</span><br><span class="line">        invertTree(root-&gt;right);</span><br><span class="line">        invertTree(root-&gt;left);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p>二叉树BFS，对遍历到的每一个节点，都对其左右节点进行翻转。<br>注意：此时push到队列的元素都非空，因为只有非空才会有对子节点翻转的必要。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">invertTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">            TreeNode * node = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            TreeNode * temp = node-&gt;left;</span><br><span class="line">            node-&gt;left = node-&gt;right;</span><br><span class="line">            node-&gt;right = temp;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left) q.push(node-&gt;left);</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right) q.push(node-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9fjm8l7002dlglxjgqxe3mm" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/invert-tree/" data-id="ck9fjm8ko001zlglx9c0bb4y8" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/04/07/apt-get-bookmark/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          apt-get笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/07/mpich-3-x-ealy-install-guide/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/04/25/lcs/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">MPICH 3.X安装简明指南【ubuntu】</div>
+      <div class="article-nav-title">最长公共子序列</div>
     </a>
   
 </nav>

@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hackeryard.github.io/2020/04/25/lcs/</loc>
+    
+    <lastmod>2020-04-25T11:30:54.594Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hackeryard.github.io/2020/04/25/invert-tree/</loc>
+    
+    <lastmod>2020-04-25T08:59:31.712Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hackeryard.github.io/2020/04/25/symmetric-tree/</loc>
     
-    <lastmod>2020-04-25T06:49:54.859Z</lastmod>
+    <lastmod>2020-04-25T08:34:44.200Z</lastmod>
     
   </url>
   

@@ -89,6 +89,111 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-node-000" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/16/node-000/" class="article-date">
+  <time datetime="2017-05-16T11:04:04.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Node/">Node</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/16/node-000/">node实践 0x00</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。<br>另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例子，比如计算同样位数的斐波那契数列，node的性能超过java，也曾有公司把网站用node重写，相比ruby，服务器削减了十倍，从中可见一斑。<br>node的一大特色就是异步io，我们知道，在网络服务中，服务进程大多是io密集型的，如果使用阻塞io库，进程将经常等待io完成，明白点说，在操作系统中，当一个进程被阻塞时，调度器会在就绪队列中选一个占用cpu进行执行，io一般又相当费时，当对于cpu这个计算资源而言，此进程就浪费掉了一部分时间片，从而影响性能，在需要尽量实时的服务上尤为明显。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9fjm8lp002mlglxegdj4vll" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-install-scientific-lib-modules-in-windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/14/install-scientific-lib-modules-in-windows/" class="article-date">
+  <time datetime="2017-05-13T16:35:13.000Z" itemprop="datePublished">2017-05-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/14/install-scientific-lib-modules-in-windows/">安装python科学计算库 [windows下]</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于今天数据挖掘练习的缘故，需要安装一些常用的科学计算库，如耳熟能详的numpy，scipy，sklearn，matplotlib，seaborn等。</p>
+<p>本机python 32位版本3.6，使用pip3安装相关库，看到知乎上要说换用anaconda（附带python和一些扩展库），再用conda工具安装没有的库，可以很好的解决依赖问题。由于我对Python的依赖关系的管理没有深入了解，只依赖于pip或者easy_install的使用，所以当遇到pip安装某个库失败时，就有些无措了。</p>
+<p>解决方法如下：</p>
+<p>前往<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy</a>下载适合自己版本（我的是cp36，对应python3.6）的numoy+mkl（mkl是intel math kernal lib的意思，估计由于这样的原因，这种打包的numpy无法使用pip官方安装，也即就算pip install numpy成功了，当import scipy的时候，执行仍然报错，报错原因就是找不到numpy+mkl）</p>
+<p>我用的校园网，实际下载速度只有15KB，而且经常断线且服务器不支持断点续传，所以很无奈。当想到有国内国外的vps，就挂上去看了下，使用</p>
+<p>[c]wget <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c</a>]</p>
+<p>发现404错误，用curl同样无法下载，苦闷中，发现用这个地址放到浏览器可以直接下载，所以应该是服务器屏蔽bot下载了，在wget后加</p>
+<p>[c]–user-agent=&quot;Mozilla/5.0&quot; [/c]</p>
+<p>即可。</p>
+<p>通过<a href="https://www.filezilla.cn/" target="_blank" rel="noopener">sftp工具</a>下载到本机用pip3安装即可。</p>
+<p>之后再安装其他依赖于mkl的库就没有问题了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9fjm8kc001rlglxtqs1fipp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-some-tough-thoughts-in-2015" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/16/some-tough-thoughts-in-2015/" class="article-date">
@@ -151,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9f9l1o3002f14lx7jkccepv" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9fjm8mi0039lglx5klqq70q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +305,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9f9l1ki000c14lxh3ws2pkl" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9fjm8jd0011lglx0addngsq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -261,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9f9l1mm001l14lxr60f0ivs" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9fjm8l7002dlglxjgqxe3mm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -378,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9f9l1mj001i14lxfvynlx5j" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9fjm8l10029lglxehaath39" class="article-share-link">Share</a>
       
       
     </footer>
@@ -437,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9f9l1o5002h14lx9k0pexw9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9fjm8mk003clglxcuohp2b8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -495,7 +600,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9f9l1mp001n14lxe38hszm3" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9fjm8le002glglx3p840hcw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -556,7 +661,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9f9l1pl003i14lx9u34qpoz" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9fjm8n80041lglxl7p31jb5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学实践/">大学实践</a></li></ul>
@@ -622,117 +727,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9f9l1pq003l14lx4xyo7hq3" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9fjm8o60059lglxe4cin6iq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实践/">实践</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-searching-the-beautiful-patterns" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/12/searching-the-beautiful-patterns/" class="article-date">
-  <time datetime="2017-03-11T16:02:37.000Z" itemprop="datePublished">2017-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/12/searching-the-beautiful-patterns/">寻找有用的模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之所以想到要写这篇文章，是因为我觉得，在我们的一生中，在我们追逐成功的路上，都需要不懈的寻找那些有用的模式，能够适应快速变化社会的模式，能够让自己的生活和内心都富有的模式。</p>
-<p>这些模式，我们可能在他人的分享中（比如TED）获取，也可能还是需要自己实践一下改进一下以最适合自己，所谓纸上得来终觉浅，就是提醒我们做个勇敢的人，面对纷乱的情形，如何抽丝剥茧，慧眼识珠，发现有用的模式，然后应用起来，在这个体系里面游刃有余。最众所周知的例子，高中的物理，基础的力学电学知识，是不是可以指导我们制作精密的机器或完成覆盖整个世界的电网？这些抽象的学问，让我们能够理解物理世界的基本运行规律，而正是掌握了它们，我们才能武装自己，进而走的更远。</p>
-<p>就我看来，有两种基本的寻找有用模式的有效方式，一种是依靠他人的“透漏”，另一种是靠自己观察。当今互联网时代，快节奏的生活似乎让人们疲于观察体会（或许善于并坚持观察和思考的人一直不多？），人们更乐于寻找别人“透漏”的模式，然后自己实践，但更多的是，把这些模式奉为圣经，之后不管不问，只是知道这么回事罢了。这种当然是最快的方式，却多半不能长久，毕竟如果不是自己思考的结果，就算觉得有道理也不一定会去照着做，就像我们常听到各种励志讲座，当时热血沸腾，事后就跟没发生一样。最重要的，这种道理可能不是真正适合自己的，别人使用别人的方法论时，适配的是别人的环境和背景，别人的心智模型，这也往往是人与人之间差距很大的地方。</p>
-<p>另一类是自己观察。有用的模式是能够解决某些问题的，正是因为世界上有太多的未知和秘密存在，探索的大门才永久开放，等待着探险者的深入。这些探险者往往智勇双全，就像福尔摩斯，他可以通过细微的痕迹判断谁是说谎者，可以按照自己的判断勇敢找寻线索。他在观察和推理上都有自己一套独有的特别有效的模式，他靠积累案件并在案件中不断加深自己对犯罪和推理的认识，靠保有对这个世界上常人无法解决的问题的好奇和探索，最终成就了自己。</p>
-<p>下文再更。</p>
-<p>&nbsp;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9f9l1ng002314lxxju1qm0z" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/探索/">探索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-solve-win8-limited-wireless-network" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/16/solve-win8-limited-wireless-network/" class="article-date">
-  <time datetime="2017-01-16T03:08:07.000Z" itemprop="datePublished">2017-01-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/16/solve-win8-limited-wireless-network/">解决联想Win8无线网受限的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天连接无线网，发现竟然一直受限，而受限就意味着连不上网，所以百度了一下，好多答案都不是我需要的，最后找到<a href="http://jingyan.baidu.com/article/fd8044faf3d7a05030137a5d.html" target="_blank" rel="noopener">一篇经验</a>，因为我们以前的对于无线网卡的配置竟然会用在当前的无线网上，比如在学校使用的六快播vpn，就改变了我的配置，导致我一直以为是驱动的问题。</p>
-<p>首先，打开受限的无线网络，查看状态，看网关是否正确，应该是192.168.0/1.1，看ip地址是否正确，如果你是192.168.0/1.xxx，那恭喜你，这个配置没有问题，可以去检查驱动或者<a href="http://win8.yesky.com/227/35885727.shtml" target="_blank" rel="noopener">配置FIPS兼容性</a>了。</p>
-<p>如果有问题，修改网关和ip地址到合适的值，或者直接配合DHCP，让路由器直接分配ip地址也行。</p>
-<p>另外，电脑或手机出于对电源的管理，会有一些针对无线连接的高性能和节能的配置，可以通过类似“电源管理”或“WLAN高级”查看并修改。</p>
-<p>（本文完）</p>
-<p>&nbsp;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/" data-id="ck9f9l1nx002a14lx21m78sfc" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -780,7 +779,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
+      <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
     </div>
   </div>
 
@@ -802,6 +801,14 @@
       <ul>
         
           <li>
+            <a href="/2020/04/25/invert-tree/">invert-tree</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/25/lcs/">最长公共子序列</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/symmetric-tree/">对称二叉树</a>
           </li>
         
@@ -811,14 +818,6 @@
         
           <li>
             <a href="/2018/03/21/tool-set/">常用工具集</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/03/the-journal-of-hexo-blog-3/">hexo博客之旅 [3]: 添加gitment评论和链接分享功能</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/29/the-journal-of-hexo-blog-2/">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>
           </li>
         
       </ul>

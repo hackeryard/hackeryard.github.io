@@ -89,6 +89,116 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-the-day-of-chushu" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/23/the-day-of-chushu/" class="article-date">
+  <time datetime="2016-08-23T02:40:54.000Z" itemprop="datePublished">2016-08-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/23/the-day-of-chushu/">处暑的一天</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天刚到学校，忙着修复电脑之后就睡了，今天起来看着熟悉的阳台和外面的风景，一切如故。</p>
+<p>在一个地方，就算是家，也会厌倦吧，而且我还有很多事情要做，还有好多书只开了一个头，还有图书馆可以去逛，还有学校餐厅的日常，即将飘落的梧桐秋叶……</p>
+<p>呼吸新鲜的空气，傍晚去跑半个小时步，打乒乓，当然，还要处理一些问题，写一些要交的文档，考虑下俱乐部的规划，最重要的，大三要怎么过？</p>
+<p>我的确是用笔思考的那类人，不写出来头脑就混乱，并不是说我数学不好，而是关于选择方面，那种因素很多的艰难的抉择。</p>
+<p>室友有参加留法项目的，现在正忙于准备法语学习，有参加数模并准备搬出去主攻托福留学美国的，我如果现在准备的话，是不太晚的。</p>
+<p>可当下，我只想处理完琐事，尽心把大三专业课学好，足矣。</p>
+<p>今天是二十四节气之处暑，即“处，去也，暑气至此而止矣”，希望烦躁也就此而去~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/08/23/the-day-of-chushu/" data-id="ck9fjm8mr003jlglxuhv5qma9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-how-to-handle-the-miss-of-mbr-when-using-dual-sys" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/" class="article-date">
+  <time datetime="2016-08-22T15:11:05.000Z" itemprop="datePublished">2016-08-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/">Win8.1与Deepin双系统安装误将MBR丢失的处理方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了尝鲜，安装了桌面Ubuntu之称的Deepin，但是由于这个系统进入很慢，而且除了命令行很快速以外，就连鼠标就没有Win下使用得顺手，而且再次启动进入Win时，速度特别慢，所以想要删除Deepin。</p>
+<p>我在EasyBCD按照百度经验提示，把Win7/Vista的Boot Loader写入了MBR，当时以为win8.1的BT也可以用win7的，这太天真了！之后由于没有联网的条件，就关机睡觉了。之后开机发现，根本没有机会加载任何一个操作系统。因为手边只有一个Deepin启动盘，所以就重新安装了Deepin，来到学校后，以前的PE优盘由于存在病毒，我就没有使用网友推荐的做法：用Diskgenius来重建MBR（这时由于Win8.1启动项覆盖了以前的linux的，而windows的boot loader没有转接给linux启动的功能，所以deepin就启动不了）。</p>
+<p>而这时就想用Deepin盘做一个PE盘，但在Deepin环境下没找到可用的工具。</p>
+<p>最后，通过编辑/boot/grub/grub.cfg(事先修改权限，root下用chmod +w grub.cfg)，在可以自定义的区域添加如下代码：</p>
+<p>menuentry “Windows 8.1” {</p>
+<p>insmod part_msdos</p>
+<p>insmod ntfs</p>
+<p>set root=’(hd0,msdos1)’</p>
+<p>chainloader +1</p>
+<p>}</p>
+<p>保存后发现Deepin的图形化“设置”里面，出现了Deepin和Windows 8.1两个启动选择，明天重启测试，应该正常。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/" data-id="ck9fjm8k1001llglxko5yddtd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-about-intel-processor-conflict-free-concept" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/15/about-intel-processor-conflict-free-concept/" class="article-date">
@@ -125,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/15/about-intel-processor-conflict-free-concept/" data-id="ck9f9l1ke000914lxfgizq24e" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/08/15/about-intel-processor-conflict-free-concept/" data-id="ck9fjm8j3000slglxsfswl5ox" class="article-share-link">Share</a>
       
       
     </footer>
@@ -176,7 +286,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/12/how-does-wordpress-work/" data-id="ck9f9l1lk000w14lxl4dq40j9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/08/12/how-does-wordpress-work/" data-id="ck9fjm8jz001ilglxpbf6bdjh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -226,7 +336,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
+      <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
     </div>
   </div>
 
@@ -248,6 +358,14 @@
       <ul>
         
           <li>
+            <a href="/2020/04/25/invert-tree/">invert-tree</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/25/lcs/">最长公共子序列</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/symmetric-tree/">对称二叉树</a>
           </li>
         
@@ -257,14 +375,6 @@
         
           <li>
             <a href="/2018/03/21/tool-set/">常用工具集</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/03/the-journal-of-hexo-blog-3/">hexo博客之旅 [3]: 添加gitment评论和链接分享功能</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/29/the-journal-of-hexo-blog-2/">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>
           </li>
         
       </ul>

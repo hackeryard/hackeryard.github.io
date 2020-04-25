@@ -89,6 +89,131 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-re-compile-opencv-lib-and-config-in-qt-creator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/" class="article-date">
+  <time datetime="2016-11-15T16:08:09.000Z" itemprop="datePublished">2016-11-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/">使用Cmake和MinGW重编译OpenCV库并在QT Creator上正确配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>环境很复杂，两周前花了大概两三个小时配置VS2013下的Opencv，由于MFC对Opencv支持不好并且上手慢，而我又不想重新学习C#，最最重要的是，Express版竟然没有MFC模块！所以我开始转手QT Creator。以前不知道VS可以直接使用QT的插件，那么就不用后来这么折腾了，记住，最重要的是学习Opencv的使用，而不是配置复杂的环境。</p>
+<p>以下就是帮助大家解决环境问题的：（还是得解决：)）</p>
+<p>1，用Cmake生成Makefile（其中我遇到Qt-Dir-Not-Found的问题，按照<a href="https://dotuyau.wordpress.com/2014/04/25/opencv_qt_windows/" target="_blank" rel="noopener">这个教程</a>顺利通过），之后命令行下make，make install;</p>
+<p>2，添加环境变量（在Path下添加编译好的opencv/bin），并按照自己的opencv版本，比如我的是2.4.13，那么就修改为这个版本2413，把需要的include、链接文件写入.pro即可。如果是打开了Qt Creator测试程序发现可编译但是运行错误，这很可能就是链接库无法装载的问题，前面的环境变量一定要设置好，之后最好重启Qt Creator，载入新的Path，方可运行正常）</p>
+<p>接下来就可以不用理会环境的问题了，Head in OpenCV~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/" data-id="ck9fjm8m5002vlglxa1dd7fh9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-phpbb-forums-installing-and-using-guide" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/08/phpbb-forums-installing-and-using-guide/" class="article-date">
+  <time datetime="2016-11-08T13:34:47.000Z" itemprop="datePublished">2016-11-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Phpbb3/">Phpbb3</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/08/phpbb-forums-installing-and-using-guide/">phpbb论坛安装与使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件）</p>
+<p>&nbsp;</p>
+<h3 id="首先，进入phpbb中文网下载最新的中文安装包："><a href="#首先，进入phpbb中文网下载最新的中文安装包：" class="headerlink" title="首先，进入phpbb中文网下载最新的中文安装包："></a>首先，进入<a href="https://www.phpbbchinese.com/#" target="_blank" rel="noopener">phpbb中文网</a>下载最新的中文安装包：</h3><p>&nbsp;</p>
+<p>点击中文包，右键复制链接，使用<strong>wget + 复制的链接</strong>，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我们重命名如下：</p>
+<p><strong>mv xxx  phpbb3.zip</strong></p>
+<p>解压：</p>
+<p><strong>unzip phpbb3.zip  </strong></p>
+<p>重命名：</p>
+<p><strong>mv phpBB3 bbs</strong>（bbs目录就是你喜欢的网站路径了，可以自选）</p>
+<p>然后用<strong>ifconfig命令</strong>自己的ip，后续访问论坛需要使用，即<strong>你的ip/bbs，</strong>复制到浏览器地址栏。</p>
+<p>&nbsp;</p>
+<h3 id="开始进入数据库配置："><a href="#开始进入数据库配置：" class="headerlink" title="开始进入数据库配置："></a>开始进入数据库配置：</h3><p><strong>mysql -u root -p</strong>（回车后输入你的数据库root密码，没有密码就直接进去了）</p>
+<p><strong>create database phpbb3;</strong> （为phpbb创建一个数据库，专门用来存放论坛数据）</p>
+<p><strong>grant all privileges on phpbb3.* to phpbbuser@localhost identified by ‘your.password’ ;</strong> （新建phpbbuser用户，指定your.password密码，并赋予用户对于phpbb3数据库全部权限，因为这个是要在后续论坛安装时使用的）</p>
+<p><strong>exit</strong>（退出mysql）</p>
+<p>&nbsp;</p>
+<h3 id="现在开始简单的网页向导安装吧"><a href="#现在开始简单的网页向导安装吧" class="headerlink" title="现在开始简单的网页向导安装吧"></a>现在开始简单的网页向导安装吧</h3><p>这跟windows下安装程序一样，一步一步提示。如下：</p>
+<p><strong>你的ip/bbs，</strong>复制到浏览器地址栏打开；</p>
+<p>在这期间phpbb会检测你的mysql、php、apache安装好没有，并且需要一些文件夹和配置文件有没有可写权限，还需要你提供刚才创建的数据库用户名phpbbuser和密码，用于它操控，如下：</p>
+<p>进入网站家目录：<strong>cd /var/www/html</strong></p>
+<p>修改bbs目录所有者为apache用户和apache组：<strong>chown -R apache:apache bbs</strong></p>
+<p>之后发现都可写了，这一步通过！</p>
+<p>安装完成之后，bbs目录下的install目录就没用了，如果保留，可能被别人利用，造成意外损失。可使用删除命令<strong>rm -rf install</strong></p>
+<p>这样跟着走就可以完成论坛安装，新站长可以多尝试，并参考文档解决用户组权限、管理权限等问题。</p>
+<p>参考<a href="http://linux.vbird.org/apache_packages/www_04phpBB.php" target="_blank" rel="noopener">鸟哥的网站</a>：phpBB 最大的优点是可以进行外挂模组的开发，以建立个人的网页风格，我也在尝试个性化~</p>
+<p>Enjoy！</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/11/08/phpbb-forums-installing-and-using-guide/" data-id="ck9fjm8lv002plglxdetvil73" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-foundation-of-conpilation" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/11/08/foundation-of-conpilation/" class="article-date">
@@ -146,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/08/foundation-of-conpilation/" data-id="ck9f9l1l9000s14lx9ab6ig9k" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/08/foundation-of-conpilation/" data-id="ck9fjm8jw001glglxws6lcf0g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -210,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/06/migrant-the-blog/" data-id="ck9f9l1mg001f14lxmn1rxazr" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/06/migrant-the-blog/" data-id="ck9fjm8kz0027lglxj3wrwpyt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -265,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/24/a-lovely-melanogaster/" data-id="ck9f9l1k8000614lx9ywyj4fl" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/24/a-lovely-melanogaster/" data-id="ck9fjm8ix000plglxk234v3sx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -320,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/18/internet-as-the-infrastructure/" data-id="ck9f9l1m2001714lxcvfi1en5" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/18/internet-as-the-infrastructure/" data-id="ck9fjm8ke001ulglx0azqm9m7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -373,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/08/Friends-forever/" data-id="ck9f9l1jd000214lxl4mjnagm" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/08/Friends-forever/" data-id="ck9fjm8il000jlglxme82kiyo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -422,7 +547,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/08/power-to-pc-using-ssd/" data-id="ck9f9l1nk002614lxfv2iculu" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/08/power-to-pc-using-ssd/" data-id="ck9fjm8lz002slglx6ojmy0bm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -472,7 +597,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/07/difference-between-controller&driver&adaptor/" data-id="ck9f9l1l0000m14lx9u56si81" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/07/difference-between-controller&driver&adaptor/" data-id="ck9fjm8jp0019lglx54m92mwn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -532,112 +657,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/01/killing-time-in-national-holiday/" data-id="ck9f9l1m4001a14lxht360ymm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-the-late-Osmanthus" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/01/the-late-Osmanthus/" class="article-date">
-  <time datetime="2016-10-01T06:12:20.000Z" itemprop="datePublished">2016-10-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/01/the-late-Osmanthus/">桂花迟</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在一个地方待久了，本能的厌倦，亦或是缺乏向内自省的功力，就这样等待季节的更迭，好带来一丝丝新意、惬意。</p>
-<p>其实并非今年的桂花开得迟了，而是自己觉得写这篇文章写的很迟。好不容易与桂花的擦肩而过，中途竟然又经过了几天阴雨，花期将过之时昨天又来一天好阳光，不得不记起来这事了。</p>
-<blockquote>
-<p>我见过的花中，最爱桂花和栀子花。栀子花洁白，是家里的一道风景，每每想家，都仿佛飘来一缕清香；而桂花是雅致的，一朵一朵的小花，那么不起眼，你注意到她是因为瞬间让你好心情的香！<br>这种小花，在校园里默默的贡献自己的香气，让过往的师生感到愉悦，让蓝天更蓝，白云更白，让一刻不停盯着手机的我们也由衷地赞美，像个婴孩一样好奇的打探这个世界。</p>
-</blockquote>
-<p>这样的花应该开在秋天的太阳下，所以我很心疼那几天阴雨天花的境遇。那几天里，花的香味越来越淡，而不是在阳光下渐渐浓郁，让你不自觉的想为花们打抱不平：什么鬼天气呢！</p>
-<p>还好花年年在，桂花树也一年大一岁，看过的沿途的各种各样的人也越来越多，阅历也更加丰富。那他是否已经察觉到人们的脚步太快，而正在仁慈的，用花香来安慰匆忙的行人？</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/01/the-late-Osmanthus/" data-id="ck9f9l1p5003614lxfeextqd9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-the-security-of-mail" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/28/the-security-of-mail/" class="article-date">
-  <time datetime="2016-09-28T09:34:31.000Z" itemprop="datePublished">2016-09-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/28/the-security-of-mail/">mail安全何在？</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>看到科学网《不安全的Email》一文，对可以直接伪造邮件发送方这件事感到震惊，为了证实可不可以直接用php直接伪造，所以就在主机上写了一个gotmail.php，答案是，马上收到了这份邮件，发送方的确是 billgates@microsoft.com，那么如果接受者不加注意，就可能中了仿冒者的诡计。</p>
-<p>zoho邮箱自动把中国境内发的邮件当成spam，而qq邮箱就注重了真实邮件的鉴别，如图：</p>
-<p><img src="https://generalid.ml/wp-content/uploads/2016/09/spammail-300x81.png" alt="spammail"></p>
-<p>它会显示由一个远程主机的apache用户发送（伪造）。由于我没有搭建邮件服务器，没有mx记录，所以没解析成域名。</p>
-<p>所以现在的邮箱还不够智能，学校用的亿邮网关，经常拦截我的正常邮件，连阿里云的都照杀不误，就只能添加白名单了。</p>
-<p>以后会学如何智能识别垃圾邮件。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/28/the-security-of-mail/" data-id="ck9f9l1pa003914lxmstulq0d" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/01/killing-time-in-national-holiday/" data-id="ck9fjm8kg001wlglxocii63yl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -687,7 +707,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 20px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
+      <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
     </div>
   </div>
 
@@ -709,6 +729,14 @@
       <ul>
         
           <li>
+            <a href="/2020/04/25/invert-tree/">invert-tree</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/25/lcs/">最长公共子序列</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/symmetric-tree/">对称二叉树</a>
           </li>
         
@@ -718,14 +746,6 @@
         
           <li>
             <a href="/2018/03/21/tool-set/">常用工具集</a>
-          </li>
-        
-          <li>
-            <a href="/2018/02/03/the-journal-of-hexo-blog-3/">hexo博客之旅 [3]: 添加gitment评论和链接分享功能</a>
-          </li>
-        
-          <li>
-            <a href="/2018/01/29/the-journal-of-hexo-blog-2/">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>
           </li>
         
       </ul>
