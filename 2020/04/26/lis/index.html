@@ -8,17 +8,18 @@
   
   <title>最长递增子序列 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8） 说明:可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。你算法的时间复杂度应该为 O(n2) 。进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗? 来源：LeetCode 解法一因为是数组，求数组的最优解，问题太大了，我">
+  <meta name="description" content="题目描述给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8） 说明:可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。你算法的时间复杂度应该为 O(n2) 。进阶: 你能将算法的时间复杂度降低到 O(nlogn) 吗? 来源：LeetCode 解法一因为是数组，求数组的最优解，问题太大了，我们能">
+<meta name="keywords" content="LeetCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最长递增子序列">
 <meta property="og:url" content="https://hackeryard.github.io/2020/04/26/lis/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="题目描述给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8） 说明:可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。你算法的时间复杂度应该为 O(n2) 。进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗? 来源：LeetCode 解法一因为是数组，求数组的最优解，问题太大了，我">
+<meta property="og:description" content="题目描述给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8） 说明:可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。你算法的时间复杂度应该为 O(n2) 。进阶: 你能将算法的时间复杂度降低到 O(nlogn) 吗? 来源：LeetCode 解法一因为是数组，求数组的最优解，问题太大了，我们能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-26T01:27:25.111Z">
+<meta property="og:updated_time" content="2020-04-26T01:58:54.096Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最长递增子序列">
-<meta name="twitter:description" content="题目描述给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8） 说明:可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。你算法的时间复杂度应该为 O(n2) 。进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗? 来源：LeetCode 解法一因为是数组，求数组的最优解，问题太大了，我">
+<meta name="twitter:description" content="题目描述给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8） 说明:可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。你算法的时间复杂度应该为 O(n2) 。进阶: 你能将算法的时间复杂度降低到 O(nlogn) 吗? 来源：LeetCode 解法一因为是数组，求数组的最优解，问题太大了，我们能">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -113,21 +114,32 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8）</p>
-<p>说明:<br>可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。<br>你算法的时间复杂度应该为 O(n2) 。<br>进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗?</p>
+<p>说明:<br>可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。<br>你算法的时间复杂度应该为 O(n2) 。<br>进阶: 你能将算法的时间复杂度降低到 O(nlogn) 吗?</p>
 <p>来源：<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence" target="_blank" rel="noopener">LeetCode</a></p>
 <h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>因为是数组，求数组的最优解，问题太大了，我们能不能划分一下，分成多个子问题？这里子问题是需要跟问题对应的，即与递增子序列对应，我们把子问题划分为(X1…Xi)，LIS[i]是以Xi为结尾的最长递增子序列，最优子结构利用了递增的性质，即比较当前结尾元素和所有子问题结尾元素的大小，如果大，则在子问题解的基础上加1。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    dp[i] = max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            max_len = max(max_len, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/lis/" data-id="ck9gdhxbo0027zclxqjrpzazt" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/lis/" data-id="ck9gvzw3g0028e0lxbiznnnjn" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/04/26/number-of-lis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          最长递增子序列的个数
+        
+      </div>
+    </a>
   
   
     <a href="/2020/04/26/first-common-node-of-two-linked-list/" id="article-nav-older" class="article-nav-link-wrap">
@@ -217,6 +229,10 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
       <ul>
         
           <li>
+            <a href="/2020/04/26/number-of-lis/">最长递增子序列的个数</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/lis/">最长递增子序列</a>
           </li>
         
@@ -230,10 +246,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
         
           <li>
             <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/lcs/">最长公共子序列</a>
           </li>
         
       </ul>

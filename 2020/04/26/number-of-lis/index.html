@@ -6,15 +6,20 @@
   
 
   
-  <title>归档 | Spark Era Coming...</title>
+  <title>最长递增子序列的个数 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Spark Era Coming...">
-<meta property="og:url" content="https://hackeryard.github.io/archives/page/5/index.html">
+  <meta name="description" content="问题描述给定一个未排序的整数数组，找到最长递增子序列的个数。 示例 1: 输入: [1,3,5,4,7]输出: 2解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。 来源：LeetCode 解法一计算LIS的个数，LIS的解法在这里。因为最长递推子序列的个数是不同的，分两种情况：1.LIS[i]是最大的LIS，但以i结尾的LIS个数有多个，在遍历的过程中，">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最长递增子序列的个数">
+<meta property="og:url" content="https://hackeryard.github.io/2020/04/26/number-of-lis/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
+<meta property="og:description" content="问题描述给定一个未排序的整数数组，找到最长递增子序列的个数。 示例 1: 输入: [1,3,5,4,7]输出: 2解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。 来源：LeetCode 解法一计算LIS的个数，LIS的解法在这里。因为最长递推子序列的个数是不同的，分两种情况：1.LIS[i]是最大的LIS，但以i结尾的LIS个数有多个，在遍历的过程中，">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-26T02:04:06.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark Era Coming...">
+<meta name="twitter:title" content="最长递增子序列的个数">
+<meta name="twitter:description" content="问题描述给定一个未排序的整数数组，找到最长递增子序列的个数。 示例 1: 输入: [1,3,5,4,7]输出: 2解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。 来源：LeetCode 解法一计算LIS的个数，LIS的解法在这里。因为最长递推子序列的个数是不同的，分两种情况：1.LIS[i]是最大的LIS，但以i结尾的LIS个数有多个，在遍历的过程中，">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -84,228 +89,88 @@
 </script>
 </header>
       <div class="outer">
-        <section id="main"><!-- archive.ejs top -->
-<!-- post archive.ejs -->
-
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/08/Friends-forever/" class="archive-article-date">
-  <time datetime="2016-10-08T13:33:55.000Z" itemprop="datePublished">10月 8</time>
+        <section id="main"><!-- post.ejs -->
+<!-- post/article.ejs -->
+<article id="post-number-of-lis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/number-of-lis/" class="article-date">
+  <time datetime="2020-04-26T01:56:45.000Z" itemprop="datePublished">2020-04-26</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/08/Friends-forever/">永远的老友记</a>
+    <h1 class="article-title" itemprop="name">
+      最长递增子序列的个数
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/08/power-to-pc-using-ssd/" class="archive-article-date">
-  <time datetime="2016-10-08T13:01:15.000Z" itemprop="datePublished">10月 8</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/08/power-to-pc-using-ssd/">PC速度瓶颈--为何入手SSD？</a>
-    </h1>
-  
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给定一个未排序的整数数组，找到最长递增子序列的个数。</p>
+<p>示例 1:</p>
+<p>输入: [1,3,5,4,7]<br>输出: 2<br>解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。</p>
+<p>来源：<a href="https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence" target="_blank" rel="noopener">LeetCode</a></p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>计算LIS的个数，LIS的解法在<a href="/2020/04/26/lis">这里</a>。因为最长递推子序列的个数是不同的，分两种情况：1.LIS[i]是最大的LIS，但以i结尾的LIS个数有多个，在遍历的过程中，逐渐把刚好等于最大长度-1的，都加和起来，作为LIS[i]的序列个数；2.不同结尾的LIS可能都是最大值，则需要把这些也加和，作为最终的结果。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findNumberOfLIS</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n, <span class="number">1</span>);    <span class="comment">// 以j结尾的最大递增子序列的长度</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; count(n, <span class="number">1</span>); <span class="comment">// 以j结尾的最大递增子序列的个数</span></span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="comment">// 找到相同最大长度的加和起来</span></span><br><span class="line">                <span class="comment">// 这里如何判断最大长度？有更大的值赋值替换即可</span></span><br><span class="line">                <span class="keyword">if</span>(nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    <span class="keyword">if</span>(dp[j] &gt;= dp[i]) &#123; <span class="comment">// 赋值更新 长度采用j的长度</span></span><br><span class="line">                        dp[i] = dp[j] + <span class="number">1</span>;</span><br><span class="line">                        count[i] = count[j];</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(dp[j] + <span class="number">1</span> == dp[i]) &#123; <span class="comment">// 当前长度下刚好相等</span></span><br><span class="line">                        count[i] += count[j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            max_len = max(max_len, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(max_len == dp[i]) &#123;</span><br><span class="line">                cnt += count[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/07/difference-between-controller&driver&adaptor/" class="archive-article-date">
-  <time datetime="2016-10-07T10:12:05.000Z" itemprop="datePublished">10月 7</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/07/difference-between-controller&driver&adaptor/">控制器、驱动器、适配器的区别</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/01/killing-time-in-national-holiday/" class="archive-article-date">
-  <time datetime="2016-10-01T06:42:41.000Z" itemprop="datePublished">10月 1</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/04/26/number-of-lis/" data-id="ck9gvzw4e002ue0lxsxams5t8" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/01/killing-time-in-national-holiday/">杀时间--国庆过活</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/01/the-late-Osmanthus/" class="archive-article-date">
-  <time datetime="2016-10-01T06:12:20.000Z" itemprop="datePublished">10月 1</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/01/the-late-Osmanthus/">桂花迟</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/26/lis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">最长递增子序列</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/28/the-security-of-mail/" class="archive-article-date">
-  <time datetime="2016-09-28T09:34:31.000Z" itemprop="datePublished">9月 28</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/28/the-security-of-mail/">mail安全何在？</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/18/fighting-for-breakfast/" class="archive-article-date">
-  <time datetime="2016-09-18T15:05:50.000Z" itemprop="datePublished">9月 18</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/18/fighting-for-breakfast/">Fighting for Breakfast!</a>
-    </h1>
-  
+<div id="gitment"></div>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/17/about-Boring/" class="archive-article-date">
-  <time datetime="2016-09-17T02:40:17.000Z" itemprop="datePublished">9月 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/17/about-Boring/">无趣</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/13/hope-is-everywhere/" class="archive-article-date">
-  <time datetime="2016-09-12T16:03:29.000Z" itemprop="datePublished">9月 13</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/13/hope-is-everywhere/">希望每天进步</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/12/White-dew-is-coming/" class="archive-article-date">
-  <time datetime="2016-09-12T15:55:03.000Z" itemprop="datePublished">9月 12</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/12/White-dew-is-coming/">白露至</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+<!-- 主页不要加载gitment -->
 
 
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/archives/page/4/">&laquo; 上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/6/">下一页 &raquo;</a>
-  </nav>
+<script>
+var gitment = new Gitment({
+  owner: 'hackeryard',
+  repo: 'hackeryard.github.io',
+  oauth: {
+    client_id: '462b97cb05d244087337',
+    client_secret: 'acb2fec8890a003f72fd1aee09b65d8667a409e6',
+  },
+})
+gitment.render('gitment')
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+//using some wisdom words
+wis_words = ["静心，尽力", "任风雨来袭，我自岿然不动", "热爱生活，向上而生", "做一个理想主义的技术追求者", "不忘初心"];
+document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(wis_words.length)] + '」';
+</script>
+ 
+
 
 </section>
         

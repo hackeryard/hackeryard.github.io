@@ -89,6 +89,65 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-sublime-text-3-user" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/04/sublime-text-3-user/" class="article-date">
+  <time datetime="2017-04-04T01:48:15.000Z" itemprop="datePublished">2017-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/04/sublime-text-3-user/">sublime Text 3使用指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下：</p>
+<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c</a>]</p>
+<p>[c]sudo dpkg -i sublime-text_build-3047_amd64.deb[/c]</p>
+<p>然后shell下使用subl命令打开编辑器，热键“Ctrl+`”，在下部的窗口中输入：</p>
+<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
+<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
+<p>[c]install[/c]</p>
+<p>或者</p>
+<p>[c]pci[/c]</p>
+<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>之后View-&gt;syntax-&gt;C Improved 即可。</p>
+<p>Tips：<br>一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
+<p>[c]&quot;update_check&quot;: false[/c]</p>
+<p>重启编辑器即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9gvzw53003ke0lxbh1xi6b7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-network-tools" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/01/network-tools/" class="article-date">
@@ -131,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9gdhxco002qzclxlcbzzj6b" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9gvzw48002pe0lxcjtjwb19" class="article-share-link">Share</a>
       
       
     </footer>
@@ -192,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9gdhxff0056zclx9w1tew5v" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9gvzw64004ee0lxncmt2xxn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学实践/">大学实践</a></li></ul>
@@ -258,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9gdhxfb0053zclx53yttn4i" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9gvzw67004he0lx78d0bjzt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实践/">实践</a></li></ul>
@@ -312,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9gdhxd50035zclxxbd0edil" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9gvzw4r0036e0lxrbw1fqmd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/探索/">探索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
@@ -366,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/" data-id="ck9gdhxd70036zclx6l8bu3c6" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/" data-id="ck9gvzw4z003fe0lxurd0zxhs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -420,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/" data-id="ck9gdhx9m000qzclxmdjb6o9u" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/" data-id="ck9gvzw1h000te0lxfhpugir5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -475,7 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/" data-id="ck9gdhxah001ezclxica2neac" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/" data-id="ck9gvzw27001ce0lxzhmejlh0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -536,7 +595,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/11/to-the-third-semester/" data-id="ck9gdhxe70043zclx1vkg477x" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/11/to-the-third-semester/" data-id="ck9gvzw5x0049e0lxvzj1obr8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -590,60 +649,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/29/2016-overview/" data-id="ck9gdhx99000hzclxgj2gd3re" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-the-coming-of-winter" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/21/the-coming-of-winter/" class="article-date">
-  <time datetime="2016-12-21T03:53:45.000Z" itemprop="datePublished">2016-12-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/21/the-coming-of-winter/">冬至</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>每次看到这个词，总不免心生温暖。</p>
-<p>大学以前，家乡那边没有冬至吃饺子的习惯，对于本地的饺子“嗜好”，这种热衷，不是很能理解，可这到底是四季的轮回，是春节前的一个大的节气，最最重要的，这是冬天的召唤。</p>
-<p>总有那么几个冬天，伴随着漫天的雪花，窝在被窝里，平房上面的积雪和雪人，烟囱里冒出来的袅袅炊烟，机灵又快活的麻雀，堰塘表面的冰层和热烟，都让我痴迷，当然还少不了鞭炮，少不了小伙伴，少不了妈妈的麻将声，那是最快活的，手冻住了也不用学习，当然作业还是要做的。</p>
-<p>冬至，是一个初中地理里太阳直射南纬23.5°的日子，是昼短夜长最厉害的一天，对我而言，今天，也是心血来潮想写博客的一天。</p>
-<p>人，就这样在时间里走着，慢慢就发现，能坚持的东西越来越少，自己的困惑越来越多，到最后，也落得一个安然。</p>
-<p>闲的时候，希望可以读诗，既可以练普通话，也可以寄托一些情感，让心境辽远，好暂时逃离拥挤的岁月。</p>
-<p>这个冬至，中午去吃回饺子，虽然没有家里的好吃，但入乡随俗一回吧。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/21/the-coming-of-winter/" data-id="ck9gdhxde003ezclx4jraw51h" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/29/2016-overview/" data-id="ck9gvzw16000oe0lxqse9izwg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -715,6 +721,10 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/number-of-lis/">最长递增子序列的个数</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/lis/">最长递增子序列</a>
           </li>
         
@@ -728,10 +738,6 @@
         
           <li>
             <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/lcs/">最长公共子序列</a>
           </li>
         
       </ul>

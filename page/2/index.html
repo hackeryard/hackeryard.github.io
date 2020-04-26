@@ -89,6 +89,64 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-the-journal-of-hexo-blog-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/29/the-journal-of-hexo-blog-2/" class="article-date">
+  <time datetime="2018-01-29T05:42:44.000Z" itemprop="datePublished">2018-01-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/博客/">博客</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/29/the-journal-of-hexo-blog-2/">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前觉得hook是个深奥的技术，的确，到现在我还没写过一个hook，网上有很多文章讲hook都是用的win32 API，不知何时我竟然看不下去这种代码了，不知是喜是忧。</p>
+<p>从<a href="https://developer.github.com/webhooks/" target="_blank" rel="noopener">Github给出的解释</a>搬运一段如下：</p>
+<blockquote>
+<p>Webhooks allow you to build or set up GitHub Apps which subscribe to certain events on GitHub.com. When one of those events is triggered, we’ll send a HTTP POST payload to the webhook’s configured URL. Webhooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server. You’re only limited by your imagination.</p>
+</blockquote>
+<p>webhooks就是这样一种机制，当你的repo有某个特定的事件发生时，比如push/PR/issue/fork等，github在后台会向你填写的URL发送一个POST请求，里面包含了很多信息，比如issue会有sender和相应的repo，还有issue的地址等。</p>
+<p>另外这段话里面也说明了<em>update a backup mirror</em>这个用法，vps上面的镜像博客给百度索引，github.io给谷歌索引。</p>
+<p>根据webhooks的用法，我们在github pages的repo里面订阅对push事件的钩子，vps后台开启一个简单的web server监听此请求，然后使用git pull更新github pages里面的静态博客文件到本地。</p>
+<p><img src="/images/webhooks.png" alt="设置Webhooks"></p>
+<p>之前参考的一篇博客已经记不起来了，只记得是用node写的，我用python重写了一下，见<a href="https://github.com/hackeryard/hexo-plugins/blob/master/webhook.py" target="_blank" rel="noopener">github</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9gvzw5i0040e0lxarz9jx4k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-the-journal-of-hexo-blog-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/29/the-journal-of-hexo-blog-1/" class="article-date">
@@ -149,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9gdhxdz003vzclxbcmy5z1y" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9gvzw5g003xe0lxu3bka0lh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -224,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9gdhxdr003ozclxfc5evb3g" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9gvzw5e003ue0lxmtr6yw6c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li></ul>
@@ -285,7 +343,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9gdhxax001qzclx8yajeibl" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9gvzw2s001te0lxmaj6rc6x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -333,7 +391,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9gdhxcr002rzclxq4r3jgja" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9gvzw4h002we0lxq77rpi0e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -390,7 +448,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9gdhxbf001zzclxpsobq35a" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9gvzw33001ye0lxdfat2cra" class="article-share-link">Share</a>
       
       
     </footer>
@@ -468,7 +526,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9gdhxdb003czclxohgnwl5v" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9gvzw51003he0lxulu2us8s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -517,7 +575,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9gdhxa60015zclx1gdbr5ts" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9gvzw1y0015e0lx1zl78wan" class="article-share-link">Share</a>
       
       
     </footer>
@@ -578,7 +636,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9gdhxc8002izclxj7cvfwfg" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9gvzw44002me0lx3e8r928j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -695,66 +753,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9gdhxbz002czclxgcuuu9a2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-sublime-text-3-user" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/04/sublime-text-3-user/" class="article-date">
-  <time datetime="2017-04-04T01:48:15.000Z" itemprop="datePublished">2017-04-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/04/sublime-text-3-user/">sublime Text 3使用指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下：</p>
-<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c</a>]</p>
-<p>[c]sudo dpkg -i sublime-text_build-3047_amd64.deb[/c]</p>
-<p>然后shell下使用subl命令打开编辑器，热键“Ctrl+`”，在下部的窗口中输入：</p>
-<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
-<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
-<p>[c]install[/c]</p>
-<p>或者</p>
-<p>[c]pci[/c]</p>
-<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>之后View-&gt;syntax-&gt;C Improved 即可。</p>
-<p>Tips：<br>一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
-<p>[c]&quot;update_check&quot;: false[/c]</p>
-<p>重启编辑器即可。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9gdhxdh003hzclxih16fr0q" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9gvzw41002ke0lxd1kelr5c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -826,6 +825,10 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       <ul>
         
           <li>
+            <a href="/2020/04/26/number-of-lis/">最长递增子序列的个数</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/lis/">最长递增子序列</a>
           </li>
         
@@ -839,10 +842,6 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
         
           <li>
             <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/lcs/">最长公共子序列</a>
           </li>
         
       </ul>
