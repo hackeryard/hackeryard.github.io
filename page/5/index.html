@@ -89,6 +89,105 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-power-to-pc-using-ssd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/08/power-to-pc-using-ssd/" class="article-date">
+  <time datetime="2016-10-08T13:01:15.000Z" itemprop="datePublished">2016-10-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机组成/">计算机组成</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/08/power-to-pc-using-ssd/">PC速度瓶颈--为何入手SSD？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。<br>所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态硬盘无疑会缩小速度差异，从而获得可以看得见的性能提升。但对于小内存机器，升级的首选还是加装内存或更换内存条，这样打开网页或者玩游戏的时候就不会因为内存小而使内存频繁地与硬盘交换数据，执行IO操作，从而导致速度变慢了。<br>现在的PC的CPU的利用率很低，也就是说有很多的性能没有用上，除非用于科学计算领域、数据挖掘等，当然大型游戏也是很占用CPU的。<br>鉴于此，近期准备入手一块三星SSD 256G。<br>PS：本人长期关注如何提升PC的速度，写一些评测之类。</p>
+<p>下图是<a href="http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait/" target="_blank" rel="noopener">CPU cache - Memory - HDD速度差异</a>的形象化表达，点击原图放大即可（在ns的世界里，ms就是个庞然大物！）</p>
+<p><a href="https://generalid.ml/wp-content/uploads/2016/10/posingcache.jpg" target="_blank" rel="noopener"><img src="https://generalid.ml/wp-content/uploads/2016/10/posingcache-24x300.jpg" alt="compare-cache-Memory-disk"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/10/08/power-to-pc-using-ssd/" data-id="ck9gdhxd20031zclx6uanjpic" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-difference-between-controller&amp;driver&amp;adaptor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/07/difference-between-controller&driver&adaptor/" class="article-date">
+  <time datetime="2016-10-07T10:12:05.000Z" itemprop="datePublished">2016-10-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机组成/">计算机组成</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/07/difference-between-controller&driver&adaptor/">控制器、驱动器、适配器的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>控制器，英文<a href="https://en.wikipedia.org/wiki/Controller_(computing" target="_blank" rel="noopener">controller</a>)，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（<a href="https://en.wikipedia.org/wiki/Parallel_port" target="_blank" rel="noopener">Parallel port controller</a>），用来控制外设（PIO的知识再来补充）。</p>
+<p>驱动器，英文<a href="https://en.wikipedia.org/wiki/Device_driver" target="_blank" rel="noopener">driver</a>，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有操作系统所需要的驱动程序，开机的时候会率先调入内存。</p>
+<p>适配器，英文<a href="https://en.wikipedia.org/wiki/Adapter" target="_blank" rel="noopener">adaptor</a>，常见的适配器有网络适配器，也称之为网卡，主要在网络线路与计算机总线之间进行转换，达到通信的目的。另外，我们常用的电源适配器，就是将市电转换成电子设备可用的直流电。所以适配器的作用主要是转换。</p>
+<p>在计算机中，进行网络通信需要适配器网卡，需要在操作系统中安装适合的驱动程序，告诉操作系统如何操控网卡，而操作系统是运行在硬件资源之上的，尤其是CPU，它是由运算器和控制器组成的，指令的执行都必须在控制器的控制下有条不紊的执行（DMA有专门的控制器控制，但是DMA控制器仍然受到CPU控制器的控制）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/10/07/difference-between-controller&driver&adaptor/" data-id="ck9gdhxab001azclx5lel6yh0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-killing-time-in-national-holiday" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/10/01/killing-time-in-national-holiday/" class="article-date">
@@ -133,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/01/killing-time-in-national-holiday/" data-id="ck9fpi0720022o4lxpi1mxjen" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/01/killing-time-in-national-holiday/" data-id="ck9gdhxbl0024zclx5ew9o9gj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -186,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/01/the-late-Osmanthus/" data-id="ck9fpi092003yo4lxb4jyvqts" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/01/the-late-Osmanthus/" data-id="ck9gdhxe2003yzclx7lydqwao" class="article-share-link">Share</a>
       
       
     </footer>
@@ -238,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/28/the-security-of-mail/" data-id="ck9fpi0950041o4lx8ksf1ze4" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/28/the-security-of-mail/" data-id="ck9gdhxf30050zclxesxi3gmy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/18/fighting-for-breakfast/" data-id="ck9fpi05z001fo4lx6jckw17v" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/18/fighting-for-breakfast/" data-id="ck9gdhxak001hzclx2u2hh864" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/17/about-Boring/" data-id="ck9fpi05d000yo4lxto5n8x84" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/17/about-Boring/" data-id="ck9gdhx9p000szclxoa3z3svf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -388,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/13/hope-is-everywhere/" data-id="ck9fpi066001ko4lx7h16uyg9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/13/hope-is-everywhere/" data-id="ck9gdhxaq001lzclxifjb72jb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -443,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/12/White-dew-is-coming/" data-id="ck9fpi051000ro4lxy3udm1qz" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/12/White-dew-is-coming/" data-id="ck9gdhx9j000nzclxnkoje35x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -494,111 +593,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/05/night/" data-id="ck9fpi07q002no4lxfpuy18a2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-service-of-360-fonts-is-stopped" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/04/service-of-360-fonts-is-stopped/" class="article-date">
-  <time datetime="2016-09-04T04:59:36.000Z" itemprop="datePublished">2016-09-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Wordpress/">Wordpress</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/04/service-of-360-fonts-is-stopped/">360公共字体库停止运行</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>近期博客打开缓慢，但是我已经把google的字体库替换成了fonts.useso.com了，所以又去查了下，知乎上有人说字体库停止提供服务了，进去官网看到了，的确停止了，所以按照那个知友说的，替换回来googleapis.com，重启服务器后博客打开很流畅！（替换位置：\wp-includes\script-loader.php）</p>
-<p>看到<a href="http://wangzhan.360.com/notice/detail4" target="_blank" rel="noopener">360的通知</a>提示说换回google的url，本以为谷歌的字体还是加载的缓慢，但是竟然很流畅，说明国内对字体管制不严，还是这只是暂时，仍然会再次被墙？</p>
-<p>如果不想这么折腾，换来换去的话，下载本地字体库也是好选择。唯一的不便就是可能需要更新字体库，我的一个方法是，windows环境下载<a href="https://www.fonts.com/web-fonts/google" target="_blank" rel="noopener">skyFonts字体同步管理工具</a>，再使用Filezilla上传到指定文件夹。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/04/service-of-360-fonts-is-stopped/" data-id="ck9fpi0880035o4lx055ti6aj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-carry-some-things-for-someone" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/04/carry-some-things-for-someone/" class="article-date">
-  <time datetime="2016-09-04T04:39:46.000Z" itemprop="datePublished">2016-09-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/04/carry-some-things-for-someone/">搬东西的下午</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>讨论了好几个星期，时间跨度从上学期期末到这学期开始，心里一直都在纠结该不该出去住，现在我的决定还是留在宿舍，跟室友一起，度过大学时光。</p>
-<p>虽然还是很无奈的，因为说好了的房子，最后由于没有装修，里面连床都没有，其他电器家具更不用说，房主说等到十月份就可以搬进去了，这一个月他准备置办家具电器，但是啊，都一个月了，中途搬东西肯定不好，开学那段时间算空闲一点，今天又看到一堆的实验，还有重课好多（不知以后能不能更加灵活一点，这样很折磨人，怪不得要发展慕课，感慨万千）。</p>
-<p>昨天帮隔壁的室友搬东西，大包小包十来个，其中那个装书的袋子起码几十斤，当时搬进他家属区的房子，新室友说，这个包重，我就突发奇想，说，这比十个大脑还要重（其实很多书都没有好好看，BTW，看到宿舍楼那边论斤卖新书，其实只放在家里或者宿舍里面也是很好）。</p>
-<p>室友弄了这么久，真的心累，我帮他请到一辆免费的搬运车，他硬是要请我吃饭，但我坚持认为，那只是我们运气好，碰到了一个善良的人。</p>
-<p>他说自己想去美国，但是现在还在按照父亲的想法，学习法语，参加了学校的赴法项目，要是他能去美国读CS，祝福他。我觉得他以后还是有救的，不能只活在父母的期望中，当然有一天你能够证明，自己的选择是正确的。</p>
-<p>我觉得自己应该多了解一些行业的情况和研究生计划，考虑自己的兴趣，抓紧时间学习专业知识，俱乐部的事情安排好招新和总体的可行规划后，就不再多插手了。</p>
-<p>而我那位同学，以后我还回到丹东去玩的，东北在我心中不知为啥竟然成为一个迷人的地方，愿我们能实现自己的愿想。</p>
-<p>以后我还会找他跑步的，最近很虚，上次夸我班上体质最好，然后跑脱了，休息几天，找他玩去。</p>
-<p>Life’s Struggle.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/04/carry-some-things-for-someone/" data-id="ck9fpi05p0017o4lxpjy078yc" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/05/night/" data-id="ck9gdhxck002mzclx1dsnz1k9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -670,23 +665,23 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/lis/">最长递增子序列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/first-common-node-of-two-linked-list/">两个链表的第一个公共节点</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/Longest-Common-Substring/">最长公共子串（Longest Common Substring）</a>
           </li>
         
           <li>
-            <a href="/2020/04/25/invert-tree/">invert-tree</a>
+            <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
           </li>
         
           <li>
             <a href="/2020/04/25/lcs/">最长公共子序列</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/symmetric-tree/">对称二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/20/reverse-list/">反转链表</a>
           </li>
         
       </ul>

@@ -89,6 +89,119 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-about-operating-system" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/14/about-operating-system/" class="article-date">
+  <time datetime="2016-12-14T08:11:35.000Z" itemprop="datePublished">2016-12-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/操作系统整理/">操作系统整理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/14/about-operating-system/">操作系统概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。</p>
+<p>所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。</p>
+<p>—————————————————–下面正式开始吧~—————————————————————</p>
+<p>谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的xp等等），开源的Linux和众多的发行版（Ubuntu，Fedora，Redhat等），还有个极客之作Mac，我们在上面写文档，图片处理，用浏览器体验丰富的来自世界各地的网页，用qq聊天，在网上做生意，组建技术社区，包括我正在浏览器里面写博客等，这些东西，构成了我们的现代生活。另外在移动端爆发的这几年，我们又成了低头族。很多公司都在制作自己的App，很可能还是全系列的，像这样，既有安卓，还有ios，也少不了h5网页应用，但毫无例外，它们都运行在操作系统上。</p>
+<p>那我们如何了解这一几乎每天都在使用的重要软件呢？CPU、内存、硬盘、显卡、USB外设、网卡这些资源，我们作为用户应该怎么使用它们，程序员如何编写可以利用这些资源完成自己功能的程序？</p>
+<p>这都需要操作系统的管理，它给用户提供了一个易于使用这些重要资源的界面，我们在上面运行cmd或者bash的命令，我们安装各种软件，需要的时候或者兴趣来了，我们还会写一些软件，完成客户指定的功能或自己的设想。</p>
+<p>它接管的资源有处理机、主存、I/O设备（又称外设，包括使用最多的硬盘、网卡设备、声卡、显卡、键盘鼠标等等），在它之上，我们得以运行有用的程序、进行体验丰富的交互，而每一次更新，我们都会很欣喜，很好奇补充哪些高级的功能。</p>
+<p>它由多模块构成，每个模块都有特定的功能：进程的调度机制保证了每个进程可以适当的在每一段时间占用各种资源，内存管理提供了进程要在主存中运行时的内存管理，文件系统可以提供文件的存取和权限控制，设备管理可以管理众多的外设。</p>
+<p>下一节我们将介绍操作系统的种类和各自的优缺点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/12/14/about-operating-system/" data-id="ck9gdhx9y0010zclxatcnno32" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-debug-tools" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/03/debug-tools/" class="article-date">
+  <time datetime="2016-12-03T14:26:17.000Z" itemprop="datePublished">2016-12-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/03/debug-tools/">调试小技巧</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能：</p>
+<p>1, system(“pause”) –system里面可以嵌入任意的dos命令，如dir、cmd等等</p>
+<p>2,  getch() –等待从键盘输入一个字符，不回显，不需要回车</p>
+<p>3, getche() –等待从键盘输入一个字符，回显，不需要回车</p>
+<p>4, getchar() –等待从键盘输入一个字符，回显，需要回车</p>
+<p>另外我们有时候可能需要从别人编译好的exe文件运行，并查看运行结果，这时候怎么暂停一下呢？最直接的方式就是在dos下输入执行文件运行，这样可以看到结果，但是有时输入路径很麻烦，带有中文还需要不停切换，所以分享一个简单方法，如下：</p>
+<p>新建一个批处理文件.bat，如exe.bat，在里面添加如下内容：</p>
+<p>@echo off –echo off表示后面的命令都不回显，而且提示符也不回显；加@表示本身也不回显</p>
+<p>call %1 –调用拖入的可执行文件，%1应该表示拖入的文件其指针</p>
+<p>echo. –输入空行，即回车一下</p>
+<p>pause –这是重要功能，调用完成通过暂停来查看运行结果</p>
+<p>END</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/12/03/debug-tools/" data-id="ck9gdhxa30013zclxfbwblo4t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-in-my-secret-life" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/11/20/in-my-secret-life/" class="article-date">
@@ -133,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/20/in-my-secret-life/" data-id="ck9fpi06h001so4lxilri2379" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/20/in-my-secret-life/" data-id="ck9gdhxb3001vzclxwrgmnaco" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/" data-id="ck9fpi081002xo4lxci69qr6q" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/" data-id="ck9gdhxcu002tzclx36e16qm0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -258,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/08/phpbb-forums-installing-and-using-guide/" data-id="ck9fpi07v002so4lxglprkcxx" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/08/phpbb-forums-installing-and-using-guide/" data-id="ck9gdhxcx002xzclxnla3laa3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -331,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/08/foundation-of-conpilation/" data-id="ck9fpi063001ho4lx30en8v8b" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/08/foundation-of-conpilation/" data-id="ck9gdhxan001kzclx86crx9da" class="article-share-link">Share</a>
       
       
     </footer>
@@ -395,7 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/06/migrant-the-blog/" data-id="ck9fpi07c002co4lxjygbk1l9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/06/migrant-the-blog/" data-id="ck9gdhxc3002fzclxbtq86f84" class="article-share-link">Share</a>
       
       
     </footer>
@@ -450,7 +563,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/24/a-lovely-melanogaster/" data-id="ck9fpi059000wo4lxqvkyr3gk" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/24/a-lovely-melanogaster/" data-id="ck9gdhx9r000vzclxpftssafi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -505,7 +618,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/18/internet-as-the-infrastructure/" data-id="ck9fpi06t001xo4lxiullj7fb" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/18/internet-as-the-infrastructure/" data-id="ck9gdhxb6001wzclxd7r24m5o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -558,106 +671,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/08/Friends-forever/" data-id="ck9fpi04q000mo4lxyambji4i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-power-to-pc-using-ssd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/08/power-to-pc-using-ssd/" class="article-date">
-  <time datetime="2016-10-08T13:01:15.000Z" itemprop="datePublished">2016-10-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机组成/">计算机组成</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/08/power-to-pc-using-ssd/">PC速度瓶颈--为何入手SSD？</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。<br>所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态硬盘无疑会缩小速度差异，从而获得可以看得见的性能提升。但对于小内存机器，升级的首选还是加装内存或更换内存条，这样打开网页或者玩游戏的时候就不会因为内存小而使内存频繁地与硬盘交换数据，执行IO操作，从而导致速度变慢了。<br>现在的PC的CPU的利用率很低，也就是说有很多的性能没有用上，除非用于科学计算领域、数据挖掘等，当然大型游戏也是很占用CPU的。<br>鉴于此，近期准备入手一块三星SSD 256G。<br>PS：本人长期关注如何提升PC的速度，写一些评测之类。</p>
-<p>下图是<a href="http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait/" target="_blank" rel="noopener">CPU cache - Memory - HDD速度差异</a>的形象化表达，点击原图放大即可（在ns的世界里，ms就是个庞然大物！）</p>
-<p><a href="https://generalid.ml/wp-content/uploads/2016/10/posingcache.jpg" target="_blank" rel="noopener"><img src="https://generalid.ml/wp-content/uploads/2016/10/posingcache-24x300.jpg" alt="compare-cache-Memory-disk"></a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/08/power-to-pc-using-ssd/" data-id="ck9fpi07y002uo4lxvs8za6im" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-difference-between-controller&amp;driver&amp;adaptor" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/07/difference-between-controller&driver&adaptor/" class="article-date">
-  <time datetime="2016-10-07T10:12:05.000Z" itemprop="datePublished">2016-10-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/计算机组成/">计算机组成</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/07/difference-between-controller&driver&adaptor/">控制器、驱动器、适配器的区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>控制器，英文<a href="https://en.wikipedia.org/wiki/Controller_(computing" target="_blank" rel="noopener">controller</a>)，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（<a href="https://en.wikipedia.org/wiki/Parallel_port" target="_blank" rel="noopener">Parallel port controller</a>），用来控制外设（PIO的知识再来补充）。</p>
-<p>驱动器，英文<a href="https://en.wikipedia.org/wiki/Device_driver" target="_blank" rel="noopener">driver</a>，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有操作系统所需要的驱动程序，开机的时候会率先调入内存。</p>
-<p>适配器，英文<a href="https://en.wikipedia.org/wiki/Adapter" target="_blank" rel="noopener">adaptor</a>，常见的适配器有网络适配器，也称之为网卡，主要在网络线路与计算机总线之间进行转换，达到通信的目的。另外，我们常用的电源适配器，就是将市电转换成电子设备可用的直流电。所以适配器的作用主要是转换。</p>
-<p>在计算机中，进行网络通信需要适配器网卡，需要在操作系统中安装适合的驱动程序，告诉操作系统如何操控网卡，而操作系统是运行在硬件资源之上的，尤其是CPU，它是由运算器和控制器组成的，指令的执行都必须在控制器的控制下有条不紊的执行（DMA有专门的控制器控制，但是DMA控制器仍然受到CPU控制器的控制）。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/07/difference-between-controller&driver&adaptor/" data-id="ck9fpi05u001bo4lxgi8kmkpl" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/08/Friends-forever/" data-id="ck9gdhx9c000jzclx7vyxb831" class="article-share-link">Share</a>
       
       
     </footer>
@@ -729,23 +743,23 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/lis/">最长递增子序列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/first-common-node-of-two-linked-list/">两个链表的第一个公共节点</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/Longest-Common-Substring/">最长公共子串（Longest Common Substring）</a>
           </li>
         
           <li>
-            <a href="/2020/04/25/invert-tree/">invert-tree</a>
+            <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
           </li>
         
           <li>
             <a href="/2020/04/25/lcs/">最长公共子序列</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/symmetric-tree/">对称二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/20/reverse-list/">反转链表</a>
           </li>
         
       </ul>

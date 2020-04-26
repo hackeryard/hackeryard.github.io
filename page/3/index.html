@@ -89,6 +89,127 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-network-tools" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/01/network-tools/" class="article-date">
+  <time datetime="2017-04-01T03:47:26.000Z" itemprop="datePublished">2017-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/网络分析/">网络分析</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/01/network-tools/">网络工具集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们知道，校园网支持ipv6网络，平时我们都是在使用双栈进行网络通信，只是大多时候我们没有发现，也就没有充分利用罢了。（当然我也没有充分利用起来，最近开始学习网络编程，准备写一个ipv6或者双栈下的局域网聊天软件）</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E6%95%99%E8%82%B2%E5%92%8C%E7%A7%91%E7%A0%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91" target="_blank" rel="noopener">Cernet2</a>是新一代的教育科研网，基本各大高校都有接入，ipv6本来就是实验性的技术，可以从国内主要主机（云）提供商看出ipv6的现阶段情况，需求还不大，但是基于ipv4地址池的枯竭，以及网络业务对协议的更高的要求（服务质量和安全等等），ipv6最终会淘汰ipv4，继续为人类的信息交流提供支撑。相关方面著名的网站有<a href="http://he.com" target="_blank" rel="noopener">飙风电子</a>，附带一个测试ipv6知识的<a href="http://ipv6.he.net/certification" target="_blank" rel="noopener">链接</a>，前提是你有放在公网上的ipv6的主机可以配置，美国的<a href="https://www.digitalocean.com/" target="_blank" rel="noopener">digitalocean</a>和日本的<a href="https://www.vultr.com/" target="_blank" rel="noopener"> vultr</a>都不错，还有10-50美元的优惠。</p>
+<p>现在ipv6的防火墙基本处于放任的状态，所以可以通过ipv6直接连接到香港和美国的谷歌服务器，但前提是DNS没有被污染，这里有一份<a href="https://zh.wikipedia.org/zh-cn/%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BC%93%E5%AD%98%E6%B1%A1%E6%9F%93" target="_blank" rel="noopener">dns缓存污染列表</a>，如果不幸用wireshark发现里面存在这里面的ip地址，那就是污染了，那些ip是不存在的或者在出关的时候直接被过滤掉了。</p>
+<p>所以你需要一个好的支持ipv6的DNS，配置到自己的网络上，有google的<a href="https://developers.google.com/speed/public-dns/docs/using" target="_blank" rel="noopener">公共DNS</a>，我们用的是北邮的dns，基本可以满足搜索和百科的要求。</p>
+<p>另一个更直接的办法，是直接在hosts文件里面添加你需要访问的ip地址+（TAB）+对应的域名，如果你不知道hosts文件的作用，可以先看下<a href="https://zh.wikipedia.org/wiki/Hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">这篇文章</a>。hosts无奈不支持泛解析，所以改好后文件会比较大，通过<a href="https://serve.netsh.org/pub/ipv6-hosts/" target="_blank" rel="noopener">奶齿博客下载</a>最新的hosts，在替换或者修改hosts文件之前，请确保你对此文件拥有编辑权，可以通过右键属性-&gt;编辑权限完成。这样打开浏览器，键入<a href="https://google.com.hk" target="_blank" rel="noopener">https://google.com.hk</a>应该就可以访问了，不放心的还可以通过cmd-&gt;ipconfig/flushdns来刷新一下系统的dns。</p>
+<p>对于学习技术的人来说，谷歌是必要的，当然有些东西通过百度才可以获得好的查询结果，所以结合起来挺好的。</p>
+<p>另外Wikipedia的条理性很强，它把几乎所有相关的知识都链接到一个词条里面，这样有利于新知识的学习和知识的整理。</p>
+<p>说道fq，不得不说<a href="http://shadowsocks.org" target="_blank" rel="noopener">shadowsocks</a>（下称ss），通过sock5代理的方式，可用性很强，至少在大部分vpn被屏蔽后仍然坚挺，官网上有具体的教程，而且github上还有用各种语言开发的版本，比较活跃。</p>
+<p>ss基于c/s模式，通过全局代理/PAC智能代理，能够分流本地网站和外网，从而只对外网代理，既然基于c/s模式，那么肯定需要一台服务器架设在外面，如果你有兴趣，可以通过docker非常简单的安装一个，docker是一个容器，通过一个虚拟的环境方便可以实现应用在各个server上迁移，大大减轻了开发人员配置环境的工作，这里有一篇关于<a href="http://liujin.me/blog/2015/05/27/Docker-DigitalOcean-Shadowsocks-5-%E5%88%86%E9%92%9F%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" target="_blank" rel="noopener">DO主机配置docker</a>的教程，两行代码就可以搭建成功，但我没找到如何实现docker支持ss的ipv6代理，所以只能通过ipv4的方式。</p>
+<p>记得林工说过，我们的网络具有天然的学习网络知识的优势233，最近在看他的第二本书<a href="https://book.douban.com/subject/26710788/" target="_blank" rel="noopener">《wireshark网络分析艺术》</a>，挺有意思的，另外异步社区的专访<a href="http://www.epubit.com.cn/article/389" target="_blank" rel="noopener">在这里</a>，期待他的下一本园艺书。</p>
+<p>以上。</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9gdhxco002qzclxlcbzzj6b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-what-is-important-in-college" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/12/what-is-important-in-college/" class="article-date">
+  <time datetime="2017-03-12T02:28:49.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/大学生活/">大学生活</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/12/what-is-important-in-college/">上大学，学习重要，还是实践重要？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>（本文转自黄老师）</p>
+<p>在我当老师的这些年里，遇到过很多问这样问题的学生，或者说是纠结于这个问题的学生。大家都很困惑，大学里的课程好像都没什么意思，而且不是学长们都说了么，这些知识到工作的时候都用不着，那我现在还那么认真学它干什么？</p>
+<p>今年我终于跟传说中的90后们打上了交道，一位上课不认真听讲，课后被我留堂做练习的孩子跟我说：“老师，我就不喜欢学习，我就喜欢搞活动，课程能过就行，60分万岁！”虽然当时我头顶有三条线的乌鸦飞过，但是我还是很平静地跟小P孩说：你有你的兴趣，但是我作为任课老师，我还是喜欢课程挂的人越少越好，我要保证你们掌握基本知识以顺利通过考试吧？</p>
+<p>好了，那是番外篇，还是回到今天我要说的这个主题。</p>
+<p>上大学，到底学习重要，还是实践重要？我认为取决于你的态度。态度积极，一切皆可为。</p>
+<p>大学毕竟还是学校，以学为主是肯定的，可是这个“学”不局限于课堂学习，你在大学里经历的一切都可以称作你的修学过程。</p>
+<p>大学现在普遍的修“学”之道有两大类：</p>
+<p>一种就是学霸，这种是最正统的归宿，也是最不容易犯错的修炼过程；因为你到毕业时，即使你没有任何实践经验，但是足够好的成绩已经可以让你保送研究生、出国继续深造了。而且，也有不少公司的HR认为一个人如果学习很好，至少他的学习能力和态度也不会差到哪里去。因此，我曾经劝过一些总把“迷茫”挂在嘴边的孩子，我说：“如果你觉得大学生活让你无所适从，找不到方向位置的话，那么就学习去！你不要纠结什么青春理想，什么热血拼搏了，你就把你用来抱怨迷茫的时间好好地学习掌握一技之长！！一口流利的外语？一个精通的软件？一个熟练的技能？哪怕是一个强健的体魄呢，这些让你花四年的时间绝对能学得足够好足够牛逼了，而最终你也不会因为蹉跎了四年而一事无成，何况当你成为某个领域的小专家时，很多机会其实已经在敲你的窗户了。”</p>
+<p>另外一种就是实践达人们，凡是社团风云人物、学生会、团委的leader、创业先锋、比赛牛人都属于这一类，这些人他们学习成绩一般，但是实践经验丰富，到了毕业冲到社会大流中的时候都能很快适应节奏，因为他们在实践过程中早就练就了一个抗击打的心脏、团队合作及与人沟通交流的能力。不是有个老段子么，成绩100分的成为什么人，成绩不及格的成为什么人。像我这种均分80的果然就变成了老师的同事，而那些成绩吊儿郎当的孩子也早已成为这个总，那个总了。当然就是因为他们更多的时间花费在了更快接近社会的技能学习上。但是我得劝劝那些说“我不喜欢学习，只喜欢实践”的孩子，这本没有错，每个人都有自己的兴趣，何况偶尔我自己也会吐槽下大学的教育，体制僵化，扼杀思想。。。。但如果你确实对建设一个社团，对参加一些比赛，对创业打工抱有极大的热忱的话，你在这里学到的东西对于谋生也许比课堂知识更加有用。可问题是，每年我也能见到很多以此为借口，逃避课堂，考试一路红灯的学生，这时候我希望你能反省自己，你是真的为了你的那些“活动”不得已放弃了很多学习机会，还是你其实只是以此为借口骗自己说，我虽然没学习，但是我在搞活动我没玩儿啊！。。。你确定你不是在宿舍瞎混，或者在社团里瞎混着呢？</p>
+<p>所以，无论你打算如何度过你的大学，学习也好，实践也好。这真的是看态度的。态度积极正面，一切皆可为。两种发展模式都有它的利弊在里面，要是你善于用它的“利”，回避它的“弊”，无论你选择学习为主，还是实践为主，你都能收获很多，成长也很快。而可惜的是，在如今的大学里，绝大多数都是到了大四找工作的时候，简历上除了姓名、电话、专业，就没什么可写的学生。这样真的就是蹉跎岁月，浪费青春了！在人生18-22岁这么黄金的时段里，你的简历居然没有什么可以记录的！我记得我在给很多学生做讲座的时候，我就说过，请大一的时候就给自己打印一张空白的简历，时不时查看一下，在这个学期结束的时候，我有什么东西可以记录上去的？检验你的大学时光是否又虚度了一个春秋？有孩子会说：嘿！我有很棒的哥们，我有一场轰轰烈烈的恋爱，我有好多宝贵的回忆！。。。切~，我们都是从青春走过来的，哪一个人的青春没有让自己留恋或者纪念的事情？无论好坏。但是父母毕竟是花血汗钱送你来上大学的，你得用能写在简历上的东西来向他们证明他们的钱没白花！要谈恋爱，村里的小芳也可以谈啊！干嘛花那么多车票钱送到这里谈一个将来可能还带不回村的女朋友？！</p>
+<p>so，别扯了，乖乖打印张空的简历，每个学期末检视下自己的“奋斗”吧！</p>
+<p>有一句话送给所有看这篇文章的人，大学四年，不可一业不专，也不可只专一业。前者是劝大家还是要好好了解下本专业领域的大多数基础知识，不要成为那种“从电子商务专业毕业了，还以为这个专业只能去开个淘宝店”的专业毕业生；而后者是劝大家多多接触其他领域其他知识，这多专业融合的人才是横向发展最好的，比如那些技术宅男们，真心要多接触一些人文知识，这样将来你们设计出来的东西也会更加人性化。<br>学习与实践，你选择好了么？</p>
+<p>在老校区无聊等着上课的我，坐在车里敲的这篇文章，希望对你们有用。</p>
+<p>当然，林子大了，奇葩总是有的。不要拿小概率事件来跟我辩驳哦，有这时间好好挥洒青春的汗水吧！</p>
+<p>知易行难，与君共勉。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9gdhxff0056zclx9w1tew5v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学实践/">大学实践</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-why-do-you-want-to-lead-your-life" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/12/why-do-you-want-to-lead-your-life/" class="article-date">
@@ -137,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9fpi09i004bo4lxn5q2rwnw" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9gdhxfb0053zclx53yttn4i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实践/">实践</a></li></ul>
@@ -191,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9fpi0860032o4lxbq7ri7w3" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9gdhxd50035zclxxbd0edil" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/探索/">探索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
@@ -245,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/" data-id="ck9fpi08b0039o4lxdgiqlzkb" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/" data-id="ck9gdhxd70036zclx6l8bu3c6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -299,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/" data-id="ck9fpi057000uo4lx7cvlgogi" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/" data-id="ck9gdhx9m000qzclxmdjb6o9u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -354,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/" data-id="ck9fpi05v001co4lx9b6vyuzg" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/" data-id="ck9gdhxah001ezclxica2neac" class="article-share-link">Share</a>
       
       
     </footer>
@@ -415,7 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/11/to-the-third-semester/" data-id="ck9fpi0980043o4lxtmljuoil" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/11/to-the-third-semester/" data-id="ck9gdhxe70043zclx1vkg477x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -469,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/29/2016-overview/" data-id="ck9fpi04t000no4lxttegaxhm" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/29/2016-overview/" data-id="ck9gdhx99000hzclxgj2gd3re" class="article-share-link">Share</a>
       
       
     </footer>
@@ -522,120 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/21/the-coming-of-winter/" data-id="ck9fpi08k003ho4lx35eyiyid" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-about-operating-system" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/14/about-operating-system/" class="article-date">
-  <time datetime="2016-12-14T08:11:35.000Z" itemprop="datePublished">2016-12-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/操作系统整理/">操作系统整理</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/14/about-operating-system/">操作系统概述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。</p>
-<p>所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。</p>
-<p>—————————————————–下面正式开始吧~—————————————————————</p>
-<p>谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的xp等等），开源的Linux和众多的发行版（Ubuntu，Fedora，Redhat等），还有个极客之作Mac，我们在上面写文档，图片处理，用浏览器体验丰富的来自世界各地的网页，用qq聊天，在网上做生意，组建技术社区，包括我正在浏览器里面写博客等，这些东西，构成了我们的现代生活。另外在移动端爆发的这几年，我们又成了低头族。很多公司都在制作自己的App，很可能还是全系列的，像这样，既有安卓，还有ios，也少不了h5网页应用，但毫无例外，它们都运行在操作系统上。</p>
-<p>那我们如何了解这一几乎每天都在使用的重要软件呢？CPU、内存、硬盘、显卡、USB外设、网卡这些资源，我们作为用户应该怎么使用它们，程序员如何编写可以利用这些资源完成自己功能的程序？</p>
-<p>这都需要操作系统的管理，它给用户提供了一个易于使用这些重要资源的界面，我们在上面运行cmd或者bash的命令，我们安装各种软件，需要的时候或者兴趣来了，我们还会写一些软件，完成客户指定的功能或自己的设想。</p>
-<p>它接管的资源有处理机、主存、I/O设备（又称外设，包括使用最多的硬盘、网卡设备、声卡、显卡、键盘鼠标等等），在它之上，我们得以运行有用的程序、进行体验丰富的交互，而每一次更新，我们都会很欣喜，很好奇补充哪些高级的功能。</p>
-<p>它由多模块构成，每个模块都有特定的功能：进程的调度机制保证了每个进程可以适当的在每一段时间占用各种资源，内存管理提供了进程要在主存中运行时的内存管理，文件系统可以提供文件的存取和权限控制，设备管理可以管理众多的外设。</p>
-<p>下一节我们将介绍操作系统的种类和各自的优缺点。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/14/about-operating-system/" data-id="ck9fpi05i0012o4lxsfwlvn6c" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-debug-tools" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/12/03/debug-tools/" class="article-date">
-  <time datetime="2016-12-03T14:26:17.000Z" itemprop="datePublished">2016-12-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/03/debug-tools/">调试小技巧</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能：</p>
-<p>1, system(“pause”) –system里面可以嵌入任意的dos命令，如dir、cmd等等</p>
-<p>2,  getch() –等待从键盘输入一个字符，不回显，不需要回车</p>
-<p>3, getche() –等待从键盘输入一个字符，回显，不需要回车</p>
-<p>4, getchar() –等待从键盘输入一个字符，回显，需要回车</p>
-<p>另外我们有时候可能需要从别人编译好的exe文件运行，并查看运行结果，这时候怎么暂停一下呢？最直接的方式就是在dos下输入执行文件运行，这样可以看到结果，但是有时输入路径很麻烦，带有中文还需要不停切换，所以分享一个简单方法，如下：</p>
-<p>新建一个批处理文件.bat，如exe.bat，在里面添加如下内容：</p>
-<p>@echo off –echo off表示后面的命令都不回显，而且提示符也不回显；加@表示本身也不回显</p>
-<p>call %1 –调用拖入的可执行文件，%1应该表示拖入的文件其指针</p>
-<p>echo. –输入空行，即回车一下</p>
-<p>pause –这是重要功能，调用完成通过暂停来查看运行结果</p>
-<p>END</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/03/debug-tools/" data-id="ck9fpi05s0019o4lx32mym7nr" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/21/the-coming-of-winter/" data-id="ck9gdhxde003ezclx4jraw51h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -707,23 +715,23 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/lis/">最长递增子序列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/first-common-node-of-two-linked-list/">两个链表的第一个公共节点</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/Longest-Common-Substring/">最长公共子串（Longest Common Substring）</a>
           </li>
         
           <li>
-            <a href="/2020/04/25/invert-tree/">invert-tree</a>
+            <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
           </li>
         
           <li>
             <a href="/2020/04/25/lcs/">最长公共子序列</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/symmetric-tree/">对称二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/20/reverse-list/">反转链表</a>
           </li>
         
       </ul>

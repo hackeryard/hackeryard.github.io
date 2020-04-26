@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Spark Era Coming...">
 <meta property="og:description" content="题目描述 给定两个序列X=(X1,X2,…,Xm)和Y=(Y1,Y2,…,Yn)，求X和Y的最长公共子串。例如：输入两个字符串acbac和acaccbabb，则最大连续子串为cba, 则返回长度3。 解法一参考之前关于最长公共子序列LCS的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。此处动态规划表格存放的内容有所不同，LCS是比较子串，当前问题是为了">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-25T14:15:34.795Z">
+<meta property="og:updated_time" content="2020-04-25T23:25:10.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="最长公共子串（Longest Common Substring）">
 <meta name="twitter:description" content="题目描述 给定两个序列X=(X1,X2,…,Xm)和Y=(Y1,Y2,…,Yn)，求X和Y的最长公共子串。例如：输入两个字符串acbac和acaccbabb，则最大连续子串为cba, 则返回长度3。 解法一参考之前关于最长公共子序列LCS的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。此处动态规划表格存放的内容有所不同，LCS是比较子串，当前问题是为了">
@@ -115,7 +115,7 @@
       
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
 <p>给定两个序列X=(X1,X2,…,Xm)和Y=(Y1,Y2,…,Yn)，求X和Y的最长公共子串。<br>例如：输入两个字符串acbac和acaccbabb，则最大连续子串为cba, 则返回长度3。</p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>参考之前关于<a href="/2020/04/25/lcs">最长公共子序列LCS</a>的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。此处动态规划表格存放的内容有所不同，LCS是比较子串，当前问题是为了使用连续子串这一条件，所以考虑设数组dp[i,j]表示以Xi和Yj结尾的最大公共连续子串的长度，如果Xi=Yj，则dp[i,j]=dp[i-1,j-1]+1，只需要再考虑dp[i-1,j-1]这个子问题，如果不相等，则dp[i,j]=0，如果i=0或j=0，说明有一个字符串已经结束了，则dp[i,j]=0。需要注意的是，dp的含义决定了最后的输出结果不是dp[m][n]，而必须在计算dp的过程中寻找最大值。</p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>参考之前关于<a href="/2020/04/25/lcs">最长公共子序列LCS</a>的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。<strong>此处动态规划表格存放的内容有所不同</strong>，LCS是比较子串，当前问题是为了使用连续子串这一条件，所以考虑设数组dp[i,j]表示以Xi和Yj结尾的最大公共连续子串的长度，如果Xi=Yj，则dp[i,j]=dp[i-1,j-1]+1，只需要再考虑dp[i-1,j-1]这个子问题，如果不相等，则dp[i,j]=0，如果i=0或j=0，说明有一个字符串已经结束了，则dp[i,j]=0。需要注意的是，dp的含义决定了最后的输出结果不是dp[m,n]，而必须在计算dp的过程中寻找最大值。</p>
 <p>递归+memo：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> memo[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="built_in">memset</span>(memo, <span class="number">0</span>, <span class="number">1001</span>*<span class="number">1001</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end_index;</span><br><span class="line">        lcs(text1, text2, memo, size1<span class="number">-1</span>, size2<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;text1.substr(end_index-max_len+<span class="number">1</span>, max_len);</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp; a, <span class="built_in">string</span> &amp; b, <span class="keyword">int</span> memo[][<span class="number">1001</span>], <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> &amp; max_len, <span class="keyword">int</span> &amp; end_index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span> || j == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 有一个字符串已经结束</span></span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] != <span class="number">-1</span>) <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        <span class="keyword">if</span>(a[i] == b[j]) &#123;</span><br><span class="line">            memo[i][j] = lcs(a, b, memo, i<span class="number">-1</span>, j<span class="number">-1</span>, max_len, end_index) + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            memo[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 此处这么做为了使lcs继续推进 不然遇到零就停下来了</span></span><br><span class="line">            lcs(a, b, memo, i, j<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">            lcs(a, b, memo, i<span class="number">-1</span>, j, max_len, end_index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] &gt; max_len) &#123;</span><br><span class="line">            max_len = memo[i][j];</span><br><span class="line">            end_index = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> memo[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr>
 <p>自底向上的解法</p>
@@ -123,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/" data-id="ck9fpi04x000po4lx0b85so6g" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/" data-id="ck9gdhx9e000lzclxj0xslroc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -134,10 +134,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2020/04/26/first-common-node-of-two-linked-list/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          两个链表的第一个公共节点
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/04/25/invert-tree/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">invert-tree</div>
+      <div class="article-nav-title">翻转二叉树</div>
     </a>
   
 </nav>
@@ -222,23 +231,23 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
       <ul>
         
           <li>
+            <a href="/2020/04/26/lis/">最长递增子序列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/first-common-node-of-two-linked-list/">两个链表的第一个公共节点</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/Longest-Common-Substring/">最长公共子串（Longest Common Substring）</a>
           </li>
         
           <li>
-            <a href="/2020/04/25/invert-tree/">invert-tree</a>
+            <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
           </li>
         
           <li>
             <a href="/2020/04/25/lcs/">最长公共子序列</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/symmetric-tree/">对称二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/20/reverse-list/">反转链表</a>
           </li>
         
       </ul>

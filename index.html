@@ -89,6 +89,100 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-lis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/lis/" class="article-date">
+  <time datetime="2020-04-26T00:33:10.000Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/lis/">最长递增子序列</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8）</p>
+<p>说明:<br>可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。<br>你算法的时间复杂度应该为 O(n2) 。<br>进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗?</p>
+<p>来源：<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence" target="_blank" rel="noopener">LeetCode</a></p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>因为是数组，求数组的最优解，问题太大了，我们能不能划分一下，分成多个子问题？这里子问题是需要跟问题对应的，即与递增子序列对应，我们把子问题划分为(X1…Xi)，LIS[i]是以Xi为结尾的最长递增子序列，最优子结构利用了递增的性质，即比较当前结尾元素和所有子问题结尾元素的大小，如果大，则在子问题解的基础上加1。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    dp[i] = max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            max_len = max(max_len, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/04/26/lis/" data-id="ck9gdhxbo0027zclxqjrpzazt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-first-common-node-of-two-linked-list" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/first-common-node-of-two-linked-list/" class="article-date">
+  <time datetime="2020-04-25T23:59:09.000Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/26/first-common-node-of-two-linked-list/">两个链表的第一个公共节点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入两个链表，找出它们的第一个公共节点。</p>
+<p>注意：<br>如果两个链表没有交点，返回null.<br>在返回结果后，两个链表仍须保持原有的结构。<br>可假定整个链表结构中没有循环。<br>程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。<br><img src="/images/getIntersectionNode.png" alt="公共节点"></p>
+<p>来源：<a href="https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof" target="_blank" rel="noopener">LeetCode</a></p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>用hashset可以很快解决问题，即先把链表1的所有节点指针放入set，遍历链表2时，如果找到有相等的指针，则说明这就是第一个公共节点，遍历结束还没找找到，说明没有相交节点。但这种方法的空间复杂度是O(n)，如何找到O(1)的方法呢？这里O(1)必然是使用双指针，分别遍历两个链表，但因为两个链表长度的问题，一次遍历肯定不行，第二次遍历如何继续？<br>因为相交必须是严格的数学推导出的，我们把节点a1…a2的长度记为a，把b1…b3的长度记为b，把公共c1…c3的长度记为c，要判断是否相交，则通过a+c+b=b+c+a这个等式判断，即在链表1第一次遍历结束后，马上从链表2的开始位置继续遍历，链表2同理。在遍历的过程中比较指针是否相等。如果两个链表没有相交，第二次遍历时，会同时指向最后的null，返回null即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        ListNode * p1 = headA;</span><br><span class="line">        ListNode * p2 = headB;</span><br><span class="line">        <span class="keyword">while</span>(p1 != p2) &#123;</span><br><span class="line">            p1 = p1 != <span class="literal">NULL</span> ? p1-&gt;next : headB;</span><br><span class="line">            p2 = p2 != <span class="literal">NULL</span> ? p2-&gt;next : headA;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/04/26/first-common-node-of-two-linked-list/" data-id="ck9gdhxad001bzclx9qzh5rme" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-Longest-Common-Substring" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/25/Longest-Common-Substring/" class="article-date">
@@ -113,7 +207,7 @@
       
         <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
 <p>给定两个序列X=(X1,X2,…,Xm)和Y=(Y1,Y2,…,Yn)，求X和Y的最长公共子串。<br>例如：输入两个字符串acbac和acaccbabb，则最大连续子串为cba, 则返回长度3。</p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>参考之前关于<a href="/2020/04/25/lcs">最长公共子序列LCS</a>的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。此处动态规划表格存放的内容有所不同，LCS是比较子串，当前问题是为了使用连续子串这一条件，所以考虑设数组dp[i,j]表示以Xi和Yj结尾的最大公共连续子串的长度，如果Xi=Yj，则dp[i,j]=dp[i-1,j-1]+1，只需要再考虑dp[i-1,j-1]这个子问题，如果不相等，则dp[i,j]=0，如果i=0或j=0，说明有一个字符串已经结束了，则dp[i,j]=0。需要注意的是，dp的含义决定了最后的输出结果不是dp[m][n]，而必须在计算dp的过程中寻找最大值。</p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>参考之前关于<a href="/2020/04/25/lcs">最长公共子序列LCS</a>的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。<strong>此处动态规划表格存放的内容有所不同</strong>，LCS是比较子串，当前问题是为了使用连续子串这一条件，所以考虑设数组dp[i,j]表示以Xi和Yj结尾的最大公共连续子串的长度，如果Xi=Yj，则dp[i,j]=dp[i-1,j-1]+1，只需要再考虑dp[i-1,j-1]这个子问题，如果不相等，则dp[i,j]=0，如果i=0或j=0，说明有一个字符串已经结束了，则dp[i,j]=0。需要注意的是，dp的含义决定了最后的输出结果不是dp[m,n]，而必须在计算dp的过程中寻找最大值。</p>
 <p>递归+memo：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> memo[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="built_in">memset</span>(memo, <span class="number">0</span>, <span class="number">1001</span>*<span class="number">1001</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end_index;</span><br><span class="line">        lcs(text1, text2, memo, size1<span class="number">-1</span>, size2<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;text1.substr(end_index-max_len+<span class="number">1</span>, max_len);</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp; a, <span class="built_in">string</span> &amp; b, <span class="keyword">int</span> memo[][<span class="number">1001</span>], <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> &amp; max_len, <span class="keyword">int</span> &amp; end_index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span> || j == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 有一个字符串已经结束</span></span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] != <span class="number">-1</span>) <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        <span class="keyword">if</span>(a[i] == b[j]) &#123;</span><br><span class="line">            memo[i][j] = lcs(a, b, memo, i<span class="number">-1</span>, j<span class="number">-1</span>, max_len, end_index) + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            memo[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 此处这么做为了使lcs继续推进 不然遇到零就停下来了</span></span><br><span class="line">            lcs(a, b, memo, i, j<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">            lcs(a, b, memo, i<span class="number">-1</span>, j, max_len, end_index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] &gt; max_len) &#123;</span><br><span class="line">            max_len = memo[i][j];</span><br><span class="line">            end_index = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> memo[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr>
 <p>自底向上的解法</p>
@@ -121,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/" data-id="ck9fpi04x000po4lx0b85so6g" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/" data-id="ck9gdhx9e000lzclxj0xslroc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -153,7 +247,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/25/invert-tree/">invert-tree</a>
+      <a class="article-title" href="/2020/04/25/invert-tree/">翻转二叉树</a>
     </h1>
   
 
@@ -170,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/invert-tree/" data-id="ck9fpi06z0020o4lxyqp5kema" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/invert-tree/" data-id="ck9gdhxbi0021zclx956cs5jx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -218,7 +312,7 @@
 <p>来源：<a href="https://leetcode-cn.com/problems/longest-common-subsequence" target="_blank" rel="noopener">LeetCode</a></p>
 <h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><hr>
 <p>动态规划思想的本质是动态表格(dynamic table)，使用动态规划必须满足两个条件：1.重复子问题，2.最优子结构，表格的思想是以空间换时间，把求解的所有子问题的解都保存下来，不用重复计算，最优子结构则保证了，原问题的解由子问题的组合构成，就可以写成递推公式，在较短的时间复杂度内求解。<br>针对LCS问题，把字符串a表示为(X1,X2,…,Xm)，字符串b表示为(Y1,Y2,…,Yn)，我们先看看能不能划分子问题：求a和b的LCS，可以定义为LCS[i,j]，其中i表示从X1到Xi的子串，j表示从Y1到Yj的子串，这里固定了字符串的起始索引1。为什么这么划分子问题？因为如果起始索引和结束索引都动态的话，那就更难解决了，更重要的是，我们求最长公共子序列，起始索引动态是没有意义的，因为起始索引大于1的子问题，其结果总会小于等于索引为1的子问题结果。<br>问题形式化之后，我们发现，如果Xi=Yj，则LCS[i,j]=LCS[i-1,j-1]+1，只需要再考虑LCS[i-1,j-1]这个子问题，如果不相等，则有两个子问题需要解决，LCS[i,j]=max(LCS[i,j-1], LCS[i-1,j])，如果i=0或j=0，说明有一个字符串已经结束了，则LCS[i,j]=0</p>
-<p>解决递推公式问题，有两种方法，一种是自底向上，从求解小问题开始，逐渐求解整个问题，另一种是递归的方式，因为中途有很多重复子问题，所以使用memo数组记录下这些子问题的解。</p>
+<p>解决递推公式问题，有两种方法，一种是自底向上，从求解小问题开始，逐渐求解整个问题，另一种是递归的方式，因为中途有很多重复子问题（如LCS[i-1,j-1]可能是LCS[i,j]的子问题，也可能LCS[i,j-1]的子问题），所以使用memo数组记录下这些子问题的解。</p>
 <p>以下是递归+memo的解法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> memo[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1001</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">1001</span>; j++) &#123;</span><br><span class="line">                memo[i][j] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lcs(text1, text2, memo, size1<span class="number">-1</span>, size2<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp; a, <span class="built_in">string</span> &amp; b, <span class="keyword">int</span> memo[][<span class="number">1001</span>], <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span> || j == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 有一个字符串已经结束</span></span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] != <span class="number">-1</span>) <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        <span class="keyword">if</span>(a[i] == b[j]) &#123;</span><br><span class="line">            memo[i][j] = lcs(a, b, memo, i<span class="number">-1</span>, j<span class="number">-1</span>) + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            memo[i][j] = max(lcs(a, b, memo, i<span class="number">-1</span>, j), lcs(a, b, memo, i, j<span class="number">-1</span>));</span><br><span class="line">            <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr>
@@ -227,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/lcs/" data-id="ck9fpi0750026o4lxuhltjr2a" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/lcs/" data-id="ck9gdhxbu002azclx7xa3cw0p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -280,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/symmetric-tree/" data-id="ck9fpi08i003fo4lxmk5j3n4i" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/symmetric-tree/" data-id="ck9gdhxdm003jzclxl70z5zse" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -336,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck9fpi083002zo4lxfo85pljc" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck9gdhxcz002zzclxsdjrks0w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -529,7 +623,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9fpi09a0045o4lxn2pzmehu" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9gdhxf70052zclxnt57jziy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具-备忘/">工具 备忘</a></li></ul>
@@ -600,7 +694,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9fpi08z003wo4lx3fzjmw30" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9gdhxe50040zclx75hiqtmx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitment/">gitment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -658,163 +752,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9fpi08w003to4lxqostmvtd" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9gdhxdv003rzclxwishqx69" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-the-journal-of-hexo-blog-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/29/the-journal-of-hexo-blog-1/" class="article-date">
-  <time datetime="2018-01-29T04:42:44.000Z" itemprop="datePublished">2018-01-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/博客/">博客</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/29/the-journal-of-hexo-blog-1/">hexo博客之旅 [1]: 初探hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。</p>
-<p>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。</p>
-<p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p>
-<p>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p>
-<p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br></pre></td></tr></table></figure></p>
-<p>生成如下目录：</p>
-<ul>
-<li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul>
-<li>_draft(保存的草稿)</li>
-<li>_post(你将要写的一篇篇的以md结尾的博客)</li>
-</ul>
-</li>
-<li>themes<ul>
-<li>landscape(默认的主题)</li>
-</ul>
-</li>
-<li>_config.yml(全局的配置文件)</li>
-<li>package.json(保存项目的依赖关系)</li>
-</ul>
-<p>之后，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure>
-<p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p>
-<p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p>
-<p>如果想更换端口，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p>
-<p>到这里本地部署已经完成了，接下来就是部署到github：<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p>
-<p><img src="/images/pages.png" alt="开启github pages"></p>
-<p>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p>
-<p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p>
-<p>另外，你可能需要补一下markdown的语法，这里推荐一篇<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/" target="_blank" rel="noopener">Hexo-Markdown-简明语法手册</a></p>
-<p>当你慢慢的，写的博客越来越多时，你可能还需要一个README，让别人在访问的repo的时候，就可以对你的博客有一个清晰地了解，我起初在网上没找到代码，就可以写了个<a href="https://github.com/hackeryard/hexo-plugins" target="_blank" rel="noopener">generate_readme</a>，可以复用</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9fpi08t003qo4lx57os7jjv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-the-death-of-Vincent" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/19/the-death-of-Vincent/" class="article-date">
-  <time datetime="2018-01-18T23:35:44.000Z" itemprop="datePublished">2018-01-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/19/the-death-of-Vincent/">Vincent之死</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>下文所述仅依靠电影《Loving Vincent》中的故事对Vincent之死作一个推断，在这部电影之前，我并没有看过有关梵高更多的记载。</p>
-</blockquote>
-<p>这是一部来自100多个艺术家的协作而完成的对梵高的致敬之作，Loving Vincent只是Vincent在给弟弟Theo写的信的末尾用语，类似于Yours Sincerely，以此作为题目，说明Vincent对弟弟Theo深深的爱，Vincent几乎每天都要给弟弟写信，诉说自己的近况和对弟弟的思念，还有心底的愧疚。</p>
-<p>那么Vincent是怎么死的？</p>
-<p>如果Vincent是自杀，为什么不跟Mazery医生说的那样，饮弹或者对准太阳穴、心脏这样的致命部位来一枪，而选择了在胃部开了一枪，然后一路忍受痛苦回到卧室，之后还有漫长的等待？</p>
-<p>如果是他杀，想想也只有可能是富家公子Rene，但他也不会无端想要杀死Vincent，他们之间并不存在致命的冲突。</p>
-<p>我一开始也没想到，我觉得Mazery医生说的很有道理，但是我也没考证过那时候的枪到底能不能在距离身体几十公分的位置发射，然后不打穿身体的。现在我觉得这个是没问题的，医生形容得过于夸张了，他怀疑是别人暗杀才可以达到那样的效果。</p>
-<p>回看第二遍的时候，处处隐藏着Vincent执意要自杀的种种看似合理的理由，他给弟弟写信说自己度日如年，他来到弟弟的住所，然后更加知晓了弟弟的状况，他的好朋友玛格丽特被Gachet医生限制住，不跟Vincent来往，他被医生还刺激了一下（医生说他说了作为一个医生所不该说的话）… 这些仿佛都在诉说一个伟大画家的即将凋零，但这里面还有冲突：</p>
-<ul>
-<li>医生把女儿限制住，不是要给Vincent不被打扰的作画环境吗，为什么又跟Vincent吵了一架，而且可以推测，他不该说的话好像就是Vincent应该找个其他的谋生手段，不让自己的作画产生的经济负担压垮弟弟的家庭？</li>
-<li>医生是军医，可以帮Vincent取出子弹，但是他见死不救</li>
-<li>在电影中，枪击现场竟然没有出现，麦田里应该有那把手枪，还有他的画架</li>
-</ul>
-<p>第一条，医生很照顾Vincent，但是他终归不是他的衣食父母，所以他让女儿不跟Vincent接触，理由却是不背打扰伟大画家的锅，其实他有所打算，所以他还是劝Vincent，我猜测大概就是别去作这些没人买的画了，为弟弟减负，但是他不听，反而起火了，甚至刻薄到说出医生是个伪艺术家这样的话，对于一个对艺术心存敬畏和追求的人而言，这是致命的打击。</p>
-<p>第二条，医生本来希望他想想自己接下来的生活，他的目的是让他好好活下去，但是看到负弹的Vincent，他明白他活不久了，他对死的决心由来已久，所以什么也没有做。</p>
-<p>第三条，枪击现场没有出现，警察也只是翻找Vincent卧室的东西，那里肯定没有证据，所以最重要的现场竟然不存在，这决定了无法进一步推测Vincent具体的死法。</p>
-<p>最大的疑点是，Vincent为什么要忍受长久的痛苦，回到卧室等死？<br>我以为，他是有话给Gachet医生说，还有他的弟弟Theo。</p>
-<p>医生看到这个样子的Vincent，一定以为是自己说了不该说的话，也就是上次争吵的事，而引发这次事件的，Vincent回来而不是立即自杀，是要医生明白，“我觉得这对大家都好”，这件事跟他无关。</p>
-<p>Vincent最后也希望Theo到场，希望最后的时光能够有弟弟陪在身旁，这中间自有手足之情，还有Vincent对Theo的愧疚与解脱后的宽慰。</p>
-<p>电影提到，他的出生很大程度决定了他性格的养成，从他的父母那里看出他注定是一个孤独的孩子，而孤独的孩子总是很敏感。</p>
-<p>与弟弟相依为命，靠着作画展现自己的才华，却得不到艺术届的认同，估计放在中国古代，就会多一个怀才不遇的诗人，但是Vincent，我觉得他是彻底绝望的，他深爱的弟弟被自己慢慢拖垮，他的艺术也没得到人们的认同，他陷入了彻底的恐惧，并且在梦里，那激情的，梦幻的星空总是向他投来橄榄枝，他想要逃避，但同时他又说自己走在通往星空的路上。</p>
-<p>对于我以为的艺术家而言，自杀才是主动的靠近那梦里星空所描绘的世界，而他完成了这个目的。</p>
-<p>这是一个悲剧。</p>
-<p>令我不解的是，医生和画铺子老板等人在Vincent生前都可以看出他的才华，为什么就不买一些他的画作？（电影最后说他生前只卖出一幅）</p>
-<p>没有人知道全部真理，尽管电影中的Ravoux家族和Gachet家族的人，以及Mazery医生，仿佛都对Vincent的死抱有坚定不移的态度。</p>
-<p>最后，我想起了宫泽贤治，还有海子的死。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9fpi08p003no4lx71kggaud" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li></ul>
 
     </footer>
   </div>
@@ -885,23 +826,23 @@
       <ul>
         
           <li>
+            <a href="/2020/04/26/lis/">最长递增子序列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/first-common-node-of-two-linked-list/">两个链表的第一个公共节点</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/25/Longest-Common-Substring/">最长公共子串（Longest Common Substring）</a>
           </li>
         
           <li>
-            <a href="/2020/04/25/invert-tree/">invert-tree</a>
+            <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
           </li>
         
           <li>
             <a href="/2020/04/25/lcs/">最长公共子序列</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/symmetric-tree/">对称二叉树</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/20/reverse-list/">反转链表</a>
           </li>
         
       </ul>
