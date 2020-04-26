@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hackeryard.github.io/"/>
-  <updated>2020-04-26T02:04:06.701Z</updated>
+  <updated>2020-04-26T15:35:48.252Z</updated>
   <id>https://hackeryard.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最接近的两数之和</title>
+    <link href="https://hackeryard.github.io/2020/04/26/two-sum-closest/"/>
+    <id>https://hackeryard.github.io/2020/04/26/two-sum-closest/</id>
+    <published>2020-04-26T15:15:56.000Z</published>
+    <updated>2020-04-26T15:35:48.252Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr><p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的两个整数，使得它们的和与 target 最接近。返回这两个数的和。假定每组输入只存在唯一答案。</p><p>例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.</p><p>与 target 最接近的两个数的和为 1. (-1 + 2 = 1).</p><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><hr><p>暴力破解，需要O(N^2)的时间复杂度，能不能降低？我们知道在乱序情况下，只能做到两个循环去遍历，如果排序，则可能可以利用头尾指针去智能化地遍历（和大于target则右指针左移，小于target则左指针右移），这样只需要O(N)的复杂度，加上排序复杂度O(NlogN)，最后复杂度是O(NlogN)<br>头尾双指针算法的正确性如何证明？我们要找最接近的两数之和，如此移动，如果能证明不会错失最优解即可。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 返回最接近的两数之和</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">twoSumClosest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> min_diff = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> closest_sum;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> sum = nums[left] + nums[right];</span><br><span class="line">            <span class="keyword">int</span> diff = <span class="built_in">abs</span>(sum - target);</span><br><span class="line">            <span class="keyword">if</span>(diff &lt; min_diff) &#123;</span><br><span class="line">                min_diff = diff;</span><br><span class="line">                closest_sum = sum;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 移动指针</span></span><br><span class="line">            <span class="keyword">if</span>(sum &gt; target) &#123;</span><br><span class="line">                --right;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ++left;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">// end while</span></span><br><span class="line">        <span class="keyword">return</span> closest_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;hr&gt;
+&lt;p&gt;给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的两个整数，使得它们的和
+      
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://hackeryard.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>最长递增子序列的个数</title>
@@ -508,29 +532,6 @@
 &lt;/blockquote&gt;
 &lt;p&gt;[c]apt-get install mpich2 libmpich2-dev mpich2-doc[/c]&lt;/p&gt;
 &lt;b
-      
-    
-    </summary>
-    
-      <category term="MPICH TUTOR" scheme="https://hackeryard.github.io/categories/MPICH-TUTOR/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MPICH 3.X安装简明指南【ubuntu】</title>
-    <link href="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/"/>
-    <id>https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/</id>
-    <published>2017-04-07T00:45:05.000Z</published>
-    <updated>2018-01-19T01:31:12.293Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文参考自<a href="http://www.cnblogs.com/awy-blog/p/3311112.html" target="_blank" rel="noopener">mpich2在两台ubuntu上的安装</a>，并对其中过期的内容进行更新，针对mpich3。</p><p>首先打开<a href="http://www.mpich.org/downloads/" target="_blank" rel="noopener">官方下载网站</a>，根据自己的发行版本选择，我在Vmware下安装了两台新的Ubuntu 14.04，一台master，一台slave就行实验环境的搭建。（为节省安装时间，可以先安装master-&gt;安装mpich，再复制虚拟机为salve，因为复制的缘故，用户名都是master，也没关系，就当做是专门执行mpich程序的用户吧）</p><ul><li>下载最新版本：</li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>wget <a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c" target="_blank" rel="noopener">http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c</a>]</p><ul><li>解压到本地目录并进入：</li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>tar xzvf mpich-3.2.tar.gz[/c]</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>cd mpich-3.2[/c]</p><ul><li>执行配置shell生成Makefile (此处安装在master用户的mpich目录下，你可以相应的更改；并且不适用fortran）：</li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> ./configure –prefix=/home/master/mpich –disable-fortran[/c]</p><ul><li>make编译（如果没有此命令，执行apt-get install make -y即可）：</li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>make 2&amp;amp;1 |tee make.log[/c]</p><ul><li>安装程序（保存输出日志便于查看安装位置）：</li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>make install |tee makeinstall.log[/c]</p><ul><li>添加永久的环境变量：</li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim /etc/environment[/c]</p><p>添加:</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>source /etc/environment[/c]</p><ul><li>查看安装是否成功：</li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>which mpicc[/c]</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>which mpiexec[/c]</p><ul><li>查看版本信息：</li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpicc -v[/c]</p><ul><li>执行测试程序：<br>在解压的安装包里面，找到examples目录，为了方便可以复制到master家目录的examples下；</li></ul><p>在家目录下执行：</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpiexec -n 1 examples/cpi[/c]</p><p>这是一个计算圆周率的程序，如果一切就绪，就可以看到正常的计算结果.</p><ul><li><p>另外还需要设置无密码的ssh登录，让master的mpd可以顺利访问到其他节点（本文为一个slave）：<a href="http://www.linuxproblem.org/art_9.html" target="_blank" rel="noopener">参考这篇文章</a></p></li><li><p>之后测试集群环境：</p></li></ul><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>cd ~[/c]</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim mpd.hosts[/c]</p><p>添加（node1为master，冒号后面的2表示此机器可以执行两个进程，可以自行设置）：</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>node1:2[/c]</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>node2:2[/c]</p><p>添加hosts信息：</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim /etc/hosts[/c]</p><p>添加：</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> your_master_ip    node1[/c]</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> your_slave_ip     node2[/c]</p><p>之后可以互ping一下。</p><p>现在可以正式测试了：</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpiexec  -f  mpd.hosts  -n 2 examples/cpi[/c]</p><p>可以看到有两个节点都在运行这个程序，如果出现retrun 255的代码，并且看到file not found，应该是没有在slave上面添加可执行文件，通过scp可以完成，格式为：</p><p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>scp examples/cpi  master@node2:~/examples/[/c]</p><p>也即把本地的cpi文件传到node2的examples下，之后就可以执行成功了。</p><p>最后附上官方的<a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2-installguide.pdf" target="_blank" rel="noopener">安装文档</a>和<a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2-userguide.pdf" target="_blank" rel="noopener">用户手册</a>。</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;本文参考自&lt;a href=&quot;http://www.cnblogs.com/awy-blog/p/3311112.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;mpich2在两台ubuntu上的安装&lt;/a&gt;，并对其中过期的内容进行更新，针对mpic
       
     
     </summary>

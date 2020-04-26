@@ -89,6 +89,77 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-the-journal-of-hexo-blog-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/03/the-journal-of-hexo-blog-3/" class="article-date">
+  <time datetime="2018-02-03T05:42:44.000Z" itemprop="datePublished">2018-02-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/博客/">博客</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/03/the-journal-of-hexo-blog-3/">hexo博客之旅 [3]: 添加gitment评论和链接分享功能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个博客如果没有评论和分享功能，势必是单点的，你只是单向的发布信息，读者无法评论和快速分享，这对博主和读者都是巨大的损失。</p>
+<h2 id="添加评论系统"><a href="#添加评论系统" class="headerlink" title="添加评论系统"></a>添加评论系统</h2><p><a href="https://github.com/imsun/gitment/" target="_blank" rel="noopener">gitment</a>是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的静态博客添加动态代码来存取评论。</p>
+<p>一篇博客对应一个issue，只有博主经过授权后，才可以初始化issue，这样后续的读者就可以用自己的github账号登录博主的gitment应用，来向这篇博客添加评论，里面的对文章的点赞和对其他用户的点赞，其实跟issue主页的点击操作一样，都是通过api操作的。</p>
+<p>这么说来，gitment只是一个基于issue的评论前台，用于存取issue里面的评论数据。</p>
+<p>部署的时候，我参考了<a href="https://blog.fundebug.com/2017/06/16/how-to-use-gitment/" target="_blank" rel="noopener">这篇文章</a>，并且遇到了一个问题，登录自家博客之后，文章底部出现了gitment的框架，由于没有初始化issue，点击初始化按钮后，提示<a href="https://github.com/imsun/gitment/issues/114" target="_blank" rel="noopener">Validation Failed</a>，</p>
+<p>一番搜索后，发现是github issue中的label长度有限制，不能超过50字节。</p>
+<p><img src="/images/label-limit.png" alt="label长度 &lt;= 50字节"></p>
+<p>查看js代码后，发现id是<em>window.location.href</em>，这样长度会经常超出。由于我之前文章的url都是英文的，所以使用url中的英文标题作为id，后续需要整理一番英文title，以正常初始化issue:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mod_id = <span class="built_in">window</span>.location.href.split(<span class="string">"/"</span>);</span><br><span class="line">mod_id = mod_id[mod_id.length - <span class="number">2</span>];</span><br><span class="line"><span class="built_in">Object</span>.assign(<span class="keyword">this</span>, &#123;</span><br><span class="line">  id: mod_id,</span><br><span class="line">  title: <span class="built_in">window</span>.document.title,</span><br><span class="line">  link: <span class="built_in">window</span>.location.href</span><br></pre></td></tr></table></figure>
+<p>gitment评论系统很优雅，虽然有时候github的国内访问速度超慢，但github的数据很稳定，不会像多说一样为数据丢失担忧。</p>
+<p>在使用过程中，发现gitment对于新文章的初始化需要博主自己点击，这对像我这样从其他博客迁移过来的用户而言，重复几十次的点击就不是那么有意思了。</p>
+<p>为此，我写了一个自动化脚本，工作流程如下：</p>
+<ol>
+<li>由于新开的chrome不包含github已登录session和cookie，所以需要模拟登录github账号</li>
+<li>获取站点sitemap.xml，如(<a href="https://hackeryard.github.io/sitemap.xml)，解析成文章的url">https://hackeryard.github.io/sitemap.xml)，解析成文章的url</a></li>
+<li>依次模拟打开上述url，初次打开需要login，之后的文章则不再需要</li>
+<li>对每篇文章模拟点击init button，如果点击出错，表示已被初始化；如果成功，表示正在初始化，sleep 5s后打开下一个url</li>
+</ol>
+<p>脚本在<a href="https://github.com/hackeryard/hexo-plugins/blob/master/init-gitment.py" target="_blank" rel="noopener">这里</a>，欢迎使用！</p>
+<h2 id="替换分享链接到国内社交站点"><a href="#替换分享链接到国内社交站点" class="headerlink" title="替换分享链接到国内社交站点"></a>替换分享链接到国内社交站点</h2><p>话说hexo是一个台湾开发者写的，文章的默认分享都是分享到国外的社交平台，如Twitter/Facebook/G+等，能上这些网站的用户固然是少数，所以把分享功能本地化是很有必要的。</p>
+<p>首先,我参考了<a href="https://blanboom.org/2015/hack-hexo-theme-landscape/" target="_blank" rel="noopener">这篇文章</a>，由于我是用的hexo，其landscape主题里面的fonts是4.0.3版本的fontawesome，导致qq和腾讯微博的图标无法显示，按照文中的方法折腾了最新版的5.0.6版本，找到webfont子目录，替换了hexo中的fonts下的文件，发现这次原有图标失效，新添加了四个分享按钮却是正常的，我以为是缓存的问题，又去看了Edge浏览器，还有手机Brave/Chrome浏览器，仍然不行，正打算撤回老版本的时候，发现fontawesome的4和5版本差别很大(的确，想想python2/3，主版本间的差别可能很大)，这可能就是不兼容的原因。</p>
+<p>没在fontawesome官网上找到老版本的存档，搜了半天，找到一个<a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener">4.7版本的站点</a>，下载后解压，然后更新版本号即可。</p>
+<h2 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h2><p><a href="http://www.codertian.com/2016/03/14/change-landscape-theme-by-yourself/" target="_blank" rel="noopener">【实用技能】教你定制Hexo的landscape打造自己的主题</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9h7f19b0043f0lxkbqivr08" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitment/">gitment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-the-journal-of-hexo-blog-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/01/29/the-journal-of-hexo-blog-2/" class="article-date">
@@ -129,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9gvzw5i0040e0lxarz9jx4k" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9h7f1980040f0lx9q0efi3f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
@@ -207,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9gvzw5g003xe0lxu3bka0lh" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9h7f190003xf0lxtv3nm75o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -282,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9gvzw5e003ue0lxmtr6yw6c" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9h7f18r003uf0lxdeof50to" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li></ul>
@@ -343,7 +414,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9gvzw2s001te0lxmaj6rc6x" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9h7f161001tf0lxdsz0w657" class="article-share-link">Share</a>
       
       
     </footer>
@@ -391,7 +462,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9gvzw4h002we0lxq77rpi0e" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9h7f17i002uf0lx0eh8gbnc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -448,7 +519,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9gvzw33001ye0lxdfat2cra" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9h7f16e001xf0lx4oevvay1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -526,7 +597,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9gvzw51003he0lxulu2us8s" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9h7f183003ff0lx2pnoeq13" class="article-share-link">Share</a>
       
       
     </footer>
@@ -575,7 +646,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9gvzw1y0015e0lx1zl78wan" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9h7f1510015f0lx512u2tjh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -636,124 +707,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9gvzw44002me0lx3e8r928j" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-mpich-3-x-ealy-install-guide" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/07/mpich-3-x-ealy-install-guide/" class="article-date">
-  <time datetime="2017-04-07T00:45:05.000Z" itemprop="datePublished">2017-04-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MPICH-TUTOR/">MPICH TUTOR</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/07/mpich-3-x-ealy-install-guide/">MPICH 3.X安装简明指南【ubuntu】</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文参考自<a href="http://www.cnblogs.com/awy-blog/p/3311112.html" target="_blank" rel="noopener">mpich2在两台ubuntu上的安装</a>，并对其中过期的内容进行更新，针对mpich3。</p>
-<p>首先打开<a href="http://www.mpich.org/downloads/" target="_blank" rel="noopener">官方下载网站</a>，根据自己的发行版本选择，我在Vmware下安装了两台新的Ubuntu 14.04，一台master，一台slave就行实验环境的搭建。（为节省安装时间，可以先安装master-&gt;安装mpich，再复制虚拟机为salve，因为复制的缘故，用户名都是master，也没关系，就当做是专门执行mpich程序的用户吧）</p>
-<ul>
-<li>下载最新版本：</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>wget <a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c" target="_blank" rel="noopener">http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c</a>]</p>
-<ul>
-<li>解压到本地目录并进入：</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>tar xzvf mpich-3.2.tar.gz[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>cd mpich-3.2[/c]</p>
-<ul>
-<li>执行配置shell生成Makefile (此处安装在master用户的mpich目录下，你可以相应的更改；并且不适用fortran）：</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> ./configure –prefix=/home/master/mpich –disable-fortran[/c]</p>
-<ul>
-<li>make编译（如果没有此命令，执行apt-get install make -y即可）：</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>make 2&amp;amp;1 |tee make.log[/c]</p>
-<ul>
-<li>安装程序（保存输出日志便于查看安装位置）：</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>make install |tee makeinstall.log[/c]</p>
-<ul>
-<li>添加永久的环境变量：</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim /etc/environment[/c]</p>
-<p>添加:</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>source /etc/environment[/c]</p>
-<ul>
-<li>查看安装是否成功：</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>which mpicc[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>which mpiexec[/c]</p>
-<ul>
-<li>查看版本信息：</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpicc -v[/c]</p>
-<ul>
-<li>执行测试程序：<br>在解压的安装包里面，找到examples目录，为了方便可以复制到master家目录的examples下；</li>
-</ul>
-<p>在家目录下执行：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpiexec -n 1 examples/cpi[/c]</p>
-<p>这是一个计算圆周率的程序，如果一切就绪，就可以看到正常的计算结果.</p>
-<ul>
-<li><p>另外还需要设置无密码的ssh登录，让master的mpd可以顺利访问到其他节点（本文为一个slave）：<a href="http://www.linuxproblem.org/art_9.html" target="_blank" rel="noopener">参考这篇文章</a></p>
-</li>
-<li><p>之后测试集群环境：</p>
-</li>
-</ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>cd ~[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim mpd.hosts[/c]</p>
-<p>添加（node1为master，冒号后面的2表示此机器可以执行两个进程，可以自行设置）：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>node1:2[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>node2:2[/c]</p>
-<p>添加hosts信息：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim /etc/hosts[/c]</p>
-<p>添加：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> your_master_ip    node1[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> your_slave_ip     node2[/c]</p>
-<p>之后可以互ping一下。</p>
-<p>现在可以正式测试了：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpiexec  -f  mpd.hosts  -n 2 examples/cpi[/c]</p>
-<p>可以看到有两个节点都在运行这个程序，如果出现retrun 255的代码，并且看到file not found，应该是没有在slave上面添加可执行文件，通过scp可以完成，格式为：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>scp examples/cpi  master@node2:~/examples/[/c]</p>
-<p>也即把本地的cpi文件传到node2的examples下，之后就可以执行成功了。</p>
-<p>最后附上官方的<a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2-installguide.pdf" target="_blank" rel="noopener">安装文档</a>和<a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2-userguide.pdf" target="_blank" rel="noopener">用户手册</a>。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9gvzw41002ke0lxd1kelr5c" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9h7f17a002mf0lxasto9yy0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -825,6 +779,10 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       <ul>
         
           <li>
+            <a href="/2020/04/26/two-sum-closest/">最接近的两数之和</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/26/number-of-lis/">最长递增子序列的个数</a>
           </li>
         
@@ -838,10 +796,6 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
         
           <li>
             <a href="/2020/04/25/Longest-Common-Substring/">最长公共子串（Longest Common Substring）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/25/invert-tree/">翻转二叉树</a>
           </li>
         
       </ul>
