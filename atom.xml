@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hackeryard.github.io/"/>
-  <updated>2020-04-26T15:35:48.252Z</updated>
+  <updated>2020-04-26T23:51:13.526Z</updated>
   <id>https://hackeryard.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最接近的三数之和</title>
+    <link href="https://hackeryard.github.io/2020/04/27/three-sum-closest/"/>
+    <id>https://hackeryard.github.io/2020/04/27/three-sum-closest/</id>
+    <published>2020-04-26T23:36:10.000Z</published>
+    <updated>2020-04-26T23:51:13.526Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr><p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p><p>例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.</p><p>与 target 最接近的三个数的和为 2. (-1 + 2 + 1 = 2).</p><p>来源：<a href="https://leetcode-cn.com/problems/3sum-closest" target="_blank" rel="noopener">LeetCode</a></p><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>暴力法三次循环，时间复杂度是O(N^3)，如何降低复杂度？我们知道，在数组无序的情况下，只能采用这种遍历的方法，没有启发式搜索的信息。所以先排序，之后每个元素i，都依次遍历其[i+1,n]范围内的和，保存最接近target的和，遍历结束后输出即可。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">threeSumClosest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">2</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">int</span> min_diff = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> closest_sum;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> left = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> right = n<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">                <span class="comment">// calc diff</span></span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[left] + nums[right];</span><br><span class="line">                <span class="keyword">int</span> diff = <span class="built_in">abs</span>(target-sum);</span><br><span class="line">                <span class="keyword">if</span>(diff &lt; min_diff) &#123;</span><br><span class="line">                    min_diff = diff;</span><br><span class="line">                    closest_sum = sum;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(sum == target) &#123;</span><br><span class="line">                    <span class="comment">// 必然是最小的 直接返回则节省时间</span></span><br><span class="line">                    <span class="keyword">return</span> sum;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; target) &#123;</span><br><span class="line">                    --right;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    ++left;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="comment">// end while</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> closest_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;hr&gt;
+&lt;p&gt;给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和
+      
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://hackeryard.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>最接近的两数之和</title>
@@ -509,34 +533,6 @@
     </summary>
     
       <category term="Ubuntu学习" scheme="https://hackeryard.github.io/categories/Ubuntu%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MPICH 3.X安装简明指南（2）【ubuntu】</title>
-    <link href="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/"/>
-    <id>https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/</id>
-    <published>2017-04-07T01:22:50.000Z</published>
-    <updated>2018-01-19T01:31:26.451Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文基于Ubuntu 14.04安装mpich2，亲测有效：</p><blockquote><p>安装：</p></blockquote><p>[c]apt-get install mpich2 libmpich2-dev mpich2-doc[/c]</p><blockquote><p>测试：</p></blockquote><p>[c]which mpicc[/c]</p><p>一般返回：</p><p>[c] /usr/bin/mpicc[/c]</p><p>另外的步骤按照<a href="https://myard.org/runkingblog/2017/04/mpich-3-x-ealy-install-guide/" target="_blank" rel="noopener">第一篇文章</a>操作即可。</p><p>通过此方法安装的mpich版本为3.0.5，并非最新，可以通过以下命令查看：</p><p>[c]mpicc -v [/c]</p><p>&nbsp;</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;本文基于Ubuntu 14.04安装mpich2，亲测有效：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;安装：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;[c]apt-get install mpich2 libmpich2-dev mpich2-doc[/c]&lt;/p&gt;
-&lt;b
-      
-    
-    </summary>
-    
-      <category term="MPICH TUTOR" scheme="https://hackeryard.github.io/categories/MPICH-TUTOR/"/>
     
     
   </entry>
