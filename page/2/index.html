@@ -89,6 +89,62 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-reverse-list" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/20/reverse-list/" class="article-date">
+  <time datetime="2020-04-20T07:25:48.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/reverse-list/">反转链表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
+<p>反转一个单链表。</p>
+<p>示例:<br>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL<br>进阶:<br>你可以迭代或递归地反转链表。你能否用两种方法解决这道题？</p>
+<p>来源：<a href="https://leetcode-cn.com/problems/reverse-linked-list" target="_blank" rel="noopener">LeetCode</a></p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><hr>
+<p>从前往后，每次反转后一个节点，维持两个指针prev和last，分别指向第一个和第二个节点，依次后移，直到链表结束同时因为last反转后，下一个节点的连接丢失，所以必须维持一个临时指针，保存last的下一个节点。结束时，置head节点为NULL。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode * prev = head;</span><br><span class="line">        ListNode * last = head-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(last) &#123;</span><br><span class="line">            ListNode * temp = last-&gt;next;</span><br><span class="line">            last-&gt;next = prev;</span><br><span class="line">            prev = last;</span><br><span class="line">            last = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr>
+<p>反转链表有点像栈，最简单的思路是节点指针存放在栈中，出栈时依次指向下一个在栈顶中的元素。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="built_in">stack</span>&lt;ListNode*&gt; s;</span><br><span class="line">        <span class="keyword">while</span>(head) &#123;</span><br><span class="line">            s.push(head);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode * cur; <span class="comment">// 工作指针</span></span><br><span class="line">        ListNode * newhead = s.top(); <span class="comment">// 最开始的位置</span></span><br><span class="line">        <span class="keyword">while</span>(!s.empty()) &#123;</span><br><span class="line">            cur = s.top();</span><br><span class="line">            s.pop();</span><br><span class="line">            cur-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">if</span>(!s.empty()) &#123;</span><br><span class="line">                cur-&gt;next = s.top();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><hr>
+<p>与栈的解法类似，可以用递归的方式模拟栈。递归首先要找出能递归的子问题，子问题的结构在递归时需要保持一致，每次递归都完成一点工作，最后递归过程结束时，就得到了问题的解。<br>反转链表中，首先依次递归到底部，找到结尾节点作为返回值，之后因为从倒数第二个节点开始，用p-&gt;next-&gt;next=p的方式完成后一个节点到当前节点的反转，递归结束退回到head。注意每次递归下一个节点返回，都把它的next置位nullptr，这是为了最后不用单独置head-&gt;next=nullptr，保持递归的结构。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode * newhead = reverseList(head-&gt;next);</span><br><span class="line">        head-&gt;next-&gt;next = head;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck9huntxf00374glx29y08ylg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-tool-set" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/21/tool-set/" class="article-date">
@@ -264,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9hplf4v004fnglxbhciuwj0" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9huntyw004h4glxa7b0j9te" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具-备忘/">工具 备忘</a></li></ul>
@@ -335,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9hplf4d0043nglxr1szarh0" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9huntyg00454glxklbtezv9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitment/">gitment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -393,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9hplf4a0040nglx2tc7payh" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9huntye00424glxjdrgb6qm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
@@ -471,7 +527,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9hplf48003xnglxjrrl1yr9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9huntyb003z4glxr5njkkcy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -546,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9hplf45003unglxgad5kxf5" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9hunty8003x4glx99cxl5m6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li></ul>
@@ -607,7 +663,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9hplf1l001tnglxdoezc93f" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9huntvl001t4glx7k6oydsd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -655,7 +711,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9hplf32002unglx3bd7ulj8" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9huntx2002u4glx0pawzjhf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -712,7 +768,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9hplf1y001xnglxhxo3a3zw" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9huntvx001x4glxep4sm2gx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -790,56 +846,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9hplf3o003hnglxbz6fhkmo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-apt-get-bookmark" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/07/apt-get-bookmark/" class="article-date">
-  <time datetime="2017-04-07T01:39:33.000Z" itemprop="datePublished">2017-04-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Ubuntu学习/">Ubuntu学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/07/apt-get-bookmark/">apt-get笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>apt-get是debian下的简易安装工具，可以解决依赖问题，但在使用过程中，也遇到一些问题，与大家分享：</p>
-<p><code>apt-get install xxx</code>之后，如果需要卸载此包，那么通过<code>apt-get remove xxx</code>之后，只是删除了二进制文件而已，还有配置和数据文件没有删除，这往往给我们带来麻烦，可以通过<code>apt-get  purge xxx</code>删除所有的关于包xxx的内容，另外，如果想同时删除安装xxx时安装的依赖包，可以通过<code>apt-get autoremove</code>来完全去除依赖。</p>
-<p>另外推荐一个安装工具aptitude，它是apt-get的图形化版本，但是可以简单的解决删除安装包和依赖的问题：<code>aptitude remove xxx</code>，使用此方法的前提是通过aptitude安装xxx，即<code>aptitude install xxx</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9hplf0p0015nglxnf0m9hlv" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9huntxp003h4glxau6n58sp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -858,7 +865,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -911,6 +918,10 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       <ul>
         
           <li>
+            <a href="/2020/04/27/subsets/">子集</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/27/three-sum-closest/">最接近的三数之和</a>
           </li>
         
@@ -924,10 +935,6 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
         
           <li>
             <a href="/2020/04/26/lis/">最长递增子序列</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/first-common-node-of-two-linked-list/">两个链表的第一个公共节点</a>
           </li>
         
       </ul>

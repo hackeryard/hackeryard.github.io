@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hackeryard.github.io/"/>
-  <updated>2020-04-26T23:51:13.526Z</updated>
+  <updated>2020-04-27T02:15:36.943Z</updated>
   <id>https://hackeryard.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>子集</title>
+    <link href="https://hackeryard.github.io/2020/04/27/subsets/"/>
+    <id>https://hackeryard.github.io/2020/04/27/subsets/</id>
+    <published>2020-04-27T01:27:39.000Z</published>
+    <updated>2020-04-27T02:15:36.943Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。</p><p>说明：解集不能包含重复的子集。</p><p>示例:</p><p>输入: nums = [1,2,3]<br>输出:<br>[<br>  [3],<br>  [1],<br>  [2],<br>  [1,2,3],<br>  [1,3],<br>  [2,3],<br>  [1,2],<br>  []<br>]</p><p>来源：<a href="https://leetcode-cn.com/problems/subsets" target="_blank" rel="noopener">LeetCode</a></p><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>对于子集问题，对每一个元素，我们都有选和不选两种选择，如何模拟这两种选择？可以使用递归，递归参数保存了当前待访问的元素索引，临时子集保存在vector中，递归出口是当前待访问的索引为数组的长度，则保存临时子集的结果。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; subsets(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; have;</span><br><span class="line">        helper(nums, have, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; have, <span class="keyword">int</span> index)</span> </span>&#123; <span class="comment">// from 0</span></span><br><span class="line">        <span class="keyword">if</span>(index == nums.size()) &#123;</span><br><span class="line">            <span class="comment">// 递归出口 保存结果</span></span><br><span class="line">            res.push_back(have);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        helper(nums, have, index+<span class="number">1</span>); <span class="comment">// 不使用当前元素</span></span><br><span class="line">        have.push_back(nums[index]); <span class="comment">// 使用当前元素</span></span><br><span class="line">        helper(nums, have, index+<span class="number">1</span>);</span><br><span class="line">        have.pop_back(); <span class="comment">// 每次have在helper输入输出中是不变的</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。&lt;/p&gt;
+&lt;p&gt;说明：解集不能包含重复的子集。&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://hackeryard.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>最接近的三数之和</title>
@@ -509,30 +533,6 @@
     </summary>
     
       <category term="随想集" scheme="https://hackeryard.github.io/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>apt-get笔记</title>
-    <link href="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/"/>
-    <id>https://hackeryard.github.io/2017/04/07/apt-get-bookmark/</id>
-    <published>2017-04-07T01:39:33.000Z</published>
-    <updated>2018-01-19T01:31:13.693Z</updated>
-    
-    <content type="html"><![CDATA[<p>apt-get是debian下的简易安装工具，可以解决依赖问题，但在使用过程中，也遇到一些问题，与大家分享：</p><p><code>apt-get install xxx</code>之后，如果需要卸载此包，那么通过<code>apt-get remove xxx</code>之后，只是删除了二进制文件而已，还有配置和数据文件没有删除，这往往给我们带来麻烦，可以通过<code>apt-get  purge xxx</code>删除所有的关于包xxx的内容，另外，如果想同时删除安装xxx时安装的依赖包，可以通过<code>apt-get autoremove</code>来完全去除依赖。</p><p>另外推荐一个安装工具aptitude，它是apt-get的图形化版本，但是可以简单的解决删除安装包和依赖的问题：<code>aptitude remove xxx</code>，使用此方法的前提是通过aptitude安装xxx，即<code>aptitude install xxx</code></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;apt-get是debian下的简易安装工具，可以解决依赖问题，但在使用过程中，也遇到一些问题，与大家分享：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;apt-get install xxx&lt;/code&gt;之后，如果需要卸载此包，那么通过&lt;code&gt;apt-get remove xxx&lt;/c
-      
-    
-    </summary>
-    
-      <category term="Ubuntu学习" scheme="https://hackeryard.github.io/categories/Ubuntu%E5%AD%A6%E4%B9%A0/"/>
     
     
   </entry>
