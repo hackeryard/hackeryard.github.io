@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://hackeryard.github.io/images/tcp-send-window.png">
 <meta property="og:image" content="https://hackeryard.github.io/images/tcp-recv-window.png">
-<meta property="og:updated_time" content="2020-04-30T12:51:58.868Z">
+<meta property="og:updated_time" content="2020-04-30T12:56:08.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于TCP的一切">
 <meta name="twitter:description" content="TCP是传输控制协议的缩写，这里的控制，就是流量控制、拥塞控制和差错控制。TCP是可靠的传输协议，它用了很多机制，来保证传输的可靠性，包括： 1.差错控制1.1 校验和检测数据包在传输过程中，是否受到破坏，如果被破坏，接收方会丢弃数据包，并等待数据包超时重传。 1.2 序列号对每个字节编号，是TCP的核心。TCP基于序列号，实现了对每个字节的发送、接收和确认应答，接收方据此实现了对乱序包的重排序，">
@@ -135,10 +135,10 @@
 <p>为了解决这个问题，Karn算法提出每次超时重传后，重置RTO为之前的两倍，这也是我们今天仍在使用的机制。</p>
 <h4 id="Jacobson算法"><a href="#Jacobson算法" class="headerlink" title="Jacobson算法"></a>Jacobson算法</h4><p>上述两个算法使用SRTT，但由于0.8&lt;α&lt;0.9，可以发现SRTT对历史值的依赖度很高，对最新采样的RTT的权重很低，这就导致了它无法及时检测RTT大的抖动，如果网络环境就此发生较长期的变化，那么SRTT需要在多次RTT之后，才能更新到接近真实的RTT，这增加了自适应的时间，如果RTT减少较多，则无法及时降低RTO，而浪费了带宽，如果RTT增加较多，则无法及时增加RTO，从而增加了重传。</p>
 <p>SRTT = SRTT + α * (RTT – SRTT)</p>
-<p>DevRTT = (1-β) <em> DevRTT + β </em> (|RTT-SRTT|)</p>
-<p>RTO= µ <em> SRTT + ∂ </em> DevRTT</p>
+<p>DevRTT = (1-β) * DevRTT + β * (|RTT-SRTT|)</p>
+<p>RTO= µ * SRTT + ∂ * DevRTT</p>
 <p>Linux使用的上述公式的参数是α = 0.125，β = 0.25，μ = 1，∂ = 4</p>
-<p>带入到RTO计算公式，可知RTO对DevRTT的考虑是充分的，而DevRTT对|RTT-SRTT|的考虑虽然只有0.25，但加上RTO公式中∂的放大，对RTT差值的考虑是较为充分的，即可以及时检测RTT大的抖动，并调整RTO适应网络环境。</p>
+<p>带入到RTO计算公式，可知RTO对DevRTT的考虑是充分的，而DevRTT对|RTT-SRTT|的考虑虽然只有0.25，但加上RTO公式中∂=4的放大，对RTT差值的考虑是较为充分的，即可以及时检测RTT大的抖动，并调整RTO适应网络环境。</p>
 <h3 id="1-5-滑动窗口"><a href="#1-5-滑动窗口" class="headerlink" title="1.5 滑动窗口"></a>1.5 滑动窗口</h3><p>同时，如果TCP采用最原始的一次数据传输一次ACK后，才能继续发送，则吞吐量是很低的，很多时间都在等待ACK中度过。为了提高网络的吞吐量，TCP引入窗口的概念，窗口是不等待ACK，而可以发送的最大数据量。发送方窗口如下：<br><img src="/images/tcp-send-window.png" alt="tcp-send-window"><br>(来源：《The TCP-IP Guide》)</p>
 <p>#1 已发送 已确认 这部分数据不再维护 发送窗口外 缓冲区外</p>
 <p>#2 已发送 未确认 缓冲区内（需要保存这些数据，以备重传）发送窗口内</p>
@@ -150,7 +150,13 @@
 <p>#3 未接收 但可以接收 这部分等于接收窗口的大小 缓冲区内</p>
 <p>#4 未接收 缓冲区外 这意味着只要上层应用读取了#1#2中的数据，接收窗口的右界就会右移，即有更多的缓冲区可以接收数据，相应的，接收窗口的大小也会扩大</p>
 <p>接收方的窗口要简单一些，窗口大小就是#3，需要注意的是，#1#2中的数据会保存在缓冲区，等待上层应用读取后再回收，如果上层应用一直不读取，随着数据的接收，缓冲区大小会减少为0，此时可接收窗口大小也是0，接收方会马上回复一个window=0的ACK报文。此时发送方停止发送数据，并每个一段时间发送一个Zero Window Probe探测报文(Len=1，但对方不需要对这个序列号确认)，接收方回复Zero Window Probe ACK报文，及时报告窗口大小，如果有可用窗口，发送方就继续发送数据。</p>
-<p>此处就引入了糊涂窗口综合征(Silly Window Syndrome)的概念，如果接收方在接收窗口为0后，上层应用处理了很少的几个字节，就报告窗口给发送方，发送方立即发送这几个字节，则数据的传输效率是很低的，这里Header(Ethernet 14 + IP 20 + TCP 20)就有54字节，只传送几个字节的有效数据，是低效的。<br>类似的问题也会发生在接收方，如果接收方的窗口越来越小，每次发送的数据越来越少，数据的传输效率就越来越低，以至于不值得这么做。<br>上述两种症状称之为糊涂窗口综合征。如何解决？分别在接收方和发送方解决即可：<br>1.接收方不报告小窗口，而是等到可接受窗口大小&gt;=MSS时，才报告窗口变化。<br>2.发送方不发送小数据，著名的Nagle算法就是这么做的，即在窗口大小&gt;=MSS并且可发送数据&gt;=MSS时，才发送数据，如果不满足这个条件，则检查所有已发送数据的ACK是否收到，只有收到才发送数据，否则缓存上层应用的数据。<br>需要注意，Nagle算法由于延迟发送的特性，它跟延迟确认(Delayed ACK)算法是水火不容的。在发送方上层应用发送小数据时，TCP会缓存这些小数据，直到之前所有数据的ACK都接收到，但延迟确认则正好相反，既然多次ACK是一种浪费，那我就等待下一次数据到达后再发送ACK。这样，发送方等待对方的ACK，接收方等待对方的下一次数据，这就死锁了。<br>另外，Nagle算法由于会缓存小数据，而一些特定的交互场景，如应用层的SSH等，本身就需要快速传输小数据，那么就需要关闭Nagle，具体是在setsockopt中设置TCP_NODELAY的选项。</p>
+<p>此处就引入了糊涂窗口综合征(Silly Window Syndrome)的概念，如果接收方在接收窗口为0后，上层应用处理了很少的几个字节，就报告窗口给发送方，发送方立即发送这几个字节，则数据的传输效率是很低的，这里Header(Ethernet 14 + IP 20 + TCP 20)就有54字节，只传送几个字节的有效数据，是低效的。</p>
+<p>类似的问题也会发生在接收方，如果接收方的窗口越来越小，每次发送的数据越来越少，数据的传输效率就越来越低，以至于不值得这么做。</p>
+<p>上述两种症状称之为糊涂窗口综合征。如何解决？分别在接收方和发送方解决即可：</p>
+<p>1.接收方不报告小窗口，而是等到可接受窗口大小&gt;=MSS时，才报告窗口变化。</p>
+<p>2.发送方不发送小数据，著名的Nagle算法就是这么做的，即在窗口大小&gt;=MSS并且可发送数据&gt;=MSS时，才发送数据，如果不满足这个条件，则检查所有已发送数据的ACK是否收到，只有收到才发送数据，否则缓存上层应用的数据。</p>
+<p>需要注意，Nagle算法由于延迟发送的特性，它跟延迟确认(Delayed ACK)算法是水火不容的。在发送方上层应用发送小数据时，TCP会缓存这些小数据，直到之前所有数据的ACK都接收到，但延迟确认则正好相反，既然多次ACK是一种浪费，那我就等待下一次数据到达后再发送ACK。这样，发送方等待对方的ACK，接收方等待对方的下一次数据，这就死锁了。</p>
+<p>另外，Nagle算法由于会缓存小数据，而一些特定的交互场景，如应用层的SSH等，本身就需要快速传输小数据，那么就需要关闭Nagle，具体是在setsockopt中设置TCP_NODELAY的选项。</p>
 <h2 id="2-流量控制"><a href="#2-流量控制" class="headerlink" title="2.流量控制"></a>2.流量控制</h2><p>发送方不能发送超过接收方处理能力的数据，这就是流量控制要做的。<br>TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告窗口的机制，得知当前可发送窗口的大小，来控制发送方的发送速度。<br>其他内容在滑动窗口一节已经介绍。</p>
 <h2 id="3-拥塞控制"><a href="#3-拥塞控制" class="headerlink" title="3.拥塞控制"></a>3.拥塞控制</h2><p>拥塞控制是独立于流量控制的，流量控制的目的，是让发送方不会发送超过接收方处理能力的数据，这是收发双方的事情，而拥塞控制则考虑到了链路的状况，即是否发生了拥塞。一旦检测到发生了拥塞，TCP就会通过拥塞控制算法，降低发送速率，网络中的用户都会在拥塞发生后，主动降低自己的发送速率，而不是保持发送速率，否则将会给路由器造成更大的压力，造成RTT增大，丢包剧增，丢包导致的重传，会继续加重网络的负担，最终让整个网络崩溃。</p>
 <p>而降低发送速率，则给链路中的瓶颈路由器增加处理的时间，等路由器处理掉排队数据包之后，网络就会恢复正常，此时TCP再增加发送量即可。</p>
@@ -187,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9mptk6j002pbolx6bkq1ci0" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9mrwokn002pmclxsj1igmz0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/">Network</a></li></ul>
