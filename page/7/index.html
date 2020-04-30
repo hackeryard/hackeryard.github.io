@@ -89,6 +89,115 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-how-to-handle-the-miss-of-mbr-when-using-dual-sys" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/" class="article-date">
+  <time datetime="2016-08-22T15:11:05.000Z" itemprop="datePublished">2016-08-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/">Win8.1与Deepin双系统安装误将MBR丢失的处理方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了尝鲜，安装了桌面Ubuntu之称的Deepin，但是由于这个系统进入很慢，而且除了命令行很快速以外，就连鼠标就没有Win下使用得顺手，而且再次启动进入Win时，速度特别慢，所以想要删除Deepin。</p>
+<p>我在EasyBCD按照百度经验提示，把Win7/Vista的Boot Loader写入了MBR，当时以为win8.1的BT也可以用win7的，这太天真了！之后由于没有联网的条件，就关机睡觉了。之后开机发现，根本没有机会加载任何一个操作系统。因为手边只有一个Deepin启动盘，所以就重新安装了Deepin，来到学校后，以前的PE优盘由于存在病毒，我就没有使用网友推荐的做法：用Diskgenius来重建MBR（这时由于Win8.1启动项覆盖了以前的linux的，而windows的boot loader没有转接给linux启动的功能，所以deepin就启动不了）。</p>
+<p>而这时就想用Deepin盘做一个PE盘，但在Deepin环境下没找到可用的工具。</p>
+<p>最后，通过编辑/boot/grub/grub.cfg(事先修改权限，root下用chmod +w grub.cfg)，在可以自定义的区域添加如下代码：</p>
+<p>menuentry “Windows 8.1” {</p>
+<p>insmod part_msdos</p>
+<p>insmod ntfs</p>
+<p>set root=’(hd0,msdos1)’</p>
+<p>chainloader +1</p>
+<p>}</p>
+<p>保存后发现Deepin的图形化“设置”里面，出现了Deepin和Windows 8.1两个启动选择，明天重启测试，应该正常。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/" data-id="ck9mgss4p001fxglxjvhei14d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-about-intel-processor-conflict-free-concept" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/15/about-intel-processor-conflict-free-concept/" class="article-date">
+  <time datetime="2016-08-15T08:45:18.000Z" itemprop="datePublished">2016-08-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Computer-Industry/">Computer Industry</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/15/about-intel-processor-conflict-free-concept/">关于Intel处理器“Conflict Free”的一篇翻译</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Conflict-Free Minerals: See What Intel is Doing in the Congo<br>（无冲突矿物质：Intel在刚果的行动）
+        
+          <p class="article-more-link">
+            <a href="/2016/08/15/about-intel-processor-conflict-free-concept/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/08/15/about-intel-processor-conflict-free-concept/" data-id="ck9mgss2x000fxglxqjus1aqd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-how-does-wordpress-work" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/12/how-does-wordpress-work/" class="article-date">
@@ -124,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/12/how-does-wordpress-work/" data-id="ck9huntve001p4glxyhzx5wis" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/08/12/how-does-wordpress-work/" data-id="ck9mgss3v0013xglxghfdazob" class="article-share-link">Share</a>
       
       
     </footer>
@@ -196,6 +305,14 @@
       <ul>
         
           <li>
+            <a href="/2020/04/29/network-tcp/">关于TCP的一切</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/permutations/">不重复元素的全排列</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/27/subsets/">子集</a>
           </li>
         
@@ -205,14 +322,6 @@
         
           <li>
             <a href="/2020/04/26/two-sum-closest/">最接近的两数之和</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/number-of-lis/">最长递增子序列的个数</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/lis/">最长递增子序列</a>
           </li>
         
       </ul>

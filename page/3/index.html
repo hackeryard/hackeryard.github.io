@@ -89,6 +89,141 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-install-scientific-lib-modules-in-windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/14/install-scientific-lib-modules-in-windows/" class="article-date">
+  <time datetime="2017-05-13T16:35:13.000Z" itemprop="datePublished">2017-05-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/14/install-scientific-lib-modules-in-windows/">安装python科学计算库 [windows下]</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于今天数据挖掘练习的缘故，需要安装一些常用的科学计算库，如耳熟能详的numpy，scipy，sklearn，matplotlib，seaborn等。</p>
+<p>本机python 32位版本3.6，使用pip3安装相关库，看到知乎上要说换用anaconda（附带python和一些扩展库），再用conda工具安装没有的库，可以很好的解决依赖问题。由于我对Python的依赖关系的管理没有深入了解，只依赖于pip或者easy_install的使用，所以当遇到pip安装某个库失败时，就有些无措了。</p>
+<p>解决方法如下：</p>
+<p>前往<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy</a>下载适合自己版本（我的是cp36，对应python3.6）的numoy+mkl（mkl是intel math kernal lib的意思，估计由于这样的原因，这种打包的numpy无法使用pip官方安装，也即就算pip install numpy成功了，当import scipy的时候，执行仍然报错，报错原因就是找不到numpy+mkl）</p>
+<p>我用的校园网，实际下载速度只有15KB，而且经常断线且服务器不支持断点续传，所以很无奈。当想到有国内国外的vps，就挂上去看了下，使用</p>
+<p>[c]wget <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c</a>]</p>
+<p>发现404错误，用curl同样无法下载，苦闷中，发现用这个地址放到浏览器可以直接下载，所以应该是服务器屏蔽bot下载了，在wget后加</p>
+<p>[c]–user-agent=&quot;Mozilla/5.0&quot; [/c]</p>
+<p>即可。</p>
+<p>通过<a href="https://www.filezilla.cn/" target="_blank" rel="noopener">sftp工具</a>下载到本机用pip3安装即可。</p>
+<p>之后再安装其他依赖于mkl的库就没有问题了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9mgss4w001ixglxdcve7bhm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-some-tough-thoughts-in-2015" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/16/some-tough-thoughts-in-2015/" class="article-date">
+  <time datetime="2017-04-16T15:22:14.000Z" itemprop="datePublished">2017-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/16/some-tough-thoughts-in-2015/">15年某日手记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>人这东西，要学会与自己相处，与欲望同行，无论魏晋。<br>欲望是什么？</p>
+<p>软件不足，还想要更多更好的硬件。</p>
+<p>在物质领域，这也是人们生生不息的追求吧。</p>
+</blockquote>
+<p>–6.25</p>
+<blockquote>
+<p>老师还是讲点玄学的好，这样才完美。</p>
+</blockquote>
+<p>–6.25</p>
+<blockquote>
+<p>今天我写下的东西，不能明天就看不下去。</p>
+<p>一半花开，一半花落。</p>
+<p>一些细节被永远的抹杀了，走着走着就忘记了曾经的自己（真实的）。</p>
+</blockquote>
+<p>–6.26</p>
+<p>&nbsp;</p>
+<blockquote>
+<p>火已燃，心为之动，愿无悔。</p>
+</blockquote>
+<p>–不详</p>
+<blockquote>
+<p>一忌好为人师，二忌比来比去。</p>
+<p>学习的基本单位是集体而非个人，在组织中，团体中每一个人需要成长和学习，并且是向着共同的目标奋进的。</p>
+<p>优秀组织中的个人应该觉得自己属于一个比自我更强大的实体。</p>
+</blockquote>
+<p>–不详</p>
+<blockquote>
+<p>我更倾向于成为一个学者。</p>
+</blockquote>
+<p>–7.03</p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9mgss6v002xxglxrni4j5bx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-apt-get-bookmark" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/07/apt-get-bookmark/" class="article-date">
@@ -122,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9huntul00154glxe67tshai" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9mgss31000ixglxiqlw08hr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -183,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9huntwt002m4glxor8refgj" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9mgss59001rxglxoaz28xir" class="article-share-link">Share</a>
       
       
     </footer>
@@ -300,7 +435,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9huntwr002k4glx5eyyodht" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9mgss5z0027xglxev4x1mtx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -359,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9huntxs003j4glxopfmyidl" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9mgss6y002yxglxf3i1obwm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -417,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9huntww002p4glx0gy9xpfn" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9mgss5j001yxglxgzlu4tjy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -478,7 +613,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9huntz3004o4glxztx101lb" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9mgss850041xglx5vc5n73t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学实践/">大学实践</a></li></ul>
@@ -544,7 +679,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9huntz5004s4glxni27lltc" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9mgss8d004cxglxu9zoiqyx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实践/">实践</a></li></ul>
@@ -598,117 +733,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9huntxg00384glxj899fi3d" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9mgss6p002rxglxxhs5u4z7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/探索/">探索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模式/">模式</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-solve-win8-limited-wireless-network" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/16/solve-win8-limited-wireless-network/" class="article-date">
-  <time datetime="2017-01-16T03:08:07.000Z" itemprop="datePublished">2017-01-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/16/solve-win8-limited-wireless-network/">解决联想Win8无线网受限的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天连接无线网，发现竟然一直受限，而受限就意味着连不上网，所以百度了一下，好多答案都不是我需要的，最后找到<a href="http://jingyan.baidu.com/article/fd8044faf3d7a05030137a5d.html" target="_blank" rel="noopener">一篇经验</a>，因为我们以前的对于无线网卡的配置竟然会用在当前的无线网上，比如在学校使用的六快播vpn，就改变了我的配置，导致我一直以为是驱动的问题。</p>
-<p>首先，打开受限的无线网络，查看状态，看网关是否正确，应该是192.168.0/1.1，看ip地址是否正确，如果你是192.168.0/1.xxx，那恭喜你，这个配置没有问题，可以去检查驱动或者<a href="http://win8.yesky.com/227/35885727.shtml" target="_blank" rel="noopener">配置FIPS兼容性</a>了。</p>
-<p>如果有问题，修改网关和ip地址到合适的值，或者直接配合DHCP，让路由器直接分配ip地址也行。</p>
-<p>另外，电脑或手机出于对电源的管理，会有一些针对无线连接的高性能和节能的配置，可以通过类似“电源管理”或“WLAN高级”查看并修改。</p>
-<p>（本文完）</p>
-<p>&nbsp;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/" data-id="ck9huntxn003f4glxfnljs9mh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-a-bowl-of-soup-noodles" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/16/a-bowl-of-soup-noodles/" class="article-date">
-  <time datetime="2017-01-16T02:00:30.000Z" itemprop="datePublished">2017-01-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/《读者》笔记/">《读者》笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/16/a-bowl-of-soup-noodles/">一碗清汤荞麦面</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>两天前意外看到一篇总结《读者》二十年来最具有影响力的文章， 看了之后深有感触，总结其中几篇，如下：</p>
-<blockquote>
-<p>小小的善意意味着什么？<br>这篇文章给我们上了一课，我记得以前带着哀悯眼神的胡哲也给我上过课，那就是，它们很可能让身处深渊的看不到生活希望的人，重拾面对困难的信心。世界的确存在很多恶，但每个人也要不忘记自己的良心，不然世界就太残酷了。</p>
-</blockquote>
-<p>全文的高潮应该在他们境况好一些了，两个儿子都长大了懂事了，而母亲也获得了公司的一份特别津贴（我觉得也有同情的一些成分），还清了所有的欠款，他们点了两份清汤面，在小儿子朗读他的作文时，后面的女掌柜和她的丈夫，拔河比赛似的扯着毛巾擦眼泪…</p>
-<p>最后（十四年后），当掌柜习惯性的保留那个座位，但是已经快忘了那一个悲惨的家庭的时候，真正振作起来的母子三人来到了北海亭面馆，并向善良的掌柜夫妇道谢，“那时，承蒙贵店一碗清汤面的激励，母子三人携手努力生活过来了”，然后可以想象一直静听说话的女掌柜，一边掩盖着刷刷的眼泪，一边失声吆喝同样情形的丈夫做三碗面的情形…</p>
-<p>被善意感动的他们，也向世界洒下了善的种子。这几天，每次看这篇文章都会忍不住掉眼泪，以前很小的时候也看过一次，但是怎么都没有这么大的触动，以至于我如今再看这篇文章，脑袋里还留着那种“套路”的不好影响，但不要紧，有的套路并不一定是坏的，套路只是工具，没有情感支撑的套路才是可怕的。</p>
-<p>&nbsp;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/" data-id="ck9huntu6000u4glxfxacrxcm" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -778,6 +807,14 @@
       <ul>
         
           <li>
+            <a href="/2020/04/29/network-tcp/">关于TCP的一切</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/permutations/">不重复元素的全排列</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/27/subsets/">子集</a>
           </li>
         
@@ -787,14 +824,6 @@
         
           <li>
             <a href="/2020/04/26/two-sum-closest/">最接近的两数之和</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/number-of-lis/">最长递增子序列的个数</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/lis/">最长递增子序列</a>
           </li>
         
       </ul>

@@ -1,0 +1,332 @@
+<!-- layout.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>关于TCP的一切 | Spark Era Coming...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TCP是传输控制协议的缩写，这里的控制，就是流量控制、拥塞控制和差错控制。TCP是可靠的传输协议，它用了很多机制，来保证传输的可靠性，包括： 1.差错控制 1.1 校验和：检测数据包在传输过程中，是否受到破坏，如果被破坏，接收方会丢弃数据包，并等待数据包超时重传。 1.2 序列号：对每个字节编号，是TCP的核心。TCP基于序列号，实现了对每个字节的发送、接收和确认应答，接收方据此实现了对乱序包的重">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于TCP的一切">
+<meta property="og:url" content="https://hackeryard.github.io/2020/04/29/network-tcp/index.html">
+<meta property="og:site_name" content="Spark Era Coming...">
+<meta property="og:description" content="TCP是传输控制协议的缩写，这里的控制，就是流量控制、拥塞控制和差错控制。TCP是可靠的传输协议，它用了很多机制，来保证传输的可靠性，包括： 1.差错控制 1.1 校验和：检测数据包在传输过程中，是否受到破坏，如果被破坏，接收方会丢弃数据包，并等待数据包超时重传。 1.2 序列号：对每个字节编号，是TCP的核心。TCP基于序列号，实现了对每个字节的发送、接收和确认应答，接收方据此实现了对乱序包的重">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-30T07:46:25.237Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于TCP的一切">
+<meta name="twitter:description" content="TCP是传输控制协议的缩写，这里的控制，就是流量控制、拥塞控制和差错控制。TCP是可靠的传输协议，它用了很多机制，来保证传输的可靠性，包括： 1.差错控制 1.1 校验和：检测数据包在传输过程中，是否受到破坏，如果被破坏，接收方会丢弃数据包，并等待数据包超时重传。 1.2 序列号：对每个字节编号，是TCP的核心。TCP基于序列号，实现了对每个字节的发送、接收和确认应答，接收方据此实现了对乱序包的重">
+  
+    <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <!-- 加载gitment的css和js文件 -->
+  <link rel="stylesheet" href="/css/gitment.css"> 
+  <script src="/js/gitment.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Spark Era Coming...</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术 记录生活</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About Me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/hackeryard" title="Github Share"></a>
+        
+
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hackeryard.github.io"></form>
+      </div>
+    </div>
+  </div>
+  <script>
+    
+    var d = new Date();
+    var m = d.getMinutes();
+    var num = Math.ceil((m + 1) / (60 / 4));
+    document.getElementById("banner").style.backgroundImage = "url(/images/banner" + num + ".jpg)";
+    
+</script>
+</header>
+      <div class="outer">
+        <section id="main"><!-- post.ejs -->
+<!-- post/article.ejs -->
+<article id="post-network-tcp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/29/network-tcp/" class="article-date">
+  <time datetime="2020-04-29T13:34:03.000Z" itemprop="datePublished">2020-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于TCP的一切
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>TCP是传输控制协议的缩写，这里的控制，就是流量控制、拥塞控制和差错控制。TCP是可靠的传输协议，它用了很多机制，来保证传输的可靠性，包括：</p>
+<p>1.差错控制</p>
+<p>1.1 校验和：检测数据包在传输过程中，是否受到破坏，如果被破坏，接收方会丢弃数据包，并等待数据包超时重传。</p>
+<p>1.2 序列号：对每个字节编号，是TCP的核心。TCP基于序列号，实现了对每个字节的发送、接收和确认应答，接收方据此实现了对乱序包的重排序，另外，对重复接收的数据包，接收方会知道这是重复的包，会直接丢弃而不会对已有数据造成影响（如果不对字节编号，那么重复收到的数据包，可能被当做新数据包处理）。</p>
+<p>序列号是滑动窗口机制的基础，将在1.5介绍。</p>
+<p>1.3 确认应答机制：因为网络是不可靠的，确认应答可以帮助接收方确切地知道ACK号之前的字节序列都已经收到了。</p>
+<p>1.4 超时重传：<br>重传有两种，这一节只介绍超时重传，快速重传在拥塞控制中介绍。<br>TCP会维护一个RTO(Retransmission TimeOut)，即超时重传计时器，针对每一个发送出去的数据包，都会维护一个RTO，当RTO超时到达，但还没有接收到相应的ACK时，发送方就会重传这个数据包（由此可知，在发送方窗口的左侧，是已发送，未接收ACK确认的数据，这些数据需要一直保存，直到这些数据被确认为止，此时窗口的左边界开始右移，称为滑动）</p>
+<p>超时重传要解决的问题是，a.如果发送的数据包在链路中丢失了，接收方没有收到，发送方能在RTO超时后，估计出是数据包丢失了，就会重传；b.确认应答报文ACK也有可能丢失，TCP的设计是把超时重传放在发送方，如果超时，发送方重传数据包，接收方发现这是重复的数据，就知道是ACK丢失了，就会丢弃它，并立即重传ACK。这里之所以把超时重传放在发送方，是因为发送方对数据包丢失和ACK丢失，都可以处理，而接收方感知不到数据包是否丢失，同时，如果要实现对ACK的重传，则需要接收方在ACK重传计时器内发回一个消息（发送方：我收到了你的ACK），这是对ACK的确认，这无疑增加了TCP的复杂性。</p>
+<p>这里还有一个问题，如果没有超时重传，会发生什么？那么发送方在发送一个数据包后，如果丢包，接收方是感知不到的，它处于等待状态，发送方如果不设置计时器，也会一直等待对方的ACK，此时，死循环发生了。超时机制的引入，打破了死循环，让传输可以继续下去。</p>
+<p>RTO的计算：RTO应该略大于RTT。我们都知道RTT是Round Trip Time，即往返时间，如果按照一个数据包一个ACK的模式，发送方最好需要等待略大于RTT的时间内，没收到ACK，才认为需要重传。如果RTO小于RTT，则发生无效的重传，如果RTO远大于RTT，则由于等待时间过长，带宽得不到很好的利用。</p>
+<p>针对一条连接中网络的状况是不断发生变化的，RTT也会由于路由器的队列长度而产生波动，所以RTO也是动态的，以适应这种变化。</p>
+<h4 id="RFC793"><a href="#RFC793" class="headerlink" title="RFC793"></a>RFC793</h4><p>在第一版的TCP RFC793中，需要采样最新的一次RTT，同时维护一个平滑RTT(SRTT)的值，每次采样到了最新的RTT，就会更新SRTT，SRTT用来计算RTO：</p>
+<p>SRTT = (α <em> SRTT) + ((1- α) </em> RTT)，0.8&lt;α&lt;0.9</p>
+<p>RTO = min[UBOUND, max[LBOUND, (β * SRTT)]]，1.3&lt;β&lt;2.0</p>
+<h4 id="Karn算法"><a href="#Karn算法" class="headerlink" title="Karn算法"></a>Karn算法</h4><p>上述算法存在一个问题，在采样RTT的时候，涉及重传的RTT是否需要采样？</p>
+<p>因为我们不知道第一个收到的ACK究竟是对原始数据包的确认，还是对重传数据包的确认，不管采用前者还是后者，计算出的RTT都是不准确的。Karn算法直接跳过对涉及重传的RTT的采样（此处的涉及两字，是为了表述不对原始数据包、重传数据包和第一个ACK做采样）。</p>
+<p>但Karn算法有一个严重的问题，假设这样一个场景，发送方同时发送了几个数据包，RTO刚开始是较小的（假设200ms），但网络负担突然加重，延时增加，RTT变为1000ms，由此发送方在200ms超时后重传所有数据包，而由于Karn算法不对涉及重传的RTT采样，所以SRTT是不更新的，由此RTO也不会更新，发送方无法更新RTO来适应网络的变化，而是继续无谓的重传，同时加重网络的负担。</p>
+<p>为了解决这个问题，Karn算法提出每次超时重传后，重置RTO为之前的两倍，这也是我们今天仍在使用的机制。</p>
+<h4 id="Jacobson算法"><a href="#Jacobson算法" class="headerlink" title="Jacobson算法"></a>Jacobson算法</h4><p>上述两个算法使用SRTT，但由于0.8&lt;α&lt;0.9，可以发现SRTT对历史值的依赖度很高，对最新采样的RTT的权重很低，这就导致了它无法及时检测RTT大的抖动，如果网络环境就此发生较长期的变化，那么SRTT需要在多次RTT之后，才能更新到接近真实的RTT，这增加了自适应的时间，如果RTT减少较多，则无法及时降低RTO，而浪费了带宽，如果RTT增加较多，则无法及时增加RTO，从而增加了重传。</p>
+<p>SRTT = SRTT + α * (RTT – SRTT)</p>
+<p>DevRTT = (1-β) <em> DevRTT + β </em> (|RTT-SRTT|)</p>
+<p>RTO= µ <em> SRTT + ∂ </em> DevRTT</p>
+<p>Linux使用的上述公式的参数是α = 0.125，β = 0.25，μ = 1，∂ = 4</p>
+<p>带入到RTO计算公式，可知RTO对DevRTT的考虑是充分的，而DevRTT对|RTT-SRTT|的考虑虽然只有0.25，但加上RTO公式中∂的放大，对RTT差值的考虑是较为充分的，即可以及时检测RTT大的抖动，并调整RTO适应网络环境。</p>
+<p>1.5 滑动窗口<br>同时，如果TCP采用最原始的一次数据传输一次ACK后，才能继续发送，则吞吐量是很低的，很多时间都在等待ACK中度过。为了提高网络的吞吐量，TCP引入窗口的概念，窗口是不等待ACK，而可以发送的最大数据量。发送方窗口如下：</p>
+<p>#1 已发送 已确认 这部分数据不再维护 发送窗口外 缓冲区外</p>
+<p>#2 已发送 未确认 缓冲区内（需要保存这些数据，以备重传）发送窗口内</p>
+<p>#3 未发送 在接收方可处理范围内 规定了上层应用可以发送的数据量 缓冲区内 发送窗口内</p>
+<p>#4 未发送 上层应用可以继续填满缓冲区 这部分数据不在接收方可处理范围内 缓冲区内 发送窗口外</p>
+<p>在接收到ACK（累计确认）后，发送方窗口左边界右移，经过确认的数据不再维护。窗口的右边界是否移动，则取决于接收方ACK中报告的窗口大小，如果窗口不变，表明接收方处理了这些字节，发送方右边界右移这么多字节，如果窗口变小，则说明接收方处理较慢，发送方根据这个窗口调整发送窗口即可。<br>窗口左右移动的过程，称为「滑动」。</p>
+<p>在接收方，窗口的示意图如下：</p>
+<p>#1#2 已接收 如果有ack丢失的 对方重传后 回一个dup ack即可 缓冲区内</p>
+<p>#3 未接收 但可以接收 这部分等于接收窗口的大小 缓冲区内</p>
+<p>#4 未接收 缓冲区外 这意味着只要上层应用读取了#1#2中的数据，接收窗口的右界就会右移，即有更多的缓冲区可以接收数据，相应的，接收窗口的大小也会扩大</p>
+<p>接收方的窗口要简单一些，窗口大小就是#3，需要注意的是，#1#2中的数据会保存在缓冲区，等待上层应用读取后再回收，如果上层应用一直不读取，随着数据的接收，缓冲区大小会减少为0，此时可接收窗口大小也是0，接收方会马上回复一个window=0的ACK报文。此时发送方停止发送数据，并每个一段时间发送一个Zero Window Probe探测报文(Len=1)，接收方回复Zero Window Probe ACK报文，及时报告窗口大小，如果有可用窗口，发送方就继续发送数据。</p>
+<p>此处就引入了糊涂窗口综合征(Silly Window Syndrome)的概念，如果接收方在接收窗口为0后，上层应用处理了很少的几个字节，就报告窗口给发送方，发送方立即发送这几个字节，则数据的传输效率是很低的，这里Header(Ethernet 14 + IP 20 + TCP 20)就有54字节，只传送几个字节的有效数据，是低效的。<br>类似的问题也会发生在接收方，如果接收方的窗口越来越小，每次发送的数据越来越少，数据的传输效率就越来越低，以至于不值得这么做。<br>上述两种症状称之为糊涂窗口综合征。如何解决？分别在接收方和发送方解决即可：<br>1.接收方不报告小窗口，而是等到可接受窗口大小&gt;=MSS时，才报告窗口变化。<br>2.发送方不发送小数据，著名的Nagle算法就是这么做的，即在窗口大小&gt;=MSS并且可发送数据&gt;=MSS时，才发送数据，如果不满足这个条件，则检查所有已发送数据的ACK是否收到，只有收到才发送数据，否则缓存上层应用的数据。<br>需要注意，Nagle算法由于延迟发送的特性，它跟延迟确认(Delayed ACK)算法是水火不容的。在发送方上层应用发送小数据时，TCP会缓存这些小数据，直到之前所有数据的ACK都接收到，但延迟确认则正好相反，既然多次ACK是一种浪费，那我就等待下一次数据到达后再发送ACK。这样，发送方等待对方的ACK，接收方等待对方的下一次数据，这就死锁了。<br>另外，Nagle算法由于会缓存小数据，而一些特定的交互场景，如应用层的SSH等，本身就需要快速传输小数据，那么就需要关闭Nagle，具体是在setsockopt中设置TCP_NODELAY的选项。</p>
+<p>1.6 流量控制<br>发送方不能发送超过接收方处理能力的数据，这就是流量控制要做的。<br>TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告窗口的机制，得知当前可发送窗口的大小，来控制发送方的发送速度。<br>其他内容在滑动窗口一节已经介绍。</p>
+<p>1.7 拥塞控制<br>拥塞控制是独立于流量控制的，流量控制的目的，是让发送方不会发送超过接收方处理能力的数据，这是收发双方的事情，而拥塞控制则考虑到了链路的状况，即是否发生了拥塞。一旦检测到发生了拥塞，TCP就会通过拥塞控制算法，降低发送速率，网络中的用户都会在拥塞发生后，主动降低自己的发送速率，而不是保持发送速率，否则将会给路由器造成更大的压力，造成RTT增大，丢包剧增，丢包导致的重传，会继续加重网络的负担，最终让整个网络崩溃。</p>
+<p>而降低发送速率，则给链路中的瓶颈路由器增加处理的时间，等路由器处理掉排队数据包之后，网络就会恢复正常，此时TCP再增加发送量即可。</p>
+<p>那如何做具体的拥塞控制呢？主要有四个算法：慢启动，拥塞避免，拥塞发生，快速恢复。<br>首先介绍拥塞窗口(Congestion Window，简称cwnd)，发送方窗口swnd = min(rwnd, cwnd)，这里cwnd也能限制发送方发送数据的行为。cwnd默认以MSS为单位，MSS在以太网中一般设置为1460。</p>
+<h4 id="慢启动"><a href="#慢启动" class="headerlink" title="慢启动"></a>慢启动</h4><p>TCP三次握手，开始发送数据时，首先从cwnd=1开始发送，然后逐渐递</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9mgss5g001vxglxiaoz0iv3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/27/permutations/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">不重复元素的全排列</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+<script>
+var gitment = new Gitment({
+  owner: 'hackeryard',
+  repo: 'hackeryard.github.io',
+  oauth: {
+    client_id: '462b97cb05d244087337',
+    client_secret: 'acb2fec8890a003f72fd1aee09b65d8667a409e6',
+  },
+})
+gitment.render('gitment')
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+//using some wisdom words
+wis_words = ["静心，尽力", "任风雨来袭，我自岿然不动", "热爱生活，向上而生", "做一个理想主义的技术追求者", "不忘初心"];
+document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(wis_words.length)] + '」';
+</script>
+ 
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Industry/">Computer Industry</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MPICH-TUTOR/">MPICH TUTOR</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node/">Node</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenCV-Learning/">OpenCV-Learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Phpbb3/">Phpbb3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu学习/">Ubuntu学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows应用/">Windows应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wordpress/">Wordpress</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/《读者》笔记/">《读者》笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客/">博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大学生活/">大学生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统整理/">操作系统整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络分析/">网络分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机组成/">计算机组成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随想集/">随想集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitment/">gitment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具-备忘/">工具 备忘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/部署/">部署</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/29/network-tcp/">关于TCP的一切</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/permutations/">不重复元素的全排列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/subsets/">子集</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/three-sum-closest/">最接近的三数之和</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/two-sum-closest/">最接近的两数之和</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+        <ul>
+            <li><a href="http://www.ruanyifeng.com/blog/">阮一峰的博客</a></li>
+            <li><a href="https://vvl.me/" title="vvl's blog">光阴的故事</a></li>
+        </ul>
+    </div>
+</div>
+  
+</aside>
+        
+      </div>
+      <!-- post/footer.ejs -->
+<footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Runking Hanna<br>
+      Powered by Graceful <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 页面点击小红心
+<script type="text/javascript" src="/js/love.js"></script> -->
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About Me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
