@@ -89,6 +89,218 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-power-to-pc-using-ssd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/08/power-to-pc-using-ssd/" class="article-date">
+  <time datetime="2016-10-08T13:01:15.000Z" itemprop="datePublished">2016-10-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机组成/">计算机组成</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/08/power-to-pc-using-ssd/">PC速度瓶颈--为何入手SSD？</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。<br>所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态硬盘无疑会缩小速度差异，从而获得可以看得见的性能提升。但对于小内存机器，升级的首选还是加装内存或更换内存条，这样打开网页或者玩游戏的时候就不会因为内存小而使内存频繁地与硬盘交换数据，执行IO操作，从而导致速度变慢了。<br>现在的PC的CPU的利用率很低，也就是说有很多的性能没有用上，除非用于科学计算领域、数据挖掘等，当然大型游戏也是很占用CPU的。<br>鉴于此，近期准备入手一块三星SSD 256G。<br>PS：本人长期关注如何提升PC的速度，写一些评测之类。</p>
+<p>下图是<a href="http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait/" target="_blank" rel="noopener">CPU cache - Memory - HDD速度差异</a>的形象化表达，点击原图放大即可（在ns的世界里，ms就是个庞然大物！）</p>
+<p><a href="https://generalid.ml/wp-content/uploads/2016/10/posingcache.jpg" target="_blank" rel="noopener"><img src="https://generalid.ml/wp-content/uploads/2016/10/posingcache-24x300.jpg" alt="compare-cache-Memory-disk"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/10/08/power-to-pc-using-ssd/" data-id="ck9oa7p5z002mo8lxjnf9b3ph" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-difference-between-controller&amp;driver&amp;adaptor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/07/difference-between-controller&driver&adaptor/" class="article-date">
+  <time datetime="2016-10-07T10:12:05.000Z" itemprop="datePublished">2016-10-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/计算机组成/">计算机组成</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/07/difference-between-controller&driver&adaptor/">控制器、驱动器、适配器的区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>控制器，英文<a href="https://en.wikipedia.org/wiki/Controller_(computing" target="_blank" rel="noopener">controller</a>)，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（<a href="https://en.wikipedia.org/wiki/Parallel_port" target="_blank" rel="noopener">Parallel port controller</a>），用来控制外设（PIO的知识再来补充）。</p>
+<p>驱动器，英文<a href="https://en.wikipedia.org/wiki/Device_driver" target="_blank" rel="noopener">driver</a>，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有操作系统所需要的驱动程序，开机的时候会率先调入内存。</p>
+<p>适配器，英文<a href="https://en.wikipedia.org/wiki/Adapter" target="_blank" rel="noopener">adaptor</a>，常见的适配器有网络适配器，也称之为网卡，主要在网络线路与计算机总线之间进行转换，达到通信的目的。另外，我们常用的电源适配器，就是将市电转换成电子设备可用的直流电。所以适配器的作用主要是转换。</p>
+<p>在计算机中，进行网络通信需要适配器网卡，需要在操作系统中安装适合的驱动程序，告诉操作系统如何操控网卡，而操作系统是运行在硬件资源之上的，尤其是CPU，它是由运算器和控制器组成的，指令的执行都必须在控制器的控制下有条不紊的执行（DMA有专门的控制器控制，但是DMA控制器仍然受到CPU控制器的控制）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/10/07/difference-between-controller&driver&adaptor/" data-id="ck9oa7p3k000qo8lxjf1ba06q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-killing-time-in-national-holiday" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/01/killing-time-in-national-holiday/" class="article-date">
+  <time datetime="2016-10-01T06:42:41.000Z" itemprop="datePublished">2016-10-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/01/killing-time-in-national-holiday/">杀时间--国庆过活</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>国庆大把时间，同学们跃跃欲试，有的早已安排好了行程，去了说好的远方，但也有跟我一样的，还没有准备好该干啥事。下面只是整理一下思绪，作为长假的参考：</p>
+<p><strong>书不能丢</strong></p>
+<p>金科玉律。不久前碰到马哲老师，他一开始就问我还在看书没，我回答正在看史铁生的务虚笔记，挺好看的一本书，很有深度（我也看不太懂啊），他说挺好，一定要安排好自己的时间去看书。然后他又说，大家都很忙，我附和了一声，他一转，说，其实也不忙，我们又不是皇帝。</p>
+<p>哈哈，挺有意思的老师吧。那节课他是去上西方哲学史，距离上课还有半个小时，我知道他应该在整理思绪，我没猜错的话，他还一直在思考一些基本的问题。而我说起自己从高中以来一直就有的困惑时，他告诉我，你读的不多，我默默点头。的确，一本晦涩的书都没读完的我，哪能没有困惑，况且困惑应该一直存在，只不过随着思考的深入，我们的困惑变得更加深刻，而不是拘泥于食堂今天开了家好吃的快餐啊什么的，当然吃也是很重要的。</p>
+<p>而思考的一个重要辅助工具，就是看书。</p>
+<p><strong>数据库开发</strong></p>
+<p>果然是学IT的！</p>
+<p>借了两本mysql开发的书籍，假期多实践，把老师讲的没懂得弄懂吧。另外，希望多钻研，向老师发几封邮件也是不错的哦。</p>
+<p><strong>电影天堂</strong></p>
+<p>上次百团大战，没人的空当，信了学弟的邪，竟看完了釜山行。好久没看恐怖片的我，顿时觉得很新鲜。很有趣的一部电影，结局那部分，略假，听说是改了的，不然太黑。</p>
+<p>那这次机会来了，但是，有推荐的吗？</p>
+<p><strong>组织建设</strong></p>
+<p>在新学期的招新换届之后，我顺利退居幕后，现在就为大家搭建一个网上交流平台吧，成员也好网上交流问题，便于整理个人技术学习心得的同时，逼格也高~</p>
+<p>就此作罢，希望大家不虚此假！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/10/01/killing-time-in-national-holiday/" data-id="ck9oa7p4u001so8lxi3f6cfpl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
+<article id="post-the-late-Osmanthus" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/01/the-late-Osmanthus/" class="article-date">
+  <time datetime="2016-10-01T06:12:20.000Z" itemprop="datePublished">2016-10-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随想集/">随想集</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/01/the-late-Osmanthus/">桂花迟</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在一个地方待久了，本能的厌倦，亦或是缺乏向内自省的功力，就这样等待季节的更迭，好带来一丝丝新意、惬意。</p>
+<p>其实并非今年的桂花开得迟了，而是自己觉得写这篇文章写的很迟。好不容易与桂花的擦肩而过，中途竟然又经过了几天阴雨，花期将过之时昨天又来一天好阳光，不得不记起来这事了。</p>
+<blockquote>
+<p>我见过的花中，最爱桂花和栀子花。栀子花洁白，是家里的一道风景，每每想家，都仿佛飘来一缕清香；而桂花是雅致的，一朵一朵的小花，那么不起眼，你注意到她是因为瞬间让你好心情的香！<br>这种小花，在校园里默默的贡献自己的香气，让过往的师生感到愉悦，让蓝天更蓝，白云更白，让一刻不停盯着手机的我们也由衷地赞美，像个婴孩一样好奇的打探这个世界。</p>
+</blockquote>
+<p>这样的花应该开在秋天的太阳下，所以我很心疼那几天阴雨天花的境遇。那几天里，花的香味越来越淡，而不是在阳光下渐渐浓郁，让你不自觉的想为花们打抱不平：什么鬼天气呢！</p>
+<p>还好花年年在，桂花树也一年大一岁，看过的沿途的各种各样的人也越来越多，阅历也更加丰富。那他是否已经察觉到人们的脚步太快，而正在仁慈的，用花香来安慰匆忙的行人？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2016/10/01/the-late-Osmanthus/" data-id="ck9oa7p84004to8lxq1dul7hd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-the-security-of-mail" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/09/28/the-security-of-mail/" class="article-date">
@@ -125,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/28/the-security-of-mail/" data-id="ck9mue4k2004ejklxki36cndr" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/28/the-security-of-mail/" data-id="ck9oa7p8i0052o8lx7spt3ryf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -172,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/18/fighting-for-breakfast/" data-id="ck9mue4fz001fjklxo3rtxb0z" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/18/fighting-for-breakfast/" data-id="ck9oa7p3t000uo8lxijcdralp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -222,7 +434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/17/about-Boring/" data-id="ck9mue4fd000zjklxmcab1u5i" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/17/about-Boring/" data-id="ck9oa7p2y0009o8lxpjx3pvzb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -275,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/13/hope-is-everywhere/" data-id="ck9mue4g9001mjklxtqdb4w6m" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/13/hope-is-everywhere/" data-id="ck9oa7p4i001ko8lxweo6iq9y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -330,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/12/White-dew-is-coming/" data-id="ck9mue4f2000sjklxfyt69qio" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/12/White-dew-is-coming/" data-id="ck9oa7p2k0004o8lxmblbw0pd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -381,217 +593,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/05/night/" data-id="ck9mue4i1002vjklx5zqv1ysp" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-service-of-360-fonts-is-stopped" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/04/service-of-360-fonts-is-stopped/" class="article-date">
-  <time datetime="2016-09-04T04:59:36.000Z" itemprop="datePublished">2016-09-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Wordpress/">Wordpress</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/04/service-of-360-fonts-is-stopped/">360公共字体库停止运行</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>近期博客打开缓慢，但是我已经把google的字体库替换成了fonts.useso.com了，所以又去查了下，知乎上有人说字体库停止提供服务了，进去官网看到了，的确停止了，所以按照那个知友说的，替换回来googleapis.com，重启服务器后博客打开很流畅！（替换位置：\wp-includes\script-loader.php）</p>
-<p>看到<a href="http://wangzhan.360.com/notice/detail4" target="_blank" rel="noopener">360的通知</a>提示说换回google的url，本以为谷歌的字体还是加载的缓慢，但是竟然很流畅，说明国内对字体管制不严，还是这只是暂时，仍然会再次被墙？</p>
-<p>如果不想这么折腾，换来换去的话，下载本地字体库也是好选择。唯一的不便就是可能需要更新字体库，我的一个方法是，windows环境下载<a href="https://www.fonts.com/web-fonts/google" target="_blank" rel="noopener">skyFonts字体同步管理工具</a>，再使用Filezilla上传到指定文件夹。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/04/service-of-360-fonts-is-stopped/" data-id="ck9mue4ip003ijklxbzm6r0ea" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-carry-some-things-for-someone" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/04/carry-some-things-for-someone/" class="article-date">
-  <time datetime="2016-09-04T04:39:46.000Z" itemprop="datePublished">2016-09-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/04/carry-some-things-for-someone/">搬东西的下午</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>讨论了好几个星期，时间跨度从上学期期末到这学期开始，心里一直都在纠结该不该出去住，现在我的决定还是留在宿舍，跟室友一起，度过大学时光。</p>
-<p>虽然还是很无奈的，因为说好了的房子，最后由于没有装修，里面连床都没有，其他电器家具更不用说，房主说等到十月份就可以搬进去了，这一个月他准备置办家具电器，但是啊，都一个月了，中途搬东西肯定不好，开学那段时间算空闲一点，今天又看到一堆的实验，还有重课好多（不知以后能不能更加灵活一点，这样很折磨人，怪不得要发展慕课，感慨万千）。</p>
-<p>昨天帮隔壁的室友搬东西，大包小包十来个，其中那个装书的袋子起码几十斤，当时搬进他家属区的房子，新室友说，这个包重，我就突发奇想，说，这比十个大脑还要重（其实很多书都没有好好看，BTW，看到宿舍楼那边论斤卖新书，其实只放在家里或者宿舍里面也是很好）。</p>
-<p>室友弄了这么久，真的心累，我帮他请到一辆免费的搬运车，他硬是要请我吃饭，但我坚持认为，那只是我们运气好，碰到了一个善良的人。</p>
-<p>他说自己想去美国，但是现在还在按照父亲的想法，学习法语，参加了学校的赴法项目，要是他能去美国读CS，祝福他。我觉得他以后还是有救的，不能只活在父母的期望中，当然有一天你能够证明，自己的选择是正确的。</p>
-<p>我觉得自己应该多了解一些行业的情况和研究生计划，考虑自己的兴趣，抓紧时间学习专业知识，俱乐部的事情安排好招新和总体的可行规划后，就不再多插手了。</p>
-<p>而我那位同学，以后我还回到丹东去玩的，东北在我心中不知为啥竟然成为一个迷人的地方，愿我们能实现自己的愿想。</p>
-<p>以后我还会找他跑步的，最近很虚，上次夸我班上体质最好，然后跑脱了，休息几天，找他玩去。</p>
-<p>Life’s Struggle.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/04/carry-some-things-for-someone/" data-id="ck9mue4fp0017jklxfb4zp83x" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-mactype-startup" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/23/mactype-startup/" class="article-date">
-  <time datetime="2016-08-23T14:50:37.000Z" itemprop="datePublished">2016-08-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Windows应用/">Windows应用</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/23/mactype-startup/">开机自启动MacType加载美观字体</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为安装MacType的时候，选择F盘，但是这个软件没有自动生成新文件夹的功能，导致直接就把F盘当做软件根目录了。所以我在F盘下面新建了一个Mactype文件夹，把它的文件都剪切到里面来。</p>
-<p>以前安装的时候，设置了开机自启动，但是用cmd下“msconfig”-&gt;“启动”-&gt;“任务管理器”（也可以直接用任务管理器查看）-&gt;“启动”查看时，发现自启动里面的MacType图标是默认的exe图标，不是软件本身的Icon图标，也就是调整程序目录后，系统找不到这些文件了。但又没有添加自启动的选项可以调整，网搜后找到一个方法，如下：</p>
-<p>找到安装软件的根目录，把软件主程序，比如“Mactype.exe”，设置一个快捷方式，然后把快捷方式添加到C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp（PS：可以直接把这段地址粘贴到文件管理器的地址栏），这可能需要管理员权限，确认即可。</p>
-<p>之后再打开任务管理器，发现MacType的图标已经恢复正常了，以后开机就可以立即使用MacType字体了，不用在等待Mactype加载的时间里，面对不舒服的Clear Type字体了，网友推荐的XHei模式还是很给力的，我觉得比Deepin下面的字体还要规范和美观，推荐大家使用。</p>
-<p><img src="http://107.170.248.115/wp-content/uploads/2016/08/mactypeuse-300x63.png" alt="mactypeuse"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/23/mactype-startup/" data-id="ck9mue4hi002ejklxs8ousyp9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字体应用/">字体应用</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-the-day-of-chushu" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/23/the-day-of-chushu/" class="article-date">
-  <time datetime="2016-08-23T02:40:54.000Z" itemprop="datePublished">2016-08-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/随想集/">随想集</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/23/the-day-of-chushu/">处暑的一天</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天刚到学校，忙着修复电脑之后就睡了，今天起来看着熟悉的阳台和外面的风景，一切如故。</p>
-<p>在一个地方，就算是家，也会厌倦吧，而且我还有很多事情要做，还有好多书只开了一个头，还有图书馆可以去逛，还有学校餐厅的日常，即将飘落的梧桐秋叶……</p>
-<p>呼吸新鲜的空气，傍晚去跑半个小时步，打乒乓，当然，还要处理一些问题，写一些要交的文档，考虑下俱乐部的规划，最重要的，大三要怎么过？</p>
-<p>我的确是用笔思考的那类人，不写出来头脑就混乱，并不是说我数学不好，而是关于选择方面，那种因素很多的艰难的抉择。</p>
-<p>室友有参加留法项目的，现在正忙于准备法语学习，有参加数模并准备搬出去主攻托福留学美国的，我如果现在准备的话，是不太晚的。</p>
-<p>可当下，我只想处理完琐事，尽心把大三专业课学好，足矣。</p>
-<p>今天是二十四节气之处暑，即“处，去也，暑气至此而止矣”，希望烦躁也就此而去~</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/23/the-day-of-chushu/" data-id="ck9mue4jh003zjklxsowwu151" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/05/night/" data-id="ck9oa7p72003no8lxr94vtjku" class="article-share-link">Share</a>
       
       
     </footer>
@@ -631,7 +633,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/">Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitment/">gitment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具-备忘/">工具 备忘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/部署/">部署</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NGINX/">NGINX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/">Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitment/">gitment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学实践/">大学实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体应用/">字体应用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实践/">实践</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/密码学/">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具-备忘/">工具 备忘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/探索/">探索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模式/">模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/部署/">部署</a></li></ul>
     </div>
   </div>
 
@@ -641,7 +643,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
+      <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/NGINX/" style="font-size: 10px;">NGINX</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/blog/" style="font-size: 15px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学实践/" style="font-size: 10px;">大学实践</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体应用/" style="font-size: 10px;">字体应用</a> <a href="/tags/实践/" style="font-size: 10px;">实践</a> <a href="/tags/密码学/" style="font-size: 10px;">密码学</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/探索/" style="font-size: 10px;">探索</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/模式/" style="font-size: 10px;">模式</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a>
     </div>
   </div>
 
@@ -650,7 +652,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li></ul>
     </div>
   </div>
 
@@ -663,23 +665,23 @@
       <ul>
         
           <li>
+            <a href="/2020/05/01/best-practice-of-password-save/">密码保存里的学问</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/01/linux-init/">linux-init</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/01/network-encrypt-protocol/">理解HTTPS协议</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/30/nginx-event-loop/">Nginx事件驱动框架</a>
+          </li>
+        
+          <li>
             <a href="/2020/04/29/network-tcp/">关于TCP的一切</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/27/permutations/">不重复元素的全排列</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/27/subsets/">子集</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/27/three-sum-closest/">最接近的三数之和</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/26/two-sum-closest/">最接近的两数之和</a>
           </li>
         
       </ul>

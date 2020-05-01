@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hackeryard.github.io/"/>
-  <updated>2020-04-30T12:56:08.721Z</updated>
+  <updated>2020-05-01T14:17:33.555Z</updated>
   <id>https://hackeryard.github.io/</id>
   
   <author>
@@ -15,6 +15,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>密码保存里的学问</title>
+    <link href="https://hackeryard.github.io/2020/05/01/best-practice-of-password-save/"/>
+    <id>https://hackeryard.github.io/2020/05/01/best-practice-of-password-save/</id>
+    <published>2020-05-01T11:49:06.000Z</published>
+    <updated>2020-05-01T14:17:33.555Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于用户密码保存，最佳实践是加盐和慢哈希，为什么要用这种方式？</p><p>一般的Web服务器都会在数据库中保存用户名密码，但如果网站存在漏洞而导致脱库，那数据库中的密码就会直接暴露，如果密码以明文的形式保存，那只能说太惨了（参见CSDN密码泄露事件）。</p><p>因为哈希函数具有很好的单向性，即已知消息，通过哈希函数能快速计算出对应的摘要，而反过来则困难得多得多，这就是哈希函数的不可逆性。所以可以用哈希函数对密码计算摘要，然后保存在数据库中，这样就算数据库被攻击者拿到了，密码也不会直接暴露。</p><p>需要补充的是，服务器拿到前台用户输入的明文密码（HTTPS加密传输），通过计算哈希的方式，与数据库中此用户的摘要比对，如果一致，则验证通过，否则拒绝登录。这里用到了哈希函数的抗碰撞性，即任意两个不同的数据，其摘要相同的可能性极低，或者换一种表述，对于一个数据P1，很难构造与P1不同的数据P2，使得Hash(P2)=Hash(P1)。所以只要匹配到了摘要相等，就可以认为密码是正确的。</p><p>但因为对于选定的哈希函数（如常用的MD5、SHA-1、SHA-512），数据和摘要是一一对应的，所以攻击者想到了针对所有数据，依次计算出相应的摘要，然后把摘要作为key，数据作为value，存储起来，这就是彩虹表(Rainbow Table)。彩虹表是一种以空间换时间的方法，同时使用了更多的技术，稍后补充。</p><p>攻击者利用现有的彩虹表，一般可以获得对常用用户密码快速的破解，因此需要寻求对抗的方法。需要注意，这里的破解是针对整个用户表，也即所有用户的破解，是一种无差别攻击。按照成本收益考虑，攻击的成本就是下载或构造彩虹表，以及匹配的成本，这种成本在当今的算力和存储成本下是较少的，同时，收益是破解所有用户密码带来的收益，如果用户够多，则单个用户的成本收益比会降低很多。</p><p>因为在安全领域，如果攻击一个东西的成本收益不匹配，那么攻击者就是自找没趣。所以问题在于，我们能不能提高单个用户的成本收益比？既然之前是对所有用户都无差别地计算哈希，那我们能不能加点东西，把无差别攻击降级为针对性攻击呢？</p><p>这就是加盐：即对每个用户，都生成一个随机字符串(salt)。把salt拼接到密码上，再使用MD5等算法计算哈希，即saltHash=MD5(passwd+salt)。另一种方式是，saltHash=MD5(MD5(passwd),salt)。</p><p>这样，就算构造彩虹表，也需要针对每个用户的salt构造，单个用户的成本收益比显著提高了，这就是针对性攻击。</p><p>通过加盐，攻击成本大大提高了，但针对短密码，攻击者仍然可以暴力破解，即枚举所有的密码组合，加盐后计算哈希。为了对抗这种攻击，一种慢哈希算法被发明，这就是bcrypt和pdkdf2，拿bcrypt说明，bcrypt有一个cost参数，通过调节cost，可以提高或降低计算哈希的时间，目前bcrypt的时间大概在0.3s，如果未来算力提高，我们可以提高cost，来维持计算哈希的时间不变。对比MD5，暴力破解bcrypt的时间成本非常大，如果是8位字母数字组成的密码，则需要(26<em>2 + 10) ^ 8 \</em> 0.3s / (365<em>24</em>60*60) = 51万年，攻击者早就不知道在哪了。</p><p>使用bcrypt后，每次计算都需要0.3s，如果放在后台服务器处理，则需要的计算量是很大的，参考知乎CoderZh的<a href="https://www.zhihu.com/question/20299384/answer/81065976" target="_blank" rel="noopener">设计</a>，bcrypt可以放在客户端，从而分担服务器的压力，不得不说很巧妙。</p><p>参考：<br>1.黄兢成 <a href="https://zhuanlan.zhihu.com/p/20407064" target="_blank" rel="noopener">谈谈密码安全：服务端密码保存</a><br>2.CoderZh <a href="https://www.zhihu.com/question/20299384/answer/81065976" target="_blank" rel="noopener">加盐密码保存的最通用方法是？</a><br>3.<a href="https://cnodejs.org/topic/547730ec65e5a201268b9265" target="_blank" rel="noopener">密码保存的最佳实践讨论</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;对于用户密码保存，最佳实践是加盐和慢哈希，为什么要用这种方式？&lt;/p&gt;
+&lt;p&gt;一般的Web服务器都会在数据库中保存用户名密码，但如果网站存在漏洞而导致脱库，那数据库中的密码就会直接暴露，如果密码以明文的形式保存，那只能说太惨了（参见CSDN密码泄露事件）。&lt;/p&gt;
+&lt;p&gt;因
+      
+    
+    </summary>
+    
+    
+      <category term="密码学" scheme="https://hackeryard.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux-init</title>
+    <link href="https://hackeryard.github.io/2020/05/01/linux-init/"/>
+    <id>https://hackeryard.github.io/2020/05/01/linux-init/</id>
+    <published>2020-05-01T10:16:37.000Z</published>
+    <updated>2020-05-01T10:16:37.581Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>理解HTTPS协议</title>
+    <link href="https://hackeryard.github.io/2020/05/01/network-encrypt-protocol/"/>
+    <id>https://hackeryard.github.io/2020/05/01/network-encrypt-protocol/</id>
+    <published>2020-05-01T07:04:33.000Z</published>
+    <updated>2020-05-01T07:05:23.841Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx事件驱动框架</title>
+    <link href="https://hackeryard.github.io/2020/04/30/nginx-event-loop/"/>
+    <id>https://hackeryard.github.io/2020/04/30/nginx-event-loop/</id>
+    <published>2020-04-30T14:15:26.000Z</published>
+    <updated>2020-04-30T14:35:41.771Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="NGINX" scheme="https://hackeryard.github.io/tags/NGINX/"/>
+    
+  </entry>
   
   <entry>
     <title>关于TCP的一切</title>
@@ -420,116 +489,6 @@
       <category term="webhooks" scheme="https://hackeryard.github.io/tags/webhooks/"/>
     
       <category term="部署" scheme="https://hackeryard.github.io/tags/%E9%83%A8%E7%BD%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo博客之旅 [1]: 初探hexo</title>
-    <link href="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/"/>
-    <id>https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/</id>
-    <published>2018-01-29T04:42:44.000Z</published>
-    <updated>2020-04-20T06:36:17.838Z</updated>
-    
-    <content type="html"><![CDATA[<p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。</p><p>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。</p><p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p><p>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p><p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br></pre></td></tr></table></figure></p><p>生成如下目录：</p><ul><li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul><li>_draft(保存的草稿)</li><li>_post(你将要写的一篇篇的以md结尾的博客)</li></ul></li><li>themes<ul><li>landscape(默认的主题)</li></ul></li><li>_config.yml(全局的配置文件)</li><li>package.json(保存项目的依赖关系)</li></ul><p>之后，</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure><p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p><p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p><p>如果想更换端口，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p><p>到这里本地部署已经完成了，接下来就是部署到github：<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p><p><img src="/images/pages.png" alt="开启github pages"></p><p>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p><p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p><p>另外，你可能需要补一下markdown的语法，这里推荐一篇<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/" target="_blank" rel="noopener">Hexo-Markdown-简明语法手册</a></p><p>当你慢慢的，写的博客越来越多时，你可能还需要一个README，让别人在访问的repo的时候，就可以对你的博客有一个清晰地了解，我起初在网上没找到代码，就可以写了个<a href="https://github.com/hackeryard/hexo-plugins" target="_blank" rel="noopener">generate_readme</a>，可以复用</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。&lt;/p&gt;
-&lt;p&gt;github pages可以用来存放静
-      
-    
-    </summary>
-    
-      <category term="博客" scheme="https://hackeryard.github.io/categories/%E5%8D%9A%E5%AE%A2/"/>
-    
-    
-      <category term="hexo" scheme="https://hackeryard.github.io/tags/hexo/"/>
-    
-      <category term="blog" scheme="https://hackeryard.github.io/tags/blog/"/>
-    
-      <category term="js" scheme="https://hackeryard.github.io/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vincent之死</title>
-    <link href="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/"/>
-    <id>https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/</id>
-    <published>2018-01-18T23:35:44.000Z</published>
-    <updated>2018-01-19T06:25:02.441Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>下文所述仅依靠电影《Loving Vincent》中的故事对Vincent之死作一个推断，在这部电影之前，我并没有看过有关梵高更多的记载。</p></blockquote><p>这是一部来自100多个艺术家的协作而完成的对梵高的致敬之作，Loving Vincent只是Vincent在给弟弟Theo写的信的末尾用语，类似于Yours Sincerely，以此作为题目，说明Vincent对弟弟Theo深深的爱，Vincent几乎每天都要给弟弟写信，诉说自己的近况和对弟弟的思念，还有心底的愧疚。</p><p>那么Vincent是怎么死的？</p><p>如果Vincent是自杀，为什么不跟Mazery医生说的那样，饮弹或者对准太阳穴、心脏这样的致命部位来一枪，而选择了在胃部开了一枪，然后一路忍受痛苦回到卧室，之后还有漫长的等待？</p><p>如果是他杀，想想也只有可能是富家公子Rene，但他也不会无端想要杀死Vincent，他们之间并不存在致命的冲突。</p><p>我一开始也没想到，我觉得Mazery医生说的很有道理，但是我也没考证过那时候的枪到底能不能在距离身体几十公分的位置发射，然后不打穿身体的。现在我觉得这个是没问题的，医生形容得过于夸张了，他怀疑是别人暗杀才可以达到那样的效果。</p><p>回看第二遍的时候，处处隐藏着Vincent执意要自杀的种种看似合理的理由，他给弟弟写信说自己度日如年，他来到弟弟的住所，然后更加知晓了弟弟的状况，他的好朋友玛格丽特被Gachet医生限制住，不跟Vincent来往，他被医生还刺激了一下（医生说他说了作为一个医生所不该说的话）… 这些仿佛都在诉说一个伟大画家的即将凋零，但这里面还有冲突：</p><ul><li>医生把女儿限制住，不是要给Vincent不被打扰的作画环境吗，为什么又跟Vincent吵了一架，而且可以推测，他不该说的话好像就是Vincent应该找个其他的谋生手段，不让自己的作画产生的经济负担压垮弟弟的家庭？</li><li>医生是军医，可以帮Vincent取出子弹，但是他见死不救</li><li>在电影中，枪击现场竟然没有出现，麦田里应该有那把手枪，还有他的画架</li></ul><p>第一条，医生很照顾Vincent，但是他终归不是他的衣食父母，所以他让女儿不跟Vincent接触，理由却是不背打扰伟大画家的锅，其实他有所打算，所以他还是劝Vincent，我猜测大概就是别去作这些没人买的画了，为弟弟减负，但是他不听，反而起火了，甚至刻薄到说出医生是个伪艺术家这样的话，对于一个对艺术心存敬畏和追求的人而言，这是致命的打击。</p><p>第二条，医生本来希望他想想自己接下来的生活，他的目的是让他好好活下去，但是看到负弹的Vincent，他明白他活不久了，他对死的决心由来已久，所以什么也没有做。</p><p>第三条，枪击现场没有出现，警察也只是翻找Vincent卧室的东西，那里肯定没有证据，所以最重要的现场竟然不存在，这决定了无法进一步推测Vincent具体的死法。</p><p>最大的疑点是，Vincent为什么要忍受长久的痛苦，回到卧室等死？<br>我以为，他是有话给Gachet医生说，还有他的弟弟Theo。</p><p>医生看到这个样子的Vincent，一定以为是自己说了不该说的话，也就是上次争吵的事，而引发这次事件的，Vincent回来而不是立即自杀，是要医生明白，“我觉得这对大家都好”，这件事跟他无关。</p><p>Vincent最后也希望Theo到场，希望最后的时光能够有弟弟陪在身旁，这中间自有手足之情，还有Vincent对Theo的愧疚与解脱后的宽慰。</p><p>电影提到，他的出生很大程度决定了他性格的养成，从他的父母那里看出他注定是一个孤独的孩子，而孤独的孩子总是很敏感。</p><p>与弟弟相依为命，靠着作画展现自己的才华，却得不到艺术届的认同，估计放在中国古代，就会多一个怀才不遇的诗人，但是Vincent，我觉得他是彻底绝望的，他深爱的弟弟被自己慢慢拖垮，他的艺术也没得到人们的认同，他陷入了彻底的恐惧，并且在梦里，那激情的，梦幻的星空总是向他投来橄榄枝，他想要逃避，但同时他又说自己走在通往星空的路上。</p><p>对于我以为的艺术家而言，自杀才是主动的靠近那梦里星空所描绘的世界，而他完成了这个目的。</p><p>这是一个悲剧。</p><p>令我不解的是，医生和画铺子老板等人在Vincent生前都可以看出他的才华，为什么就不买一些他的画作？（电影最后说他生前只卖出一幅）</p><p>没有人知道全部真理，尽管电影中的Ravoux家族和Gachet家族的人，以及Mazery医生，仿佛都对Vincent的死抱有坚定不移的态度。</p><p>最后，我想起了宫泽贤治，还有海子的死。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;下文所述仅依靠电影《Loving Vincent》中的故事对Vincent之死作一个推断，在这部电影之前，我并没有看过有关梵高更多的记载。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这是一部来自100多个艺术家的协作而完成的对梵高的致敬之作，Lov
-      
-    
-    </summary>
-    
-      <category term="随想集" scheme="https://hackeryard.github.io/categories/%E9%9A%8F%E6%83%B3%E9%9B%86/"/>
-    
-    
-      <category term="电影" scheme="https://hackeryard.github.io/tags/%E7%94%B5%E5%BD%B1/"/>
-    
-      <category term="Vincent" scheme="https://hackeryard.github.io/tags/Vincent/"/>
-    
-      <category term="梵高" scheme="https://hackeryard.github.io/tags/%E6%A2%B5%E9%AB%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何发送空UDP报文</title>
-    <link href="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/"/>
-    <id>https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/</id>
-    <published>2017-07-03T09:58:16.000Z</published>
-    <updated>2020-04-20T04:00:38.637Z</updated>
-    
-    <content type="html"><![CDATA[<p><em>我们知道UDP是无连接的，接收和发送一个报文是独立的，而TCP则实现了一整套的诸如流量控制和拥塞控制机制，保证连接的可靠性。</em></p><hr><p>在本文中，你将了解在Socket API中如何发送一个空的UDP报文，并且通过tcpdump抓取后用wireshark查看报文内容。</p><p>本文缘起对recvfrom的返回值的困惑，因为在TCP中，用recv或者read函数，我们可以通过其返回值是否为0，来判断对端的连接状态，是则表示对端关闭写通道，更可能的情况是close掉了连接。<br>但是在UDP中很少见到recvfrom的返回值是0，在man手册中，只说了TCP的recv保留0以指示对端关闭的情况，这个TCP包是空的，因为只需要TCP头部的FIN信息。</p><p>所以，动手看看吧！<br>recvfrom返回0表示有数据包达到，但是数据部分为空，在wireshark中看到，UDP的长度字段为8，正好是UDP的头部长度，数据部分的确为空。</p><p>下图是通过sendto函数广播的空UDP报文：<br><img src="/images/udp0.png" alt="udp空数据" title="udp空数据"></p><p>发送使用sendto，只是设置发送的长度为0，发现返回值为0；同样，接收使用recvfrom，接收广播的消息，发现当空数据包达到时，返回值为0。如下：</p><p><code>sendto(sockfd, buffer, 0, 0, (struct sockaddr *)&amp;amp;brctaddr, addrsize);recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p><p>另外在广播过程中，使用<code>tcpdump udp port 5001 -w test.pcap</code>监听5001端口的流量，并保存在test.pcap中供wireshark查看。</p><p>实验结束。</p><hr><p>TODO： socket API对应的内核相关操作（select和非阻塞IO等）</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;em&gt;我们知道UDP是无连接的，接收和发送一个报文是独立的，而TCP则实现了一整套的诸如流量控制和拥塞控制机制，保证连接的可靠性。&lt;/em&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;在本文中，你将了解在Socket API中如何发送一个空的UDP报文，并且通过tcpdump抓取后用wir
-      
-    
-    </summary>
-    
-      <category term="网络分析" scheme="https://hackeryard.github.io/categories/%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>node实践 0x00</title>
-    <link href="https://hackeryard.github.io/2017/05/16/node-000/"/>
-    <id>https://hackeryard.github.io/2017/05/16/node-000/</id>
-    <published>2017-05-16T11:04:04.000Z</published>
-    <updated>2018-01-19T01:31:21.196Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。</p><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。<br>另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例子，比如计算同样位数的斐波那契数列，node的性能超过java，也曾有公司把网站用node重写，相比ruby，服务器削减了十倍，从中可见一斑。<br>node的一大特色就是异步io，我们知道，在网络服务中，服务进程大多是io密集型的，如果使用阻塞io库，进程将经常等待io完成，明白点说，在操作系统中，当一个进程被阻塞时，调度器会在就绪队列中选一个占用cpu进行执行，io一般又相当费时，当对于cpu这个计算资源而言，此进程就浪费掉了一部分时间片，从而影响性能，在需要尽量实时的服务上尤为明显。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试nod
-      
-    
-    </summary>
-    
-      <category term="Node" scheme="https://hackeryard.github.io/categories/Node/"/>
-    
     
   </entry>
   
