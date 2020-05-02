@@ -1,0 +1,332 @@
+<!-- layout.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>详解DES加解密 | Spark Era Coming...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="DES(Data Encryption Standards)是一种经典的对称加密技术，由IBM公司在1970s研发，之后被美国国家标准局标准化。在理解DES之前，我们先补充对称加密的基本思想。 对称加密是加解密使用同一个密钥的加密算法，区别于使用公钥和私钥加解密的非对称加密。同时，按照对称加密的密钥特征，分为流密码(stream cipher)和分组密码(block cipher)，前者每次加密数">
+<meta name="keywords" content="密码学 Security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解DES加解密">
+<meta property="og:url" content="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/index.html">
+<meta property="og:site_name" content="Spark Era Coming...">
+<meta property="og:description" content="DES(Data Encryption Standards)是一种经典的对称加密技术，由IBM公司在1970s研发，之后被美国国家标准局标准化。在理解DES之前，我们先补充对称加密的基本思想。 对称加密是加解密使用同一个密钥的加密算法，区别于使用公钥和私钥加解密的非对称加密。同时，按照对称加密的密钥特征，分为流密码(stream cipher)和分组密码(block cipher)，前者每次加密数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://hackeryard.github.io/images/DES/avalanche.png">
+<meta property="og:image" content="https://hackeryard.github.io/images/DES/feistel网络.png">
+<meta property="og:image" content="https://hackeryard.github.io/images/DES/F-function.png">
+<meta property="og:image" content="https://hackeryard.github.io/images/DES/S-Boxes.png">
+<meta property="og:image" content="https://hackeryard.github.io/images/DES/S-Box-details.png">
+<meta property="og:image" content="https://hackeryard.github.io/images/DES/轮密钥生成.png">
+<meta property="og:image" content="https://hackeryard.github.io/images/DES/des-iterations.png">
+<meta property="og:image" content="https://hackeryard.github.io/images/DES/初始置换.png">
+<meta property="og:updated_time" content="2020-05-02T08:21:50.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解DES加解密">
+<meta name="twitter:description" content="DES(Data Encryption Standards)是一种经典的对称加密技术，由IBM公司在1970s研发，之后被美国国家标准局标准化。在理解DES之前，我们先补充对称加密的基本思想。 对称加密是加解密使用同一个密钥的加密算法，区别于使用公钥和私钥加解密的非对称加密。同时，按照对称加密的密钥特征，分为流密码(stream cipher)和分组密码(block cipher)，前者每次加密数">
+<meta name="twitter:image" content="https://hackeryard.github.io/images/DES/avalanche.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <!-- 加载gitment的css和js文件 -->
+  <link rel="stylesheet" href="/css/gitment.css"> 
+  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Spark Era Coming...</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">分享技术 记录生活</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About Me</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/hackeryard" title="Github Share"></a>
+        
+
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://hackeryard.github.io"></form>
+      </div>
+    </div>
+  </div>
+  <script>
+    
+    var d = new Date();
+    var m = d.getMinutes();
+    var num = Math.ceil((m + 1) / (60 / 4));
+    document.getElementById("banner").style.backgroundImage = "url(/images/banner" + num + ".jpg)";
+    
+</script>
+</header>
+      <div class="outer">
+        <section id="main"><!-- post.ejs -->
+<!-- post/article.ejs -->
+<article id="post-des-encrypt-and-decrypt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/02/des-encrypt-and-decrypt/" class="article-date">
+  <time datetime="2020-05-02T00:27:57.000Z" itemprop="datePublished">2020-05-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      详解DES加解密
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>DES(Data Encryption Standards)是一种经典的对称加密技术，由IBM公司在1970s研发，之后被美国国家标准局标准化。在理解DES之前，我们先补充对称加密的基本思想。</p>
+<p>对称加密是加解密使用同一个密钥的加密算法，区别于使用公钥和私钥加解密的非对称加密。同时，按照对称加密的密钥特征，分为流密码(stream cipher)和分组密码(block cipher)，前者每次加密数据的一个位或一个字节，后者则每次加密一个固定大小的块，即先把数据分块，再分别用密钥加密。流密码的代表是RC4，分组密钥的代表则是DES和AES。</p>
+<p>现代密钥学只对密钥保密，算法是公开的。因为基于算法的保密随着算法的推测或暴露而消失，同时算法不公开，也难以对算法进行讨论和改进。</p>
+<p>一个好的密码系统要能够对抗基于统计方法的密码分析(Statistical cryptanalysis)，比如在选择明文攻击和选择密文攻击得到的明文和密文对中，统计明文和密文的规律，根据密文破解明文，另外，还可以通过分析密文和密钥的对应关系，从而破解密钥。</p>
+<p>对抗统计分析攻击的方法是，设法使明文的统计特征尽可能的不带入密文，同时使密文和密钥的统计关系尽量复杂，这样攻击者就很难统计出有效的规律，来推断明文和密钥。</p>
+<p>在历史上，这种思想早就有了。信息论的先驱香农在1945年的论文《密码学的数学理论》中给出了设计密码系统的基本方法：混淆(confusion)和扩散(diffusion)。混淆是把密钥和密文的统计关系打乱，使得密钥极其微小的改动，都会造成密文的大幅变动；扩散则把明文和密文的统计关系打乱，使得明文极其微小的改动，都会造成密文的大幅变动，换言之，明文的任意部分都会影响密文的所有部分，这让密码分析者难以找到明文到密文的部分模式，因为模式被上述方式抹掉了。</p>
+<p>这种明文和密钥的微小改动，所造成的密文大幅变动，就是雪崩效应(avalanche effect)：<br><img src="/images/DES/avalanche.png" alt="avalanche"></p>
+<p>对应到DES的设计，主要是具有雪崩效应的Feistel网络，这是DES的核心，也是后续很多对称加密的核心(如Blowfish、RC5)。</p>
+<p>Feistel网络如下：<br><img src="/images/DES/feistel网络.png" alt="feistel网络"></p>
+<p>首先说明，DES的分块长度是64位，密钥长度是64位，其中有效密钥的长度是56位，另外的8位用作奇偶校验。DES分块的密文长度是64位。上图的L0和R0分别是64位明文经过初始置换后的左32位和右32位，之后进入16轮的迭代，最后再经过与初始置换的逆置换，来得到最终的密文。</p>
+<p>每一轮的具体流程如下：<br><img src="/images/DES/F-function.png" alt="F-function"><br>(<a href="http://www.cxyxiaowu.com/wp-content/uploads/2019/10/1571057978-6fb896eca9a2484.png" target="_blank" rel="noopener">来源</a>)</p>
+<p>在每轮迭代中，DES都使用相同的加密结构，这种结构就是Feistel结构。公式如下：<br>$L<em>i = R</em>{i-1}$<br>$R<em>i = L</em>{i-1} ⊕ f(R<em>{i-1}, k</em>{i-1})$</p>
+<p>其中f是feistel函数。每轮除了一些置换(Permutation)外，最核心的是S盒的替代(Substitution)。置换是改变<strong>位的顺序</strong>，一般使用预置的置换表，替代则通过一定的规则，把数据替代成<strong>新的</strong>数据。</p>
+<p><img src="/images/DES/S-Boxes.png" alt="S-Boxes"><br><img src="/images/DES/S-Box-details.png" alt="details"></p>
+<p>S盒是DES中唯一的非线性部件，S盒的设计从根本上决定了每一轮能否制造足够的复杂性。有了非线性部件，通过多轮迭代，我们就可以得到不断扩散，使得每一轮具有一定随机性的加密输出的每一位，都继续参与下一轮的扩散，结果就是，明文的微小改动，都会经过多轮扩散的<strong>放大</strong>，最终体现在密文中。(<a href="https://crypto.stackexchange.com/a/1165" target="_blank" rel="noopener">stackoverflow</a>上的解释是：Changing a single bit in the input will cause more bits to be changed in the following rounds.)</p>
+<p>关于S盒，如果我们再仔细一点，会发现它的功能是完成6位数据到4位数据的压缩，如果我们得到了4位的S盒输出，想反推出6位的输入，就有四种可能。可以类比一下，当我们知道了密文，想反推出明文，每一轮都有四种可能，4^16次方，那是有多少种可能的明文啊！况且还有密钥的加持。</p>
+<p>S盒的作用不仅仅在扩散，因为S盒的输入是每轮密文的Ri和<strong>轮密钥Ki</strong>，就算不用轮密钥，只使用原始密钥，每次经过非线性的S盒，也会增加混淆的程度。何况为了更好的安全性，DES专门生成了每轮的密钥。</p>
+<p><img src="/images/DES/轮密钥生成.png" alt="轮密钥生成"><br>(<a href="https://images.xiaozhuanlan.com/photo/2019/68d67da4fe3a32da61e23afc2d470a94.png" target="_blank" rel="noopener">来源</a>)</p>
+<p>按照我的理解，轮密钥增加了密钥和密文关系的复杂性，即增加了DES的混淆能力，因为每一位原始密钥的变化，都会通过轮密钥迭代的形式，放大到所生成的所有密钥里。此后，轮密钥与上一轮的加密输出异或后，进入S盒，所以最后的结果是混合了密钥和明文每个位的影响的，就如同蝴蝶效应一样。</p>
+<p>分析了DES的Feistel网络的优点，我们来看整个加密流程：<br><img src="/images/DES/des-iterations.png" alt="DES加密流程"></p>
+<p>DES首先了对分组明文做了初始置换(Initial Permutation)，最后结束的时候，对密文做了逆初始置换(Inverse Initial Permutation)。</p>
+<p><img src="/images/DES/初始置换.png" alt="初始置换"></p>
+<p>这部分对混淆和扩散没有作用，那为什么还要这两个置换呢？其实这是历史原因，当时DES标准的提交者为了降低硬件实现DES的复杂性，而多了这个设计，所以标准化之后，这个初始置换就留下来了。参见<a href="https://crypto.stackexchange.com/a/6" target="_blank" rel="noopener">What are the benefits of the two permutation tables in DES?</a></p>
+<p>仔细看的话，会发现后者是把每一位放回到最开始的位置，按照我的理解，这是为了让解密过程也能<strong>复用</strong>加密的框架。因为解密除了反向使用轮密钥外，其它的过程与加密是一致的。</p>
+<p>DES解密是加密的逆过程，上面介绍了初始置换和逆初始置换是逆过程，剩下就是证明16轮迭代解密是16轮迭代加密的逆过程。</p>
+<p>这里用到了异或(xor)的重要性质，a⊕a=0, a⊕0=a</p>
+<p>每轮解密，我们需要用L(i)和R(i)，解密出上一轮的L(i-1)和R(i-1)，<br>回顾一下加密公式：<br>$L<em>i = R</em>{i-1} (1)$<br>$R<em>i = L</em>{i-1} ⊕ f(R<em>{i-1}, k</em>{i-1}) (2)$<br>解密公式为：<br>$L_{i-1} = R_i ⊕ f(L<em>i, k</em>{i-1}) (3)$<br>$R_{i-1} = L<em>i (4)$<br>把(2)带入到(3)中，则有：<br>$L</em>{i-1} = L<em>{i-1} ⊕ f(R</em>{i-1}, k_{i-1}) ⊕ f(L<em>i, k</em>{i-1})$<br>再把(4)带入上式：<br>$L<em>{i-1} = L</em>{i-1} ⊕ f(L<em>i, k</em>{i-1}) ⊕ f(L<em>i, k</em>{i-1}) = L_{i-1}$<br>这里最后推导出相等，说明按照相同的结构，用下一轮的密文，就可以回推到上一轮密文，最终迭代回明文。只不过这里交换了L和R的顺序，迭代函数的框架可以复用。</p>
+<p>写到这里，DES这么经典的算法，的确很经典，Feistel结构，S盒的设计，简单的多轮迭代增加混淆和扩散的思想，都让我感受到DES算法的简洁和经典之美。</p>
+<p>参考：<br>1.程序员小吴，<a href="https://www.cxyxiaowu.com/1478.html" target="_blank" rel="noopener">神秘的DES加密算法</a><br>2.nnnnzyx，<a href="https://www.jianshu.com/p/e6dfe4fef5f7" target="_blank" rel="noopener">DES解密是加密的逆过程</a><br>3.Wikipedia: <a href="https://en.wikipedia.org/wiki/Feistel_cipher" target="_blank" rel="noopener">Feistel cipher</a><br>4.Wikipedia: <a href="https://en.wikipedia.org/wiki/Confusion_and_diffusion" target="_blank" rel="noopener">Confusion and diffusion</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9pbvkd6001ftglxhre8ukck" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/01/best-practice-of-password-save/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">密码保存里的学问</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+<script>
+var gitment = new Gitment({
+  owner: 'hackeryard',
+  repo: 'hackeryard.github.io',
+  oauth: {
+    client_id: '462b97cb05d244087337',
+    client_secret: 'acb2fec8890a003f72fd1aee09b65d8667a409e6',
+  },
+})
+gitment.render('gitment')
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+//using some wisdom words
+wis_words = ["静心，尽力", "任风雨来袭，我自岿然不动", "热爱生活，向上而生", "做一个理想主义的技术追求者", "不忘初心"];
+document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(wis_words.length)] + '」';
+</script>
+ 
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/网络分析/">网络分析</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Industry/">Computer Industry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPICH/">MPICH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NGINX/">NGINX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/">Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network-工具/">Network 工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node/">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitment/">gitment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpbb3/">phpbb3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体/">字体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/操作系统/">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成/">计算机组成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/部署/">部署</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Computer-Industry/" style="font-size: 10px;">Computer Industry</a> <a href="/tags/LeetCode/" style="font-size: 18px;">LeetCode</a> <a href="/tags/MPICH/" style="font-size: 12px;">MPICH</a> <a href="/tags/NGINX/" style="font-size: 10px;">NGINX</a> <a href="/tags/Network/" style="font-size: 12px;">Network</a> <a href="/tags/Network-工具/" style="font-size: 10px;">Network 工具</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/Windows/" style="font-size: 14px;">Windows</a> <a href="/tags/Wordpress/" style="font-size: 12px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 14px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/tags/phpbb3/" style="font-size: 10px;">phpbb3</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体/" style="font-size: 12px;">字体</a> <a href="/tags/密码学-Security/" style="font-size: 12px;">密码学 Security</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/计算机组成/" style="font-size: 16px;">计算机组成</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/随想集/" style="font-size: 20px;">随想集</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/02/des-encrypt-and-decrypt/">详解DES加解密</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/01/best-practice-of-password-save/">密码保存里的学问</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/01/linux-init/">linux-init</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/01/network-encrypt-protocol/">理解HTTPS协议</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/30/nginx-event-loop/">Nginx事件驱动框架</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+        <ul>
+            <li><a href="http://www.ruanyifeng.com/blog/">阮一峰的博客</a></li>
+            <li><a href="https://vvl.me/" title="vvl's blog">光阴的故事</a></li>
+        </ul>
+    </div>
+</div>
+  
+</aside>
+        
+      </div>
+      <!-- post/footer.ejs -->
+<footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Runking Hanna<br>
+      Powered by Graceful <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+<!-- 页面点击小红心
+<script type="text/javascript" src="/js/love.js"></script> -->
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About Me</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
