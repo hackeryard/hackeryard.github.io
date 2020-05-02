@@ -8,18 +8,18 @@
   
   <title>控制器、驱动器、适配器的区别 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="控制器，英文controller)，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（Parallel port controller），用来控制外设（PIO的知识再来补充）。 驱动器，英文driver，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有">
+  <meta name="description" content="控制器，英文controller，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（Parallel port controller），用来控制外设（PIO的知识再来补充）。 驱动器，英文driver，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有操">
 <meta name="keywords" content="计算机组成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="控制器、驱动器、适配器的区别">
 <meta property="og:url" content="https://hackeryard.github.io/2016/10/07/difference-between-controller&driver&adaptor/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="控制器，英文controller)，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（Parallel port controller），用来控制外设（PIO的知识再来补充）。 驱动器，英文driver，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有">
+<meta property="og:description" content="控制器，英文controller，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（Parallel port controller），用来控制外设（PIO的知识再来补充）。 驱动器，英文driver，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有操">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-01T14:52:38.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="控制器、驱动器、适配器的区别">
-<meta name="twitter:description" content="控制器，英文controller)，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（Parallel port controller），用来控制外设（PIO的知识再来补充）。 驱动器，英文driver，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有">
+<meta name="twitter:description" content="控制器，英文controller，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（Parallel port controller），用来控制外设（PIO的知识再来补充）。 驱动器，英文driver，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有操">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -113,7 +115,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>控制器，英文<a href="https://en.wikipedia.org/wiki/Controller_(computing" target="_blank" rel="noopener">controller</a>)，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（<a href="https://en.wikipedia.org/wiki/Parallel_port" target="_blank" rel="noopener">Parallel port controller</a>），用来控制外设（PIO的知识再来补充）。</p>
+        <p>控制器，英文<a href="https://en.wikipedia.org/wiki/Controller_(computing)" target="_blank" rel="noopener">controller</a>，控制器件的功能实现，比如内存控制器，DMA控制器，在CPU内部，也有我们所熟悉的微程序控制器，来发出指令的执行所需要的各种控制信号。早期的电脑配备的并行端口控制器（<a href="https://en.wikipedia.org/wiki/Parallel_port" target="_blank" rel="noopener">Parallel port controller</a>），用来控制外设（PIO的知识再来补充）。</p>
 <p>驱动器，英文<a href="https://en.wikipedia.org/wiki/Device_driver" target="_blank" rel="noopener">driver</a>，日常用到的驱动程序也属于驱动器，直接与硬件打交道，给应用程序留接口，bios里面有操作系统所需要的驱动程序，开机的时候会率先调入内存。</p>
 <p>适配器，英文<a href="https://en.wikipedia.org/wiki/Adapter" target="_blank" rel="noopener">adaptor</a>，常见的适配器有网络适配器，也称之为网卡，主要在网络线路与计算机总线之间进行转换，达到通信的目的。另外，我们常用的电源适配器，就是将市电转换成电子设备可用的直流电。所以适配器的作用主要是转换。</p>
 <p>在计算机中，进行网络通信需要适配器网卡，需要在操作系统中安装适合的驱动程序，告诉操作系统如何操控网卡，而操作系统是运行在硬件资源之上的，尤其是CPU，它是由运算器和控制器组成的，指令的执行都必须在控制器的控制下有条不紊的执行（DMA有专门的控制器控制，但是DMA控制器仍然受到CPU控制器的控制）。</p>
@@ -121,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/07/difference-between-controller&driver&adaptor/" data-id="ck9pfbhud001foslxxnzj860d" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/07/difference-between-controller&driver&adaptor/" data-id="ck9pghgz5001faglxh1dy5fr9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机组成/">计算机组成</a></li></ul>
@@ -302,38 +304,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -118,7 +120,7 @@
 <p>解决方法如下：</p>
 <p>前往<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy</a>下载适合自己版本（我的是cp36，对应python3.6）的numoy+mkl（mkl是intel math kernal lib的意思，估计由于这样的原因，这种打包的numpy无法使用pip官方安装，也即就算pip install numpy成功了，当import scipy的时候，执行仍然报错，报错原因就是找不到numpy+mkl）</p>
 <p>我用的校园网，实际下载速度只有15KB，而且经常断线且服务器不支持断点续传，所以很无奈。当想到有国内国外的vps，就挂上去看了下，使用</p>
-<p>[c]wget <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c</a>]</p>
+<p>[c]wget <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl%5B/c%5D" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c]</a></p>
 <p>发现404错误，用curl同样无法下载，苦闷中，发现用这个地址放到浏览器可以直接下载，所以应该是服务器屏蔽bot下载了，在wget后加</p>
 <p>[c]–user-agent=&quot;Mozilla/5.0&quot; [/c]</p>
 <p>即可。</p>
@@ -128,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9pfbhvc0025oslxlsx8kvmi" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9pghh040025aglxy2as6oe6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -309,38 +311,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

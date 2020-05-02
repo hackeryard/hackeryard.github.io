@@ -8,18 +8,18 @@
   
   <title>调试小技巧 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能： 1, system(“pause”) –system里面可以嵌入任意的dos命令，如dir、cmd等等 2, getch() –等待从键盘输入一个字符，不回显，不需要回车 3, getche() –等待从键盘输入一个字符，回显，不需要回车 4, getchar()">
+  <meta name="description" content="初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能： 1, system(“pause”) --system里面可以嵌入任意的dos命令，如dir、cmd等等 2, getch() --等待从键盘输入一个字符，不回显，不需要回车 3, getche() --等待从键盘输入一个字符，回显，不需要回车 4, getcha">
 <meta name="keywords" content="Windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="调试小技巧">
 <meta property="og:url" content="https://hackeryard.github.io/2016/12/03/debug-tools/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能： 1, system(“pause”) –system里面可以嵌入任意的dos命令，如dir、cmd等等 2, getch() –等待从键盘输入一个字符，不回显，不需要回车 3, getche() –等待从键盘输入一个字符，回显，不需要回车 4, getchar()">
+<meta property="og:description" content="初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能： 1, system(“pause”) --system里面可以嵌入任意的dos命令，如dir、cmd等等 2, getch() --等待从键盘输入一个字符，不回显，不需要回车 3, getche() --等待从键盘输入一个字符，回显，不需要回车 4, getcha">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-01T14:52:24.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="调试小技巧">
-<meta name="twitter:description" content="初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能： 1, system(“pause”) –system里面可以嵌入任意的dos命令，如dir、cmd等等 2, getch() –等待从键盘输入一个字符，不回显，不需要回车 3, getche() –等待从键盘输入一个字符，回显，不需要回车 4, getchar()">
+<meta name="twitter:description" content="初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能： 1, system(“pause”) --system里面可以嵌入任意的dos命令，如dir、cmd等等 2, getch() --等待从键盘输入一个字符，不回显，不需要回车 3, getche() --等待从键盘输入一个字符，回显，不需要回车 4, getcha">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -114,22 +116,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能：</p>
-<p>1, system(“pause”) –system里面可以嵌入任意的dos命令，如dir、cmd等等</p>
-<p>2, getch() –等待从键盘输入一个字符，不回显，不需要回车</p>
-<p>3, getche() –等待从键盘输入一个字符，回显，不需要回车</p>
-<p>4, getchar() –等待从键盘输入一个字符，回显，需要回车</p>
+<p>1, system(“pause”) --system里面可以嵌入任意的dos命令，如dir、cmd等等</p>
+<p>2, getch() --等待从键盘输入一个字符，不回显，不需要回车</p>
+<p>3, getche() --等待从键盘输入一个字符，回显，不需要回车</p>
+<p>4, getchar() --等待从键盘输入一个字符，回显，需要回车</p>
 <p>另外我们有时候可能需要从别人编译好的exe文件运行，并查看运行结果，这时候怎么暂停一下呢？最直接的方式就是在dos下输入执行文件运行，这样可以看到结果，但是有时输入路径很麻烦，带有中文还需要不停切换，所以分享一个简单方法，如下：</p>
 <p>新建一个批处理文件.bat，如exe.bat，在里面添加如下内容：</p>
-<p>@echo off –echo off表示后面的命令都不回显，而且提示符也不回显；加@表示本身也不回显</p>
-<p>call %1 –调用拖入的可执行文件，%1应该表示拖入的文件其指针</p>
-<p>echo. –输入空行，即回车一下</p>
-<p>pause –这是重要功能，调用完成通过暂停来查看运行结果</p>
+<p>@echo off --echo off表示后面的命令都不回显，而且提示符也不回显；加@表示本身也不回显</p>
+<p>call %1 --调用拖入的可执行文件，%1应该表示拖入的文件其指针</p>
+<p>echo. --输入空行，即回车一下</p>
+<p>pause --这是重要功能，调用完成通过暂停来查看运行结果</p>
 <p>END</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/03/debug-tools/" data-id="ck9pfbhub001doslxlbvpeqka" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/03/debug-tools/" data-id="ck9pghgz2001daglxmz0do1sy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
@@ -310,38 +312,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

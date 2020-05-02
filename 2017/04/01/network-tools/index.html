@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -124,12 +126,12 @@
 <p>ss基于c/s模式，通过全局代理/PAC智能代理，能够分流本地网站和外网，从而只对外网代理，既然基于c/s模式，那么肯定需要一台服务器架设在外面，如果你有兴趣，可以通过docker非常简单的安装一个，docker是一个容器，通过一个虚拟的环境方便可以实现应用在各个server上迁移，大大减轻了开发人员配置环境的工作，这里有一篇关于<a href="http://liujin.me/blog/2015/05/27/Docker-DigitalOcean-Shadowsocks-5-%E5%88%86%E9%92%9F%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" target="_blank" rel="noopener">DO主机配置docker</a>的教程，两行代码就可以搭建成功，但我没找到如何实现docker支持ss的ipv6代理，所以只能通过ipv4的方式。</p>
 <p>记得林工说过，我们的网络具有天然的学习网络知识的优势233，最近在看他的第二本书<a href="https://book.douban.com/subject/26710788/" target="_blank" rel="noopener">《wireshark网络分析艺术》</a>，挺有意思的，另外异步社区的专访<a href="http://www.epubit.com.cn/article/389" target="_blank" rel="noopener">在这里</a>，期待他的下一本园艺书。</p>
 <p>以上。</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9pfbhwi0030oslxm616oszn" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9pghh1l0030aglx3p9mc295" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network-工具/">Network 工具</a></li></ul>
@@ -310,38 +312,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -8,18 +8,18 @@
   
   <title>博客迁移之路 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） —————————————跟着我左手右手一个慢动作—————————– 首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因">
+  <meta name="description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） ---------------------------------------跟着我左手右手一个慢动作----------------------------- 首先，把wp-content文件夹用SFTP（我使用的FileZ">
 <meta name="keywords" content="随想集">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客迁移之路">
 <meta property="og:url" content="https://hackeryard.github.io/2016/11/06/migrant-the-blog/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） —————————————跟着我左手右手一个慢动作—————————– 首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因">
+<meta property="og:description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） ---------------------------------------跟着我左手右手一个慢动作----------------------------- 首先，把wp-content文件夹用SFTP（我使用的FileZ">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-01T14:55:40.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客迁移之路">
-<meta name="twitter:description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） —————————————跟着我左手右手一个慢动作—————————– 首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因">
+<meta name="twitter:description" content="其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7） ---------------------------------------跟着我左手右手一个慢动作----------------------------- 首先，把wp-content文件夹用SFTP（我使用的FileZ">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -114,28 +116,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7）</p>
-<p>—————————————跟着我左手右手一个慢动作—————————–</p>
+<p>---------------------------------------跟着我左手右手一个慢动作-----------------------------</p>
 <p>首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因为wp-content目录下有我们的主题、sitemaps、插件，最最重要的是uploads文件夹，这存放着上传的图片，没有这玩意，以后打开新站点的博客，可能出现找不到图片的尴尬情况。</p>
 <p>接着，按照同样的步骤把wp-config.php传到wordpress家目录下，大家都清楚这是wp的配置文件，里面存放着wp程序操作数据库的用户名密码，在这里有一个好方法，大家可以按照这个文件的内容在新主机上<a href="https://cloud.digitalocean.com/support/suggestions?article=how-to-install-wordpress-on-centos-7&amp;page=0&amp;query=wordpress" target="_blank" rel="noopener">新建一个数据库+用户+密码</a>，这样配置文件就可以直接用了。</p>
 <p>之后wget一个跟老博客同样版本的wordpress.tar.gz，解压后删除wp-content和wp-config.php，之后放到wordpress家目录下，这样文件部分就解决了。</p>
 <p>下面是数据库迁移：用phpmyadmin用默认方式导出wordpress的数据库，格式大概为wordpress.sql。在新主机上安装phpmyadmin，打开新站点ip/phpMyAdmin，导入原数据库，并在wp-options表的siteurl和home这两项修改原网址为新网址，这很重要，关系到能不能打开新站点的wordpress。（<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-with-apache-on-a-centos-7-server" target="_blank" rel="noopener">DO phpmyadmin 教程</a>）</p>
-<p>这样直接通过 <a href="http://新站点ip/wordpress" target="_blank" rel="noopener">http://新站点ip/wordpress</a> 就可以进去了，可以看到主页，但是点击任何一片博文，提示“the requested url /index.php was not found on this server. ”，这是因为我原来的博客修改了永久链接，需要在/etc/httpd/conf/httpd.conf修改允许重写（override），并且在wordpress家目录下的.htaccess文件修改为类似如下：</p>
+<p>这样直接通过 <a href="http://xn--ip-mp7dq71bjkm/wordpress" target="_blank" rel="noopener">http://新站点ip/wordpress</a> 就可以进去了，可以看到主页，但是点击任何一片博文，提示“the requested url /index.php was not found on this server. ”，这是因为我原来的博客修改了永久链接，需要在/etc/httpd/conf/httpd.conf修改允许重写（override），并且在wordpress家目录下的.htaccess文件修改为类似如下：</p>
 <blockquote>
-<h1 id="BEGIN-WordPress"><a href="#BEGIN-WordPress" class="headerlink" title="BEGIN WordPress"></a>BEGIN WordPress</h1><p>&lt;IfModule mod_rewrite.c&gt;</p>
+<h1 id="begin-wordpress"><a class="markdownIt-Anchor" href="#begin-wordpress"></a> BEGIN WordPress</h1>
+<p>&lt;IfModule mod_rewrite.c&gt;</p>
 <p>RewriteEngine On</p>
-<p>RewriteBase /wordpress/                                        //这是wordpress家目录，链接重写起始位置，如果你是xx，改为/xx/</p>
+<p>RewriteBase /wordpress/                                        //这是wordpress家目录，链接重写起始位置，如果你是xx，改为/xx/</p>
 <p>RewriteRule ^index.php$ - [L]</p>
 <p>RewriteCond %{REQUEST_FILENAME} !-f</p>
 <p>RewriteCond %{REQUEST_FILENAME} !-d</p>
-<p>RewriteRule . /wordpress/index.php [L]                //这是家目录对应下的index.php,如果你是xx,改为/xx/index.php</p>
+<p>RewriteRule . /wordpress/index.php [L]                <a href="//xn--index-bi1hm03flpau7qd4bh09awh0ciebs54s.php">//这是家目录对应下的index.php</a>,如果你是xx,改为/xx/index.php</p>
 <p>&lt;/IfModule&gt;</p>
-<h1 id="END-WordPress"><a href="#END-WordPress" class="headerlink" title="END WordPress"></a>END WordPress</h1><p>搞定！</p>
+<h1 id="end-wordpress"><a class="markdownIt-Anchor" href="#end-wordpress"></a> END WordPress</h1>
 </blockquote>
+<p>搞定！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/06/migrant-the-blog/" data-id="ck9pfbhw7002qoslx3so6xa12" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/06/migrant-the-blog/" data-id="ck9pghh1a002qaglxnj7c84gw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -316,38 +320,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

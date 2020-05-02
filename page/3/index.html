@@ -28,7 +28,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -114,7 +116,7 @@
         <p>以前觉得hook是个深奥的技术，的确，到现在我还没写过一个hook，网上有很多文章讲hook都是用的win32 API，不知何时我竟然看不下去这种代码了，不知是喜是忧。</p>
 <p>从<a href="https://developer.github.com/webhooks/" target="_blank" rel="noopener">Github给出的解释</a>搬运一段如下：</p>
 <blockquote>
-<p>Webhooks allow you to build or set up GitHub Apps which subscribe to certain events on GitHub.com. When one of those events is triggered, we’ll send a HTTP POST payload to the webhook’s configured URL. Webhooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server. You’re only limited by your imagination.</p>
+<p>Webhooks allow you to build or set up GitHub Apps which subscribe to certain events on <a href="http://GitHub.com" target="_blank" rel="noopener">GitHub.com</a>. When one of those events is triggered, we’ll send a HTTP POST payload to the webhook’s configured URL. Webhooks can be used to update an external issue tracker, trigger CI builds, update a backup mirror, or even deploy to your production server. You’re only limited by your imagination.</p>
 </blockquote>
 <p>webhooks就是这样一种机制，当你的repo有某个特定的事件发生时，比如push/PR/issue/fork等，github在后台会向你填写的URL发送一个POST请求，里面包含了很多信息，比如issue会有sender和相应的repo，还有issue的地址等。</p>
 <p>另外这段话里面也说明了<em>update a backup mirror</em>这个用法，vps上面的镜像博客给百度索引，github.io给谷歌索引。</p>
@@ -125,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9pfbhyd004foslxo8j6mvak" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9pghh32004faglxlj26fcl5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
@@ -167,17 +169,21 @@
       
         <p>经历过WordPress，也尝试过github pages，因为WordPress的数据库由于机器内存吃紧，经常掉线，另一个原因是有人ddos，恶意攻击我的站点，导致我设置了一个定时任务，每一个小时重启数据库，基本可用。</p>
 <p>github pages可以用来存放静态博客，以前用过来存放俱乐部站点或个人主页，但没充分利用来写博客。</p>
-<p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p>
+<p>借用官网的解释，Hexo 是一个快速、简洁且高效的博客框架，目前我们看到的很多IT博客都是用的hexo + next主题，认同度是比较高的。<br>
+初识Hexo，可以从<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方文档</a>开始了解。</p>
 <p>最初是在vps上搭建，但是平时习惯用vscode编辑器，所以就在本地搭建一个博客，然后push到github pages，其实这样一个静态博客就可以访问了，但由于github.io禁止百度爬虫爬取，所以对于百度的SEO影响很大，也就是你的博客在百度里面几乎找不到。一个解决方法是用vps镜像一份博客内容，然后手动添加到百度的收录里去，详见<a href="/2018/01/29/the-journal-of-hexo-blog-2">hexo博客之旅 [2]: 利用webhooks自动部署hexo博客</a>。</p>
-<p>安装好nodejs、git for windows、和hexo之后，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br></pre></td></tr></table></figure></p>
+<p>安装好nodejs、git for windows、和hexo之后，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br></pre></td></tr></table></figure>
 <p>生成如下目录：</p>
 <ul>
-<li>source(博客的源文件，用于生成最终的public目录下的各个文件)<ul>
+<li>source(博客的源文件，用于生成最终的public目录下的各个文件)
+<ul>
 <li>_draft(保存的草稿)</li>
 <li>_post(你将要写的一篇篇的以md结尾的博客)</li>
 </ul>
 </li>
-<li>themes<ul>
+<li>themes
+<ul>
 <li>landscape(默认的主题)</li>
 </ul>
 </li>
@@ -186,20 +192,24 @@
 </ul>
 <p>之后，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">或者简写： hexo g</span><br></pre></td></tr></table></figure>
-<p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure></p>
+<p>生成public目录，这个目录就是我们最终要放到github pages上的，接着我们测试一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line">或者简写： hexo s</span><br></pre></td></tr></table></figure>
 <p>然后打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 见第一面吧！</p>
-<p>如果想更换端口，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure></p>
-<p>到这里本地部署已经完成了，接下来就是部署到github：<br>新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p>
+<p>如果想更换端口，使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server -p [port]</span><br></pre></td></tr></table></figure>
+<p>到这里本地部署已经完成了，接下来就是部署到github：<br>
+新建一个repo为[your_github_name].github.io, 然后在repo的settings里面设置开启github pages：</p>
 <p><img src="/images/pages.png" alt="开启github pages"></p>
 <p>接下来设置通过ssh来免密连接github，用于后期git操作不用重复输入密码，而且理论上更安全，这里推荐<a href="http://blog.zfan.me/2015/09/01/%E7%94%A8SSH-key%E5%85%8D%E5%8E%BBgithub%E6%8F%90%E4%BA%A4%E6%97%B6%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" target="_blank" rel="noopener">一篇文章</a></p>
-<p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p>
+<p>按照上面的操作，部署到github，并通过[your_github_name].github.io访问。<br>
+如果有出错，建议安装<a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="noopener">git的插件</a></p>
 <p>另外，你可能需要补一下markdown的语法，这里推荐一篇<a href="https://hyxxsfwy.github.io/2016/01/15/Hexo-Markdown-%E7%AE%80%E6%98%8E%E8%AF%AD%E6%B3%95%E6%89%8B%E5%86%8C/" target="_blank" rel="noopener">Hexo-Markdown-简明语法手册</a></p>
 <p>当你慢慢的，写的博客越来越多时，你可能还需要一个README，让别人在访问的repo的时候，就可以对你的博客有一个清晰地了解，我起初在网上没找到代码，就可以写了个<a href="https://github.com/hackeryard/hexo-plugins" target="_blank" rel="noopener">generate_readme</a>，可以复用</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9pfbhyb004coslxz7vjbw7b" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9pghh30004caglxzr2y8xym" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -256,7 +266,8 @@
 <p>第一条，医生很照顾Vincent，但是他终归不是他的衣食父母，所以他让女儿不跟Vincent接触，理由却是不背打扰伟大画家的锅，其实他有所打算，所以他还是劝Vincent，我猜测大概就是别去作这些没人买的画了，为弟弟减负，但是他不听，反而起火了，甚至刻薄到说出医生是个伪艺术家这样的话，对于一个对艺术心存敬畏和追求的人而言，这是致命的打击。</p>
 <p>第二条，医生本来希望他想想自己接下来的生活，他的目的是让他好好活下去，但是看到负弹的Vincent，他明白他活不久了，他对死的决心由来已久，所以什么也没有做。</p>
 <p>第三条，枪击现场没有出现，警察也只是翻找Vincent卧室的东西，那里肯定没有证据，所以最重要的现场竟然不存在，这决定了无法进一步推测Vincent具体的死法。</p>
-<p>最大的疑点是，Vincent为什么要忍受长久的痛苦，回到卧室等死？<br>我以为，他是有话给Gachet医生说，还有他的弟弟Theo。</p>
+<p>最大的疑点是，Vincent为什么要忍受长久的痛苦，回到卧室等死？<br>
+我以为，他是有话给Gachet医生说，还有他的弟弟Theo。</p>
 <p>医生看到这个样子的Vincent，一定以为是自己说了不该说的话，也就是上次争吵的事，而引发这次事件的，Vincent回来而不是立即自杀，是要医生明白，“我觉得这对大家都好”，这件事跟他无关。</p>
 <p>Vincent最后也希望Theo到场，希望最后的时光能够有弟弟陪在身旁，这中间自有手足之情，还有Vincent对Theo的愧疚与解脱后的宽慰。</p>
 <p>电影提到，他的出生很大程度决定了他性格的养成，从他的父母那里看出他注定是一个孤独的孩子，而孤独的孩子总是很敏感。</p>
@@ -270,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9pfbhy8004aoslx4yx1ap81" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9pghh2x004aaglxjjio2h62" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -317,12 +328,14 @@
         <p><em>我们知道UDP是无连接的，接收和发送一个报文是独立的，而TCP则实现了一整套的诸如流量控制和拥塞控制机制，保证连接的可靠性。</em></p>
 <hr>
 <p>在本文中，你将了解在Socket API中如何发送一个空的UDP报文，并且通过tcpdump抓取后用wireshark查看报文内容。</p>
-<p>本文缘起对recvfrom的返回值的困惑，因为在TCP中，用recv或者read函数，我们可以通过其返回值是否为0，来判断对端的连接状态，是则表示对端关闭写通道，更可能的情况是close掉了连接。<br>但是在UDP中很少见到recvfrom的返回值是0，在man手册中，只说了TCP的recv保留0以指示对端关闭的情况，这个TCP包是空的，因为只需要TCP头部的FIN信息。</p>
-<p>所以，动手看看吧！<br>recvfrom返回0表示有数据包达到，但是数据部分为空，在wireshark中看到，UDP的长度字段为8，正好是UDP的头部长度，数据部分的确为空。</p>
-<p>下图是通过sendto函数广播的空UDP报文：<br><img src="/images/udp0.png" alt="udp空数据" title="udp空数据"></p>
+<p>本文缘起对recvfrom的返回值的困惑，因为在TCP中，用recv或者read函数，我们可以通过其返回值是否为0，来判断对端的连接状态，是则表示对端关闭写通道，更可能的情况是close掉了连接。<br>
+但是在UDP中很少见到recvfrom的返回值是0，在man手册中，只说了TCP的recv保留0以指示对端关闭的情况，这个TCP包是空的，因为只需要TCP头部的FIN信息。</p>
+<p>所以，动手看看吧！<br>
+recvfrom返回0表示有数据包达到，但是数据部分为空，在wireshark中看到，UDP的长度字段为8，正好是UDP的头部长度，数据部分的确为空。</p>
+<p>下图是通过sendto函数广播的空UDP报文：<br>
+<img src="/images/udp0.png" alt="udp空数据" title="udp空数据"></p>
 <p>发送使用sendto，只是设置发送的长度为0，发现返回值为0；同样，接收使用recvfrom，接收广播的消息，发现当空数据包达到时，返回值为0。如下：</p>
-<p><code>sendto(sockfd, buffer, 0, 0, (struct sockaddr *)&amp;amp;brctaddr, addrsize);
-recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
+<p><code>sendto(sockfd, buffer, 0, 0, (struct sockaddr *)&amp;amp;brctaddr, addrsize); recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
 <p>另外在广播过程中，使用<code>tcpdump udp port 5001 -w test.pcap</code>监听5001端口的流量，并保存在test.pcap中供wireshark查看。</p>
 <p>实验结束。</p>
 <hr>
@@ -331,7 +344,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9pfbhv6001zoslxhqt4oe3w" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9pghgzx001zaglxfx9tyi3o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/">Network</a></li></ul>
@@ -371,13 +384,17 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。<br>另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例子，比如计算同样位数的斐波那契数列，node的性能超过java，也曾有公司把网站用node重写，相比ruby，服务器削减了十倍，从中可见一斑。<br>node的一大特色就是异步io，我们知道，在网络服务中，服务进程大多是io密集型的，如果使用阻塞io库，进程将经常等待io完成，明白点说，在操作系统中，当一个进程被阻塞时，调度器会在就绪队列中选一个占用cpu进行执行，io一般又相当费时，当对于cpu这个计算资源而言，此进程就浪费掉了一部分时间片，从而影响性能，在需要尽量实时的服务上尤为明显。</p>
+        <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。</p>
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2>
+<p>node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。<br>
+另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例子，比如计算同样位数的斐波那契数列，node的性能超过java，也曾有公司把网站用node重写，相比ruby，服务器削减了十倍，从中可见一斑。<br>
+node的一大特色就是异步io，我们知道，在网络服务中，服务进程大多是io密集型的，如果使用阻塞io库，进程将经常等待io完成，明白点说，在操作系统中，当一个进程被阻塞时，调度器会在就绪队列中选一个占用cpu进行执行，io一般又相当费时，当对于cpu这个计算资源而言，此进程就浪费掉了一部分时间片，从而影响性能，在需要尽量实时的服务上尤为明显。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9pfbhws0039oslx8bstlwd8" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9pghh1v0039aglxjm5g39nd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -422,7 +439,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
 <p>解决方法如下：</p>
 <p>前往<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy</a>下载适合自己版本（我的是cp36，对应python3.6）的numoy+mkl（mkl是intel math kernal lib的意思，估计由于这样的原因，这种打包的numpy无法使用pip官方安装，也即就算pip install numpy成功了，当import scipy的时候，执行仍然报错，报错原因就是找不到numpy+mkl）</p>
 <p>我用的校园网，实际下载速度只有15KB，而且经常断线且服务器不支持断点续传，所以很无奈。当想到有国内国外的vps，就挂上去看了下，使用</p>
-<p>[c]wget <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c</a>]</p>
+<p>[c]wget <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl%5B/c%5D" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/xuoh7y4k/numpy-1.13.0rc1+mkl-cp36-cp36m-win32.whl[/c]</a></p>
 <p>发现404错误，用curl同样无法下载，苦闷中，发现用这个地址放到浏览器可以直接下载，所以应该是服务器屏蔽bot下载了，在wget后加</p>
 <p>[c]–user-agent=&quot;Mozilla/5.0&quot; [/c]</p>
 <p>即可。</p>
@@ -432,7 +449,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9pfbhvc0025oslxlsx8kvmi" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9pghh040025aglxy2as6oe6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -473,7 +490,8 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>人这东西，要学会与自己相处，与欲望同行，无论魏晋。<br>欲望是什么？</p>
+<p>人这东西，要学会与自己相处，与欲望同行，无论魏晋。<br>
+欲望是什么？</p>
 <p>软件不足，还想要更多更好的硬件。</p>
 <p>在物质领域，这也是人们生生不息的追求吧。</p>
 </blockquote>
@@ -488,7 +506,7 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
 <p>一些细节被永远的抹杀了，走着走着就忘记了曾经的自己（真实的）。</p>
 </blockquote>
 <p>–6.26</p>
-<p>&nbsp;</p>
+<p> </p>
 <blockquote>
 <p>火已燃，心为之动，愿无悔。</p>
 </blockquote>
@@ -503,12 +521,12 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
 <p>我更倾向于成为一个学者。</p>
 </blockquote>
 <p>–7.03</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9pfbhxs003xoslx8g506i23" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9pghh2j003xaglxomxqs0ya" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -549,13 +567,13 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
     <div class="article-entry" itemprop="articleBody">
       
         <p>apt-get是debian下的简易安装工具，可以解决依赖问题，但在使用过程中，也遇到一些问题，与大家分享：</p>
-<p><code>apt-get install xxx</code>之后，如果需要卸载此包，那么通过<code>apt-get remove xxx</code>之后，只是删除了二进制文件而已，还有配置和数据文件没有删除，这往往给我们带来麻烦，可以通过<code>apt-get  purge xxx</code>删除所有的关于包xxx的内容，另外，如果想同时删除安装xxx时安装的依赖包，可以通过<code>apt-get autoremove</code>来完全去除依赖。</p>
+<p><code>apt-get install xxx</code>之后，如果需要卸载此包，那么通过<code>apt-get remove xxx</code>之后，只是删除了二进制文件而已，还有配置和数据文件没有删除，这往往给我们带来麻烦，可以通过<code>apt-get purge xxx</code>删除所有的关于包xxx的内容，另外，如果想同时删除安装xxx时安装的依赖包，可以通过<code>apt-get autoremove</code>来完全去除依赖。</p>
 <p>另外推荐一个安装工具aptitude，它是apt-get的图形化版本，但是可以简单的解决删除安装包和依赖的问题：<code>aptitude remove xxx</code>，使用此方法的前提是通过aptitude安装xxx，即<code>aptitude install xxx</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9pfbhu30016oslxenteuikr" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9pghgys0016aglx319z7tkh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
@@ -609,12 +627,12 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
 <p>另外的步骤按照<a href="https://myard.org/runkingblog/2017/04/mpich-3-x-ealy-install-guide/" target="_blank" rel="noopener">第一篇文章</a>操作即可。</p>
 <p>通过此方法安装的mpich版本为3.0.5，并非最新，可以通过以下命令查看：</p>
 <p>[c]mpicc -v [/c]</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9pfbhwc002voslxu26skbg1" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9pghh1i002xaglxzopmzs73" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPICH/">MPICH</a></li></ul>
@@ -659,77 +677,80 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
 <ul>
 <li>下载最新版本：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>wget <a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c" target="_blank" rel="noopener">http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c</a>]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>wget <a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz%5B/c%5D" target="_blank" rel="noopener">http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c]</a></p>
 <ul>
 <li>解压到本地目录并进入：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>tar xzvf mpich-3.2.tar.gz[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>cd mpich-3.2[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>tar xzvf mpich-3.2.tar.gz[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>cd mpich-3.2[/c]</p>
 <ul>
 <li>执行配置shell生成Makefile (此处安装在master用户的mpich目录下，你可以相应的更改；并且不适用fortran）：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> ./configure –prefix=/home/master/mpich –disable-fortran[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a> ./configure --prefix=/home/master/mpich --disable-fortran[/c]</p>
 <ul>
 <li>make编译（如果没有此命令，执行apt-get install make -y即可）：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>make 2&amp;amp;1 |tee make.log[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>make 2&amp;amp;1 |tee make.log[/c]</p>
 <ul>
 <li>安装程序（保存输出日志便于查看安装位置）：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>make install |tee makeinstall.log[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>make install |tee makeinstall.log[/c]</p>
 <ul>
 <li>添加永久的环境变量：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim /etc/environment[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>vim /etc/environment[/c]</p>
 <p>添加:</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>source /etc/environment[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>source /etc/environment[/c]</p>
 <ul>
 <li>查看安装是否成功：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>which mpicc[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>which mpiexec[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>which mpicc[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>which mpiexec[/c]</p>
 <ul>
 <li>查看版本信息：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpicc -v[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>mpicc -v[/c]</p>
 <ul>
-<li>执行测试程序：<br>在解压的安装包里面，找到examples目录，为了方便可以复制到master家目录的examples下；</li>
+<li>执行测试程序：<br>
+在解压的安装包里面，找到examples目录，为了方便可以复制到master家目录的examples下；</li>
 </ul>
 <p>在家目录下执行：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpiexec -n 1 examples/cpi[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>mpiexec -n 1 examples/cpi[/c]</p>
 <p>这是一个计算圆周率的程序，如果一切就绪，就可以看到正常的计算结果.</p>
 <ul>
-<li><p>另外还需要设置无密码的ssh登录，让master的mpd可以顺利访问到其他节点（本文为一个slave）：<a href="http://www.linuxproblem.org/art_9.html" target="_blank" rel="noopener">参考这篇文章</a></p>
+<li>
+<p>另外还需要设置无密码的ssh登录，让master的mpd可以顺利访问到其他节点（本文为一个slave）：<a href="http://www.linuxproblem.org/art_9.html" target="_blank" rel="noopener">参考这篇文章</a></p>
 </li>
-<li><p>之后测试集群环境：</p>
+<li>
+<p>之后测试集群环境：</p>
 </li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>cd ~[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim mpd.hosts[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>cd ~[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>vim mpd.hosts[/c]</p>
 <p>添加（node1为master，冒号后面的2表示此机器可以执行两个进程，可以自行设置）：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>node1:2[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>node2:2[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>node1:2[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>node2:2[/c]</p>
 <p>添加hosts信息：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim /etc/hosts[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>vim /etc/hosts[/c]</p>
 <p>添加：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> your_master_ip    node1[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> your_slave_ip     node2[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a> your_master_ip    node1[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a> your_slave_ip     node2[/c]</p>
 <p>之后可以互ping一下。</p>
 <p>现在可以正式测试了：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpiexec  -f  mpd.hosts  -n 2 examples/cpi[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>mpiexec  -f  mpd.hosts  -n 2 examples/cpi[/c]</p>
 <p>可以看到有两个节点都在运行这个程序，如果出现retrun 255的代码，并且看到file not found，应该是没有在slave上面添加可执行文件，通过scp可以完成，格式为：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>scp examples/cpi  master@node2:~/examples/[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>scp examples/cpi  master@node2:~/examples/[/c]</p>
 <p>也即把本地的cpi文件传到node2的examples下，之后就可以执行成功了。</p>
 <p>最后附上官方的<a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2-installguide.pdf" target="_blank" rel="noopener">安装文档</a>和<a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2-userguide.pdf" target="_blank" rel="noopener">用户手册</a>。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9pfbhw9002toslx4xezq9tq" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9pghh1d002taglxo8cmfty6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPICH/">MPICH</a></li></ul>
@@ -876,38 +897,6 @@ recvfrom(sockfd, buffer, 0, 0, NULL, NULL);</code></p>
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

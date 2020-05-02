@@ -8,19 +8,19 @@
   
   <title>PC速度瓶颈--为何入手SSD？ | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态">
+  <meta name="description" content="当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。 所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固">
 <meta name="keywords" content="计算机组成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PC速度瓶颈--为何入手SSD？">
 <meta property="og:url" content="https://hackeryard.github.io/2016/10/08/power-to-pc-using-ssd/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态">
+<meta property="og:description" content="当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。 所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://generalid.ml/wp-content/uploads/2016/10/posingcache-24x300.jpg">
 <meta property="og:updated_time" content="2020-05-01T14:57:05.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PC速度瓶颈--为何入手SSD？">
-<meta name="twitter:description" content="当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态">
+<meta name="twitter:description" content="当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。 所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固">
 <meta name="twitter:image" content="https://generalid.ml/wp-content/uploads/2016/10/posingcache-24x300.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
@@ -35,7 +35,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -115,14 +117,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。<br>所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态硬盘无疑会缩小速度差异，从而获得可以看得见的性能提升。但对于小内存机器，升级的首选还是加装内存或更换内存条，这样打开网页或者玩游戏的时候就不会因为内存小而使内存频繁地与硬盘交换数据，执行IO操作，从而导致速度变慢了。<br>现在的PC的CPU的利用率很低，也就是说有很多的性能没有用上，除非用于科学计算领域、数据挖掘等，当然大型游戏也是很占用CPU的。<br>鉴于此，近期准备入手一块三星SSD 256G。<br>PS：本人长期关注如何提升PC的速度，写一些评测之类。</p>
+        <p>当下PC的性能约束很大一部分在于机械硬盘速度与内存等高速器件的不匹配，虽然可以通过设计各个缓存来缓解速度差距，但是很耗内存的应用，如开虚拟机，多开网页等，会急剧占用内存，导致系统运行卡慢，人也痛苦不堪。<br>
+所以几年前就兴起了升级SSD的热潮，在当下SSD速度越来越快（顺序读写是sata、scsi机械硬盘的三五倍，随机读写是几万倍吧），价格越来越便宜的情况下（这得益于微电子行业的摩尔定律啊），换一块固态硬盘无疑会缩小速度差异，从而获得可以看得见的性能提升。但对于小内存机器，升级的首选还是加装内存或更换内存条，这样打开网页或者玩游戏的时候就不会因为内存小而使内存频繁地与硬盘交换数据，执行IO操作，从而导致速度变慢了。<br>
+现在的PC的CPU的利用率很低，也就是说有很多的性能没有用上，除非用于科学计算领域、数据挖掘等，当然大型游戏也是很占用CPU的。<br>
+鉴于此，近期准备入手一块三星SSD 256G。<br>
+PS：本人长期关注如何提升PC的速度，写一些评测之类。</p>
 <p>下图是<a href="http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait/" target="_blank" rel="noopener">CPU cache - Memory - HDD速度差异</a>的形象化表达，点击原图放大即可（在ns的世界里，ms就是个庞然大物！）</p>
 <p><a href="https://generalid.ml/wp-content/uploads/2016/10/posingcache.jpg" target="_blank" rel="noopener"><img src="https://generalid.ml/wp-content/uploads/2016/10/posingcache-24x300.jpg" alt="compare-cache-Memory-disk"></a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/08/power-to-pc-using-ssd/" data-id="ck9pfbhx2003joslxmluv8dc5" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/08/power-to-pc-using-ssd/" data-id="ck9pghh24003jaglx7pgpnvtq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机组成/">计算机组成</a></li></ul>
@@ -303,38 +309,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

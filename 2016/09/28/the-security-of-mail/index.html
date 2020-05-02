@@ -35,7 +35,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -115,7 +117,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>看到科学网《不安全的Email》一文，对可以直接伪造邮件发送方这件事感到震惊，为了证实可不可以直接用php直接伪造，所以就在主机上写了一个gotmail.php，答案是，马上收到了这份邮件，发送方的确是 billgates@microsoft.com，那么如果接受者不加注意，就可能中了仿冒者的诡计。</p>
+        <p>看到科学网《不安全的Email》一文，对可以直接伪造邮件发送方这件事感到震惊，为了证实可不可以直接用php直接伪造，所以就在主机上写了一个gotmail.php，答案是，马上收到了这份邮件，发送方的确是 <a href="mailto:billgates@microsoft.com" target="_blank" rel="noopener">billgates@microsoft.com</a>，那么如果接受者不加注意，就可能中了仿冒者的诡计。</p>
 <p>zoho邮箱自动把中国境内发的邮件当成spam，而qq邮箱就注重了真实邮件的鉴别，如图：</p>
 <p><img src="https://generalid.ml/wp-content/uploads/2016/09/spammail-300x81.png" alt="spammail"></p>
 <p>它会显示由一个远程主机的apache用户发送（伪造）。由于我没有搭建邮件服务器，没有mx记录，所以没解析成域名。</p>
@@ -125,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/28/the-security-of-mail/" data-id="ck9pfbhyk004moslxkvswq1bz" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/28/the-security-of-mail/" data-id="ck9pghh3a004maglx7ol8oquj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Security/">Security</a></li></ul>
@@ -306,38 +308,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

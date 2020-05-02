@@ -8,18 +8,18 @@
   
   <title>node实践 0x00 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。 概述node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例">
+  <meta name="description" content="前言 接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。  概述 node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。 另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者">
 <meta name="keywords" content="Node">
 <meta property="og:type" content="article">
 <meta property="og:title" content="node实践 0x00">
 <meta property="og:url" content="https://hackeryard.github.io/2017/05/16/node-000/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="前言接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。 概述node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例">
+<meta property="og:description" content="前言 接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。  概述 node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。 另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-01T14:56:37.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node实践 0x00">
-<meta name="twitter:description" content="前言接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。 概述node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例">
+<meta name="twitter:description" content="前言 接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。  概述 node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。 另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -113,13 +115,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。<br>另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例子，比如计算同样位数的斐波那契数列，node的性能超过java，也曾有公司把网站用node重写，相比ruby，服务器削减了十倍，从中可见一斑。<br>node的一大特色就是异步io，我们知道，在网络服务中，服务进程大多是io密集型的，如果使用阻塞io库，进程将经常等待io完成，明白点说，在操作系统中，当一个进程被阻塞时，调度器会在就绪队列中选一个占用cpu进行执行，io一般又相当费时，当对于cpu这个计算资源而言，此进程就浪费掉了一部分时间片，从而影响性能，在需要尽量实时的服务上尤为明显。</p>
+        <h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>接触node这十多天来，想想因为网站比赛的缘故，开始较为系统的学前后端，从阮一峰老师的博客得知他也在使用node开发，所以更加正好试试node进行开发。</p>
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2>
+<p>node又称nodejs，它提供了有别于浏览器的js执行环境，通过添加硬盘和网络io库的方式让js支持后端运行，而不必束缚在浏览器里处理UI。<br>
+另外Google v8引擎给了node强劲的性能，在《深入浅出Node.js》中，作者给出很多例子，比如计算同样位数的斐波那契数列，node的性能超过java，也曾有公司把网站用node重写，相比ruby，服务器削减了十倍，从中可见一斑。<br>
+node的一大特色就是异步io，我们知道，在网络服务中，服务进程大多是io密集型的，如果使用阻塞io库，进程将经常等待io完成，明白点说，在操作系统中，当一个进程被阻塞时，调度器会在就绪队列中选一个占用cpu进行执行，io一般又相当费时，当对于cpu这个计算资源而言，此进程就浪费掉了一部分时间片，从而影响性能，在需要尽量实时的服务上尤为明显。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9pfbhws0039oslx8bstlwd8" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9pghh1v0039aglxjm5g39nd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -300,38 +306,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

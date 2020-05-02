@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -115,7 +117,7 @@
       
         <p>很有意思的大学，到最后，慢慢的变得无助，变得潦草，这是我一直在思考的问题，却也无可避免的走向这种低落。也许只有这样才能看清一些东西，避免无谓的感觉良好。</p>
 <p>在这学期，我还是得到了一些宝贵的东西，其中有我喜欢的专业课，它们构建了整个计算机的底层，为社会各行各业提供基础设施提供革新的动力，有我非常喜爱的歌手，但是很可惜，他走的时候我才发现他，有我的室友，夜谈会的主持者（现在他们已双双回家，留我写博客了），最后，还有暑实队的朋友们，有图像小组的队友，他们的存在给了我一些标记，让我更加记住一起走过的路。</p>
-<p>先来谈谈专业课，通信与网络看了全书，最后在知乎上被颠覆，说要看另一本自上而下设计（也是Forouzan的作品），也就是应该从上层应用开始讲起，这样贴近生活和应用，可以让以后的学习就跟设计产品一样—-怎么实现这种应用呢？假期应该读读这本书，还推荐一本经典的老师常说的谢希仁老先生的教材。</p>
+<p>先来谈谈专业课，通信与网络看了全书，最后在知乎上被颠覆，说要看另一本自上而下设计（也是Forouzan的作品），也就是应该从上层应用开始讲起，这样贴近生活和应用，可以让以后的学习就跟设计产品一样----怎么实现这种应用呢？假期应该读读这本书，还推荐一本经典的老师常说的谢希仁老先生的教材。</p>
 <p>接着说说操作系统（OS），这也是我喜欢的课程，只是觉得老师不给力，没有增进自己对OS的兴趣和更深的理解（理解是后话，考试前看书还是可以理解一大半的）。我觉得老师的责任就是，鼓励学生思考和发问，尽己所能帮助学生解开疑惑，教学上尽量有趣一点，反正自己有学识，对学科有深刻的理解，那么为什么还要用死板的语言表述出来呢？要是我，肯定会解释的通俗一点，有趣一点，而且最重要的，让听众觉得这是能够理解的，好理解的，给他们信心。</p>
 <p>数据库，刚考完这门，不说成败。老师很好，这个好体现在他的独立上，我想，他也是从一个普通的学生，靠着钻研发家的。那本权威的教材在他眼里漏洞百出（比如事务基础、触发器、存储过程等讲解的顺序就有问题，没解释事务就开始讲触发器了），很有意思的一个人，当然我也是学到了很多东西的，我也很希望以后能有编程的课，因为以后走上业务岗位，这个可能是关键的，但很可惜，不会有这些课了，顶多一个课设罢了。</p>
 <p>数论，作为密码学的数学基础，数论让我可以较轻易的理解RSA，理解DH密钥交换，让我知道素数的神奇和伟大，然后知道它们的背后，是无尽的艰涩的推理，而且推理一遍忘记一遍，我们往往只记得住定理本身，却忘记了定理的基本证明，也就是背后的思想。数论老师人过中年，推理能力变弱了一点，以至于室友疯狂回答老师的疑问，也算是一番胜景，一种美谈。</p>
@@ -132,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/11/to-the-third-semester/" data-id="ck9pfbhyq004roslxiuv0mpnx" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/11/to-the-third-semester/" data-id="ck9pghh3f004raglxv4c5nqyi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -313,38 +315,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

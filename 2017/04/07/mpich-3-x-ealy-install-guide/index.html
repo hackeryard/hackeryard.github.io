@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -118,77 +120,80 @@
 <ul>
 <li>下载最新版本：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>wget <a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c" target="_blank" rel="noopener">http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c</a>]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>wget <a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz%5B/c%5D" target="_blank" rel="noopener">http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz[/c]</a></p>
 <ul>
 <li>解压到本地目录并进入：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>tar xzvf mpich-3.2.tar.gz[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>cd mpich-3.2[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>tar xzvf mpich-3.2.tar.gz[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>cd mpich-3.2[/c]</p>
 <ul>
 <li>执行配置shell生成Makefile (此处安装在master用户的mpich目录下，你可以相应的更改；并且不适用fortran）：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> ./configure –prefix=/home/master/mpich –disable-fortran[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a> ./configure --prefix=/home/master/mpich --disable-fortran[/c]</p>
 <ul>
 <li>make编译（如果没有此命令，执行apt-get install make -y即可）：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>make 2&amp;amp;1 |tee make.log[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>make 2&amp;amp;1 |tee make.log[/c]</p>
 <ul>
 <li>安装程序（保存输出日志便于查看安装位置）：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>make install |tee makeinstall.log[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>make install |tee makeinstall.log[/c]</p>
 <ul>
 <li>添加永久的环境变量：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim /etc/environment[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>vim /etc/environment[/c]</p>
 <p>添加:</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>source /etc/environment[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>source /etc/environment[/c]</p>
 <ul>
 <li>查看安装是否成功：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>which mpicc[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>which mpiexec[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>which mpicc[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>which mpiexec[/c]</p>
 <ul>
 <li>查看版本信息：</li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpicc -v[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>mpicc -v[/c]</p>
 <ul>
-<li>执行测试程序：<br>在解压的安装包里面，找到examples目录，为了方便可以复制到master家目录的examples下；</li>
+<li>执行测试程序：<br>
+在解压的安装包里面，找到examples目录，为了方便可以复制到master家目录的examples下；</li>
 </ul>
 <p>在家目录下执行：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpiexec -n 1 examples/cpi[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>mpiexec -n 1 examples/cpi[/c]</p>
 <p>这是一个计算圆周率的程序，如果一切就绪，就可以看到正常的计算结果.</p>
 <ul>
-<li><p>另外还需要设置无密码的ssh登录，让master的mpd可以顺利访问到其他节点（本文为一个slave）：<a href="http://www.linuxproblem.org/art_9.html" target="_blank" rel="noopener">参考这篇文章</a></p>
+<li>
+<p>另外还需要设置无密码的ssh登录，让master的mpd可以顺利访问到其他节点（本文为一个slave）：<a href="http://www.linuxproblem.org/art_9.html" target="_blank" rel="noopener">参考这篇文章</a></p>
 </li>
-<li><p>之后测试集群环境：</p>
+<li>
+<p>之后测试集群环境：</p>
 </li>
 </ul>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>cd ~[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim mpd.hosts[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>cd ~[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>vim mpd.hosts[/c]</p>
 <p>添加（node1为master，冒号后面的2表示此机器可以执行两个进程，可以自行设置）：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>node1:2[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>node2:2[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>node1:2[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>node2:2[/c]</p>
 <p>添加hosts信息：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>vim /etc/hosts[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>vim /etc/hosts[/c]</p>
 <p>添加：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> your_master_ip    node1[/c]</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a> your_slave_ip     node2[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a> your_master_ip    node1[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a> your_slave_ip     node2[/c]</p>
 <p>之后可以互ping一下。</p>
 <p>现在可以正式测试了：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>mpiexec  -f  mpd.hosts  -n 2 examples/cpi[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>mpiexec  -f  mpd.hosts  -n 2 examples/cpi[/c]</p>
 <p>可以看到有两个节点都在运行这个程序，如果出现retrun 255的代码，并且看到file not found，应该是没有在slave上面添加可执行文件，通过scp可以完成，格式为：</p>
-<p><a href="/home/master/mpich/bin:/home/master/mpich/include[/c]">c</a>scp examples/cpi  master@node2:~/examples/[/c]</p>
+<p><a href="/home/master/mpich/bin:/home/master/mpich/include%5B/c%5D">c</a>scp examples/cpi  master@node2:~/examples/[/c]</p>
 <p>也即把本地的cpi文件传到node2的examples下，之后就可以执行成功了。</p>
 <p>最后附上官方的<a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2-installguide.pdf" target="_blank" rel="noopener">安装文档</a>和<a href="http://www.mpich.org/static/downloads/3.2/mpich-3.2-userguide.pdf" target="_blank" rel="noopener">用户手册</a>。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9pfbhw9002toslx4xezq9tq" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-ealy-install-guide/" data-id="ck9pghh1d002taglxo8cmfty6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPICH/">MPICH</a></li></ul>
@@ -369,38 +374,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

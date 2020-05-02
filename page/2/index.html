@@ -28,7 +28,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -111,17 +113,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给定一个未排序的整数数组，找到最长递增子序列的个数。</p>
+        <h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h2>
+<p>给定一个未排序的整数数组，找到最长递增子序列的个数。</p>
 <p>示例 1:</p>
-<p>输入: [1,3,5,4,7]<br>输出: 2<br>解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。</p>
+<p>输入: [1,3,5,4,7]<br>
+输出: 2<br>
+解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。</p>
 <p>来源：<a href="https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence" target="_blank" rel="noopener">LeetCode</a></p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>计算LIS的个数，LIS的解法在<a href="/2020/04/26/lis">这里</a>。因为最长递推子序列的个数是不同的，分两种情况：1.LIS[i]是最大的LIS，但以i结尾的LIS个数有多个，在遍历的过程中，逐渐把刚好等于最大长度-1的，都加和起来，作为LIS[i]的序列个数；2.不同结尾的LIS可能都是最大值，则需要把这些也加和，作为最终的结果。</p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<p>计算LIS的个数，LIS的解法在<a href="/2020/04/26/lis">这里</a>。因为最长递推子序列的个数是不同的，分两种情况：1.LIS[i]是最大的LIS，但以i结尾的LIS个数有多个，在遍历的过程中，逐渐把刚好等于最大长度-1的，都加和起来，作为LIS[i]的序列个数；2.不同结尾的LIS可能都是最大值，则需要把这些也加和，作为最终的结果。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findNumberOfLIS</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n, <span class="number">1</span>);    <span class="comment">// 以j结尾的最大递增子序列的长度</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; count(n, <span class="number">1</span>); <span class="comment">// 以j结尾的最大递增子序列的个数</span></span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="comment">// 找到相同最大长度的加和起来</span></span><br><span class="line">                <span class="comment">// 这里如何判断最大长度？有更大的值赋值替换即可</span></span><br><span class="line">                <span class="keyword">if</span>(nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    <span class="keyword">if</span>(dp[j] &gt;= dp[i]) &#123; <span class="comment">// 赋值更新 长度采用j的长度</span></span><br><span class="line">                        dp[i] = dp[j] + <span class="number">1</span>;</span><br><span class="line">                        count[i] = count[j];</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(dp[j] + <span class="number">1</span> == dp[i]) &#123; <span class="comment">// 当前长度下刚好相等</span></span><br><span class="line">                        count[i] += count[j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            max_len = max(max_len, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(max_len == dp[i]) &#123;</span><br><span class="line">                cnt += count[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/number-of-lis/" data-id="ck9pfbhwu003boslxsp98fm3h" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/number-of-lis/" data-id="ck9pghh1x003baglxhva80sbh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -161,15 +167,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8）</p>
-<p>说明:<br>可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。<br>你算法的时间复杂度应该为 O(n2) 。<br>进阶: 你能将算法的时间复杂度降低到 O(nlogn) 吗?</p>
+        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>给定一个序列X=(X1,X2,…,Xm)，求X的最长递增子序列。（子序列可以是不连续的，比如{5,6,7,1,2,8}的LIS是5,6,7,8）</p>
+<p>说明:<br>
+可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。<br>
+你算法的时间复杂度应该为 O(n2) 。<br>
+进阶: 你能将算法的时间复杂度降低到 O(nlogn) 吗?</p>
 <p>来源：<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence" target="_blank" rel="noopener">LeetCode</a></p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>因为是数组，求数组的最优解，问题太大了，我们能不能划分一下，分成多个子问题？这里子问题是需要跟问题对应的，即与递增子序列对应，我们把子问题划分为(X1…Xi)，LIS[i]是以Xi为结尾的最长递增子序列，最优子结构利用了递增的性质，即比较当前结尾元素和所有子问题结尾元素的大小，如果大，则在子问题解的基础上加1。</p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<p>因为是数组，求数组的最优解，问题太大了，我们能不能划分一下，分成多个子问题？这里子问题是需要跟问题对应的，即与递增子序列对应，我们把子问题划分为(X1…Xi)，LIS[i]是以Xi为结尾的最长递增子序列，最优子结构利用了递增的性质，即比较当前结尾元素和所有子问题结尾元素的大小，如果大，则在子问题解的基础上加1。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    dp[i] = max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            max_len = max(max_len, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/lis/" data-id="ck9pfbhw1002loslxxwqw2ozw" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/lis/" data-id="ck9pghh15002laglxy78nvbi0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -209,15 +220,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入两个链表，找出它们的第一个公共节点。</p>
-<p>注意：<br>如果两个链表没有交点，返回null.<br>在返回结果后，两个链表仍须保持原有的结构。<br>可假定整个链表结构中没有循环。<br>程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。<br><img src="/images/getIntersectionNode.png" alt="公共节点"></p>
+        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>输入两个链表，找出它们的第一个公共节点。</p>
+<p>注意：<br>
+如果两个链表没有交点，返回null.<br>
+在返回结果后，两个链表仍须保持原有的结构。<br>
+可假定整个链表结构中没有循环。<br>
+程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。<br>
+<img src="/images/getIntersectionNode.png" alt="公共节点"></p>
 <p>来源：<a href="https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof" target="_blank" rel="noopener">LeetCode</a></p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>用hashset可以很快解决问题，即先把链表1的所有节点指针放入set，遍历链表2时，如果找到有相等的指针，则说明这就是第一个公共节点，遍历结束还没找找到，说明没有相交节点。但这种方法的空间复杂度是O(n)，如何找到O(1)的方法呢？这里O(1)必然是使用双指针，分别遍历两个链表，但因为两个链表长度的问题，一次遍历肯定不行，第二次遍历如何继续？<br>因为相交必须是严格的数学推导出的，我们把节点a1…a2的长度记为a，把b1…b3的长度记为b，把公共c1…c3的长度记为c，要判断是否相交，则通过a+c+b=b+c+a这个等式判断，即在链表1第一次遍历结束后，马上从链表2的开始位置继续遍历，链表2同理。在遍历的过程中比较指针是否相等。如果两个链表没有相交，第二次遍历时，会同时指向最后的null，返回null即可。</p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<p>用hashset可以很快解决问题，即先把链表1的所有节点指针放入set，遍历链表2时，如果找到有相等的指针，则说明这就是第一个公共节点，遍历结束还没找找到，说明没有相交节点。但这种方法的空间复杂度是O(n)，如何找到O(1)的方法呢？这里O(1)必然是使用双指针，分别遍历两个链表，但因为两个链表长度的问题，一次遍历肯定不行，第二次遍历如何继续？<br>
+因为相交必须是严格的数学推导出的，我们把节点a1…a2的长度记为a，把b1…b3的长度记为b，把公共c1…c3的长度记为c，要判断是否相交，则通过a+c+b=b+c+a这个等式判断，即在链表1第一次遍历结束后，马上从链表2的开始位置继续遍历，链表2同理。在遍历的过程中比较指针是否相等。如果两个链表没有相交，第二次遍历时，会同时指向最后的null，返回null即可。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        ListNode * p1 = headA;</span><br><span class="line">        ListNode * p2 = headB;</span><br><span class="line">        <span class="keyword">while</span>(p1 != p2) &#123;</span><br><span class="line">            p1 = p1 != <span class="literal">NULL</span> ? p1-&gt;next : headB;</span><br><span class="line">            p2 = p2 != <span class="literal">NULL</span> ? p2-&gt;next : headA;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/first-common-node-of-two-linked-list/" data-id="ck9pfbhuo001noslxolsu2eta" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/first-common-node-of-two-linked-list/" data-id="ck9pghgzf001naglx4o17mcqo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -257,17 +276,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
-<p>给定两个序列X=(X1,X2,…,Xm)和Y=(Y1,Y2,…,Yn)，求X和Y的最长公共子串。<br>例如：输入两个字符串acbac和acaccbabb，则最大连续子串为cba, 则返回长度3。</p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>参考之前关于<a href="/2020/04/25/lcs">最长公共子序列LCS</a>的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。<strong>此处动态规划表格存放的内容有所不同</strong>，LCS是比较子串，当前问题是为了使用连续子串这一条件，所以考虑设数组dp[i,j]表示以Xi和Yj结尾的最大公共连续子串的长度，如果Xi=Yj，则dp[i,j]=dp[i-1,j-1]+1，只需要再考虑dp[i-1,j-1]这个子问题，如果不相等，则dp[i,j]=0，如果i=0或j=0，说明有一个字符串已经结束了，则dp[i,j]=0。需要注意的是，dp的含义决定了最后的输出结果不是dp[m,n]，而必须在计算dp的过程中寻找最大值。</p>
-<p>递归+memo：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> memo[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="built_in">memset</span>(memo, <span class="number">0</span>, <span class="number">1001</span>*<span class="number">1001</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end_index;</span><br><span class="line">        lcs(text1, text2, memo, size1<span class="number">-1</span>, size2<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;text1.substr(end_index-max_len+<span class="number">1</span>, max_len);</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp; a, <span class="built_in">string</span> &amp; b, <span class="keyword">int</span> memo[][<span class="number">1001</span>], <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> &amp; max_len, <span class="keyword">int</span> &amp; end_index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span> || j == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 有一个字符串已经结束</span></span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] != <span class="number">-1</span>) <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        <span class="keyword">if</span>(a[i] == b[j]) &#123;</span><br><span class="line">            memo[i][j] = lcs(a, b, memo, i<span class="number">-1</span>, j<span class="number">-1</span>, max_len, end_index) + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            memo[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 此处这么做为了使lcs继续推进 不然遇到零就停下来了</span></span><br><span class="line">            lcs(a, b, memo, i, j<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">            lcs(a, b, memo, i<span class="number">-1</span>, j, max_len, end_index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] &gt; max_len) &#123;</span><br><span class="line">            max_len = memo[i][j];</span><br><span class="line">            end_index = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> memo[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr>
+        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<hr>
+<p>给定两个序列X=(X1,X2,…,Xm)和Y=(Y1,Y2,…,Yn)，求X和Y的最长公共子串。<br>
+例如：输入两个字符串acbac和acaccbabb，则最大连续子串为cba, 则返回长度3。</p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<p>参考之前关于<a href="/2020/04/25/lcs">最长公共子序列LCS</a>的解法，我们发现LCS是一种通用的公共子序列，而子串是一种连续的子序列，所以需要修改递推公式。<strong>此处动态规划表格存放的内容有所不同</strong>，LCS是比较子串，当前问题是为了使用连续子串这一条件，所以考虑设数组dp[i,j]表示以Xi和Yj结尾的最大公共连续子串的长度，如果Xi=Yj，则dp[i,j]=dp[i-1,j-1]+1，只需要再考虑dp[i-1,j-1]这个子问题，如果不相等，则dp[i,j]=0，如果i=0或j=0，说明有一个字符串已经结束了，则dp[i,j]=0。需要注意的是，dp的含义决定了最后的输出结果不是dp[m,n]，而必须在计算dp的过程中寻找最大值。</p>
+<p>递归+memo：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> memo[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="built_in">memset</span>(memo, <span class="number">0</span>, <span class="number">1001</span>*<span class="number">1001</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end_index;</span><br><span class="line">        lcs(text1, text2, memo, size1<span class="number">-1</span>, size2<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;text1.substr(end_index-max_len+<span class="number">1</span>, max_len);</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp; a, <span class="built_in">string</span> &amp; b, <span class="keyword">int</span> memo[][<span class="number">1001</span>], <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> &amp; max_len, <span class="keyword">int</span> &amp; end_index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span> || j == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 有一个字符串已经结束</span></span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] != <span class="number">-1</span>) <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        <span class="keyword">if</span>(a[i] == b[j]) &#123;</span><br><span class="line">            memo[i][j] = lcs(a, b, memo, i<span class="number">-1</span>, j<span class="number">-1</span>, max_len, end_index) + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            memo[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 此处这么做为了使lcs继续推进 不然遇到零就停下来了</span></span><br><span class="line">            lcs(a, b, memo, i, j<span class="number">-1</span>, max_len, end_index);</span><br><span class="line">            lcs(a, b, memo, i<span class="number">-1</span>, j, max_len, end_index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] &gt; max_len) &#123;</span><br><span class="line">            max_len = memo[i][j];</span><br><span class="line">            end_index = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> memo[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="解法二"><a class="markdownIt-Anchor" href="#解法二"></a> 解法二</h2>
+<hr>
 <p>自底向上的解法</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubstring</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="comment">// memset更高效 memset针对cpu指令集做了优化</span></span><br><span class="line">        <span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="number">1001</span>*<span class="number">1001</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end_index;</span><br><span class="line">        <span class="comment">// 从1开始 是为了把c[0,j]和c[i,0]留给空字符串用</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= size1; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= size2; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>]) &#123;</span><br><span class="line">                    dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 保存最大长度</span></span><br><span class="line">                <span class="keyword">if</span>(dp[i][j] &gt; max_len) &#123;</span><br><span class="line">                    max_len = dp[i][j];</span><br><span class="line">                    end_index = i<span class="number">-1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;text1.substr(end_index-max_len+<span class="number">1</span>, max_len);</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/" data-id="ck9pfbhtc000qoslxrrt8dhze" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/" data-id="ck9pghgy4000qaglx1kueft6y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -307,16 +331,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>翻转一棵二叉树。</p>
-<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line"></span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"></span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure></p>
+        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<p>翻转一棵二叉树。</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line"></span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  2     7</span><br><span class="line"> / \   / \</span><br><span class="line">1   3 6   9</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line"></span><br><span class="line">     4</span><br><span class="line">   /   \</span><br><span class="line">  7     2</span><br><span class="line"> / \   / \</span><br><span class="line">9   6 3   1</span><br></pre></td></tr></table></figure>
 <p>来源：<a href="https://leetcode-cn.com/problems/invert-binary-tree" target="_blank" rel="noopener">LeetCode</a></p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>从根节点的左右子树开始，互换两个节点的指针，完成根节点的翻转，再递归地翻转左右子树节点的左右节点。递归出口是到达树的底部。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">invertTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        TreeNode * temp = root-&gt;left;</span><br><span class="line">        root-&gt;left = root-&gt;right;</span><br><span class="line">        root-&gt;right = temp;</span><br><span class="line">        invertTree(root-&gt;right);</span><br><span class="line">        invertTree(root-&gt;left);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p>二叉树BFS，对遍历到的每一个节点，都对其左右节点进行翻转。<br>注意：此时push到队列的元素都非空，因为只有非空才会有对子节点翻转的必要。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">invertTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">            TreeNode * node = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            TreeNode * temp = node-&gt;left;</span><br><span class="line">            node-&gt;left = node-&gt;right;</span><br><span class="line">            node-&gt;right = temp;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left) q.push(node-&gt;left);</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right) q.push(node-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<p>从根节点的左右子树开始，互换两个节点的指针，完成根节点的翻转，再递归地翻转左右子树节点的左右节点。递归出口是到达树的底部。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">invertTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        TreeNode * temp = root-&gt;left;</span><br><span class="line">        root-&gt;left = root-&gt;right;</span><br><span class="line">        root-&gt;right = temp;</span><br><span class="line">        invertTree(root-&gt;right);</span><br><span class="line">        invertTree(root-&gt;left);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="解法二"><a class="markdownIt-Anchor" href="#解法二"></a> 解法二</h2>
+<p>二叉树BFS，对遍历到的每一个节点，都对其左右节点进行翻转。<br>
+注意：此时push到队列的元素都非空，因为只有非空才会有对子节点翻转的必要。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">invertTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">            TreeNode * node = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            TreeNode * temp = node-&gt;left;</span><br><span class="line">            node-&gt;left = node-&gt;right;</span><br><span class="line">            node-&gt;right = temp;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left) q.push(node-&gt;left);</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right) q.push(node-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/invert-tree/" data-id="ck9pfbhvf0028oslxa81kucd8" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/invert-tree/" data-id="ck9pghh0a002aaglx0m4861t3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -356,24 +387,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
-<p>给定两个字符串 text1 和 text2，返回这两个字符串的最长公共子序列的长度。</p>
-<p>一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</p>
-<p>示例 1:<br>输入：text1 = “abcde”, text2 = “ace”<br>输出：3<br>解释：最长公共子序列是 “ace”，它的长度为 3</p>
-<p>提示:<br>1 &lt;= text1.length &lt;= 1000<br>1 &lt;= text2.length &lt;= 1000<br>输入的字符串只含有小写英文字符。</p>
+        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<hr>
+<p>给定两个字符串 text1 和 text2，返回这两个字符串的最长公共子序列的长度。</p>
+<p>一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</p>
+<p>示例 1:<br>
+输入：text1 = “abcde”, text2 = “ace”<br>
+输出：3<br>
+解释：最长公共子序列是 “ace”，它的长度为 3</p>
+<p>提示:<br>
+1 &lt;= text1.length &lt;= 1000<br>
+1 &lt;= text2.length &lt;= 1000<br>
+输入的字符串只含有小写英文字符。</p>
 <p>来源：<a href="https://leetcode-cn.com/problems/longest-common-subsequence" target="_blank" rel="noopener">LeetCode</a></p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><hr>
-<p>动态规划思想的本质是动态表格(dynamic table)，使用动态规划必须满足两个条件：1.重复子问题，2.最优子结构，表格的思想是以空间换时间，把求解的所有子问题的解都保存下来，不用重复计算，最优子结构则保证了，原问题的解由子问题的组合构成，就可以写成递推公式，在较短的时间复杂度内求解。<br>针对LCS问题，把字符串a表示为(X1,X2,…,Xm)，字符串b表示为(Y1,Y2,…,Yn)，我们先看看能不能划分子问题：求a和b的LCS，可以定义为LCS[i,j]，其中i表示从X1到Xi的子串，j表示从Y1到Yj的子串，这里固定了字符串的起始索引1。为什么这么划分子问题？因为如果起始索引和结束索引都动态的话，那就更难解决了，更重要的是，我们求最长公共子序列，起始索引动态是没有意义的，因为起始索引大于1的子问题，其结果总会小于等于索引为1的子问题结果。<br>问题形式化之后，我们发现，如果Xi=Yj，则LCS[i,j]=LCS[i-1,j-1]+1，只需要再考虑LCS[i-1,j-1]这个子问题，如果不相等，则有两个子问题需要解决，LCS[i,j]=max(LCS[i,j-1], LCS[i-1,j])，如果i=0或j=0，说明有一个字符串已经结束了，则LCS[i,j]=0</p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<hr>
+<p>动态规划思想的本质是动态表格(dynamic table)，使用动态规划必须满足两个条件：1.重复子问题，2.最优子结构，表格的思想是以空间换时间，把求解的所有子问题的解都保存下来，不用重复计算，最优子结构则保证了，原问题的解由子问题的组合构成，就可以写成递推公式，在较短的时间复杂度内求解。<br>
+针对LCS问题，把字符串a表示为(X1,X2,…,Xm)，字符串b表示为(Y1,Y2,…,Yn)，我们先看看能不能划分子问题：求a和b的LCS，可以定义为LCS[i,j]，其中i表示从X1到Xi的子串，j表示从Y1到Yj的子串，这里固定了字符串的起始索引1。为什么这么划分子问题？因为如果起始索引和结束索引都动态的话，那就更难解决了，更重要的是，我们求最长公共子序列，起始索引动态是没有意义的，因为起始索引大于1的子问题，其结果总会小于等于索引为1的子问题结果。<br>
+问题形式化之后，我们发现，如果Xi=Yj，则LCS[i,j]=LCS[i-1,j-1]+1，只需要再考虑LCS[i-1,j-1]这个子问题，如果不相等，则有两个子问题需要解决，LCS[i,j]=max(LCS[i,j-1], LCS[i-1,j])，如果i=0或j=0，说明有一个字符串已经结束了，则LCS[i,j]=0</p>
 <p>解决递推公式问题，有两种方法，一种是自底向上，从求解小问题开始，逐渐求解整个问题，另一种是递归的方式，因为中途有很多重复子问题（如LCS[i-1,j-1]可能是LCS[i,j]的子问题，也可能LCS[i,j-1]的子问题），所以使用memo数组记录下这些子问题的解。</p>
 <p>以下是递归+memo的解法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">int</span> memo[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1001</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">1001</span>; j++) &#123;</span><br><span class="line">                memo[i][j] = <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lcs(text1, text2, memo, size1<span class="number">-1</span>, size2<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="built_in">string</span> &amp; a, <span class="built_in">string</span> &amp; b, <span class="keyword">int</span> memo[][<span class="number">1001</span>], <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span> || j == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 有一个字符串已经结束</span></span><br><span class="line">        <span class="keyword">if</span>(memo[i][j] != <span class="number">-1</span>) <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        <span class="keyword">if</span>(a[i] == b[j]) &#123;</span><br><span class="line">            memo[i][j] = lcs(a, b, memo, i<span class="number">-1</span>, j<span class="number">-1</span>) + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            memo[i][j] = max(lcs(a, b, memo, i<span class="number">-1</span>, j), lcs(a, b, memo, i, j<span class="number">-1</span>));</span><br><span class="line">            <span class="keyword">return</span> memo[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr>
+<h2 id="解法二"><a class="markdownIt-Anchor" href="#解法二"></a> 解法二</h2>
+<hr>
 <p>自底向上的解法</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(<span class="built_in">string</span> text1, <span class="built_in">string</span> text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp[<span class="number">1001</span>][<span class="number">1001</span>];</span><br><span class="line">        <span class="comment">// 对于dp数组的初始化</span></span><br><span class="line">        <span class="comment">// memset更高效 memset针对cpu指令集做了优化</span></span><br><span class="line">        <span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="number">1001</span>*<span class="number">1001</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">        <span class="keyword">int</span> size1 = text1.size();</span><br><span class="line">        <span class="keyword">int</span> size2 = text2.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= size1; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= size2; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>]) &#123;</span><br><span class="line">                    dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = max(dp[i][j<span class="number">-1</span>], dp[i<span class="number">-1</span>][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[size1][size2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/lcs/" data-id="ck9pfbhvr002foslxgzxw7jhi" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/lcs/" data-id="ck9pghh0z002faglxc8udbpe8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -413,20 +455,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
+        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<hr>
 <p>给定一个二叉树，检查它是否是镜像对称的。</p>
-<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   2</span><br><span class="line"> / \ / \</span><br><span class="line">3  4 4  3</span><br></pre></td></tr></table></figure></p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    1</span><br><span class="line">   / \</span><br><span class="line">  2   2</span><br><span class="line"> / \ / \</span><br><span class="line">3  4 4  3</span><br></pre></td></tr></table></figure>
 <p>来源：<a href="https://leetcode-cn.com/problems/symmetric-tree" target="_blank" rel="noopener">LeetCode</a></p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><hr>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<hr>
 <p>给定一个根节点，如何判断左右子树对称，设计一个递归函数，传递左右子树的根节点到递归函数，返回值是这两颗子树是否相等。在函数里，每次只比较两个子树的根节点是否相等，剩下的交给函数递归求解。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> helper(root-&gt;left, root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">helper</span><span class="params">(TreeNode * left, TreeNode * right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!left &amp;&amp; !right) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(!left || !right) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(left-&gt;val != right-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> helper(left-&gt;left, right-&gt;right) &amp;&amp; helper(left-&gt;right, right-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr>
-<p>既然对称的树，每一层都是符合对称的规则，那么能不能按照逐层判断的方式，层次遍历，每一层判断过程中，如果检测到不对称，则立即返回，如果最后遍历完，仍然没有不对称的，则说明树是对称的。<br>注意：此处push到队列的后续节点，可以是null，null是参与比较是否对称的。而一般的二叉树层次遍历只输出非null的节点。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root-&gt;left);</span><br><span class="line">        q.push(root-&gt;right);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">            <span class="comment">// 每次取对称位置的两个节点判断</span></span><br><span class="line">            TreeNode *node1 = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            TreeNode *node2 = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            <span class="comment">// 继续判断别的对称位置的节点</span></span><br><span class="line">            <span class="keyword">if</span>(!node1 &amp;&amp; !node2) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(!node1 || !node2) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(node1-&gt;val != node2-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            q.push(node1-&gt;left);</span><br><span class="line">            q.push(node2-&gt;right);</span><br><span class="line">            q.push(node1-&gt;right);</span><br><span class="line">            q.push(node2-&gt;left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
+<h2 id="解法二"><a class="markdownIt-Anchor" href="#解法二"></a> 解法二</h2>
+<hr>
+<p>既然对称的树，每一层都是符合对称的规则，那么能不能按照逐层判断的方式，层次遍历，每一层判断过程中，如果检测到不对称，则立即返回，如果最后遍历完，仍然没有不对称的，则说明树是对称的。<br>
+注意：此处push到队列的后续节点，可以是null，null是参与比较是否对称的。而一般的二叉树层次遍历只输出非null的节点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root-&gt;left);</span><br><span class="line">        q.push(root-&gt;right);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty()) &#123;</span><br><span class="line">            <span class="comment">// 每次取对称位置的两个节点判断</span></span><br><span class="line">            TreeNode *node1 = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            TreeNode *node2 = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            <span class="comment">// 继续判断别的对称位置的节点</span></span><br><span class="line">            <span class="keyword">if</span>(!node1 &amp;&amp; !node2) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(!node1 || !node2) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(node1-&gt;val != node2-&gt;val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            q.push(node1-&gt;left);</span><br><span class="line">            q.push(node2-&gt;right);</span><br><span class="line">            q.push(node1-&gt;right);</span><br><span class="line">            q.push(node2-&gt;left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/symmetric-tree/" data-id="ck9pfbhxy0044oslxwfa89jtb" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/symmetric-tree/" data-id="ck9pghh2p0044aglxzptx865f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -466,23 +513,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><hr>
+        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<hr>
 <p>反转一个单链表。</p>
-<p>示例:<br>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL<br>进阶:<br>你可以迭代或递归地反转链表。你能否用两种方法解决这道题？</p>
+<p>示例:<br>
+输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>
+输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL<br>
+进阶:<br>
+你可以迭代或递归地反转链表。你能否用两种方法解决这道题？</p>
 <p>来源：<a href="https://leetcode-cn.com/problems/reverse-linked-list" target="_blank" rel="noopener">LeetCode</a></p>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><hr>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<hr>
 <p>从前往后，每次反转后一个节点，维持两个指针prev和last，分别指向第一个和第二个节点，依次后移，直到链表结束同时因为last反转后，下一个节点的连接丢失，所以必须维持一个临时指针，保存last的下一个节点。结束时，置head节点为NULL。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode * prev = head;</span><br><span class="line">        ListNode * last = head-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(last) &#123;</span><br><span class="line">            ListNode * temp = last-&gt;next;</span><br><span class="line">            last-&gt;next = prev;</span><br><span class="line">            prev = last;</span><br><span class="line">            last = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><hr>
+<h2 id="解法二"><a class="markdownIt-Anchor" href="#解法二"></a> 解法二</h2>
+<hr>
 <p>反转链表有点像栈，最简单的思路是节点指针存放在栈中，出栈时依次指向下一个在栈顶中的元素。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        <span class="built_in">stack</span>&lt;ListNode*&gt; s;</span><br><span class="line">        <span class="keyword">while</span>(head) &#123;</span><br><span class="line">            s.push(head);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode * cur; <span class="comment">// 工作指针</span></span><br><span class="line">        ListNode * newhead = s.top(); <span class="comment">// 最开始的位置</span></span><br><span class="line">        <span class="keyword">while</span>(!s.empty()) &#123;</span><br><span class="line">            cur = s.top();</span><br><span class="line">            s.pop();</span><br><span class="line">            cur-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">if</span>(!s.empty()) &#123;</span><br><span class="line">                cur-&gt;next = s.top();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><hr>
-<p>与栈的解法类似，可以用递归的方式模拟栈。递归首先要找出能递归的子问题，子问题的结构在递归时需要保持一致，每次递归都完成一点工作，最后递归过程结束时，就得到了问题的解。<br>反转链表中，首先依次递归到底部，找到结尾节点作为返回值，之后因为从倒数第二个节点开始，用p-&gt;next-&gt;next=p的方式完成后一个节点到当前节点的反转，递归结束退回到head。注意每次递归下一个节点返回，都把它的next置位nullptr，这是为了最后不用单独置head-&gt;next=nullptr，保持递归的结构。</p>
+<h2 id="解法三"><a class="markdownIt-Anchor" href="#解法三"></a> 解法三</h2>
+<hr>
+<p>与栈的解法类似，可以用递归的方式模拟栈。递归首先要找出能递归的子问题，子问题的结构在递归时需要保持一致，每次递归都完成一点工作，最后递归过程结束时，就得到了问题的解。<br>
+反转链表中，首先依次递归到底部，找到结尾节点作为返回值，之后因为从倒数第二个节点开始，用p-&gt;next-&gt;next=p的方式完成后一个节点到当前节点的反转，递归结束退回到head。注意每次递归下一个节点返回，都把它的next置位nullptr，这是为了最后不用单独置head-&gt;next=nullptr，保持递归的结构。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode * newhead = reverseList(head-&gt;next);</span><br><span class="line">        head-&gt;next-&gt;next = head;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> newhead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck9pfbhx5003noslxhp6ybphi" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck9pghh29003naglxsrymfb5y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -522,63 +578,78 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Vim快捷键："><a href="#Vim快捷键：" class="headerlink" title="Vim快捷键："></a>Vim快捷键：</h2><ul>
+        <h2 id="vim快捷键"><a class="markdownIt-Anchor" href="#vim快捷键"></a> Vim快捷键：</h2>
+<ul>
 <li>跳到第一行  :1 或 gg</li>
-<li>跳到最后一行  :$ 或 Shift+g</li>
+<li>跳到最后一行  😒 或 Shift+g</li>
 <li>复制  yy</li>
-<li>删除  dd </li>
-<li>撤销  U </li>
-<li>粘贴  P </li>
+<li>删除  dd</li>
+<li>撤销  U</li>
+<li>粘贴  P</li>
 </ul>
-<h2 id="加载Python自带Web-Server："><a href="#加载Python自带Web-Server：" class="headerlink" title="加载Python自带Web Server："></a>加载Python自带Web Server：</h2><ul>
+<h2 id="加载python自带web-server"><a class="markdownIt-Anchor" href="#加载python自带web-server"></a> 加载Python自带Web Server：</h2>
+<ul>
 <li>python -m SimpleHTTPServer 80</li>
 <li>python3 -m http.server 80</li>
 </ul>
-<h2 id="Webstorm快捷键"><a href="#Webstorm快捷键" class="headerlink" title="Webstorm快捷键"></a>Webstorm快捷键</h2><ul>
+<h2 id="webstorm快捷键"><a class="markdownIt-Anchor" href="#webstorm快捷键"></a> Webstorm快捷键</h2>
+<ul>
 <li>Ctrl + Alt + L 格式化代码</li>
 <li>双击shift 全局查找</li>
-<li>快速代码补全 emmet </li>
+<li>快速代码补全 emmet</li>
 <li>快速生成框架 !html</li>
 </ul>
-<h2 id="Onenote使用笔记"><a href="#Onenote使用笔记" class="headerlink" title="Onenote使用笔记"></a>Onenote使用笔记</h2><ul>
+<h2 id="onenote使用笔记"><a class="markdownIt-Anchor" href="#onenote使用笔记"></a> Onenote使用笔记</h2>
+<ul>
 <li>截图：Win+shift+S</li>
 </ul>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul>
+<h2 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h2>
+<ul>
 <li>重新加载配置：nginx -s reload</li>
 <li>快速关闭：nginx -s stop</li>
 <li>安全关闭：nginx -s quit</li>
 </ul>
-<h2 id="FFmpeg"><a href="#FFmpeg" class="headerlink" title="FFmpeg"></a>FFmpeg</h2><h2 id="celery-4-in-Windows"><a href="#celery-4-in-Windows" class="headerlink" title="celery 4 in Windows"></a>celery 4 in Windows</h2><ul>
-<li>不支持pool：celery -A your_app_name worker –pool=solo -l info</li>
+<h2 id="ffmpeg"><a class="markdownIt-Anchor" href="#ffmpeg"></a> FFmpeg</h2>
+<h2 id="celery-4-in-windows"><a class="markdownIt-Anchor" href="#celery-4-in-windows"></a> celery 4 in Windows</h2>
+<ul>
+<li>不支持pool：celery -A your_app_name worker --pool=solo -l info</li>
 </ul>
-<h2 id="lsof：list-open-files"><a href="#lsof：list-open-files" class="headerlink" title="lsof：list open files"></a>lsof：list open files</h2><p>查看进程打开的文件列表</p>
+<h2 id="lsoflist-open-files"><a class="markdownIt-Anchor" href="#lsoflist-open-files"></a> lsof：list open files</h2>
+<p>查看进程打开的文件列表</p>
 <ul>
 <li>lsof -c -p pid</li>
 <li>lsof -c program</li>
 </ul>
-<h2 id="获取当前缓存（加载）的动态链接库："><a href="#获取当前缓存（加载）的动态链接库：" class="headerlink" title="获取当前缓存（加载）的动态链接库："></a>获取当前缓存（加载）的动态链接库：</h2><ul>
+<h2 id="获取当前缓存加载的动态链接库"><a class="markdownIt-Anchor" href="#获取当前缓存加载的动态链接库"></a> 获取当前缓存（加载）的动态链接库：</h2>
+<ul>
 <li>ldconfig -p | grep libssh</li>
 </ul>
-<h2 id="查看可执行文件所依赖的库："><a href="#查看可执行文件所依赖的库：" class="headerlink" title="查看可执行文件所依赖的库："></a>查看可执行文件所依赖的库：</h2><ul>
+<h2 id="查看可执行文件所依赖的库"><a class="markdownIt-Anchor" href="#查看可执行文件所依赖的库"></a> 查看可执行文件所依赖的库：</h2>
+<ul>
 <li>ldd 绝对路径</li>
 <li>（程序的某个section中会记录动态链接的信息）</li>
 </ul>
-<h2 id="aliases"><a href="#aliases" class="headerlink" title="aliases"></a>aliases</h2><ul>
-<li>alias de=’ps -ef |grep’</li>
-<li>alias c=’clear’</li>
-<li>alias ncat=’netstat -nlp |grep’</li>
-<li>alias listp=’pkg-config –list-all |grep’</li>
-<li>alias versionp=’pkg-config –modversion’</li>
-<li>alias finf=’find / -name’</li>
-<li>alias s=’apt-cache search’</li>
+<h2 id="aliases"><a class="markdownIt-Anchor" href="#aliases"></a> aliases</h2>
+<ul>
+<li>alias de=‘ps -ef |grep’</li>
+<li>alias c=‘clear’</li>
+<li>alias ncat=‘netstat -nlp |grep’</li>
+<li>alias listp=‘pkg-config --list-all |grep’</li>
+<li>alias versionp=‘pkg-config --modversion’</li>
+<li>alias finf=‘find / -name’</li>
+<li>alias s=‘apt-cache search’</li>
 </ul>
-<h2 id="高亮日志分析工具（log-navigator）："><a href="#高亮日志分析工具（log-navigator）：" class="headerlink" title="高亮日志分析工具（log navigator）："></a>高亮日志分析工具（log navigator）：</h2><ul>
+<h2 id="高亮日志分析工具log-navigator"><a class="markdownIt-Anchor" href="#高亮日志分析工具log-navigator"></a> 高亮日志分析工具（log navigator）：</h2>
+<ul>
 <li>apt-get install lnav</li>
 </ul>
-<h2 id="ovs"><a href="#ovs" class="headerlink" title="ovs"></a>ovs</h2><ul>
-<li><p>运维：</p>
+<h2 id="ovs"><a class="markdownIt-Anchor" href="#ovs"></a> ovs</h2>
 <ul>
-<li>运维脚本位置<ul>
+<li>
+<p>运维：</p>
+<ul>
+<li>运维脚本位置
+<ul>
 <li>/usr/share/openvswitch/scripts</li>
 <li>/usr/local/share/openvswitch/scripts</li>
 </ul>
@@ -588,81 +659,96 @@
 <li>状态：ovs-ctl status</li>
 </ul>
 </li>
-<li><p>查看日志：</p>
+<li>
+<p>查看日志：</p>
 <ul>
 <li>ovsdb-tool show-log</li>
 </ul>
 </li>
-<li><p>查看ovsdb里面的数据表：</p>
+<li>
+<p>查看ovsdb里面的数据表：</p>
 <ul>
 <li>ovsdb-client list-tables</li>
 </ul>
 </li>
-<li><p>查看ovsdb中的相关字段定义</p>
+<li>
+<p>查看ovsdb中的相关字段定义</p>
 <ul>
 <li>ovsdb-client list-columns Interface | grep ofport</li>
 </ul>
 </li>
-<li><p>查看ovsdb中的相关数据：</p>
+<li>
+<p>查看ovsdb中的相关数据：</p>
 <ul>
-<li>ovs-vsctl  – –columns=external_ids,name,ofport,ofport_request  list Interface</li>
+<li>ovs-vsctl  – --columns=external_ids,name,ofport,ofport_request  list Interface</li>
 </ul>
 </li>
-<li><p>alias:</p>
+<li>
+<p>alias:</p>
 <ul>
-<li>alias ovss=’ovs-vsctl show’</li>
-<li>alias apps=’ovs-appctl fdb/show’</li>
-<li>alias ofs=’ovs-ofctl show ofc-bridge’</li>
+<li>alias ovss=‘ovs-vsctl show’</li>
+<li>alias apps=‘ovs-appctl fdb/show’</li>
+<li>alias ofs=‘ovs-ofctl show ofc-bridge’</li>
 </ul>
 </li>
 </ul>
-<h2 id="编译相关"><a href="#编译相关" class="headerlink" title="编译相关"></a>编译相关</h2><ul>
-<li><p>cmake：</p>
+<h2 id="编译相关"><a class="markdownIt-Anchor" href="#编译相关"></a> 编译相关</h2>
+<ul>
+<li>
+<p>cmake：</p>
 <ul>
 <li>一个跨平台编译工具 用于生成适配平台的Makefile</li>
 <li>mkdir build</li>
 <li>cd build</li>
-<li>cmake ..</li>
+<li>cmake …</li>
 <li>make &amp;&amp; make install</li>
 <li>重新cmake之前需要删除CMakeCache.txt</li>
 </ul>
 </li>
-<li><p>pkg-config:</p>
+<li>
+<p>pkg-config:</p>
 <ul>
 <li>编译库的时候 使用这个工具管理其依赖</li>
 <li>即记录头文件和库文件的存放位置 用于编译和链接</li>
-<li>pkg-config –list-all | grep libnetconf</li>
-<li>pkg-config  –modversion libnetconf</li>
+<li>pkg-config --list-all | grep libnetconf</li>
+<li>pkg-config  --modversion libnetconf</li>
 </ul>
 </li>
 </ul>
-<h2 id="IPv6-DNS"><a href="#IPv6-DNS" class="headerlink" title="IPv6 DNS:"></a>IPv6 DNS:</h2><ul>
-<li>国内公共DNS（延迟2ms）：<ul>
+<h2 id="ipv6-dns"><a class="markdownIt-Anchor" href="#ipv6-dns"></a> IPv6 DNS:</h2>
+<ul>
+<li>国内公共DNS（延迟2ms）：
+<ul>
 <li>240c::6666</li>
 <li>240c::6644</li>
 </ul>
 </li>
-<li>he.net(US延迟156ms）：<ul>
+<li><a href="http://he.net" target="_blank" rel="noopener">he.net</a>(US延迟156ms）：
+<ul>
 <li>2001:470:20::2</li>
 <li>2001:470:0:9d::2</li>
 </ul>
 </li>
-<li>Google（延迟156ms）：<ul>
+<li>Google（延迟156ms）：
+<ul>
 <li>2001:4860:4860::8888</li>
 <li>2001:4860:4860::8844</li>
 </ul>
 </li>
 </ul>
-<h2 id="屏蔽广告："><a href="#屏蔽广告：" class="headerlink" title="屏蔽广告："></a>屏蔽广告：</h2><ul>
-<li>hosts方式：<ul>
-<li>0.0.0.0 xian.qq.com</li>
-<li>0.0.0.0 q.i.gdt.qq.com</li>
-<li>0.0.0.0 v.gdt.qq.com</li>
-<li>0.0.0.0 c.gdt.qq.com</li>
+<h2 id="屏蔽广告"><a class="markdownIt-Anchor" href="#屏蔽广告"></a> 屏蔽广告：</h2>
+<ul>
+<li>hosts方式：
+<ul>
+<li>0.0.0.0 <a href="http://xian.qq.com" target="_blank" rel="noopener">xian.qq.com</a></li>
+<li>0.0.0.0 <a href="http://q.i.gdt.qq.com" target="_blank" rel="noopener">q.i.gdt.qq.com</a></li>
+<li>0.0.0.0 <a href="http://v.gdt.qq.com" target="_blank" rel="noopener">v.gdt.qq.com</a></li>
+<li>0.0.0.0 <a href="http://c.gdt.qq.com" target="_blank" rel="noopener">c.gdt.qq.com</a></li>
 <li>…</li>
 </ul>
 </li>
-<li>插件方式：<ul>
+<li>插件方式：
+<ul>
 <li>adblock</li>
 </ul>
 </li>
@@ -671,7 +757,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9pfbhys004toslxqt89xn3o" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9pghh3j004taglx50mu4wex" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -712,7 +798,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>一个博客如果没有评论和分享功能，势必是单点的，你只是单向的发布信息，读者无法评论和快速分享，这对博主和读者都是巨大的损失。</p>
-<h2 id="添加评论系统"><a href="#添加评论系统" class="headerlink" title="添加评论系统"></a>添加评论系统</h2><p><a href="https://github.com/imsun/gitment/" target="_blank" rel="noopener">gitment</a>是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的静态博客添加动态代码来存取评论。</p>
+<h2 id="添加评论系统"><a class="markdownIt-Anchor" href="#添加评论系统"></a> 添加评论系统</h2>
+<p><a href="https://github.com/imsun/gitment/" target="_blank" rel="noopener">gitment</a>是一个基于github issue给博客添加评论的系统，原理大概是通过博客作者在某个repo创建带有某个label的issue，来为某篇博客对应评论，由于github的在线编辑器支持markdown预览，还是很优雅的，而且这样做也不用为hexo这样的静态博客添加动态代码来存取评论。</p>
 <p>一篇博客对应一个issue，只有博主经过授权后，才可以初始化issue，这样后续的读者就可以用自己的github账号登录博主的gitment应用，来向这篇博客添加评论，里面的对文章的点赞和对其他用户的点赞，其实跟issue主页的点击操作一样，都是通过api操作的。</p>
 <p>这么说来，gitment只是一个基于issue的评论前台，用于存取issue里面的评论数据。</p>
 <p>部署的时候，我参考了<a href="https://blog.fundebug.com/2017/06/16/how-to-use-gitment/" target="_blank" rel="noopener">这篇文章</a>，并且遇到了一个问题，登录自家博客之后，文章底部出现了gitment的框架，由于没有初始化issue，点击初始化按钮后，提示<a href="https://github.com/imsun/gitment/issues/114" target="_blank" rel="noopener">Validation Failed</a>，</p>
@@ -725,20 +812,22 @@
 <p>为此，我写了一个自动化脚本，工作流程如下：</p>
 <ol>
 <li>由于新开的chrome不包含github已登录session和cookie，所以需要模拟登录github账号</li>
-<li>获取站点sitemap.xml，如(<a href="https://hackeryard.github.io/sitemap.xml)，解析成文章的url">https://hackeryard.github.io/sitemap.xml)，解析成文章的url</a></li>
+<li>获取站点sitemap.xml，如(<a href="https://hackeryard.github.io/sitemap.xml">https://hackeryard.github.io/sitemap.xml</a>)，解析成文章的url</li>
 <li>依次模拟打开上述url，初次打开需要login，之后的文章则不再需要</li>
 <li>对每篇文章模拟点击init button，如果点击出错，表示已被初始化；如果成功，表示正在初始化，sleep 5s后打开下一个url</li>
 </ol>
 <p>脚本在<a href="https://github.com/hackeryard/hexo-plugins/blob/master/init-gitment.py" target="_blank" rel="noopener">这里</a>，欢迎使用！</p>
-<h2 id="替换分享链接到国内社交站点"><a href="#替换分享链接到国内社交站点" class="headerlink" title="替换分享链接到国内社交站点"></a>替换分享链接到国内社交站点</h2><p>话说hexo是一个台湾开发者写的，文章的默认分享都是分享到国外的社交平台，如Twitter/Facebook/G+等，能上这些网站的用户固然是少数，所以把分享功能本地化是很有必要的。</p>
+<h2 id="替换分享链接到国内社交站点"><a class="markdownIt-Anchor" href="#替换分享链接到国内社交站点"></a> 替换分享链接到国内社交站点</h2>
+<p>话说hexo是一个台湾开发者写的，文章的默认分享都是分享到国外的社交平台，如Twitter/Facebook/G+等，能上这些网站的用户固然是少数，所以把分享功能本地化是很有必要的。</p>
 <p>首先,我参考了<a href="https://blanboom.org/2015/hack-hexo-theme-landscape/" target="_blank" rel="noopener">这篇文章</a>，由于我是用的hexo，其landscape主题里面的fonts是4.0.3版本的fontawesome，导致qq和腾讯微博的图标无法显示，按照文中的方法折腾了最新版的5.0.6版本，找到webfont子目录，替换了hexo中的fonts下的文件，发现这次原有图标失效，新添加了四个分享按钮却是正常的，我以为是缓存的问题，又去看了Edge浏览器，还有手机Brave/Chrome浏览器，仍然不行，正打算撤回老版本的时候，发现fontawesome的4和5版本差别很大(的确，想想python2/3，主版本间的差别可能很大)，这可能就是不兼容的原因。</p>
 <p>没在fontawesome官网上找到老版本的存档，搜了半天，找到一个<a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener">4.7版本的站点</a>，下载后解压，然后更新版本号即可。</p>
-<h2 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h2><p><a href="http://www.codertian.com/2016/03/14/change-landscape-theme-by-yourself/" target="_blank" rel="noopener">【实用技能】教你定制Hexo的landscape打造自己的主题</a></p>
+<h2 id="其他参考"><a class="markdownIt-Anchor" href="#其他参考"></a> 其他参考</h2>
+<p><a href="http://www.codertian.com/2016/03/14/change-landscape-theme-by-yourself/" target="_blank" rel="noopener">【实用技能】教你定制Hexo的landscape打造自己的主题</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9pfbhyf004hoslxembz7s7z" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9pghh34004haglxf4gipc0s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitment/">gitment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -885,38 +974,6 @@
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

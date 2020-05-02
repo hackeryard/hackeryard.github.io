@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -113,14 +115,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>近期博客打开缓慢，但是我已经把google的字体库替换成了fonts.useso.com了，所以又去查了下，知乎上有人说字体库停止提供服务了，进去官网看到了，的确停止了，所以按照那个知友说的，替换回来googleapis.com，重启服务器后博客打开很流畅！（替换位置：\wp-includes\script-loader.php）</p>
+        <p>近期博客打开缓慢，但是我已经把google的字体库替换成了fonts.useso.com了，所以又去查了下，知乎上有人说字体库停止提供服务了，进去官网看到了，的确停止了，所以按照那个知友说的，<a href="http://xn--googleapis-4s2rp51jt2j4lb.com" target="_blank" rel="noopener">替换回来googleapis.com</a>，重启服务器后博客打开很流畅！（替换位置：\wp-includes\script-loader.php）</p>
 <p>看到<a href="http://wangzhan.360.com/notice/detail4" target="_blank" rel="noopener">360的通知</a>提示说换回google的url，本以为谷歌的字体还是加载的缓慢，但是竟然很流畅，说明国内对字体管制不严，还是这只是暂时，仍然会再次被墙？</p>
 <p>如果不想这么折腾，换来换去的话，下载本地字体库也是好选择。唯一的不便就是可能需要更新字体库，我的一个方法是，windows环境下载<a href="https://www.fonts.com/web-fonts/google" target="_blank" rel="noopener">skyFonts字体同步管理工具</a>，再使用Filezilla上传到指定文件夹。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/09/04/service-of-360-fonts-is-stopped/" data-id="ck9pfbhxc003soslx048ehipr" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/09/04/service-of-360-fonts-is-stopped/" data-id="ck9pghh2f003saglxoygwzlgx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字体/">字体</a></li></ul>
@@ -301,38 +303,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -114,23 +116,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下：</p>
-<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c</a>]</p>
+<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb%5B/c%5D" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c]</a></p>
 <p>[c]sudo dpkg -i sublime-text_build-3047_amd64.deb[/c]</p>
 <p>然后shell下使用subl命令打开编辑器，热键“Ctrl+`”，在下部的窗口中输入：</p>
-<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
-<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
+<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>’ + pf.replace(’ ', ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
+<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>
+等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
 <p>[c]install[/c]</p>
 <p>或者</p>
 <p>[c]pci[/c]</p>
-<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>之后View-&gt;syntax-&gt;C Improved 即可。</p>
-<p>Tips：<br>一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
+<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>
+之后View-&gt;syntax-&gt;C Improved 即可。</p>
+<p>Tips：<br>
+一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
 <p>[c]&quot;update_check&quot;: false[/c]</p>
 <p>重启编辑器即可。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9pfbhxu0040oslxi0ysxlnx" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9pghh2l0040aglx8d78zk9d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -311,38 +316,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

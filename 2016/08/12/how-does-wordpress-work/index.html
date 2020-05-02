@@ -35,7 +35,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -118,13 +120,13 @@
         <p>WP是一款容易上手的博客管理工具，时下流行的CMS (Content Management System)，运行在LAMP的环境下。（PS:它的Logo有点像大众汽车，似乎暗示着它也会很流行很大众？） 从安装过程可以看出（以Centos7为例），先安装Apache，测试默认页面，再安装Mysql，添加专用数据库给WP使用，同时创建WP使用的用户并赋予此用户全部的特权以使用专用数据库（可以在wp-config.php的修改中看出），这样WP运行时就可以使用WP用户访问和修改专用数据库了。安装完Mysql后安装PHP，因为在WP的目录下除了License、Readme还有各种图标图片之外都是php文件，这些php文件是需要在PHP环境下解释执行的。另外我们需要安装一些模块（modules）以保证和加强功能，比如php-gd，里面含有各种图像处理函数，几乎所有的图像处理都要调用GD库函数，系统说明如下：</p>
 <p><img src="http://107.170.248.115/wp-content/uploads/2016/08/Image-1-300x147.png" alt="yum info php-gd"></p>
 <p>不会安装LAMP和WP的可以参考以下两篇文章：</p>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-7" target="_blank" rel="noopener">DO安装LAMP环境</a>      <a href="https://cloud.digitalocean.com/support/suggestions?article=how-to-install-wordpress-on-centos-7&amp;page=0&amp;query=wordpress" target="_blank" rel="noopener">继续安装WP</a></p>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-7" target="_blank" rel="noopener">DO安装LAMP环境</a>      <a href="https://cloud.digitalocean.com/support/suggestions?article=how-to-install-wordpress-on-centos-7&amp;page=0&amp;query=wordpress" target="_blank" rel="noopener">继续安装WP</a></p>
 <p>PS：笔者还没有搞清楚PHP的工作原理，以后回来补充~</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/08/12/how-does-wordpress-work/" data-id="ck9pfbhuw001uoslxp2tyr2zy" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/08/12/how-does-wordpress-work/" data-id="ck9pghgzo001uaglx9m3myycl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wordpress/">Wordpress</a></li></ul>
@@ -300,38 +302,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

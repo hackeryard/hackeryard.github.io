@@ -28,7 +28,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -112,23 +114,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今天开始使用流行的代码编辑器sublime Text，最新版本是3，我使用的kali，其他ubuntu/debian也可以通过deb包安装，如下：</p>
-<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c</a>]</p>
+<p>[c]wget <a href="http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb%5B/c%5D" target="_blank" rel="noopener">http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3047_amd64.deb[/c]</a></p>
 <p>[c]sudo dpkg -i sublime-text_build-3047_amd64.deb[/c]</p>
 <p>然后shell下使用subl命令打开编辑器，热键“Ctrl+`”，在下部的窗口中输入：</p>
-<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
-<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
+<p>[python]import urllib.request,os,hashlib; h = ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf = ‘Package Control.sublime-package’; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( ‘<a href="http://packagecontrol.io/" target="_blank" rel="noopener">http://packagecontrol.io/</a>’ + pf.replace(’ ', ‘%20’)).read(); dh = hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh != h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)[/python]</p>
+<p>如果上述命令不管用，那就是官方更新了，使用<a href="https://packagecontrol.io/installation#st3" target="_blank" rel="noopener">这个源</a>即可<br>
+等待片刻，之后用热键“ctrl+shrift+p”打开内置命令搜索，键入：</p>
 <p>[c]install[/c]</p>
 <p>或者</p>
 <p>[c]pci[/c]</p>
-<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>之后View-&gt;syntax-&gt;C Improved 即可。</p>
-<p>Tips：<br>一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
+<p>点选Package Control:Install Package，之后键入c大概就是类C的插件，我用的是C Improved<br>
+之后View-&gt;syntax-&gt;C Improved 即可。</p>
+<p>Tips：<br>
+一般新安装后，默认开启自动更新，如果不需要的可以通过在Preference-&gt;Setttings User,添加一条：</p>
 <p>[c]&quot;update_check&quot;: false[/c]</p>
 <p>重启编辑器即可。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9pfbhxu0040oslxi0ysxlnx" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/04/sublime-text-3-user/" data-id="ck9pghh2l0040aglx8d78zk9d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -179,12 +184,12 @@
 <p>ss基于c/s模式，通过全局代理/PAC智能代理，能够分流本地网站和外网，从而只对外网代理，既然基于c/s模式，那么肯定需要一台服务器架设在外面，如果你有兴趣，可以通过docker非常简单的安装一个，docker是一个容器，通过一个虚拟的环境方便可以实现应用在各个server上迁移，大大减轻了开发人员配置环境的工作，这里有一篇关于<a href="http://liujin.me/blog/2015/05/27/Docker-DigitalOcean-Shadowsocks-5-%E5%88%86%E9%92%9F%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" target="_blank" rel="noopener">DO主机配置docker</a>的教程，两行代码就可以搭建成功，但我没找到如何实现docker支持ss的ipv6代理，所以只能通过ipv4的方式。</p>
 <p>记得林工说过，我们的网络具有天然的学习网络知识的优势233，最近在看他的第二本书<a href="https://book.douban.com/subject/26710788/" target="_blank" rel="noopener">《wireshark网络分析艺术》</a>，挺有意思的，另外异步社区的专访<a href="http://www.epubit.com.cn/article/389" target="_blank" rel="noopener">在这里</a>，期待他的下一本园艺书。</p>
 <p>以上。</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9pfbhwi0030oslxm616oszn" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9pghh1l0030aglx3p9mc295" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network-工具/">Network 工具</a></li></ul>
@@ -235,7 +240,8 @@
 <p>另外一种就是实践达人们，凡是社团风云人物、学生会、团委的leader、创业先锋、比赛牛人都属于这一类，这些人他们学习成绩一般，但是实践经验丰富，到了毕业冲到社会大流中的时候都能很快适应节奏，因为他们在实践过程中早就练就了一个抗击打的心脏、团队合作及与人沟通交流的能力。不是有个老段子么，成绩100分的成为什么人，成绩不及格的成为什么人。像我这种均分80的果然就变成了老师的同事，而那些成绩吊儿郎当的孩子也早已成为这个总，那个总了。当然就是因为他们更多的时间花费在了更快接近社会的技能学习上。但是我得劝劝那些说“我不喜欢学习，只喜欢实践”的孩子，这本没有错，每个人都有自己的兴趣，何况偶尔我自己也会吐槽下大学的教育，体制僵化，扼杀思想。。。。但如果你确实对建设一个社团，对参加一些比赛，对创业打工抱有极大的热忱的话，你在这里学到的东西对于谋生也许比课堂知识更加有用。可问题是，每年我也能见到很多以此为借口，逃避课堂，考试一路红灯的学生，这时候我希望你能反省自己，你是真的为了你的那些“活动”不得已放弃了很多学习机会，还是你其实只是以此为借口骗自己说，我虽然没学习，但是我在搞活动我没玩儿啊！。。。你确定你不是在宿舍瞎混，或者在社团里瞎混着呢？</p>
 <p>所以，无论你打算如何度过你的大学，学习也好，实践也好。这真的是看态度的。态度积极正面，一切皆可为。两种发展模式都有它的利弊在里面，要是你善于用它的“利”，回避它的“弊”，无论你选择学习为主，还是实践为主，你都能收获很多，成长也很快。而可惜的是，在如今的大学里，绝大多数都是到了大四找工作的时候，简历上除了姓名、电话、专业，就没什么可写的学生。这样真的就是蹉跎岁月，浪费青春了！在人生18-22岁这么黄金的时段里，你的简历居然没有什么可以记录的！我记得我在给很多学生做讲座的时候，我就说过，请大一的时候就给自己打印一张空白的简历，时不时查看一下，在这个学期结束的时候，我有什么东西可以记录上去的？检验你的大学时光是否又虚度了一个春秋？有孩子会说：嘿！我有很棒的哥们，我有一场轰轰烈烈的恋爱，我有好多宝贵的回忆！。。。切~，我们都是从青春走过来的，哪一个人的青春没有让自己留恋或者纪念的事情？无论好坏。但是父母毕竟是花血汗钱送你来上大学的，你得用能写在简历上的东西来向他们证明他们的钱没白花！要谈恋爱，村里的小芳也可以谈啊！干嘛花那么多车票钱送到这里谈一个将来可能还带不回村的女朋友？！</p>
 <p>so，别扯了，乖乖打印张空的简历，每个学期末检视下自己的“奋斗”吧！</p>
-<p>有一句话送给所有看这篇文章的人，大学四年，不可一业不专，也不可只专一业。前者是劝大家还是要好好了解下本专业领域的大多数基础知识，不要成为那种“从电子商务专业毕业了，还以为这个专业只能去开个淘宝店”的专业毕业生；而后者是劝大家多多接触其他领域其他知识，这多专业融合的人才是横向发展最好的，比如那些技术宅男们，真心要多接触一些人文知识，这样将来你们设计出来的东西也会更加人性化。<br>学习与实践，你选择好了么？</p>
+<p>有一句话送给所有看这篇文章的人，大学四年，不可一业不专，也不可只专一业。前者是劝大家还是要好好了解下本专业领域的大多数基础知识，不要成为那种“从电子商务专业毕业了，还以为这个专业只能去开个淘宝店”的专业毕业生；而后者是劝大家多多接触其他领域其他知识，这多专业融合的人才是横向发展最好的，比如那些技术宅男们，真心要多接触一些人文知识，这样将来你们设计出来的东西也会更加人性化。<br>
+学习与实践，你选择好了么？</p>
 <p>在老校区无聊等着上课的我，坐在车里敲的这篇文章，希望对你们有用。</p>
 <p>当然，林子大了，奇葩总是有的。不要拿小概率事件来跟我辩驳哦，有这时间好好挥洒青春的汗水吧！</p>
 <p>知易行难，与君共勉。</p>
@@ -243,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9pfbhyx004yoslxsov06w0h" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/what-is-important-in-college/" data-id="ck9pghh3n004yaglxnrwa1qmq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -285,27 +291,28 @@
       
         <p>（本文转自黄老师，此乃吐槽帖，误伤请见谅）</p>
 <blockquote>
-<p>如果你的大学志愿是父母帮你选的，如果大学你只挑容易过的课程学习，如果你到毕业也是听从家长的安排，如果你从来就没自己做过决定，你凭什么要过你想要的生活？<br>最近，得知一位学生成功保送至浙大，因为了解其个中纠结，突然很想写这个题目。到底有多少人为自己奋争过？为自己想要走的路，想要过的生活争取过？我也在课堂上跟我的学生们分享过这个故事，这个新鲜出炉，还冒着热气儿，主人公甚至还未从外地回校的故事。都说，一千个人眼中，就有一千个莎士比亚，同样，每个人解读这个故事，都有自己的角度，那么，我就想说这句：“如果你从没为自己争取过，你凭什么过你想要的生活？”</p>
+<p>如果你的大学志愿是父母帮你选的，如果大学你只挑容易过的课程学习，如果你到毕业也是听从家长的安排，如果你从来就没自己做过决定，你凭什么要过你想要的生活？<br>
+最近，得知一位学生成功保送至浙大，因为了解其个中纠结，突然很想写这个题目。到底有多少人为自己奋争过？为自己想要走的路，想要过的生活争取过？我也在课堂上跟我的学生们分享过这个故事，这个新鲜出炉，还冒着热气儿，主人公甚至还未从外地回校的故事。都说，一千个人眼中，就有一千个莎士比亚，同样，每个人解读这个故事，都有自己的角度，那么，我就想说这句：“如果你从没为自己争取过，你凭什么过你想要的生活？”</p>
 </blockquote>
 <p>这个学生是西电某学院的全院第一名，逢大四保研之际，得知由于其学院的B专业在本校没有硕士点，故其学院每年的惯例就是把保外名额给B专业的学生。虽然他是全院排名第一，但是由于他身处A专业，即使他已经跟浙大的导师联系甚欢，Offer妥妥拿，却仍然没有这个保外资格。他非常沮丧。。（我见过同样这样遭遇、这么沮丧的孩子，得知这个消息后，也只是在网上发了个帖子胡乱发泄了一通了事。）</p>
 <p>他很沮丧，很不甘。。。因为大二时选修过我的课，于是他做了“奋争”的第一件事：给我发邮件打电话，询问这种情况，各个院的处理方式。（你是否从不敢因自己的困惑向有关的老师咨询过？别怕老师不回复或拒绝，传道授业解惑，本来就是老师该做的事。）我建议他找院长和主管学生工做的书记恳请要求一个名额（学院有分配名额的权利吧，至少），于是他走了第二步：找院长和书记。（有多少人从来不敢去领导那里争取本该属于自己的权益？包括我。）当然，未果。个中又有一周的许多曲折、泄气、放弃和挣扎，略过不表。此后，我在外校了解到，通常教务处有机动名额，于是我建议他走了第三步：找教务处处长，申请为他保留一个保外名额。。。最终成功。我想说的是，有多少人会倒在这一、二、三步中？换做当年的我，我没有找任何老师和领导的勇气，向来都是自己的事自己能处理就处理，处理不了就忍。他换作我，估计会继续在西电呆三年，呆“呆”三年。。。所以，如果你从未为自己抗争，争取，奋斗，你凭什么要过你想要的生活？知不知道很多人生轨迹在本可以逆转的时候，你放弃了？</p>
 <p>近来，可能自己处于工作六七年的“职业倦怠期”，跟同事闲聊，大家都纷纷吐槽自己在教学上很多的困惑。</p>
-<p>你看吧，大学生们都在叫喊着不要“填鸭式教育”，要”启发式“，要开发，要动脑，可是当你真的把课堂交给他们，希望他们做项目任务，主导某一堂课的时候，学生们纷纷表示麻烦，“老师，还是你讲吧？” ，要不就是胡乱拼凑一份PPT，永远只有那一两个学霸在做任务，多数都在打酱油。（当然有认真的学生，我指的是“值得”吐槽的那些）</p>
+<p>你看吧，大学生们都在叫喊着不要“填鸭式教育”，要”启发式“，要开发，要动脑，可是当你真的把课堂交给他们，希望他们做项目任务，主导某一堂课的时候，学生们纷纷表示麻烦，“老师，还是你讲吧？” ，要不就是胡乱拼凑一份PPT，永远只有那一两个学霸在做任务，多数都在打酱油。（当然有认真的学生，我指的是“值得”吐槽的那些）</p>
 <p>你看看，基础课也好，必修课也罢，目光呆滞的孩子遍布课堂（有多少次都让我深深觉得自己的冷笑话数据库储备不够了）。认真学的未必是真的爱学，学霸心理使然；不认真的，更不必说。你说，是中国教育顺序颠倒的原因么？本该轻松的高中，把孩子们坑害得够苦，于是，到了本该努力决定人生方向的大学却纷纷丢盔卸甲，从此“学习”是路人？来大学彻底“天高地阔任我游”了？</p>
 <p>你再看，先不说学校各种坑爹的选修课安排，但是选修课的本意不就是让自己在主修专业课之余，可以挑一些感兴趣的课程额外辅修么？那有多少人只是冲着好拿学分，好过的课去的呢？奔着可以选修自己感兴趣课程的，学一点专业之外知识的孩子的比例有多少呢？“必修课选逃，选修课必逃”的潜规则，我也懂。。。。</p>
 <p>好了，咱不说学习吧，你说说实践。让我帮忙改简历的学生多了，经历了08级到10级，有多少孩子到了毕业拿过来的一页纸上填不满半页的？社会实践木有，工作实习木有，校园活动总该有了吧？一看经历描述，没干啥，挂名个干事，写的就不是自己做过的事。有孩子吐槽说学生工作官僚化、社团活动没新意，那没看到周围那些忙得鬼影都不见的实践达人们么？他们为什么忙得不亦乐乎？没有奖学金加分，没有一个好成绩做依靠，大学四年，最后简历上，除了姓名、专业和联系方式，没啥可写的啦？！大牛？当然有，大牛的简历才好写呢，不用我改。我担心的，就是这些没什么可写的孩子，你们的求职之路将来得有多艰辛哪！这四年都干啥去了呢？都不为将来的自己该走什么路，该怎么走，用四年的时间好好规划规划？这时间多充裕啊，是不？咋一晃眼毕业了，啥也没干捏？？（为嘛这么严肃的话题，写到后来，东北味儿都冒出来了？╮(╯Д╰)╭）</p>
 <p>深以为惑。我才创建了“学生汇”给爱做运营和市场的孩子去实践，创建了“乐为”给那些有理想有梦想的孩子提供资金和志愿者，去做他们想做的事啊！</p>
-<p>你说说，每年一大波一大波新生来袭后 ，姐姐我站在我这”铁打的营盘“上看了一年又一年，孩子们就跟轮回似的，只是换了副皮囊换了个名字，这些甲乙丙丁ABCD他们入学不久之后就会再次经历跟他们的上一届，再上一届，再上上一届。。。。的学长学姐们同样的一圈困惑：大学社团要不要参加？大学这些课程学了有什么用？当学霸，还是不当？。大学干什么好？哇靠，怎么这么快就毕业了？。。。。年复一年，日复一日。。。。此处存二问。第一，中国的教育为什么这十几年对这个现象没有丝毫的改善？第二，大学生盆友们，为什么自己不给自己找到这些答案 ，会任由自己彷徨到大四？为什么？</p>
+<p>你说说，每年一大波一大波新生来袭后 ，姐姐我站在我这”铁打的营盘“上看了一年又一年，孩子们就跟轮回似的，只是换了副皮囊换了个名字，这些甲乙丙丁ABCD他们入学不久之后就会再次经历跟他们的上一届，再上一届，再上上一届。。。。的学长学姐们同样的一圈困惑：大学社团要不要参加？大学这些课程学了有什么用？当学霸，还是不当？。大学干什么好？哇靠，怎么这么快就毕业了？。。。。年复一年，日复一日。。。。此处存二问。第一，中国的教育为什么这十几年对这个现象没有丝毫的改善？第二，大学生盆友们，为什么自己不给自己找到这些答案 ，会任由自己彷徨到大四？为什么？</p>
 <p>没有人会比你自己更关心自己的生活。</p>
 <p>如果从来随波逐流，不为自己做主，你将来凭什么过上你想要的生活？</p>
 <p>时不我待，青春易蹉跎，转眼韶华逝。</p>
 <p>与君共勉。</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9pfbhyz0051oslx7zf9b36f" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/why-do-you-want-to-lead-your-life/" data-id="ck9pghh3p0051aglxsui8pent" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -350,12 +357,12 @@
 <p>就我看来，有两种基本的寻找有用模式的有效方式，一种是依靠他人的“透漏”，另一种是靠自己观察。当今互联网时代，快节奏的生活似乎让人们疲于观察体会（或许善于并坚持观察和思考的人一直不多？），人们更乐于寻找别人“透漏”的模式，然后自己实践，但更多的是，把这些模式奉为圣经，之后不管不问，只是知道这么回事罢了。这种当然是最快的方式，却多半不能长久，毕竟如果不是自己思考的结果，就算觉得有道理也不一定会去照着做，就像我们常听到各种励志讲座，当时热血沸腾，事后就跟没发生一样。最重要的，这种道理可能不是真正适合自己的，别人使用别人的方法论时，适配的是别人的环境和背景，别人的心智模型，这也往往是人与人之间差距很大的地方。</p>
 <p>另一类是自己观察。有用的模式是能够解决某些问题的，正是因为世界上有太多的未知和秘密存在，探索的大门才永久开放，等待着探险者的深入。这些探险者往往智勇双全，就像福尔摩斯，他可以通过细微的痕迹判断谁是说谎者，可以按照自己的判断勇敢找寻线索。他在观察和推理上都有自己一套独有的特别有效的模式，他靠积累案件并在案件中不断加深自己对犯罪和推理的认识，靠保有对这个世界上常人无法解决的问题的好奇和探索，最终成就了自己。</p>
 <p>下文再更。</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9pfbhx9003qoslxltx0l9zc" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/03/12/searching-the-beautiful-patterns/" data-id="ck9pghh2d003qaglxy3klyjv4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -400,12 +407,12 @@
 <p>如果有问题，修改网关和ip地址到合适的值，或者直接配合DHCP，让路由器直接分配ip地址也行。</p>
 <p>另外，电脑或手机出于对电源的管理，会有一些针对无线连接的高性能和节能的配置，可以通过类似“电源管理”或“WLAN高级”查看并修改。</p>
 <p>（本文完）</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/" data-id="ck9pfbhxf003voslxgvolaxf9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/16/solve-win8-limited-wireless-network/" data-id="ck9pghh2h003vaglxv3jmrdgm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
@@ -447,17 +454,18 @@
       
         <p>两天前意外看到一篇总结《读者》二十年来最具有影响力的文章， 看了之后深有感触，总结其中几篇，如下：</p>
 <blockquote>
-<p>小小的善意意味着什么？<br>这篇文章给我们上了一课，我记得以前带着哀悯眼神的胡哲也给我上过课，那就是，它们很可能让身处深渊的看不到生活希望的人，重拾面对困难的信心。世界的确存在很多恶，但每个人也要不忘记自己的良心，不然世界就太残酷了。</p>
+<p>小小的善意意味着什么？<br>
+这篇文章给我们上了一课，我记得以前带着哀悯眼神的胡哲也给我上过课，那就是，它们很可能让身处深渊的看不到生活希望的人，重拾面对困难的信心。世界的确存在很多恶，但每个人也要不忘记自己的良心，不然世界就太残酷了。</p>
 </blockquote>
 <p>全文的高潮应该在他们境况好一些了，两个儿子都长大了懂事了，而母亲也获得了公司的一份特别津贴（我觉得也有同情的一些成分），还清了所有的欠款，他们点了两份清汤面，在小儿子朗读他的作文时，后面的女掌柜和她的丈夫，拔河比赛似的扯着毛巾擦眼泪…</p>
 <p>最后（十四年后），当掌柜习惯性的保留那个座位，但是已经快忘了那一个悲惨的家庭的时候，真正振作起来的母子三人来到了北海亭面馆，并向善良的掌柜夫妇道谢，“那时，承蒙贵店一碗清汤面的激励，母子三人携手努力生活过来了”，然后可以想象一直静听说话的女掌柜，一边掩盖着刷刷的眼泪，一边失声吆喝同样情形的丈夫做三碗面的情形…</p>
 <p>被善意感动的他们，也向世界洒下了善的种子。这几天，每次看这篇文章都会忍不住掉眼泪，以前很小的时候也看过一次，但是怎么都没有这么大的触动，以至于我如今再看这篇文章，脑袋里还留着那种“套路”的不好影响，但不要紧，有的套路并不一定是坏的，套路只是工具，没有情感支撑的套路才是可怕的。</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/" data-id="ck9pfbhtj000toslxke3d0bce" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/16/a-bowl-of-soup-noodles/" data-id="ck9pghgy7000saglx3gydthst" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -499,18 +507,18 @@
       
         <p>为了让电脑运行的更快，我决定加装一块SSD，本来SSD加装在原硬盘位置是最好的，这样重装下系统一是垃圾没有了，二是SATA3的接口也会让SSD发挥最佳的性能，自己满心欢喜准备拆卸，却卡在了光驱位的外侧挡板不好拿掉的的难题，接下来有一个良好的方法，可以让你不用损坏任何卡槽卡扣：</p>
 <p>首先，我们在开机的时候把光驱拉出来，然后关机（这个时候光驱是不会缩回去的），解掉光驱靠主板内测的一颗螺丝，具体可以参见<a href="http://tieba.baidu.com/p/3660687332" target="_blank" rel="noopener">贴吧文章</a>，拉出来整个光驱位，然后是这个样子，这个时候你会发现有三颗能够看见的卡扣，而且最左边的卡扣卡的太紧了，我觉得组装工人或机器人组装的时候，肯定有套路，研究后发现是要先拆光驱电路外的薄铝板，如图：</p>
-<p>[caption id=”” align=”alignnone” width=”2080”]<img src="/images/ssd.jpg" alt=""> 拆掉光驱外层后，你会看到一共有四个卡扣，只不过之后三个只有效果的，另一个非常松，以至于不用管它。对照买12.7mm的光驱托盘卖家给的外侧水平挡板，发现也是四个卡扣，我们只用解决左边的两个很紧的大卡扣就好了。[/caption]</p>
+<p>[caption id=&quot;&quot; align=“alignnone” width=“2080”]<img src="/images/ssd.jpg" alt=""> 拆掉光驱外层后，你会看到一共有四个卡扣，只不过之后三个只有效果的，另一个非常松，以至于不用管它。对照买12.7mm的光驱托盘卖家给的外侧水平挡板，发现也是四个卡扣，我们只用解决左边的两个很紧的大卡扣就好了。[/caption]</p>
 <p>用一字起插入挡板和与之贴近的光驱中间（注意，不是直接挤压卡扣，而是要撬开挡板~），这样不用太大力，就可以把左边三个卡扣都弄下来了，接下来是最右边的卡扣，这个扣子看起来特别紧实，但只要跟撕面包一样撕开就可以了，而且都没有任何损坏。</p>
 <p>以上就是拆卸联想G510光驱位的全部内容，之后就可以把原装挡板安装在新买的光驱托盘上了。</p>
 <p>最后给大家看看sata2口接SSD的速度（跟希捷机械盘的对比）：</p>
-<p>[caption id=”” align=”alignnone” width=”416”]<img src="/images/%E4%B8%9C%E8%8A%9DSSD.png" alt=""> 在光驱位屈尊的东芝SSD[/caption]</p>
-<p>[caption id=”” align=”alignnone” width=”401”]<img src="/images/C-HDD.png" alt=""> 雷打不动的老机械盘[/caption]</p>
-<p>&nbsp;</p>
+<p>[caption id=&quot;&quot; align=“alignnone” width=“416”]<img src="/images/%E4%B8%9C%E8%8A%9DSSD.png" alt=""> 在光驱位屈尊的东芝SSD[/caption]</p>
+<p>[caption id=&quot;&quot; align=“alignnone” width=“401”]<img src="/images/C-HDD.png" alt=""> 雷打不动的老机械盘[/caption]</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/" data-id="ck9pfbhui001joslxvns3f1nu" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/13/dismantle-the-optical-drive-on-lenovo-G510/" data-id="ck9pghgza001jaglxcsz3soql" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机组成/">计算机组成</a></li></ul>
@@ -552,7 +560,7 @@
       
         <p>很有意思的大学，到最后，慢慢的变得无助，变得潦草，这是我一直在思考的问题，却也无可避免的走向这种低落。也许只有这样才能看清一些东西，避免无谓的感觉良好。</p>
 <p>在这学期，我还是得到了一些宝贵的东西，其中有我喜欢的专业课，它们构建了整个计算机的底层，为社会各行各业提供基础设施提供革新的动力，有我非常喜爱的歌手，但是很可惜，他走的时候我才发现他，有我的室友，夜谈会的主持者（现在他们已双双回家，留我写博客了），最后，还有暑实队的朋友们，有图像小组的队友，他们的存在给了我一些标记，让我更加记住一起走过的路。</p>
-<p>先来谈谈专业课，通信与网络看了全书，最后在知乎上被颠覆，说要看另一本自上而下设计（也是Forouzan的作品），也就是应该从上层应用开始讲起，这样贴近生活和应用，可以让以后的学习就跟设计产品一样—-怎么实现这种应用呢？假期应该读读这本书，还推荐一本经典的老师常说的谢希仁老先生的教材。</p>
+<p>先来谈谈专业课，通信与网络看了全书，最后在知乎上被颠覆，说要看另一本自上而下设计（也是Forouzan的作品），也就是应该从上层应用开始讲起，这样贴近生活和应用，可以让以后的学习就跟设计产品一样----怎么实现这种应用呢？假期应该读读这本书，还推荐一本经典的老师常说的谢希仁老先生的教材。</p>
 <p>接着说说操作系统（OS），这也是我喜欢的课程，只是觉得老师不给力，没有增进自己对OS的兴趣和更深的理解（理解是后话，考试前看书还是可以理解一大半的）。我觉得老师的责任就是，鼓励学生思考和发问，尽己所能帮助学生解开疑惑，教学上尽量有趣一点，反正自己有学识，对学科有深刻的理解，那么为什么还要用死板的语言表述出来呢？要是我，肯定会解释的通俗一点，有趣一点，而且最重要的，让听众觉得这是能够理解的，好理解的，给他们信心。</p>
 <p>数据库，刚考完这门，不说成败。老师很好，这个好体现在他的独立上，我想，他也是从一个普通的学生，靠着钻研发家的。那本权威的教材在他眼里漏洞百出（比如事务基础、触发器、存储过程等讲解的顺序就有问题，没解释事务就开始讲触发器了），很有意思的一个人，当然我也是学到了很多东西的，我也很希望以后能有编程的课，因为以后走上业务岗位，这个可能是关键的，但很可惜，不会有这些课了，顶多一个课设罢了。</p>
 <p>数论，作为密码学的数学基础，数论让我可以较轻易的理解RSA，理解DH密钥交换，让我知道素数的神奇和伟大，然后知道它们的背后，是无尽的艰涩的推理，而且推理一遍忘记一遍，我们往往只记得住定理本身，却忘记了定理的基本证明，也就是背后的思想。数论老师人过中年，推理能力变弱了一点，以至于室友疯狂回答老师的疑问，也算是一番胜景，一种美谈。</p>
@@ -569,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/01/11/to-the-third-semester/" data-id="ck9pfbhyq004roslxiuv0mpnx" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/01/11/to-the-third-semester/" data-id="ck9pghh3f004raglxv4c5nqyi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -616,12 +624,12 @@
 <p>每次整理杂件，里面的纷乱的笔记又勾起了我那时的思绪，可我却没有更多的时间去整理，但其实我早些时候就发现了，知识整理的重要性，自己也在关注知识管理频道，看来面对越来越多的信息，尤其是自己觉得重要的，思考过的，更应该有序的整理起来，便于大脑成块，也便于用的时候检索。</p>
 <p>假期写一写《操作系统整理》，做几个能用的网页，完善下软件。</p>
 <p>最后，新的一年，祝大家的生活都能更有意思，更有意义一点！</p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/29/2016-overview/" data-id="ck9pfbht6000moslxdv51c08f" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/29/2016-overview/" data-id="ck9pghgxx000maglx8xl7sn5u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -768,38 +776,6 @@
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

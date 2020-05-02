@@ -8,18 +8,18 @@
   
   <title>操作系统概述 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。 所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。 —————————————————–下面正式开始吧~————————————————————— 谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的">
+  <meta name="description" content="谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。 所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。 -----------------------------------------------------下面正式开始吧~---------------------------------------">
 <meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统概述">
 <meta property="og:url" content="https://hackeryard.github.io/2016/12/14/about-operating-system/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。 所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。 —————————————————–下面正式开始吧~————————————————————— 谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的">
+<meta property="og:description" content="谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。 所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。 -----------------------------------------------------下面正式开始吧~---------------------------------------">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-01T14:51:48.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统概述">
-<meta name="twitter:description" content="谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。 所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。 —————————————————–下面正式开始吧~————————————————————— 谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的">
+<meta name="twitter:description" content="谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。 所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。 -----------------------------------------------------下面正式开始吧~---------------------------------------">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -115,7 +117,7 @@
       
         <p>谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。</p>
 <p>所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。</p>
-<p>—————————————————–下面正式开始吧~—————————————————————</p>
+<p>-----------------------------------------------------下面正式开始吧~---------------------------------------------------------------</p>
 <p>谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的xp等等），开源的Linux和众多的发行版（Ubuntu，Fedora，Redhat等），还有个极客之作Mac，我们在上面写文档，图片处理，用浏览器体验丰富的来自世界各地的网页，用qq聊天，在网上做生意，组建技术社区，包括我正在浏览器里面写博客等，这些东西，构成了我们的现代生活。另外在移动端爆发的这几年，我们又成了低头族。很多公司都在制作自己的App，很可能还是全系列的，像这样，既有安卓，还有ios，也少不了h5网页应用，但毫无例外，它们都运行在操作系统上。</p>
 <p>那我们如何了解这一几乎每天都在使用的重要软件呢？CPU、内存、硬盘、显卡、USB外设、网卡这些资源，我们作为用户应该怎么使用它们，程序员如何编写可以利用这些资源完成自己功能的程序？</p>
 <p>这都需要操作系统的管理，它给用户提供了一个易于使用这些重要资源的界面，我们在上面运行cmd或者bash的命令，我们安装各种软件，需要的时候或者兴趣来了，我们还会写一些软件，完成客户指定的功能或自己的设想。</p>
@@ -126,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/14/about-operating-system/" data-id="ck9pfbhty0013oslx4lccvl89" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/14/about-operating-system/" data-id="ck9pghgyn0013aglxgr6er8xc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/操作系统/">操作系统</a></li></ul>
@@ -307,38 +309,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

@@ -8,18 +8,18 @@
   
   <title>phpbb论坛安装与使用 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件） &amp;nbsp; 首先，进入phpbb中文网下载最新的中文安装包：&amp;nbsp; 点击中文包，右键复制链接，使用wget + 复制的链接，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我">
+  <meta name="description" content="今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件）    首先，进入phpbb中文网下载最新的中文安装包：   点击中文包，右键复制链接，使用wget + 复制的链接，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我们重命名如下：">
 <meta name="keywords" content="phpbb3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="phpbb论坛安装与使用">
 <meta property="og:url" content="https://hackeryard.github.io/2016/11/08/phpbb-forums-installing-and-using-guide/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
-<meta property="og:description" content="今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件） &amp;nbsp; 首先，进入phpbb中文网下载最新的中文安装包：&amp;nbsp; 点击中文包，右键复制链接，使用wget + 复制的链接，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我">
+<meta property="og:description" content="今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件）    首先，进入phpbb中文网下载最新的中文安装包：   点击中文包，右键复制链接，使用wget + 复制的链接，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我们重命名如下：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-05-01T14:56:56.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpbb论坛安装与使用">
-<meta name="twitter:description" content="今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件） &amp;nbsp; 首先，进入phpbb中文网下载最新的中文安装包：&amp;nbsp; 点击中文包，右键复制链接，使用wget + 复制的链接，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我">
+<meta name="twitter:description" content="今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件）    首先，进入phpbb中文网下载最新的中文安装包：   点击中文包，右键复制链接，使用wget + 复制的链接，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我们重命名如下：">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -33,7 +33,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -114,23 +116,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件）</p>
-<p>&nbsp;</p>
-<h3 id="首先，进入phpbb中文网下载最新的中文安装包："><a href="#首先，进入phpbb中文网下载最新的中文安装包：" class="headerlink" title="首先，进入phpbb中文网下载最新的中文安装包："></a>首先，进入<a href="https://www.phpbbchinese.com/#" target="_blank" rel="noopener">phpbb中文网</a>下载最新的中文安装包：</h3><p>&nbsp;</p>
+<p> </p>
+<h3 id="首先进入phpbb中文网下载最新的中文安装包"><a class="markdownIt-Anchor" href="#首先进入phpbb中文网下载最新的中文安装包"></a> 首先，进入<a href="https://www.phpbbchinese.com/#" target="_blank" rel="noopener">phpbb中文网</a>下载最新的中文安装包：</h3>
+<p> </p>
 <p>点击中文包，右键复制链接，使用<strong>wget + 复制的链接</strong>，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我们重命名如下：</p>
-<p><strong>mv xxx  phpbb3.zip</strong></p>
+<p><strong>mv xxx  phpbb3.zip</strong></p>
 <p>解压：</p>
-<p><strong>unzip phpbb3.zip  </strong></p>
+<p>**unzip phpbb3.zip  **</p>
 <p>重命名：</p>
 <p><strong>mv phpBB3 bbs</strong>（bbs目录就是你喜欢的网站路径了，可以自选）</p>
-<p>然后用<strong>ifconfig命令</strong>自己的ip，后续访问论坛需要使用，即<strong>你的ip/bbs，</strong>复制到浏览器地址栏。</p>
-<p>&nbsp;</p>
-<h3 id="开始进入数据库配置："><a href="#开始进入数据库配置：" class="headerlink" title="开始进入数据库配置："></a>开始进入数据库配置：</h3><p><strong>mysql -u root -p</strong>（回车后输入你的数据库root密码，没有密码就直接进去了）</p>
+<p>然后用<strong>ifconfig命令</strong>自己的ip，后续访问论坛需要使用，即**你的ip/bbs，**复制到浏览器地址栏。</p>
+<p> </p>
+<h3 id="开始进入数据库配置"><a class="markdownIt-Anchor" href="#开始进入数据库配置"></a> 开始进入数据库配置：</h3>
+<p><strong>mysql -u root -p</strong>（回车后输入你的数据库root密码，没有密码就直接进去了）</p>
 <p><strong>create database phpbb3;</strong> （为phpbb创建一个数据库，专门用来存放论坛数据）</p>
-<p><strong>grant all privileges on phpbb3.* to phpbbuser@localhost identified by ‘your.password’ ;</strong> （新建phpbbuser用户，指定your.password密码，并赋予用户对于phpbb3数据库全部权限，因为这个是要在后续论坛安装时使用的）</p>
+<p><em><em>grant all privileges on phpbb3.</em> to phpbbuser@localhost identified by ‘your.password’ ;</em>* （新建phpbbuser用户，指定your.password密码，并赋予用户对于phpbb3数据库全部权限，因为这个是要在后续论坛安装时使用的）</p>
 <p><strong>exit</strong>（退出mysql）</p>
-<p>&nbsp;</p>
-<h3 id="现在开始简单的网页向导安装吧"><a href="#现在开始简单的网页向导安装吧" class="headerlink" title="现在开始简单的网页向导安装吧"></a>现在开始简单的网页向导安装吧</h3><p>这跟windows下安装程序一样，一步一步提示。如下：</p>
-<p><strong>你的ip/bbs，</strong>复制到浏览器地址栏打开；</p>
+<p> </p>
+<h3 id="现在开始简单的网页向导安装吧"><a class="markdownIt-Anchor" href="#现在开始简单的网页向导安装吧"></a> 现在开始简单的网页向导安装吧</h3>
+<p>这跟windows下安装程序一样，一步一步提示。如下：</p>
+<p>**你的ip/bbs，**复制到浏览器地址栏打开；</p>
 <p>在这期间phpbb会检测你的mysql、php、apache安装好没有，并且需要一些文件夹和配置文件有没有可写权限，还需要你提供刚才创建的数据库用户名phpbbuser和密码，用于它操控，如下：</p>
 <p>进入网站家目录：<strong>cd /var/www/html</strong></p>
 <p>修改bbs目录所有者为apache用户和apache组：<strong>chown -R apache:apache bbs</strong></p>
@@ -139,13 +144,13 @@
 <p>这样跟着走就可以完成论坛安装，新站长可以多尝试，并参考文档解决用户组权限、管理权限等问题。</p>
 <p>参考<a href="http://linux.vbird.org/apache_packages/www_04phpBB.php" target="_blank" rel="noopener">鸟哥的网站</a>：phpBB 最大的优点是可以进行外挂模组的开发，以建立个人的网页风格，我也在尝试个性化~</p>
 <p>Enjoy！</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/08/phpbb-forums-installing-and-using-guide/" data-id="ck9pfbhx0003goslx5y6eyjg9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/08/phpbb-forums-installing-and-using-guide/" data-id="ck9pghh22003gaglxzx1ykuug" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phpbb3/">phpbb3</a></li></ul>
@@ -326,38 +331,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

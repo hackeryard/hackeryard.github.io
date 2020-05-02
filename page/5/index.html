@@ -28,7 +28,9 @@
   
   <!-- 加载gitment的css和js文件 -->
   <link rel="stylesheet" href="/css/gitment.css"> 
-  <script src="/js/gitment.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/gitment.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
@@ -122,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/21/the-coming-of-winter/" data-id="ck9pfbhy10046oslxon7fqmkm" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/21/the-coming-of-winter/" data-id="ck9pghh2r0046aglxvfiop9dy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -164,7 +166,7 @@
       
         <p>谈到我为何要写这么一个系列，因为我觉得，很多“学过的”东西，并不是你认为学懂了，就真的懂了的。</p>
 <p>所以，我想通过这么一个回溯和复习计划，来记录自己学习操作系统的点滴，以备后用的同时也给别人一点启发吧。</p>
-<p>—————————————————–下面正式开始吧~—————————————————————</p>
+<p>-----------------------------------------------------下面正式开始吧~---------------------------------------------------------------</p>
 <p>谈到操作系统，我们说的最多的恐怕还是微软系列（win10，以前我正在用的win8，还有win7，实验室的xp等等），开源的Linux和众多的发行版（Ubuntu，Fedora，Redhat等），还有个极客之作Mac，我们在上面写文档，图片处理，用浏览器体验丰富的来自世界各地的网页，用qq聊天，在网上做生意，组建技术社区，包括我正在浏览器里面写博客等，这些东西，构成了我们的现代生活。另外在移动端爆发的这几年，我们又成了低头族。很多公司都在制作自己的App，很可能还是全系列的，像这样，既有安卓，还有ios，也少不了h5网页应用，但毫无例外，它们都运行在操作系统上。</p>
 <p>那我们如何了解这一几乎每天都在使用的重要软件呢？CPU、内存、硬盘、显卡、USB外设、网卡这些资源，我们作为用户应该怎么使用它们，程序员如何编写可以利用这些资源完成自己功能的程序？</p>
 <p>这都需要操作系统的管理，它给用户提供了一个易于使用这些重要资源的界面，我们在上面运行cmd或者bash的命令，我们安装各种软件，需要的时候或者兴趣来了，我们还会写一些软件，完成客户指定的功能或自己的设想。</p>
@@ -175,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/14/about-operating-system/" data-id="ck9pfbhty0013oslx4lccvl89" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/14/about-operating-system/" data-id="ck9pghgyn0013aglxgr6er8xc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/操作系统/">操作系统</a></li></ul>
@@ -216,22 +218,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>初学者调试程序的时候经常需要在命令行窗口停下来，查看运行结果，我们在C/C++代码的main函数的末尾，可以添加一些代码实现这个功能：</p>
-<p>1, system(“pause”) –system里面可以嵌入任意的dos命令，如dir、cmd等等</p>
-<p>2, getch() –等待从键盘输入一个字符，不回显，不需要回车</p>
-<p>3, getche() –等待从键盘输入一个字符，回显，不需要回车</p>
-<p>4, getchar() –等待从键盘输入一个字符，回显，需要回车</p>
+<p>1, system(“pause”) --system里面可以嵌入任意的dos命令，如dir、cmd等等</p>
+<p>2, getch() --等待从键盘输入一个字符，不回显，不需要回车</p>
+<p>3, getche() --等待从键盘输入一个字符，回显，不需要回车</p>
+<p>4, getchar() --等待从键盘输入一个字符，回显，需要回车</p>
 <p>另外我们有时候可能需要从别人编译好的exe文件运行，并查看运行结果，这时候怎么暂停一下呢？最直接的方式就是在dos下输入执行文件运行，这样可以看到结果，但是有时输入路径很麻烦，带有中文还需要不停切换，所以分享一个简单方法，如下：</p>
 <p>新建一个批处理文件.bat，如exe.bat，在里面添加如下内容：</p>
-<p>@echo off –echo off表示后面的命令都不回显，而且提示符也不回显；加@表示本身也不回显</p>
-<p>call %1 –调用拖入的可执行文件，%1应该表示拖入的文件其指针</p>
-<p>echo. –输入空行，即回车一下</p>
-<p>pause –这是重要功能，调用完成通过暂停来查看运行结果</p>
+<p>@echo off --echo off表示后面的命令都不回显，而且提示符也不回显；加@表示本身也不回显</p>
+<p>call %1 --调用拖入的可执行文件，%1应该表示拖入的文件其指针</p>
+<p>echo. --输入空行，即回车一下</p>
+<p>pause --这是重要功能，调用完成通过暂停来查看运行结果</p>
 <p>END</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/12/03/debug-tools/" data-id="ck9pfbhub001doslxlbvpeqka" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/12/03/debug-tools/" data-id="ck9pghgz2001daglxmz0do1sy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
@@ -276,20 +278,49 @@
 <p>之后找到了包含此曲的专辑CD镜像，到处找他的信息，浏览了<a href="http://www.leonardcohen.com/" target="_blank" rel="noopener">他的主页</a>，发现他以前还是个小说家和画家，之后因着偶然的机会进入音乐创作。看到他的艺术作品，那些画像，想必是个有着丰富情感经历并且乐于观察的人。他的作品没有看过，据说年轻的他也着迷于东方玄学，来作为一种解脱。到底是个谜一般的男人，歌词简单却不容易懂，只好叹息阅历太浅。</p>
 <p>但这并不妨碍我一遍又一遍的听他的歌，尤其是《In My Secret Life》（英文歌词<a href="http://www.azlyrics.com/lyrics/leonardcohen/inmysecretlife.html" target="_blank" rel="noopener">附上</a>），不断重复的In My Secret Life的旋律很美。我承认只听旋律和感情基调，歌词内容一般忽略，但这首歌的歌词实在是既简单又复杂，很迷惑我，所以在自主理解无望后，好不容易找到一篇<a href="https://www.douban.com/note/138471096/" target="_blank" rel="noopener">好翻译</a>。这篇日志就是为了记下这篇翻译的（实在感谢<a href="https://www.douban.com/people/2558869/" target="_blank" rel="noopener">豆瓣用户</a>）：</p>
 <p>我的秘密生活 《In My Secret Life》</p>
-<p>今早看到你<br>你一闪即逝<br>看来对于过往我还是无法释怀<br>我是如此地想念你<br>眼中再无他人<br>在我的秘密生活里<br>我们依然有着肌肤之亲</p>
-<p>愤怒时我却微笑<br>我欺骗 我撒谎<br>为了生存<br>我不择手段</p>
-<p>其实我知孰为非<br>我知孰为是<br>在我的秘密生活里<br>为了真理 死不足惜</p>
-<p>坚持住 我的兄弟<br>坚持住 我的姐妹<br>行动指令我已拿到<br>我将一直走到破晓<br>还将一直走入黑夜<br>去一次次穿越我的秘密生活的边界</p>
-<p>通篇报章<br>令人唏嘘<br>命如草芥 无人关心<br>庄家想让你相信<br>一切非黑即白<br>好在在我的秘密生活里<br>世界并非如此简单</p>
-<p>我三缄其口<br>我照单全收<br>无论是最新的流行语<br>还是古老的智慧</p>
-<p>但我总是形单影只<br>心似坚冰<br>我的秘密生活<br>拥挤又寒冷</p>
+<p>今早看到你<br>
+你一闪即逝<br>
+看来对于过往我还是无法释怀<br>
+我是如此地想念你<br>
+眼中再无他人<br>
+在我的秘密生活里<br>
+我们依然有着肌肤之亲</p>
+<p>愤怒时我却微笑<br>
+我欺骗 我撒谎<br>
+为了生存<br>
+我不择手段</p>
+<p>其实我知孰为非<br>
+我知孰为是<br>
+在我的秘密生活里<br>
+为了真理 死不足惜</p>
+<p>坚持住 我的兄弟<br>
+坚持住 我的姐妹<br>
+行动指令我已拿到<br>
+我将一直走到破晓<br>
+还将一直走入黑夜<br>
+去一次次穿越我的秘密生活的边界</p>
+<p>通篇报章<br>
+令人唏嘘<br>
+命如草芥 无人关心<br>
+庄家想让你相信<br>
+一切非黑即白<br>
+好在在我的秘密生活里<br>
+世界并非如此简单</p>
+<p>我三缄其口<br>
+我照单全收<br>
+无论是最新的流行语<br>
+还是古老的智慧</p>
+<p>但我总是形单影只<br>
+心似坚冰<br>
+我的秘密生活<br>
+拥挤又寒冷</p>
 <p>引用科恩的一句话，“万物皆有裂痕，那是光进来的地方”。</p>
 <p>愿安息！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/20/in-my-secret-life/" data-id="ck9pfbhv90022oslxpjl6p54m" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/20/in-my-secret-life/" data-id="ck9pghh000022aglxn6cmqiom" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -338,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/" data-id="ck9pfbhx4003loslxo6ea5b7r" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/16/re-compile-opencv-lib-and-config-in-qt-creator/" data-id="ck9pghh26003laglxf0yhmjjg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenCV/">OpenCV</a></li></ul>
@@ -379,23 +410,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今晚重新安装了一遍Phpbb3，这是一款与Discuz论坛风格迥异的软件，想要尝试不一样论坛的朋友可以试用下面的方法安装：（本文使用centos7环境，请确保已经安装LAMP套件）</p>
-<p>&nbsp;</p>
-<h3 id="首先，进入phpbb中文网下载最新的中文安装包："><a href="#首先，进入phpbb中文网下载最新的中文安装包：" class="headerlink" title="首先，进入phpbb中文网下载最新的中文安装包："></a>首先，进入<a href="https://www.phpbbchinese.com/#" target="_blank" rel="noopener">phpbb中文网</a>下载最新的中文安装包：</h3><p>&nbsp;</p>
+<p> </p>
+<h3 id="首先进入phpbb中文网下载最新的中文安装包"><a class="markdownIt-Anchor" href="#首先进入phpbb中文网下载最新的中文安装包"></a> 首先，进入<a href="https://www.phpbbchinese.com/#" target="_blank" rel="noopener">phpbb中文网</a>下载最新的中文安装包：</h3>
+<p> </p>
 <p>点击中文包，右键复制链接，使用<strong>wget + 复制的链接</strong>，进行下载，因为wget默认以最后一个/后的字符串作为文件名，实际上安装包是zip包，我们重命名如下：</p>
-<p><strong>mv xxx  phpbb3.zip</strong></p>
+<p><strong>mv xxx  phpbb3.zip</strong></p>
 <p>解压：</p>
-<p><strong>unzip phpbb3.zip  </strong></p>
+<p>**unzip phpbb3.zip  **</p>
 <p>重命名：</p>
 <p><strong>mv phpBB3 bbs</strong>（bbs目录就是你喜欢的网站路径了，可以自选）</p>
-<p>然后用<strong>ifconfig命令</strong>自己的ip，后续访问论坛需要使用，即<strong>你的ip/bbs，</strong>复制到浏览器地址栏。</p>
-<p>&nbsp;</p>
-<h3 id="开始进入数据库配置："><a href="#开始进入数据库配置：" class="headerlink" title="开始进入数据库配置："></a>开始进入数据库配置：</h3><p><strong>mysql -u root -p</strong>（回车后输入你的数据库root密码，没有密码就直接进去了）</p>
+<p>然后用<strong>ifconfig命令</strong>自己的ip，后续访问论坛需要使用，即**你的ip/bbs，**复制到浏览器地址栏。</p>
+<p> </p>
+<h3 id="开始进入数据库配置"><a class="markdownIt-Anchor" href="#开始进入数据库配置"></a> 开始进入数据库配置：</h3>
+<p><strong>mysql -u root -p</strong>（回车后输入你的数据库root密码，没有密码就直接进去了）</p>
 <p><strong>create database phpbb3;</strong> （为phpbb创建一个数据库，专门用来存放论坛数据）</p>
-<p><strong>grant all privileges on phpbb3.* to phpbbuser@localhost identified by ‘your.password’ ;</strong> （新建phpbbuser用户，指定your.password密码，并赋予用户对于phpbb3数据库全部权限，因为这个是要在后续论坛安装时使用的）</p>
+<p><em><em>grant all privileges on phpbb3.</em> to phpbbuser@localhost identified by ‘your.password’ ;</em>* （新建phpbbuser用户，指定your.password密码，并赋予用户对于phpbb3数据库全部权限，因为这个是要在后续论坛安装时使用的）</p>
 <p><strong>exit</strong>（退出mysql）</p>
-<p>&nbsp;</p>
-<h3 id="现在开始简单的网页向导安装吧"><a href="#现在开始简单的网页向导安装吧" class="headerlink" title="现在开始简单的网页向导安装吧"></a>现在开始简单的网页向导安装吧</h3><p>这跟windows下安装程序一样，一步一步提示。如下：</p>
-<p><strong>你的ip/bbs，</strong>复制到浏览器地址栏打开；</p>
+<p> </p>
+<h3 id="现在开始简单的网页向导安装吧"><a class="markdownIt-Anchor" href="#现在开始简单的网页向导安装吧"></a> 现在开始简单的网页向导安装吧</h3>
+<p>这跟windows下安装程序一样，一步一步提示。如下：</p>
+<p>**你的ip/bbs，**复制到浏览器地址栏打开；</p>
 <p>在这期间phpbb会检测你的mysql、php、apache安装好没有，并且需要一些文件夹和配置文件有没有可写权限，还需要你提供刚才创建的数据库用户名phpbbuser和密码，用于它操控，如下：</p>
 <p>进入网站家目录：<strong>cd /var/www/html</strong></p>
 <p>修改bbs目录所有者为apache用户和apache组：<strong>chown -R apache:apache bbs</strong></p>
@@ -404,13 +438,13 @@
 <p>这样跟着走就可以完成论坛安装，新站长可以多尝试，并参考文档解决用户组权限、管理权限等问题。</p>
 <p>参考<a href="http://linux.vbird.org/apache_packages/www_04phpBB.php" target="_blank" rel="noopener">鸟哥的网站</a>：phpBB 最大的优点是可以进行外挂模组的开发，以建立个人的网页风格，我也在尝试个性化~</p>
 <p>Enjoy！</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/08/phpbb-forums-installing-and-using-guide/" data-id="ck9pfbhx0003goslx5y6eyjg9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/08/phpbb-forums-installing-and-using-guide/" data-id="ck9pghh22003gaglxzx1ykuug" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phpbb3/">phpbb3</a></li></ul>
@@ -473,7 +507,8 @@
 <p>安装完成后，我们希望操作系统把它加入到一个索引表，便于我们搜索时快捷的打开程序，这就是开头提到的。在linux下，新安装的程序一般在/usr/bin下，输入新安装的程序，就会在这个路径下搜索并执行。</p>
 <p>在我新安装的FreeBSD上执行 echo $PATH ，输出：</p>
 <blockquote>
-<p>/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/freebsd/bin<br>这就是系统搜索命令的路径，而且一般是按照顺序搜索，如果系统命令与用户命令重名，可以指定完整路径解决。</p>
+<p>/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/freebsd/bin<br>
+这就是系统搜索命令的路径，而且一般是按照顺序搜索，如果系统命令与用户命令重名，可以指定完整路径解决。</p>
 </blockquote>
 <p>至此编译和安装完成！</p>
 <p>画外音：听说编译器是世界上第二复杂的东西，第一是操作系统，可我们数据库老师说database才是第二复杂的~~</p>
@@ -481,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/08/foundation-of-conpilation/" data-id="ck9pfbhus001qoslxfayydadm" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/08/foundation-of-conpilation/" data-id="ck9pghgzj001qaglxl8iaonbm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机组成/">计算机组成</a></li></ul>
@@ -522,28 +557,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>其实DO的主机还是挺好的，国内访问速度也较快，教程也很详细实用，但就是有一个问题，对于我这个学生党而言，忒贵了。所以开启后续的博客迁移之路：（新旧主机均使用Centos7）</p>
-<p>—————————————跟着我左手右手一个慢动作—————————–</p>
+<p>---------------------------------------跟着我左手右手一个慢动作-----------------------------</p>
 <p>首先，把wp-content文件夹用SFTP（我使用的FileZilla软件）传送到本地windows，然后上传到新主机的wordpress安装目录下。因为wp-content目录下有我们的主题、sitemaps、插件，最最重要的是uploads文件夹，这存放着上传的图片，没有这玩意，以后打开新站点的博客，可能出现找不到图片的尴尬情况。</p>
 <p>接着，按照同样的步骤把wp-config.php传到wordpress家目录下，大家都清楚这是wp的配置文件，里面存放着wp程序操作数据库的用户名密码，在这里有一个好方法，大家可以按照这个文件的内容在新主机上<a href="https://cloud.digitalocean.com/support/suggestions?article=how-to-install-wordpress-on-centos-7&amp;page=0&amp;query=wordpress" target="_blank" rel="noopener">新建一个数据库+用户+密码</a>，这样配置文件就可以直接用了。</p>
 <p>之后wget一个跟老博客同样版本的wordpress.tar.gz，解压后删除wp-content和wp-config.php，之后放到wordpress家目录下，这样文件部分就解决了。</p>
 <p>下面是数据库迁移：用phpmyadmin用默认方式导出wordpress的数据库，格式大概为wordpress.sql。在新主机上安装phpmyadmin，打开新站点ip/phpMyAdmin，导入原数据库，并在wp-options表的siteurl和home这两项修改原网址为新网址，这很重要，关系到能不能打开新站点的wordpress。（<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-with-apache-on-a-centos-7-server" target="_blank" rel="noopener">DO phpmyadmin 教程</a>）</p>
-<p>这样直接通过 <a href="http://新站点ip/wordpress" target="_blank" rel="noopener">http://新站点ip/wordpress</a> 就可以进去了，可以看到主页，但是点击任何一片博文，提示“the requested url /index.php was not found on this server. ”，这是因为我原来的博客修改了永久链接，需要在/etc/httpd/conf/httpd.conf修改允许重写（override），并且在wordpress家目录下的.htaccess文件修改为类似如下：</p>
+<p>这样直接通过 <a href="http://xn--ip-mp7dq71bjkm/wordpress" target="_blank" rel="noopener">http://新站点ip/wordpress</a> 就可以进去了，可以看到主页，但是点击任何一片博文，提示“the requested url /index.php was not found on this server. ”，这是因为我原来的博客修改了永久链接，需要在/etc/httpd/conf/httpd.conf修改允许重写（override），并且在wordpress家目录下的.htaccess文件修改为类似如下：</p>
 <blockquote>
-<h1 id="BEGIN-WordPress"><a href="#BEGIN-WordPress" class="headerlink" title="BEGIN WordPress"></a>BEGIN WordPress</h1><p>&lt;IfModule mod_rewrite.c&gt;</p>
+<h1 id="begin-wordpress"><a class="markdownIt-Anchor" href="#begin-wordpress"></a> BEGIN WordPress</h1>
+<p>&lt;IfModule mod_rewrite.c&gt;</p>
 <p>RewriteEngine On</p>
-<p>RewriteBase /wordpress/                                        //这是wordpress家目录，链接重写起始位置，如果你是xx，改为/xx/</p>
+<p>RewriteBase /wordpress/                                        //这是wordpress家目录，链接重写起始位置，如果你是xx，改为/xx/</p>
 <p>RewriteRule ^index.php$ - [L]</p>
 <p>RewriteCond %{REQUEST_FILENAME} !-f</p>
 <p>RewriteCond %{REQUEST_FILENAME} !-d</p>
-<p>RewriteRule . /wordpress/index.php [L]                //这是家目录对应下的index.php,如果你是xx,改为/xx/index.php</p>
+<p>RewriteRule . /wordpress/index.php [L]                <a href="//xn--index-bi1hm03flpau7qd4bh09awh0ciebs54s.php">//这是家目录对应下的index.php</a>,如果你是xx,改为/xx/index.php</p>
 <p>&lt;/IfModule&gt;</p>
-<h1 id="END-WordPress"><a href="#END-WordPress" class="headerlink" title="END WordPress"></a>END WordPress</h1><p>搞定！</p>
+<h1 id="end-wordpress"><a class="markdownIt-Anchor" href="#end-wordpress"></a> END WordPress</h1>
 </blockquote>
+<p>搞定！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/11/06/migrant-the-blog/" data-id="ck9pfbhw7002qoslx3so6xa12" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/11/06/migrant-the-blog/" data-id="ck9pghh1a002qaglxnj7c84gw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -591,12 +628,12 @@
 <p>兴趣扩展：</p>
 <p><a href="https://zh.wikipedia.org/wiki/%E9%BB%91%E8%85%B9%E6%9E%9C%E8%9D%87" target="_blank" rel="noopener">果蝇wiki</a></p>
 <p><a href="http://songshuhui.net/archives/58323" target="_blank" rel="noopener">基因命名趣谈——从“蓝精灵”说起</a></p>
-<p>&nbsp;</p>
+<p> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/24/a-lovely-melanogaster/" data-id="ck9pfbhtn000woslx9xr603sq" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/24/a-lovely-melanogaster/" data-id="ck9pghgyg000waglx0c77dwr8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -649,7 +686,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2016/10/18/internet-as-the-infrastructure/" data-id="ck9pfbhvh002aoslxja6pbgne" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2016/10/18/internet-as-the-infrastructure/" data-id="ck9pghh080028aglx6n15nu1i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -796,38 +833,6 @@
 
 
 
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
