@@ -262,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9pd8yp7004ts4lxjmmtohrm" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9pegg12004tyglxz9n1x0op" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
@@ -443,6 +443,21 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
 
 
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

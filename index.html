@@ -137,7 +137,12 @@
 <p>仔细看的话，会发现后者是把每一位放回到最开始的位置，按照我的理解，这是为了让解密过程也能<strong>复用</strong>加密的框架。因为解密除了反向使用轮密钥外，其它的过程与加密是一致的。</p>
 <p>DES解密是加密的逆过程，上面介绍了初始置换和逆初始置换是逆过程，剩下就是证明16轮迭代解密是16轮迭代加密的逆过程。</p>
 <p>这里用到了异或(xor)的重要性质，a⊕a=0, a⊕0=a</p>
-<p>每轮解密，我们需要用L(i)和R(i)，解密出上一轮的L(i-1)和R(i-1)，<br>回顾一下加密公式：<br>$L<em>i = R</em>{i-1} (1)$<br>$R<em>i = L</em>{i-1} ⊕ f(R<em>{i-1}, k</em>{i-1}) (2)$<br>解密公式为：<br>$L_{i-1} = R_i ⊕ f(L<em>i, k</em>{i-1}) (3)$<br>$R_{i-1} = L<em>i (4)$<br>把(2)带入到(3)中，则有：<br>$L</em>{i-1} = L<em>{i-1} ⊕ f(R</em>{i-1}, k_{i-1}) ⊕ f(L<em>i, k</em>{i-1})$<br>再把(4)带入上式：<br>$L<em>{i-1} = L</em>{i-1} ⊕ f(L<em>i, k</em>{i-1}) ⊕ f(L<em>i, k</em>{i-1}) = L_{i-1}$<br>这里最后推导出相等，说明按照相同的结构，用下一轮的密文，就可以回推到上一轮密文，最终迭代回明文。只不过这里交换了L和R的顺序，迭代函数的框架可以复用。</p>
+<p>每轮解密，我们需要用L(i)和R(i)，解密出上一轮的L(i-1)和R(i-1)</p>
+<p>回顾一下加密公式：<br>$L<em>i = R</em>{i-1} (1)$<br>$R<em>i = L</em>{i-1} ⊕ f(R<em>{i-1}, k</em>{i-1}) (2)$</p>
+<p>解密公式为：<br>$L_{i-1} = R_i ⊕ f(L<em>i, k</em>{i-1}) (3)$<br>$R_{i-1} = L_i (4)$</p>
+<p>把(2)带入到(3)中，则有：<br>$L<em>{i-1} = L</em>{i-1} ⊕ f(R<em>{i-1}, k</em>{i-1}) ⊕ f(L<em>i, k</em>{i-1})$</p>
+<p>再把(4)带入上式：<br>$L<em>{i-1} = L</em>{i-1} ⊕ f(L<em>i, k</em>{i-1}) ⊕ f(L<em>i, k</em>{i-1}) = L_{i-1}$</p>
+<p>这里最后推导出相等，说明按照相同的结构，用下一轮的密文，就可以回推到上一轮密文，最终迭代回明文。只不过这里交换了L和R的顺序，迭代函数的框架可以复用。</p>
 <p>写到这里，DES这么经典的算法，的确很经典，Feistel结构，S盒的设计，简单的多轮迭代增加混淆和扩散的思想，都让我感受到DES算法的简洁和经典之美。</p>
 <p>参考：</p>
 <p>1.程序员小吴，<a href="https://www.cxyxiaowu.com/1478.html" target="_blank" rel="noopener">神秘的DES加密算法</a></p>
@@ -149,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9pd8yi3001fs4lxztdfo3lo" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9pegfwy001fyglx8hm9wrs1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li></ul>
@@ -212,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/best-practice-of-password-save/" data-id="ck9pd8yho0018s4lx65w4cizo" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/best-practice-of-password-save/" data-id="ck9pegfwq0018yglxw1nbimcr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li></ul>
@@ -256,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/linux-init/" data-id="ck9pd8yl2002js4lxzl7c71yd" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/linux-init/" data-id="ck9pegfyl002iyglxj9x7t6zx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -298,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/network-encrypt-protocol/" data-id="ck9pd8ym9002xs4lxnt8tswx2" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/network-encrypt-protocol/" data-id="ck9pegfzc002xyglxkdsil7bf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -340,7 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/30/nginx-event-loop/" data-id="ck9pd8ymg0035s4lx2bup71uj" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/30/nginx-event-loop/" data-id="ck9pegfzh0035yglx9jd3orym" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGINX/">NGINX</a></li></ul>
@@ -457,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9pd8ymb0030s4lxbyirh5w9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9pegfze0030yglxjvdc2ge6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/">Network</a></li></ul>
@@ -508,7 +513,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/27/permutations/" data-id="ck9pd8ymx003gs4lxe5lojsrl" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/27/permutations/" data-id="ck9pegfzo003byglxwn5jzotz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -561,7 +566,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/27/subsets/" data-id="ck9pd8ynp0042s4lxi43ftkdq" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/27/subsets/" data-id="ck9pegg090042yglx04z9uhvs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -611,7 +616,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/27/three-sum-closest/" data-id="ck9pd8yox004os4lxf4rfxj2q" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/27/three-sum-closest/" data-id="ck9pegg0v004oyglx1cwd86ts" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -661,7 +666,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/two-sum-closest/" data-id="ck9pd8ypg004ws4lxose54514" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/two-sum-closest/" data-id="ck9pegg14004wyglx6fiv6yvl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -808,6 +813,21 @@
 
 
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
