@@ -9,14 +9,14 @@
   <title>网络工具集 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="我们知道，校园网支持ipv6网络，平时我们都是在使用双栈进行网络通信，只是大多时候我们没有发现，也就没有充分利用罢了。（当然我也没有充分利用起来，最近开始学习网络编程，准备写一个ipv6或者双栈下的局域网聊天软件） Cernet2是新一代的教育科研网，基本各大高校都有接入，ipv6本来就是实验性的技术，可以从国内主要主机（云）提供商看出ipv6的现阶段情况，需求还不大，但是基于ipv4地址池的枯竭">
-<meta name="keywords" content="Network">
+<meta name="keywords" content="Network 工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络工具集">
 <meta property="og:url" content="https://hackeryard.github.io/2017/04/01/network-tools/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
 <meta property="og:description" content="我们知道，校园网支持ipv6网络，平时我们都是在使用双栈进行网络通信，只是大多时候我们没有发现，也就没有充分利用罢了。（当然我也没有充分利用起来，最近开始学习网络编程，准备写一个ipv6或者双栈下的局域网聊天软件） Cernet2是新一代的教育科研网，基本各大高校都有接入，ipv6本来就是实验性的技术，可以从国内主要主机（云）提供商看出ipv6的现阶段情况，需求还不大，但是基于ipv4地址池的枯竭">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-01T14:56:22.200Z">
+<meta property="og:updated_time" content="2020-05-02T00:26:46.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络工具集">
 <meta name="twitter:description" content="我们知道，校园网支持ipv6网络，平时我们都是在使用双栈进行网络通信，只是大多时候我们没有发现，也就没有充分利用罢了。（当然我也没有充分利用起来，最近开始学习网络编程，准备写一个ipv6或者双栈下的局域网聊天软件） Cernet2是新一代的教育科研网，基本各大高校都有接入，ipv6本来就是实验性的技术，可以从国内主要主机（云）提供商看出ipv6的现阶段情况，需求还不大，但是基于ipv4地址池的枯竭">
@@ -97,10 +97,6 @@
   <time datetime="2017-04-01T03:47:26.000Z" itemprop="datePublished">2017-04-01</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/网络分析/">网络分析</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -124,7 +120,7 @@
 <p>另一个更直接的办法，是直接在hosts文件里面添加你需要访问的ip地址+（TAB）+对应的域名，如果你不知道hosts文件的作用，可以先看下<a href="https://zh.wikipedia.org/wiki/Hosts%E6%96%87%E4%BB%B6" target="_blank" rel="noopener">这篇文章</a>。hosts无奈不支持泛解析，所以改好后文件会比较大，通过<a href="https://serve.netsh.org/pub/ipv6-hosts/" target="_blank" rel="noopener">奶齿博客下载</a>最新的hosts，在替换或者修改hosts文件之前，请确保你对此文件拥有编辑权，可以通过右键属性-&gt;编辑权限完成。这样打开浏览器，键入<a href="https://google.com.hk" target="_blank" rel="noopener">https://google.com.hk</a>应该就可以访问了，不放心的还可以通过cmd-&gt;ipconfig/flushdns来刷新一下系统的dns。</p>
 <p>对于学习技术的人来说，谷歌是必要的，当然有些东西通过百度才可以获得好的查询结果，所以结合起来挺好的。</p>
 <p>另外Wikipedia的条理性很强，它把几乎所有相关的知识都链接到一个词条里面，这样有利于新知识的学习和知识的整理。</p>
-<p>说道fq，不得不说<a href="http://shadowsocks.org" target="_blank" rel="noopener">shadowsocks</a>（下称ss），通过sock5代理的方式，可用性很强，至少在大部分vpn被屏蔽后仍然坚挺，官网上有具体的教程，而且github上还有用各种语言开发的版本，比较活跃。</p>
+<p>说道上网，不得不说<a href="http://shadowsocks.org" target="_blank" rel="noopener">shadowsocks</a>（下称ss），通过socks5代理的方式，可用性很强，至少在大部分vpn被屏蔽后仍然坚挺，官网上有具体的教程，而且github上还有用各种语言开发的版本，比较活跃。</p>
 <p>ss基于c/s模式，通过全局代理/PAC智能代理，能够分流本地网站和外网，从而只对外网代理，既然基于c/s模式，那么肯定需要一台服务器架设在外面，如果你有兴趣，可以通过docker非常简单的安装一个，docker是一个容器，通过一个虚拟的环境方便可以实现应用在各个server上迁移，大大减轻了开发人员配置环境的工作，这里有一篇关于<a href="http://liujin.me/blog/2015/05/27/Docker-DigitalOcean-Shadowsocks-5-%E5%88%86%E9%92%9F%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" target="_blank" rel="noopener">DO主机配置docker</a>的教程，两行代码就可以搭建成功，但我没找到如何实现docker支持ss的ipv6代理，所以只能通过ipv4的方式。</p>
 <p>记得林工说过，我们的网络具有天然的学习网络知识的优势233，最近在看他的第二本书<a href="https://book.douban.com/subject/26710788/" target="_blank" rel="noopener">《wireshark网络分析艺术》</a>，挺有意思的，另外异步社区的专访<a href="http://www.epubit.com.cn/article/389" target="_blank" rel="noopener">在这里</a>，期待他的下一本园艺书。</p>
 <p>以上。</p>
@@ -133,10 +129,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9obr58a00302slxeeu9vrhc" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/01/network-tools/" data-id="ck9ovzjc2003074lx79cxqndj" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/">Network</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network-工具/">Network 工具</a></li></ul>
 
     </footer>
   </div>
@@ -209,7 +205,7 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Industry/">Computer Industry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPICH/">MPICH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NGINX/">NGINX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/">Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node/">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress-字体/">Wordpress 字体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitment/">gitment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpbb3/">phpbb3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体/">字体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/密码学/">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具-备忘/">工具 备忘</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/操作系统/">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成/">计算机组成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/部署/">部署</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Industry/">Computer Industry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MPICH/">MPICH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NGINX/">NGINX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/">Network</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network-工具/">Network 工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node/">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenCV/">OpenCV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitment/">gitment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpbb3/">phpbb3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/大学的过法/">大学的过法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字体/">字体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/密码学/">密码学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/操作系统/">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/梵高/">梵高</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机组成/">计算机组成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/部署/">部署</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
     </div>
   </div>
 
@@ -219,7 +215,7 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Computer-Industry/" style="font-size: 10px;">Computer Industry</a> <a href="/tags/LeetCode/" style="font-size: 18px;">LeetCode</a> <a href="/tags/MPICH/" style="font-size: 12px;">MPICH</a> <a href="/tags/NGINX/" style="font-size: 10px;">NGINX</a> <a href="/tags/Network/" style="font-size: 14px;">Network</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/Windows/" style="font-size: 14px;">Windows</a> <a href="/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/tags/Wordpress-字体/" style="font-size: 10px;">Wordpress 字体</a> <a href="/tags/blog/" style="font-size: 14px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/tags/phpbb3/" style="font-size: 10px;">phpbb3</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体/" style="font-size: 10px;">字体</a> <a href="/tags/密码学/" style="font-size: 10px;">密码学</a> <a href="/tags/工具-备忘/" style="font-size: 10px;">工具 备忘</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/计算机组成/" style="font-size: 16px;">计算机组成</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/随想集/" style="font-size: 20px;">随想集</a>
+      <a href="/tags/Computer-Industry/" style="font-size: 10px;">Computer Industry</a> <a href="/tags/LeetCode/" style="font-size: 18px;">LeetCode</a> <a href="/tags/MPICH/" style="font-size: 12px;">MPICH</a> <a href="/tags/NGINX/" style="font-size: 10px;">NGINX</a> <a href="/tags/Network/" style="font-size: 12px;">Network</a> <a href="/tags/Network-工具/" style="font-size: 10px;">Network 工具</a> <a href="/tags/Node/" style="font-size: 10px;">Node</a> <a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/Vincent/" style="font-size: 10px;">Vincent</a> <a href="/tags/Windows/" style="font-size: 14px;">Windows</a> <a href="/tags/Wordpress/" style="font-size: 12px;">Wordpress</a> <a href="/tags/blog/" style="font-size: 14px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitment/" style="font-size: 10px;">gitment</a> <a href="/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/tags/phpbb3/" style="font-size: 10px;">phpbb3</a> <a href="/tags/webhooks/" style="font-size: 10px;">webhooks</a> <a href="/tags/大学的过法/" style="font-size: 10px;">大学的过法</a> <a href="/tags/字体/" style="font-size: 12px;">字体</a> <a href="/tags/密码学/" style="font-size: 10px;">密码学</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/梵高/" style="font-size: 10px;">梵高</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/计算机组成/" style="font-size: 16px;">计算机组成</a> <a href="/tags/部署/" style="font-size: 10px;">部署</a> <a href="/tags/随想集/" style="font-size: 20px;">随想集</a>
     </div>
   </div>
 
