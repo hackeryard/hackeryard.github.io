@@ -91,6 +91,64 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-max-in-windows" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/05/max-in-windows/" class="article-date">
+  <time datetime="2020-05-05T13:30:25.000Z" itemprop="datePublished">2020-05-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/05/max-in-windows/">滑动窗口的最大值</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h2>
+<p>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回滑动窗口中的最大值。</p>
+<p>进阶：<br>
+你能在线性时间复杂度内解决此题吗？<br>
+示例:</p>
+<p>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3<br>
+输出: [3,3,5,5,6,7]<br>
+解释:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  滑动窗口的位置                最大值</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       3</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       3</span><br><span class="line"> 1  3 [-1  -3  5] 3  6  7       5</span><br><span class="line"> 1  3  -1 [-3  5  3] 6  7       5</span><br><span class="line"> 1  3  -1  -3 [5  3  6] 7       6</span><br><span class="line"> 1  3  -1  -3  5 [3  6  7]      7</span><br></pre></td></tr></table></figure>
+<p>来源：<a href="https://leetcode-cn.com/problems/sliding-window-maximum" target="_blank" rel="noopener">LeetCode</a></p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<p>首先看暴力解法，设nums的长度为n，则主循环遍历n-k+1次，子循环k次，即可完成对每个窗口的求解，时间复杂度是O(nk)。根据窗口的定义，我们只需要维护窗口的元素，并提供一个接口，查询当前窗口的最大值。维持大小为k的大顶堆可以查询最大值，但在维护窗口上，删除上一个窗口的第一个元素，需要花费的时间不得而知，因为堆只是维持父子节点的弱有序，查询的复杂度是不确切的。</p>
+<p>因为在窗口滑动时，我们需要删除上一个窗口的第一个元素，且最好能在O(1)的时间里删除，则可以尝试双端队列，同时，为了提供查询窗口最大值的接口，我们把front设置成最大值的索引，front到back的元素是小于front的元素。这里使用索引而不是最大值，是因为如果是最大值，我们无法确认是否front是否还在当前窗口内。front的维护方法，窗口移动得到的新元素与队列中的back比较，如果比back大，则弹出back，因为back不可能是最大值，堵在队列中会影响front（试想front因为窗口滑动而退出，此时新的front是较小的元素，那么front就不是最大值了）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span> || k == <span class="number">0</span> || n &lt; k) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="comment">// 用下标是因为 如果用元素值 则不知道front元素是否在当前窗口范围内</span></span><br><span class="line">        <span class="comment">// front保存最大值 是为了每次能通过front接口得到窗口的最大值</span></span><br><span class="line">        <span class="comment">// [front, back1, back2] front始终保存最大值 如果当前值比back大 则while弹出back</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty() &amp;&amp; nums[i] &gt; nums[q.back()]) &#123;</span><br><span class="line">                q.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            q.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        res.push_back(nums[q.front()]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="comment">// 之前的最大值是否还在当前窗口内</span></span><br><span class="line">            <span class="keyword">if</span>(!q.empty() &amp;&amp; q.front() == i-k) &#123; <span class="comment">// i=3 k=3 i-k=0</span></span><br><span class="line">                q.pop_front();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty() &amp;&amp; nums[i] &gt; nums[q.back()]) &#123;</span><br><span class="line">                q.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            q.push_back(i);</span><br><span class="line">            res.push_back(nums[q.front()]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/05/05/max-in-windows/" data-id="ck9tz7znn002ngklx8csrl2q2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-des-encrypt-and-decrypt" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/02/des-encrypt-and-decrypt/" class="article-date">
@@ -161,6 +219,7 @@
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>L</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>⊕</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>L</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>k</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>⊕</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>L</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>k</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi>L</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">L_{i-1} = L_{i-1} ⊕ f(L_i, k_{i-1}) ⊕ f(L_i, k_{i-1}) = L_{i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span></p>
 <p>这里最后推导出相等，说明按照相同的结构，用下一轮的密文，就可以回推到上一轮密文，最终迭代回明文。只不过这里交换了L和R的顺序，迭代函数的框架可以复用。</p>
 <p>写到这里，DES这么经典的算法，的确很经典，Feistel结构，S盒的设计，简单的多轮迭代增加混淆和扩散的思想，都让我感受到DES算法的简洁和经典之美。</p>
+<p>PS: 文中如有错误，欢迎指出，本站不胜感激。版权给hackeryard所有，转载请注明出处。</p>
 <p>参考：</p>
 <p>1.程序员小吴，<a href="https://www.cxyxiaowu.com/1478.html" target="_blank" rel="noopener">神秘的DES加密算法</a></p>
 <p>2.nnnnzyx，<a href="https://www.jianshu.com/p/e6dfe4fef5f7" target="_blank" rel="noopener">DES解密是加密的逆过程</a></p>
@@ -171,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9pghgz8001haglx5m2daqsj" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9tz7zm2001ggklxumhh3srv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li></ul>
@@ -234,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/best-practice-of-password-save/" data-id="ck9pghgyw0018aglx69txdif7" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/best-practice-of-password-save/" data-id="ck9tz7zlv0019gklxcmuridq3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li></ul>
@@ -278,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/linux-init/" data-id="ck9pghh13002jaglx2ebbeccn" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/linux-init/" data-id="ck9tz7zni002igklxy825i59r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -320,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/network-encrypt-protocol/" data-id="ck9pghh1g002vaglxke816et1" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/network-encrypt-protocol/" data-id="ck9tz7zof0031gklx6iz398uf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -362,7 +421,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/30/nginx-event-loop/" data-id="ck9pghh1q0034aglxxqaqdt4a" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/30/nginx-event-loop/" data-id="ck9tz7zoi0034gklx2w7c2dlt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGINX/">NGINX</a></li></ul>
@@ -505,7 +564,7 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9pghh1n0032aglxvj2zfyab" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9tz7zob002wgklx4epyq0hf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/">Network</a></li></ul>
@@ -567,7 +626,7 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/27/permutations/" data-id="ck9pghh20003eaglxmurd7kuo" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/27/permutations/" data-id="ck9tz7zos003fgklxsij6j1qy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -633,7 +692,7 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/27/subsets/" data-id="ck9pghh2n0042aglx09quq1c9" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/27/subsets/" data-id="ck9tz7zpj0043gklxgsjqrkgj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -685,60 +744,7 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/27/three-sum-closest/" data-id="ck9pghh3c004oaglxzor82jxu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-two-sum-closest" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/26/two-sum-closest/" class="article-date">
-  <time datetime="2020-04-26T15:15:56.000Z" itemprop="datePublished">2020-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/26/two-sum-closest/">最接近的两数之和</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
-<hr>
-<p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的两个整数，使得它们的和与 target 最接近。返回这两个数的和。假定每组输入只存在唯一答案。</p>
-<p>例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.</p>
-<p>与 target 最接近的两个数的和为 1. (-1 + 2 = 1).</p>
-<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
-<hr>
-<p>暴力破解，需要O(N^2)的时间复杂度，能不能降低？我们知道在乱序情况下，只能做到两个循环去遍历，如果排序，则可能可以利用头尾指针去智能化地遍历（和大于target则右指针左移，小于target则左指针右移），这样只需要O(N)的复杂度，加上排序复杂度O(NlogN)，最后复杂度是O(NlogN)<br>
-头尾双指针算法的正确性如何证明？我们要找最接近的两数之和，如此移动，如果能证明不会错失最优解即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 返回最接近的两数之和</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">twoSumClosest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> min_diff = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> closest_sum;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> sum = nums[left] + nums[right];</span><br><span class="line">            <span class="keyword">int</span> diff = <span class="built_in">abs</span>(sum - target);</span><br><span class="line">            <span class="keyword">if</span>(diff &lt; min_diff) &#123;</span><br><span class="line">                min_diff = diff;</span><br><span class="line">                closest_sum = sum;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 移动指针</span></span><br><span class="line">            <span class="keyword">if</span>(sum &gt; target) &#123;</span><br><span class="line">                --right;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ++left;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="comment">// end while</span></span><br><span class="line">        <span class="keyword">return</span> closest_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/two-sum-closest/" data-id="ck9pghh3l004waglxxldiw2qf" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/27/three-sum-closest/" data-id="ck9tz7zq5004ngklx5s8rnjaz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -812,6 +818,10 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
       <ul>
         
           <li>
+            <a href="/2020/05/05/max-in-windows/">滑动窗口的最大值</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/02/des-encrypt-and-decrypt/">详解DES加解密</a>
           </li>
         
@@ -825,10 +835,6 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
         
           <li>
             <a href="/2020/05/01/network-encrypt-protocol/">理解HTTPS协议</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/30/nginx-event-loop/">Nginx事件驱动框架</a>
           </li>
         
       </ul>
