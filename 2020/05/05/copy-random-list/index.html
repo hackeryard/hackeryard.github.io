@@ -6,15 +6,20 @@
   
 
   
-  <title>Tag: Windows | Spark Era Coming...</title>
+  <title>复杂链表的复制 | Spark Era Coming...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Spark Era Coming...">
-<meta property="og:url" content="https://hackeryard.github.io/tags/Windows/index.html">
+  <meta name="description" content="问题描述 请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null 来源：LeetCode(https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof) 图片参考：CyC2018  解法一">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复杂链表的复制">
+<meta property="og:url" content="https://hackeryard.github.io/2020/05/05/copy-random-list/index.html">
 <meta property="og:site_name" content="Spark Era Coming...">
+<meta property="og:description" content="问题描述 请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null 来源：LeetCode(https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof) 图片参考：CyC2018  解法一">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-06T01:39:55.827Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spark Era Coming...">
+<meta name="twitter:title" content="复杂链表的复制">
+<meta name="twitter:description" content="问题描述 请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null 来源：LeetCode(https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof) 图片参考：CyC2018  解法一">
   
     <link rel="alternate" href="/atom.xml" title="Spark Era Coming..." type="application/atom+xml">
   
@@ -86,92 +91,86 @@
 </script>
 </header>
       <div class="outer">
-        <section id="main"><!-- tag.ejs -->
-<!-- post archive.ejs -->
-
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/01/16/solve-win8-limited-wireless-network/" class="archive-article-date">
-  <time datetime="2017-01-16T03:08:07.000Z" itemprop="datePublished">1月 16</time>
+        <section id="main"><!-- post.ejs -->
+<!-- post/article.ejs -->
+<article id="post-copy-random-list" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/05/copy-random-list/" class="article-date">
+  <time datetime="2020-05-05T14:40:55.000Z" itemprop="datePublished">2020-05-05</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/16/solve-win8-limited-wireless-network/">解决联想Win8无线网受限的问题</a>
+    <h1 class="article-title" itemprop="name">
+      复杂链表的复制
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/12/03/debug-tools/" class="archive-article-date">
-  <time datetime="2016-12-03T14:26:17.000Z" itemprop="datePublished">12月 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/03/debug-tools/">调试小技巧</a>
-    </h1>
-  
+        <h2 id="问题描述"><a class="markdownIt-Anchor" href="#问题描述"></a> 问题描述</h2>
+<p>请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null</p>
+<p>来源：LeetCode(<a href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof</a>)<br>
+图片参考：<a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/35.%20%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6.md" target="_blank" rel="noopener">CyC2018</a></p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <!-- archive-post.ejs -->
-<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/" class="archive-article-date">
-  <time datetime="2016-08-22T15:11:05.000Z" itemprop="datePublished">8月 22</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/22/how-to-handle-the-miss-of-mbr-when-using-dual-sys/">Win8.1与Deepin双系统安装误将MBR丢失的处理方法</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/05/05/copy-random-list/" data-id="ck9uohjb200170olxvaj6bdhh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/05/max-in-windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">滑动窗口的最大值</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+<script>
+var gitment = new Gitment({
+  owner: 'hackeryard',
+  repo: 'hackeryard.github.io',
+  oauth: {
+    client_id: '462b97cb05d244087337',
+    client_secret: 'acb2fec8890a003f72fd1aee09b65d8667a409e6',
+  },
+})
+gitment.render('gitment')
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+//using some wisdom words
+wis_words = ["静心，尽力", "任风雨来袭，我自岿然不动", "热爱生活，向上而生", "做一个理想主义的技术追求者", "不忘初心"];
+document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(wis_words.length)] + '」';
+</script>
+ 
 
 
 </section>

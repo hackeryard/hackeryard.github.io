@@ -91,6 +91,58 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-three-sum-closest" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/27/three-sum-closest/" class="article-date">
+  <time datetime="2020-04-26T23:36:10.000Z" itemprop="datePublished">2020-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/27/three-sum-closest/">最接近的三数之和</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述"><a class="markdownIt-Anchor" href="#题目描述"></a> 题目描述</h2>
+<hr>
+<p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p>
+<p>例如，给定数组 nums = [-1，2，1，-4], 和 target = 1.</p>
+<p>与 target 最接近的三个数的和为 2. (-1 + 2 + 1 = 2).</p>
+<p>来源：<a href="https://leetcode-cn.com/problems/3sum-closest" target="_blank" rel="noopener">LeetCode</a></p>
+<h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
+<p>暴力法三次循环，时间复杂度是O(N^3)，如何降低复杂度？我们知道，在数组无序的情况下，只能采用这种遍历的方法，没有启发式搜索的信息。所以先排序，之后每个元素i，都依次遍历其[i+1,n]范围内的和，保存最接近target的和，遍历结束后输出即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">threeSumClosest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">2</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">int</span> min_diff = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> closest_sum;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> left = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> right = n<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">                <span class="comment">// calc diff</span></span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[left] + nums[right];</span><br><span class="line">                <span class="keyword">int</span> diff = <span class="built_in">abs</span>(target-sum);</span><br><span class="line">                <span class="keyword">if</span>(diff &lt; min_diff) &#123;</span><br><span class="line">                    min_diff = diff;</span><br><span class="line">                    closest_sum = sum;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(sum == target) &#123;</span><br><span class="line">                    <span class="comment">// 必然是最小的 直接返回则节省时间</span></span><br><span class="line">                    <span class="keyword">return</span> sum;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; target) &#123;</span><br><span class="line">                    --right;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    ++left;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="comment">// end while</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> closest_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2020/04/27/three-sum-closest/" data-id="ck9uohjg0004q0olx8e62whja" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-two-sum-closest" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/26/two-sum-closest/" class="article-date">
@@ -126,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/two-sum-closest/" data-id="ck9tz7zrc005pgklxj5y3xxx7" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/two-sum-closest/" data-id="ck9uohjg7004v0olxt6btyux0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -180,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/number-of-lis/" data-id="ck9tz7zoq003dgklxkh7stbkz" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/number-of-lis/" data-id="ck9uohjen003j0olxjq0ojpvq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -233,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/lis/" data-id="ck9tz7znk002kgklxgpfvq5ip" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/lis/" data-id="ck9uohjd9002n0olxzxf4jyl1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -289,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/26/first-common-node-of-two-linked-list/" data-id="ck9tz7zma001mgklx17yyygrf" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/26/first-common-node-of-two-linked-list/" data-id="ck9uohjby001p0olxsy0xzrgq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -344,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/" data-id="ck9tz7zkx000mgklx5iue51dw" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/Longest-Common-Substring/" data-id="ck9uohja1000j0olxtur9qjnc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -400,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/invert-tree/" data-id="ck9tz7znf002egklxzb5fa0oo" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/invert-tree/" data-id="ck9uohjcx002c0olx4rr9tn4x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -468,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/lcs/" data-id="ck9tz7znb002cgklxob3ijj6p" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/lcs/" data-id="ck9uohjd7002k0olx4von7xf9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -526,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/25/symmetric-tree/" data-id="ck9tz7zpl0045gklxyospp5sj" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/25/symmetric-tree/" data-id="ck9uohjff00480olxs4ugz81t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -591,229 +643,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck9tz7zpd003wgklx2zrla8is" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/20/reverse-list/" data-id="ck9uohjf0003s0olxe25l3lm9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-tool-set" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/21/tool-set/" class="article-date">
-  <time datetime="2018-03-21T13:31:30.000Z" itemprop="datePublished">2018-03-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/21/tool-set/">常用工具集</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="vim快捷键"><a class="markdownIt-Anchor" href="#vim快捷键"></a> Vim快捷键：</h2>
-<ul>
-<li>跳到第一行  :1 或 gg</li>
-<li>跳到最后一行  😒 或 Shift+g</li>
-<li>复制  yy</li>
-<li>删除  dd</li>
-<li>撤销  U</li>
-<li>粘贴  P</li>
-</ul>
-<h2 id="加载python自带web-server"><a class="markdownIt-Anchor" href="#加载python自带web-server"></a> 加载Python自带Web Server：</h2>
-<ul>
-<li>python -m SimpleHTTPServer 80</li>
-<li>python3 -m http.server 80</li>
-</ul>
-<h2 id="webstorm快捷键"><a class="markdownIt-Anchor" href="#webstorm快捷键"></a> Webstorm快捷键</h2>
-<ul>
-<li>Ctrl + Alt + L 格式化代码</li>
-<li>双击shift 全局查找</li>
-<li>快速代码补全 emmet</li>
-<li>快速生成框架 !html</li>
-</ul>
-<h2 id="onenote使用笔记"><a class="markdownIt-Anchor" href="#onenote使用笔记"></a> Onenote使用笔记</h2>
-<ul>
-<li>截图：Win+shift+S</li>
-</ul>
-<h2 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h2>
-<ul>
-<li>重新加载配置：nginx -s reload</li>
-<li>快速关闭：nginx -s stop</li>
-<li>安全关闭：nginx -s quit</li>
-</ul>
-<h2 id="ffmpeg"><a class="markdownIt-Anchor" href="#ffmpeg"></a> FFmpeg</h2>
-<h2 id="celery-4-in-windows"><a class="markdownIt-Anchor" href="#celery-4-in-windows"></a> celery 4 in Windows</h2>
-<ul>
-<li>不支持pool：celery -A your_app_name worker --pool=solo -l info</li>
-</ul>
-<h2 id="lsoflist-open-files"><a class="markdownIt-Anchor" href="#lsoflist-open-files"></a> lsof：list open files</h2>
-<p>查看进程打开的文件列表</p>
-<ul>
-<li>lsof -c -p pid</li>
-<li>lsof -c program</li>
-</ul>
-<h2 id="获取当前缓存加载的动态链接库"><a class="markdownIt-Anchor" href="#获取当前缓存加载的动态链接库"></a> 获取当前缓存（加载）的动态链接库：</h2>
-<ul>
-<li>ldconfig -p | grep libssh</li>
-</ul>
-<h2 id="查看可执行文件所依赖的库"><a class="markdownIt-Anchor" href="#查看可执行文件所依赖的库"></a> 查看可执行文件所依赖的库：</h2>
-<ul>
-<li>ldd 绝对路径</li>
-<li>（程序的某个section中会记录动态链接的信息）</li>
-</ul>
-<h2 id="aliases"><a class="markdownIt-Anchor" href="#aliases"></a> aliases</h2>
-<ul>
-<li>alias de=‘ps -ef |grep’</li>
-<li>alias c=‘clear’</li>
-<li>alias ncat=‘netstat -nlp |grep’</li>
-<li>alias listp=‘pkg-config --list-all |grep’</li>
-<li>alias versionp=‘pkg-config --modversion’</li>
-<li>alias finf=‘find / -name’</li>
-<li>alias s=‘apt-cache search’</li>
-</ul>
-<h2 id="高亮日志分析工具log-navigator"><a class="markdownIt-Anchor" href="#高亮日志分析工具log-navigator"></a> 高亮日志分析工具（log navigator）：</h2>
-<ul>
-<li>apt-get install lnav</li>
-</ul>
-<h2 id="ovs"><a class="markdownIt-Anchor" href="#ovs"></a> ovs</h2>
-<ul>
-<li>
-<p>运维：</p>
-<ul>
-<li>运维脚本位置
-<ul>
-<li>/usr/share/openvswitch/scripts</li>
-<li>/usr/local/share/openvswitch/scripts</li>
-</ul>
-</li>
-<li>启动：ovs-ctl start</li>
-<li>重启：ovs-ctl restart</li>
-<li>状态：ovs-ctl status</li>
-</ul>
-</li>
-<li>
-<p>查看日志：</p>
-<ul>
-<li>ovsdb-tool show-log</li>
-</ul>
-</li>
-<li>
-<p>查看ovsdb里面的数据表：</p>
-<ul>
-<li>ovsdb-client list-tables</li>
-</ul>
-</li>
-<li>
-<p>查看ovsdb中的相关字段定义</p>
-<ul>
-<li>ovsdb-client list-columns Interface | grep ofport</li>
-</ul>
-</li>
-<li>
-<p>查看ovsdb中的相关数据：</p>
-<ul>
-<li>ovs-vsctl  – --columns=external_ids,name,ofport,ofport_request  list Interface</li>
-</ul>
-</li>
-<li>
-<p>alias:</p>
-<ul>
-<li>alias ovss=‘ovs-vsctl show’</li>
-<li>alias apps=‘ovs-appctl fdb/show’</li>
-<li>alias ofs=‘ovs-ofctl show ofc-bridge’</li>
-</ul>
-</li>
-</ul>
-<h2 id="编译相关"><a class="markdownIt-Anchor" href="#编译相关"></a> 编译相关</h2>
-<ul>
-<li>
-<p>cmake：</p>
-<ul>
-<li>一个跨平台编译工具 用于生成适配平台的Makefile</li>
-<li>mkdir build</li>
-<li>cd build</li>
-<li>cmake …</li>
-<li>make &amp;&amp; make install</li>
-<li>重新cmake之前需要删除CMakeCache.txt</li>
-</ul>
-</li>
-<li>
-<p>pkg-config:</p>
-<ul>
-<li>编译库的时候 使用这个工具管理其依赖</li>
-<li>即记录头文件和库文件的存放位置 用于编译和链接</li>
-<li>pkg-config --list-all | grep libnetconf</li>
-<li>pkg-config  --modversion libnetconf</li>
-</ul>
-</li>
-</ul>
-<h2 id="ipv6-dns"><a class="markdownIt-Anchor" href="#ipv6-dns"></a> IPv6 DNS:</h2>
-<ul>
-<li>国内公共DNS（延迟2ms）：
-<ul>
-<li>240c::6666</li>
-<li>240c::6644</li>
-</ul>
-</li>
-<li><a href="http://he.net" target="_blank" rel="noopener">he.net</a>(US延迟156ms）：
-<ul>
-<li>2001:470:20::2</li>
-<li>2001:470:0:9d::2</li>
-</ul>
-</li>
-<li>Google（延迟156ms）：
-<ul>
-<li>2001:4860:4860::8888</li>
-<li>2001:4860:4860::8844</li>
-</ul>
-</li>
-</ul>
-<h2 id="屏蔽广告"><a class="markdownIt-Anchor" href="#屏蔽广告"></a> 屏蔽广告：</h2>
-<ul>
-<li>hosts方式：
-<ul>
-<li>0.0.0.0 <a href="http://xian.qq.com" target="_blank" rel="noopener">xian.qq.com</a></li>
-<li>0.0.0.0 <a href="http://q.i.gdt.qq.com" target="_blank" rel="noopener">q.i.gdt.qq.com</a></li>
-<li>0.0.0.0 <a href="http://v.gdt.qq.com" target="_blank" rel="noopener">v.gdt.qq.com</a></li>
-<li>0.0.0.0 <a href="http://c.gdt.qq.com" target="_blank" rel="noopener">c.gdt.qq.com</a></li>
-<li>…</li>
-</ul>
-</li>
-<li>插件方式：
-<ul>
-<li>adblock</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9tz7zr6005lgklxtz9fwe7a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
 
     </footer>
   </div>
@@ -884,6 +717,10 @@
       <ul>
         
           <li>
+            <a href="/2020/05/05/copy-random-list/">复杂链表的复制</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/05/max-in-windows/">滑动窗口的最大值</a>
           </li>
         
@@ -897,10 +734,6 @@
         
           <li>
             <a href="/2020/05/01/linux-init/">linux-init</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/01/network-encrypt-protocol/">理解HTTPS协议</a>
           </li>
         
       </ul>

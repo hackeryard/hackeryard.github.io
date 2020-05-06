@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://hackeryard.github.io/images/DES/%E8%BD%AE%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90.png">
 <meta property="og:image" content="https://hackeryard.github.io/images/DES/des-iterations.png">
 <meta property="og:image" content="https://hackeryard.github.io/images/DES/%E5%88%9D%E5%A7%8B%E7%BD%AE%E6%8D%A2.png">
-<meta property="og:updated_time" content="2020-05-03T00:01:34.356Z">
+<meta property="og:updated_time" content="2020-05-06T01:43:49.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解DES加解密">
 <meta name="twitter:description" content="DES(Data Encryption Standards)是一种经典的对称加密技术，由IBM公司在1970s研发，之后被美国国家标准局标准化。在理解DES之前，我们先补充对称加密的基本思想。 对称加密是加解密使用同一个密钥的加密算法，区别于使用公钥和私钥加解密的非对称加密。同时，按照对称加密的密钥特征，分为流密码(stream cipher)和分组密码(block cipher)，前者每次加密数">
@@ -158,7 +158,7 @@
 <p>这部分对混淆和扩散没有作用，那为什么还要这两个置换呢？其实这是历史原因，当时DES标准的提交者为了降低硬件实现DES的复杂性，而多了这个设计，所以标准化之后，这个初始置换就留下来了。参见<a href="https://crypto.stackexchange.com/a/6" target="_blank" rel="noopener">What are the benefits of the two permutation tables in DES?</a></p>
 <p>仔细看的话，会发现后者是把每一位放回到最开始的位置，按照我的理解，这是为了让解密过程也能<strong>复用</strong>加密的框架。因为解密除了反向使用轮密钥外，其它的过程与加密是一致的。</p>
 <p>DES解密是加密的逆过程，上面介绍了初始置换和逆初始置换是逆过程，剩下就是证明16轮迭代解密是16轮迭代加密的逆过程。</p>
-<p>这里用到了异或(xor)的重要性质，a⊕a=0, a⊕0=a</p>
+<p>这里用到了异或(xor)的重要性质，a⊕a=0, a⊕0=a，考虑一个基本的密码形式，p是明文，c是密钥，e是密文，通过明文和密钥按位异或得到，p⊕c=e，接收方得到密文后，异或密钥解密：e⊕c=p⊕c⊕c=p，</p>
 <p>每轮解密，我们需要用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">L_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">R_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，解密出上一轮的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">L_{i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">R_{i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span></p>
 <p>回顾一下加密公式：<br>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mi>i</mi></msub><mo>=</mo><msub><mi>R</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mspace width="2em"><mspace width="2em"><mspace width="2em"><mspace width="2em"><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mspace></mspace></mspace></mspace></mrow><annotation encoding="application/x-tex">L_i = R_{i-1} \qquad \qquad \qquad \qquad (1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:2em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span><br>
@@ -183,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9tz7zm2001ggklxumhh3srv" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9uohjb9001c0olxoeogd3us" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li></ul>
@@ -291,6 +291,10 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
       <ul>
         
           <li>
+            <a href="/2020/05/05/copy-random-list/">复杂链表的复制</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/05/max-in-windows/">滑动窗口的最大值</a>
           </li>
         
@@ -304,10 +308,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
         
           <li>
             <a href="/2020/05/01/linux-init/">linux-init</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/01/network-encrypt-protocol/">理解HTTPS协议</a>
           </li>
         
       </ul>

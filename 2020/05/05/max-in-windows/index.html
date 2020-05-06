@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Spark Era Coming...">
 <meta property="og:description" content="问题描述 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。 返回滑动窗口中的最大值。 进阶： 你能在线性时间复杂度内解决此题吗？ 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出: [3,3,5,5,6,7] 解释: 12345678  滑动窗口的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-05T13:56:29.954Z">
+<meta property="og:updated_time" content="2020-05-06T01:39:43.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="滑动窗口的最大值">
 <meta name="twitter:description" content="问题描述 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。 返回滑动窗口中的最大值。 进阶： 你能在线性时间复杂度内解决此题吗？ 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出: [3,3,5,5,6,7] 解释: 12345678  滑动窗口的">
@@ -128,12 +128,12 @@
 <p>来源：<a href="https://leetcode-cn.com/problems/sliding-window-maximum" target="_blank" rel="noopener">LeetCode</a></p>
 <h2 id="解法一"><a class="markdownIt-Anchor" href="#解法一"></a> 解法一</h2>
 <p>首先看暴力解法，设nums的长度为n，则主循环遍历n-k+1次，子循环k次，即可完成对每个窗口的求解，时间复杂度是O(nk)。根据窗口的定义，我们只需要维护窗口的元素，并提供一个接口，查询当前窗口的最大值。维持大小为k的大顶堆可以查询最大值，但在维护窗口上，删除上一个窗口的第一个元素，需要花费的时间不得而知，因为堆只是维持父子节点的弱有序，查询的复杂度是不确切的。</p>
-<p>因为在窗口滑动时，我们需要删除上一个窗口的第一个元素，且最好能在O(1)的时间里删除，则可以尝试双端队列，同时，为了提供查询窗口最大值的接口，我们把front设置成最大值的索引，front到back的元素是小于front的元素。这里使用索引而不是最大值，是因为如果是最大值，我们无法确认是否front是否还在当前窗口内。front的维护方法，窗口移动得到的新元素与队列中的back比较，如果比back大，则弹出back，因为back不可能是最大值，堵在队列中会影响front（试想front因为窗口滑动而退出，此时新的front是较小的元素，那么front就不是最大值了）。</p>
+<p>因为在窗口滑动时，我们需要删除上一个窗口的第一个元素，且最好能在O(1)的时间里删除，则可以尝试队列，同时，为了提供查询窗口最大值的接口，我们把front设置成最大值的索引，front到back的元素是小于front的元素。这里使用索引而不是最大值，是因为如果是最大值，我们无法确认是否front是否还在当前窗口内。front的维护方法，窗口移动得到的新元素与队列中的back比较，如果比back大，则弹出back（这里用到pop_back，所以用的队列就是双端队列），因为back不可能是最大值，堵在队列中会影响front（试想front因为窗口滑动而退出，此时<strong>新的</strong>front是较小的元素，那么front就不是最大值了）。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span> || k == <span class="number">0</span> || n &lt; k) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="comment">// 用下标是因为 如果用元素值 则不知道front元素是否在当前窗口范围内</span></span><br><span class="line">        <span class="comment">// front保存最大值 是为了每次能通过front接口得到窗口的最大值</span></span><br><span class="line">        <span class="comment">// [front, back1, back2] front始终保存最大值 如果当前值比back大 则while弹出back</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty() &amp;&amp; nums[i] &gt; nums[q.back()]) &#123;</span><br><span class="line">                q.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            q.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        res.push_back(nums[q.front()]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = k; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="comment">// 之前的最大值是否还在当前窗口内</span></span><br><span class="line">            <span class="keyword">if</span>(!q.empty() &amp;&amp; q.front() == i-k) &#123; <span class="comment">// i=3 k=3 i-k=0</span></span><br><span class="line">                q.pop_front();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(!q.empty() &amp;&amp; nums[i] &gt; nums[q.back()]) &#123;</span><br><span class="line">                q.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            q.push_back(i);</span><br><span class="line">            res.push_back(nums[q.front()]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/05/max-in-windows/" data-id="ck9tz7znn002ngklx8csrl2q2" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/05/max-in-windows/" data-id="ck9uohjds002s0olxajbx9mcp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -143,6 +143,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/05/05/copy-random-list/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          复杂链表的复制
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/02/des-encrypt-and-decrypt/" id="article-nav-older" class="article-nav-link-wrap">
@@ -232,6 +241,10 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
       <ul>
         
           <li>
+            <a href="/2020/05/05/copy-random-list/">复杂链表的复制</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/05/max-in-windows/">滑动窗口的最大值</a>
           </li>
         
@@ -245,10 +258,6 @@ document.getElementById('subtitle').innerHTML = '「' + wis_words[getRandomInt(w
         
           <li>
             <a href="/2020/05/01/linux-init/">linux-init</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/01/network-encrypt-protocol/">理解HTTPS协议</a>
           </li>
         
       </ul>

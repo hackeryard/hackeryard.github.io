@@ -91,6 +91,225 @@
 
   
     <!-- post/article.ejs -->
+<article id="post-tool-set" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/21/tool-set/" class="article-date">
+  <time datetime="2018-03-21T13:31:30.000Z" itemprop="datePublished">2018-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/21/tool-set/">常用工具集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="vim快捷键"><a class="markdownIt-Anchor" href="#vim快捷键"></a> Vim快捷键：</h2>
+<ul>
+<li>跳到第一行  :1 或 gg</li>
+<li>跳到最后一行  😒 或 Shift+g</li>
+<li>复制  yy</li>
+<li>删除  dd</li>
+<li>撤销  U</li>
+<li>粘贴  P</li>
+</ul>
+<h2 id="加载python自带web-server"><a class="markdownIt-Anchor" href="#加载python自带web-server"></a> 加载Python自带Web Server：</h2>
+<ul>
+<li>python -m SimpleHTTPServer 80</li>
+<li>python3 -m http.server 80</li>
+</ul>
+<h2 id="webstorm快捷键"><a class="markdownIt-Anchor" href="#webstorm快捷键"></a> Webstorm快捷键</h2>
+<ul>
+<li>Ctrl + Alt + L 格式化代码</li>
+<li>双击shift 全局查找</li>
+<li>快速代码补全 emmet</li>
+<li>快速生成框架 !html</li>
+</ul>
+<h2 id="onenote使用笔记"><a class="markdownIt-Anchor" href="#onenote使用笔记"></a> Onenote使用笔记</h2>
+<ul>
+<li>截图：Win+shift+S</li>
+</ul>
+<h2 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h2>
+<ul>
+<li>重新加载配置：nginx -s reload</li>
+<li>快速关闭：nginx -s stop</li>
+<li>安全关闭：nginx -s quit</li>
+</ul>
+<h2 id="ffmpeg"><a class="markdownIt-Anchor" href="#ffmpeg"></a> FFmpeg</h2>
+<h2 id="celery-4-in-windows"><a class="markdownIt-Anchor" href="#celery-4-in-windows"></a> celery 4 in Windows</h2>
+<ul>
+<li>不支持pool：celery -A your_app_name worker --pool=solo -l info</li>
+</ul>
+<h2 id="lsoflist-open-files"><a class="markdownIt-Anchor" href="#lsoflist-open-files"></a> lsof：list open files</h2>
+<p>查看进程打开的文件列表</p>
+<ul>
+<li>lsof -c -p pid</li>
+<li>lsof -c program</li>
+</ul>
+<h2 id="获取当前缓存加载的动态链接库"><a class="markdownIt-Anchor" href="#获取当前缓存加载的动态链接库"></a> 获取当前缓存（加载）的动态链接库：</h2>
+<ul>
+<li>ldconfig -p | grep libssh</li>
+</ul>
+<h2 id="查看可执行文件所依赖的库"><a class="markdownIt-Anchor" href="#查看可执行文件所依赖的库"></a> 查看可执行文件所依赖的库：</h2>
+<ul>
+<li>ldd 绝对路径</li>
+<li>（程序的某个section中会记录动态链接的信息）</li>
+</ul>
+<h2 id="aliases"><a class="markdownIt-Anchor" href="#aliases"></a> aliases</h2>
+<ul>
+<li>alias de=‘ps -ef |grep’</li>
+<li>alias c=‘clear’</li>
+<li>alias ncat=‘netstat -nlp |grep’</li>
+<li>alias listp=‘pkg-config --list-all |grep’</li>
+<li>alias versionp=‘pkg-config --modversion’</li>
+<li>alias finf=‘find / -name’</li>
+<li>alias s=‘apt-cache search’</li>
+</ul>
+<h2 id="高亮日志分析工具log-navigator"><a class="markdownIt-Anchor" href="#高亮日志分析工具log-navigator"></a> 高亮日志分析工具（log navigator）：</h2>
+<ul>
+<li>apt-get install lnav</li>
+</ul>
+<h2 id="ovs"><a class="markdownIt-Anchor" href="#ovs"></a> ovs</h2>
+<ul>
+<li>
+<p>运维：</p>
+<ul>
+<li>运维脚本位置
+<ul>
+<li>/usr/share/openvswitch/scripts</li>
+<li>/usr/local/share/openvswitch/scripts</li>
+</ul>
+</li>
+<li>启动：ovs-ctl start</li>
+<li>重启：ovs-ctl restart</li>
+<li>状态：ovs-ctl status</li>
+</ul>
+</li>
+<li>
+<p>查看日志：</p>
+<ul>
+<li>ovsdb-tool show-log</li>
+</ul>
+</li>
+<li>
+<p>查看ovsdb里面的数据表：</p>
+<ul>
+<li>ovsdb-client list-tables</li>
+</ul>
+</li>
+<li>
+<p>查看ovsdb中的相关字段定义</p>
+<ul>
+<li>ovsdb-client list-columns Interface | grep ofport</li>
+</ul>
+</li>
+<li>
+<p>查看ovsdb中的相关数据：</p>
+<ul>
+<li>ovs-vsctl  – --columns=external_ids,name,ofport,ofport_request  list Interface</li>
+</ul>
+</li>
+<li>
+<p>alias:</p>
+<ul>
+<li>alias ovss=‘ovs-vsctl show’</li>
+<li>alias apps=‘ovs-appctl fdb/show’</li>
+<li>alias ofs=‘ovs-ofctl show ofc-bridge’</li>
+</ul>
+</li>
+</ul>
+<h2 id="编译相关"><a class="markdownIt-Anchor" href="#编译相关"></a> 编译相关</h2>
+<ul>
+<li>
+<p>cmake：</p>
+<ul>
+<li>一个跨平台编译工具 用于生成适配平台的Makefile</li>
+<li>mkdir build</li>
+<li>cd build</li>
+<li>cmake …</li>
+<li>make &amp;&amp; make install</li>
+<li>重新cmake之前需要删除CMakeCache.txt</li>
+</ul>
+</li>
+<li>
+<p>pkg-config:</p>
+<ul>
+<li>编译库的时候 使用这个工具管理其依赖</li>
+<li>即记录头文件和库文件的存放位置 用于编译和链接</li>
+<li>pkg-config --list-all | grep libnetconf</li>
+<li>pkg-config  --modversion libnetconf</li>
+</ul>
+</li>
+</ul>
+<h2 id="ipv6-dns"><a class="markdownIt-Anchor" href="#ipv6-dns"></a> IPv6 DNS:</h2>
+<ul>
+<li>国内公共DNS（延迟2ms）：
+<ul>
+<li>240c::6666</li>
+<li>240c::6644</li>
+</ul>
+</li>
+<li><a href="http://he.net" target="_blank" rel="noopener">he.net</a>(US延迟156ms）：
+<ul>
+<li>2001:470:20::2</li>
+<li>2001:470:0:9d::2</li>
+</ul>
+</li>
+<li>Google（延迟156ms）：
+<ul>
+<li>2001:4860:4860::8888</li>
+<li>2001:4860:4860::8844</li>
+</ul>
+</li>
+</ul>
+<h2 id="屏蔽广告"><a class="markdownIt-Anchor" href="#屏蔽广告"></a> 屏蔽广告：</h2>
+<ul>
+<li>hosts方式：
+<ul>
+<li>0.0.0.0 <a href="http://xian.qq.com" target="_blank" rel="noopener">xian.qq.com</a></li>
+<li>0.0.0.0 <a href="http://q.i.gdt.qq.com" target="_blank" rel="noopener">q.i.gdt.qq.com</a></li>
+<li>0.0.0.0 <a href="http://v.gdt.qq.com" target="_blank" rel="noopener">v.gdt.qq.com</a></li>
+<li>0.0.0.0 <a href="http://c.gdt.qq.com" target="_blank" rel="noopener">c.gdt.qq.com</a></li>
+<li>…</li>
+</ul>
+</li>
+<li>插件方式：
+<ul>
+<li>adblock</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://hackeryard.github.io/2018/03/21/tool-set/" data-id="ck9uohjg2004r0olxtq4jhfpy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<div id="gitment"></div>
+
+<!-- 主页不要加载gitment -->
+
+
+
+  
+    <!-- post/article.ejs -->
 <article id="post-the-journal-of-hexo-blog-3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/02/03/the-journal-of-hexo-blog-3/" class="article-date">
@@ -143,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9tz7zpz004ggklx4d32nswd" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/02/03/the-journal-of-hexo-blog-3/" data-id="ck9uohjfy004n0olxr0fiwhdj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitment/">gitment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -197,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9tz7zpw004dgklxacjdyp7u" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-2/" data-id="ck9uohjfu004j0olxtdu6m93d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webhooks/">webhooks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/部署/">部署</a></li></ul>
@@ -279,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9tz7zpu004bgklxfk7qhzna" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/29/the-journal-of-hexo-blog-1/" data-id="ck9uohjfq004g0olxk3n4k9h5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -351,7 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9tz7zqe004sgklx0ru02zr3" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2018/01/19/the-death-of-Vincent/" data-id="ck9uohjfo004e0olxq3g58yst" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vincent/">Vincent</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/梵高/">梵高</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -414,7 +633,7 @@ recvfrom返回0表示有数据包达到，但是数据部分为空，在wireshar
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9tz7zmq001ygklx0an8k1h4" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/07/03/how-to-send-a-null-udp-packet/" data-id="ck9uohjcj00210olxbd3u50w1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/">Network</a></li></ul>
@@ -464,7 +683,7 @@ node的一大特色就是异步io，我们知道，在网络服务中，服务�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9tz7zom0039gklx3hm41ssq" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/16/node-000/" data-id="ck9uohjed003b0olxrq7kgiu6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node/">Node</a></li></ul>
@@ -519,7 +738,7 @@ node的一大特色就是异步io，我们知道，在网络服务中，服务�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9tz7zn40029gklx5gg5g8x4" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/05/14/install-scientific-lib-modules-in-windows/" data-id="ck9uohjcr00270olxu7axqvdz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -596,7 +815,7 @@ node的一大特色就是异步io，我们知道，在网络服务中，服务�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9tz7zpf003zgklxt9qcjjfi" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/16/some-tough-thoughts-in-2015/" data-id="ck9uohjf900420olxgua2byr7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随想集/">随想集</a></li></ul>
@@ -643,69 +862,10 @@ node的一大特色就是异步io，我们知道，在网络服务中，服务�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9tz7zln0012gklx0jaj7you" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2017/04/07/apt-get-bookmark/" data-id="ck9uohjap00100olx8hgj7edv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<div id="gitment"></div>
-
-<!-- 主页不要加载gitment -->
-
-
-
-  
-    <!-- post/article.ejs -->
-<article id="post-mpich-3-x-easy-install-in-ubuntu-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" class="article-date">
-  <time datetime="2017-04-07T01:22:50.000Z" itemprop="datePublished">2017-04-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/">MPICH 3.X安装简明指南（2）【ubuntu】</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文基于Ubuntu 14.04安装mpich2，亲测有效：</p>
-<blockquote>
-<p>安装：</p>
-</blockquote>
-<p>[c]apt-get install mpich2 libmpich2-dev mpich2-doc[/c]</p>
-<blockquote>
-<p>测试：</p>
-</blockquote>
-<p>[c]which mpicc[/c]</p>
-<p>一般返回：</p>
-<p>[c] /usr/bin/mpicc[/c]</p>
-<p>另外的步骤按照<a href="https://myard.org/runkingblog/2017/04/mpich-3-x-ealy-install-guide/" target="_blank" rel="noopener">第一篇文章</a>操作即可。</p>
-<p>通过此方法安装的mpich版本为3.0.5，并非最新，可以通过以下命令查看：</p>
-<p>[c]mpicc -v [/c]</p>
-<p> </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2017/04/07/mpich-3-x-easy-install-in-ubuntu-2/" data-id="ck9tz7zod002zgklxecc0t8vh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MPICH/">MPICH</a></li></ul>
 
     </footer>
   </div>
@@ -776,6 +936,10 @@ node的一大特色就是异步io，我们知道，在网络服务中，服务�
       <ul>
         
           <li>
+            <a href="/2020/05/05/copy-random-list/">复杂链表的复制</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/05/max-in-windows/">滑动窗口的最大值</a>
           </li>
         
@@ -789,10 +953,6 @@ node的一大特色就是异步io，我们知道，在网络服务中，服务�
         
           <li>
             <a href="/2020/05/01/linux-init/">linux-init</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/01/network-encrypt-protocol/">理解HTTPS协议</a>
           </li>
         
       </ul>
