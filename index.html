@@ -122,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/05/copy-random-list/" data-id="ck9uohjb200170olxvaj6bdhh" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/05/copy-random-list/" data-id="ck9uryipg001fxglxchfnf69a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -180,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/05/max-in-windows/" data-id="ck9uohjds002s0olxajbx9mcp" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/05/max-in-windows/" data-id="ck9uryisq002txglxpm04fb07" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -254,7 +254,7 @@
 <p>这部分对混淆和扩散没有作用，那为什么还要这两个置换呢？其实这是历史原因，当时DES标准的提交者为了降低硬件实现DES的复杂性，而多了这个设计，所以标准化之后，这个初始置换就留下来了。参见<a href="https://crypto.stackexchange.com/a/6" target="_blank" rel="noopener">What are the benefits of the two permutation tables in DES?</a></p>
 <p>仔细看的话，会发现后者是把每一位放回到最开始的位置，按照我的理解，这是为了让解密过程也能<strong>复用</strong>加密的框架。因为解密除了反向使用轮密钥外，其它的过程与加密是一致的。</p>
 <p>DES解密是加密的逆过程，上面介绍了初始置换和逆初始置换是逆过程，剩下就是证明16轮迭代解密是16轮迭代加密的逆过程。</p>
-<p>这里用到了异或(xor)的重要性质，a⊕a=0, a⊕0=a，考虑一个基本的密码形式，p是明文，c是密钥，e是密文，通过明文和密钥按位异或得到，p⊕c=e，接收方得到密文后，异或密钥解密：e⊕c=p⊕c⊕c=p，</p>
+<p>这里用到了异或(xor)的重要性质，a⊕a=0, a⊕0=a，考虑一个基本的密码形式，p是明文，c是密钥，e是密文，通过明文和密钥按位异或得到，p⊕c=e，接收方得到密文后，异或密钥解密：e⊕c=p⊕c⊕c=p</p>
 <p>每轮解密，我们需要用<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">L_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">R_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，解密出上一轮的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">L_{i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">R_{i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.891661em;vertical-align:-0.208331em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span></p>
 <p>回顾一下加密公式：<br>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mi>i</mi></msub><mo>=</mo><msub><mi>R</mi><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msub><mspace width="2em"><mspace width="2em"><mspace width="2em"><mspace width="2em"><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mspace></mspace></mspace></mspace></mrow><annotation encoding="application/x-tex">L_i = R_{i-1} \qquad \qquad \qquad \qquad (1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:2em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span><br>
@@ -279,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9uohjb9001c0olxoeogd3us" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/02/des-encrypt-and-decrypt/" data-id="ck9uryipi001hxglxb3hdz76d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li></ul>
@@ -342,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/best-practice-of-password-save/" data-id="ck9uohjbk001j0olxpkor3s54" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/best-practice-of-password-save/" data-id="ck9uryip90018xglxctxs3kg7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/密码学-Security/">密码学 Security</a></li></ul>
@@ -386,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/linux-init/" data-id="ck9uohjd4002h0olx1ycbm6zd" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/linux-init/" data-id="ck9uryis7002lxglxsbfpsmf1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -428,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/05/01/network-encrypt-protocol/" data-id="ck9uohje0002z0olx8kg8d92z" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/05/01/network-encrypt-protocol/" data-id="ck9uryit30032xglx5urtjh0b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -470,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/30/nginx-event-loop/" data-id="ck9uohje700340olxob98680r" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/30/nginx-event-loop/" data-id="ck9uryitd003axglx5op2gx27" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NGINX/">NGINX</a></li></ul>
@@ -613,7 +613,7 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9uohjeb00390olxxb16ktak" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/29/network-tcp/" data-id="ck9uryit60035xglx1yz3q1u5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/">Network</a></li></ul>
@@ -675,7 +675,7 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/27/permutations/" data-id="ck9uohjel003g0olx9d9dfsha" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/27/permutations/" data-id="ck9uryitk003hxglxct6jj7vb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -741,7 +741,7 @@ TCP基于滑动窗口，实现对数据的高效发送，基于发送方报告�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://hackeryard.github.io/2020/04/27/subsets/" data-id="ck9uohjfd00460olxnpd5kug3" class="article-share-link">Share</a>
+      <a data-url="https://hackeryard.github.io/2020/04/27/subsets/" data-id="ck9uryiuh0047xglxj18bunsv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
